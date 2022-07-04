@@ -1,6 +1,6 @@
 import * as R from "react-native";
-import Carousel, { Pagination } from "react-native-snap-carousel";
 import * as S from "./Intro.styles";
+import Carousel, { Pagination } from "react-native-snap-carousel";
 import Intro1 from "../../../../assets/intro/Intro1.svg";
 import Intro2 from "../../../../assets/intro/Intro2.svg";
 import Intro3 from "../../../../assets/intro/Intro3.svg";
@@ -29,7 +29,7 @@ const renderItem = ({ item }) => (
    <S.ImageContainer>{item.image()}</S.ImageContainer>
 );
 
-export default function IntroPageUI() {
+export default function IntroPageUI(props) {
    return (
       <S.Wrapper>
          <S.CarouselContainer>
@@ -50,24 +50,16 @@ export default function IntroPageUI() {
             />
          </S.CarouselContainer>
          <S.Footer>
-            <R.TouchableOpacity style={{ width: "50%" }} activeOpacity={0.7}>
+            <S.LoginTouch activeOpacity={0.7} onPress={props.onPressLogin}>
                <S.Login>
-                  <R.Text
-                     style={{ fontFamily: "NotoSansKR", color: "#ffffff" }}
-                  >
-                     로그인
-                  </R.Text>
+                  <S.FooterText>로그인</S.FooterText>
                </S.Login>
-            </R.TouchableOpacity>
-            <R.TouchableOpacity style={{ width: "50%" }} activeOpacity={0.7}>
+            </S.LoginTouch>
+            <S.JoinTouch activeOpacity={0.7} onPress={props.onPressJoin}>
                <S.Join>
-                  <R.Text
-                     style={{ fontFamily: "NotoSansKR", color: "#ffffff" }}
-                  >
-                     가입하기
-                  </R.Text>
+                  <S.FooterText>가입하기</S.FooterText>
                </S.Join>
-            </R.TouchableOpacity>
+            </S.JoinTouch>
          </S.Footer>
       </S.Wrapper>
    );

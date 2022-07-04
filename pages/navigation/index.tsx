@@ -1,7 +1,6 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import IntroPage from "../../src/components/units/intro/Intro.container";
-import Intro from "../screens/intro";
+import IntroStack from "../screens/intro";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +17,8 @@ export default function Navigation() {
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator>
             <Stack.Screen
-               name="intro"
-               component={IntroPage}
+               name="introStack"
+               component={IntroStack}
                options={() => ({
                   headerShown: false,
                })}
