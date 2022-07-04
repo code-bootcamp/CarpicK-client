@@ -7,7 +7,7 @@ export default StyleSheet.create({
       paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
    },
    GlobalStyles: {
-      paddingLeft: "20px",
-      paddingRight: "20px",
+      paddingLeft: 20,
+      paddingRight: 20,
    },
 });

@@ -32,3 +32,14 @@ export const Login = styled.View`
    align-items: center;
    justify-content: center;
 `;
+
+export const LoginTouch = styled.TouchableOpacity`
+   width: 50%;
+`;
+export const JoinTouch = styled.TouchableOpacity`
+   width: 50%;
+`;
+export const FooterText = styled.Text`
+   font-family: Regular;
+   color: #ffffff;
+`;
