@@ -2,8 +2,8 @@ import * as R from "react-native";
 import * as S from "./License3.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import LicenseImage from "../../../../../assets/license/license-image.svg";
-import Button01 from "../../../commons/button/button_01";
-import Button02 from "../../../commons/button/button_02";
+import Button01Blue from "../../../commons/button/button_01_blue";
+import Button01Gray from "../../../commons/button/button_01_gray";
 
 export default function License3PageUI(props) {
    return (
@@ -55,8 +55,8 @@ export default function License3PageUI(props) {
                {props.result.SpecialNumber}
             </S.InfoDetail>
          </S.InfoWrapper>
-         <Button01 func={""} title="등록" />
-         <Button02 func={""} title="다시찍기" />
+         <Button01Blue func={""} title="등록" />
+         <Button01Gray func={props.onPressGoback} title="다시찍기" />
       </S.Wrapper>
    );
 }
