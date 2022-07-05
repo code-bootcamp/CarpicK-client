@@ -7,6 +7,7 @@ import { REACT_APP_GOOGLEVISION_API_KEY } from "@env";
 
 export default function License2Page({ navigation }) {
    let cameraRef = useRef();
+   const [isLoad, setIsLoad] = useState(false);
    const [hasPermission, setHasPermission] = useState(null);
    const [photo, setPhoto] = useState(null);
    const [visionResult, setVisionResult] = useState("");
@@ -23,6 +24,11 @@ export default function License2Page({ navigation }) {
          const { status } = await Camera.requestCameraPermissionsAsync();
          setHasPermission(status === "granted");
       })();
+   }, []);
+
+   useEffect(() => {
+      navigation.addListener("focus", () => setIsLoad(true));
+      navigation.addListener("blur", () => setIsLoad(false));
    }, []);
 
    if (hasPermission === null) {
@@ -61,12 +67,10 @@ export default function License2Page({ navigation }) {
    };
 
    const onPressGoBack = () => {
-      console.log("hi");
       navigation.goBack();
    };
 
    const takePic = async () => {
-      console.log("hi");
       let options = {
          quality: 1,
          base64: true,
@@ -74,15 +78,20 @@ export default function License2Page({ navigation }) {
       };
 
       let newPhoto = await cameraRef.current.takePictureAsync(options);
+      await cameraRef.current.pausePreview();
       setPhoto(newPhoto);
       callGoogleVIsionApi(newPhoto.base64);
    };
 
    return (
-      <License2PageUI
-         cameraRef={cameraRef}
-         onPressGoBack={onPressGoBack}
-         takePic={takePic}
-      />
+      <>
+         {isLoad && (
+            <License2PageUI
+               cameraRef={cameraRef}
+               onPressGoBack={onPressGoBack}
+               takePic={takePic}
+            />
+         )}
+      </>
    );
 }
