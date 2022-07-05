@@ -1,6 +1,7 @@
 import * as R from "react-native";
 import * as S from "./Join.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
+import Button01 from "../../commons/button/button_01";
 
 export default function JoinPageUI(props) {
    return (
@@ -76,9 +77,7 @@ export default function JoinPageUI(props) {
                   />
                   <S.InputBottomLine />
                </S.PwAgainWrapper>
-               <S.NextTouch activeOpacity={0.7}>
-                  <S.NextText>다음</S.NextText>
-               </S.NextTouch>
+               <Button01 func={props.onPressNext} title="다음" />
             </S.Body>
          </R.ScrollView>
       </S.Wrapper>

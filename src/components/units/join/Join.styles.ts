@@ -22,7 +22,9 @@ export const Title = styled.Text`
    padding: 40px 0px; ;
 `;
 
-export const Body = styled.View``;
+export const Body = styled.View`
+   padding-bottom: 35px;
+`;
 
 export const InputBottomLine = styled.View`
    width: 100%;
@@ -124,19 +126,4 @@ export const PwAgainInput = styled.TextInput`
    font-family: Regular;
    padding: 0px 14px;
    height: 45px;
-`;
-
-export const NextTouch = styled.TouchableOpacity`
-   width: 100%;
-   height: 60px;
-   background-color: #5d8bff;
-   border-radius: 5px;
-   align-items: center;
-   justify-content: center;
-   margin-bottom: 35px;
-`;
-
-export const NextText = styled.Text`
-   font-family: Regular;
-   color: #ffffff;
 `;

@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import * as R from "react-native";
 import { Platform } from "react-native";
 
-export default function NavigationHeaderLeft({ navigation }) {
+export default function NavigationHeaderLeft({ navigation }, target, title) {
    return (
       <>
          <Ionicons
@@ -20,9 +20,15 @@ export default function NavigationHeaderLeft({ navigation }) {
                        width: 25,
                     }
             }
-            onPress={() => {
-               navigation.goBack();
-            }}
+            onPress={
+               target
+                  ? () => {
+                       navigation.navigate(target);
+                    }
+                  : () => {
+                       navigation.goBack();
+                    }
+            }
          />
          <R.Text
             style={{
@@ -32,7 +38,7 @@ export default function NavigationHeaderLeft({ navigation }) {
                marginLeft: 20,
             }}
          >
-            회원가입
+            {title}
          </R.Text>
       </>
    );
