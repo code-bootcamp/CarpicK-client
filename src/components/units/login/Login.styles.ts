@@ -31,28 +31,13 @@ export const Input = styled.TextInput`
    padding: 0px 14px;
 `;
 
-export const LoginTouch = styled.TouchableOpacity`
-   width: 100%;
-   height: 60px;
-   font-size: 14px;
-   background-color: #5d8bff;
-   border-radius: 5px;
-   margin-bottom: 20px;
-   align-items: center;
-   justify-content: center;
-`;
-
-export const LoginText = styled.Text`
-   font-family: Regular;
-   color: #ffffff;
-`;
-
 export const GoogleLoginTouch = styled.TouchableOpacity`
    width: 100%;
    height: 60px;
    font-size: 14px;
    background-color: #ffffff;
    border-radius: 5px;
+   margin-top: 20px;
    margin-bottom: 20px;
    align-items: center;
    display: flex;

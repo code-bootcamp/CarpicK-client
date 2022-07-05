@@ -5,9 +5,9 @@ export default function JoinPage({ navigation }) {
    //    navigation.navigate("login");
    // };
 
-   // const onPressJoin = () => {
-   //    navigation.navigate("join");
-   // };
+   const onPressNext = () => {
+      navigation.navigate("license1");
+   };
 
-   return <JoinPageUI />;
+   return <JoinPageUI onPressNext={onPressNext} />;
 }
