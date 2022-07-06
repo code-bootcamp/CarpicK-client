@@ -10,24 +10,9 @@ export const TitleWrapper = styled.View`
    padding: 40px 0px;
 `;
 
-export const Body = styled.View`
-   padding-bottom: 35px;
-`;
-
-export const InputBottomLine = styled.View`
-   width: 100%;
-   border: 0.5px solid #353535;
-`;
-
-export const InputWrapper = styled.View``;
-
 export const InputWrapperMarginBtm = styled.View`
    width: 100%;
-   margin-bottom: 12px;
-`;
-
-export const InputLeft = styled.View`
-   width: 70%;
+   margin-bottom: 20px;
 `;
 
 export const InputRow = styled.View`
@@ -36,10 +21,19 @@ export const InputRow = styled.View`
    flex-direction: row;
 `;
 
+export const InputLeft = styled.View`
+   width: 70%;
+`;
+
 export const Input = styled.TextInput`
    font-family: Regular;
    padding: 0px 14px;
    height: 45px;
+`;
+
+export const InputBottomLine = styled.View`
+   width: 100%;
+   border: 0.5px solid #353535;
 `;
 
 export const SubTouch = styled.TouchableOpacity`
@@ -48,4 +42,8 @@ export const SubTouch = styled.TouchableOpacity`
    align-items: center;
    justify-content: center;
    border-radius: 5px;
+`;
+
+export const ButtonWrapper = styled.View`
+   padding-top: 12px;
 `;

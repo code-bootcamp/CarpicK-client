@@ -10,7 +10,7 @@ import { LogBox } from "react-native";
 import { REACT_APP_GRAPHQL_URL } from "@env";
 
 const client = new ApolloClient({
-   uri: REACT_APP_GRAPHQL_URL,
+   uri: "https://carpick.shop/graphql",
    cache: new InMemoryCache(),
    credentials: "include",
 });
