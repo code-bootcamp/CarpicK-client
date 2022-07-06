@@ -2,6 +2,7 @@ import * as R from "react-native";
 import * as S from "./Login.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
 import GoogleLogo from "../../../../assets/login/google-logo.svg";
+import Button01Blue from "../../commons/button/button_01_blue";
 
 export default function LoginPageUI(props) {
    return (
@@ -9,14 +10,16 @@ export default function LoginPageUI(props) {
          <S.Wrapper style={globalStyles.GlobalStyles}>
             <S.Title style={{ includeFontPadding: false }}>CarpicK</S.Title>
             <S.Body>
-               <S.Input placeholder="이메일을 입력해주세요" />
                <S.Input
+                  onChange={props.onChangeEmail}
+                  placeholder="이메일을 입력해주세요"
+               />
+               <S.Input
+                  onChange={props.onChangePassword}
                   secureTextEntry={true}
                   placeholder="비밀번호를 입력해주세요"
                />
-               <S.LoginTouch activeOpacity={0.7}>
-                  <S.LoginText>로그인</S.LoginText>
-               </S.LoginTouch>
+               <Button01Blue func={props.onPressLogin} title="로그인" />
                <S.GoogleLoginTouch activeOpacity={0.3}>
                   <GoogleLogo />
                   <S.TextBox>
