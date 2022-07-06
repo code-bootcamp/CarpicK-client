@@ -7,9 +7,10 @@ import SafeViewAndroid from "./src/commons/styles/globalStyle";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 import { LogBox } from "react-native";
+import { REACT_APP_GRAPHQL_URL } from "@env";
 
 const client = new ApolloClient({
-   uri: "https://backend07.codebootcamp.co.kr/graphql",
+   uri: REACT_APP_GRAPHQL_URL,
    cache: new InMemoryCache(),
    credentials: "include",
 });

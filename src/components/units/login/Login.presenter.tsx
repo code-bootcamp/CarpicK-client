@@ -10,12 +10,16 @@ export default function LoginPageUI(props) {
          <S.Wrapper style={globalStyles.GlobalStyles}>
             <S.Title style={{ includeFontPadding: false }}>CarpicK</S.Title>
             <S.Body>
-               <S.Input placeholder="이메일을 입력해주세요" />
                <S.Input
+                  onChange={props.onChangeEmail}
+                  placeholder="이메일을 입력해주세요"
+               />
+               <S.Input
+                  onChange={props.onChangePassword}
                   secureTextEntry={true}
                   placeholder="비밀번호를 입력해주세요"
                />
-               <Button01Blue func={""} title="로그인" />
+               <Button01Blue func={props.onPressLogin} title="로그인" />
                <S.GoogleLoginTouch activeOpacity={0.3}>
                   <GoogleLogo />
                   <S.TextBox>

@@ -122,10 +122,7 @@ export const GuideHeader = styled.Text`
    color: #ffffff;
    elevation: 1;
 `;
-export const GuideSqure = styled.View`
-   width: 200px;
-   height: 100px;
-`;
+
 export const GuideFooter = styled.View`
    width: 225px;
    flex-direction: row;

@@ -2,6 +2,7 @@ import * as R from "react-native";
 import * as S from "./Join.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
 import Button01Blue from "../../commons/button/button_01_blue";
+import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
 
 export default function JoinPageUI(props) {
    return (
@@ -23,23 +24,31 @@ export default function JoinPageUI(props) {
                   <S.EmailRow>
                      <S.EmailLeft>
                         <S.EmailInput
+                           onChange={props.onChaneEmail}
                            placeholder="이메일 형식으로 입력해주세요."
                            style={{ includeFontPadding: false }}
                         />
                         <S.InputBottomLine />
                      </S.EmailLeft>
-                     <S.EmailCheckTouch activeOpacity={0.7}>
+                     <S.EmailCheckTouch
+                        activeOpacity={0.7}
+                        onPress={props.onPressCheckEmail}
+                     >
                         <S.EmailCheckText style={{ includeFontPadding: false }}>
                            중복확인
                         </S.EmailCheckText>
                      </S.EmailCheckTouch>
                   </S.EmailRow>
                </S.EmailWrapper>
+               <S.ErrorText style={{ includeFontPadding: false }}>
+                  {!props.isValidEmail ? "이메일 형식으로 입력해주세요." : ""}
+               </S.ErrorText>
                <S.NameWrapper>
                   <S.NameText style={{ includeFontPadding: false }}>
                      이름
                   </S.NameText>
                   <S.NameInput
+                     onChange={props.onChaneName}
                      placeholder="실명을 입력해 주세요."
                      style={{ includeFontPadding: false }}
                   />
@@ -50,7 +59,10 @@ export default function JoinPageUI(props) {
                      전화번호
                   </S.PhoneText>
                   <S.PhoneInput
+                     maxLength={13}
+                     onChange={props.onChanePhone}
                      placeholder="전화번호를 입력해 주세요."
+                     value={phoneNumHypen(props.phone)}
                      style={{ includeFontPadding: false }}
                   />
                   <S.InputBottomLine />
@@ -60,17 +72,26 @@ export default function JoinPageUI(props) {
                      비밀번호
                   </S.PwText>
                   <S.PwInput
+                     maxLength={16}
+                     onChange={props.onChanePassword}
                      secureTextEntry={true}
                      placeholder="영문+숫자 조합 8~16 자리를 입력해주세요."
                      style={{ includeFontPadding: false }}
                   />
                   <S.InputBottomLine />
                </S.PwWrapper>
+               <S.ErrorText style={{ includeFontPadding: false }}>
+                  {!props.isValidPassword
+                     ? "영문+숫자 조합 8~16자리를 입력해주세요."
+                     : ""}
+               </S.ErrorText>
                <S.PwAgainWrapper>
                   <S.PwAgainText style={{ includeFontPadding: false }}>
                      비밀번호 재확인
                   </S.PwAgainText>
                   <S.PwAgainInput
+                     maxLength={16}
+                     onChange={props.onChanePasswordAgain}
                      secureTextEntry={true}
                      placeholder="영문+숫자 조합 8~16 자리를 입력해주세요."
                      style={{ includeFontPadding: false }}

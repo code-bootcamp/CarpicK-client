@@ -10,7 +10,7 @@ export default function License2Page({ navigation }) {
    const [isLoad, setIsLoad] = useState(false);
    const [hasPermission, setHasPermission] = useState(null);
    const [photo, setPhoto] = useState(null);
-   const [visionResult, setVisionResult] = useState("");
+
    const [licData, setLicData] = useState({
       BirthDate: "",
       Name: "",
@@ -60,14 +60,13 @@ export default function License2Page({ navigation }) {
             const result = VisionParsing(
                data.responses[0].fullTextAnnotation.text.split("\n")
             );
-            console.log(result);
-            navigation.navigate("license3", { result });
+            navigation.navigate("license3", { result, base64 });
          })
          .catch((err) => console.log("error : ", err));
    };
 
    const onPressGoBack = () => {
-      navigation.goBack();
+      navigation.navigate("license1");
    };
 
    const takePic = async () => {
@@ -76,7 +75,6 @@ export default function License2Page({ navigation }) {
          base64: true,
          exif: false,
       };
-
       let newPhoto = await cameraRef.current.takePictureAsync(options);
       await cameraRef.current.pausePreview();
       setPhoto(newPhoto);
