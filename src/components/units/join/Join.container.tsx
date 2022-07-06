@@ -9,6 +9,7 @@ export default function JoinPage({ navigation }) {
    const [phone, setPhone] = useState("");
    const [password, setPassword] = useState("");
    const [passwordAgain, setPasswordAgain] = useState("");
+   const [phoneTruthNum, setPhoneTruthNum] = useState("");
    const [isValidEmail, setIsValidEmail] = useState(false);
    const [isValidPassword, setIsValidPassword] = useState(false);
    const [isCheckEmail, setIsCheckEmail] = useState({
@@ -54,6 +55,10 @@ export default function JoinPage({ navigation }) {
       setPasswordAgain(e.nativeEvent.text);
    };
 
+   const onChanePhoneTruthNum = (e) => {
+      setPhoneTruthNum(e.nativeEvent.text);
+   };
+
    const onPressNext = () => {
       // if (
       //    isValidEmail &&
@@ -77,7 +82,7 @@ export default function JoinPage({ navigation }) {
          if (result.data.checkEmail) {
             setIsCheckEmail({ email, valid: true });
          }
-         console.log("this is result", result);
+         console.log("this is result", result.data.checkEmail);
       } catch (error) {
          console.log(error.message);
       }
@@ -123,6 +128,7 @@ export default function JoinPage({ navigation }) {
          onChanePhone={onChanePhone}
          onChanePassword={onChanePassword}
          onChanePasswordAgain={onChanePasswordAgain}
+         onChanePhoneTruthNum={onChanePhoneTruthNum}
          onPressCheckEmail={onPressCheckEmail}
          isValidEmail={isValidEmail}
          isValidPassword={isValidPassword}

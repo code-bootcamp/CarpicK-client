@@ -28,19 +28,25 @@ export default function LoginPageUI(props) {
                </S.GoogleLoginTouch>
             </S.Body>
             <S.Footer>
-               <S.FooterTouch activeOpacity={0.5}>
+               <S.FooterTouch
+                  activeOpacity={0.5}
+                  onPress={props.onPressToFindId}
+               >
                   <S.IdFind style={{ includeFontPadding: false }}>
                      아이디 찾기
                   </S.IdFind>
                </S.FooterTouch>
                <S.SectionBar />
-               <S.FooterTouch activeOpacity={0.5}>
+               <S.FooterTouch
+                  activeOpacity={0.5}
+                  onPress={props.onPressToPasswordReset}
+               >
                   <S.PwReset style={{ includeFontPadding: false }}>
                      비밀번호 재설정
                   </S.PwReset>
                </S.FooterTouch>
                <S.SectionBar />
-               <S.FooterTouch onPress={props.onPressJoin} activeOpacity={0.5}>
+               <S.FooterTouch onPress={props.onPressToJoin} activeOpacity={0.5}>
                   <S.ToJoin style={{ includeFontPadding: false }}>
                      회원가입
                   </S.ToJoin>

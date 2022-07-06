@@ -1,0 +1,30 @@
+import * as S from "./IdResult.styles";
+import globalStyles from "../../../../commons/styles/globalStyle";
+import TitleText from "../../../commons/text/TitleText";
+import Button01Blue from "../../../commons/button/button_01_blue";
+import SubTitleText from "../../../commons/text/SubTitleText";
+
+export default function IdResultPageUI(props) {
+   return (
+      <S.Wrapper style={globalStyles.GlobalStyles}>
+         <S.TitleWrapper>
+            <TitleText color="#5D8BFF">아이디찾기</TitleText>
+         </S.TitleWrapper>
+         <S.TextWrapper>
+            <SubTitleText>
+               {}
+               님의 아이디는 !
+            </SubTitleText>
+         </S.TextWrapper>
+         <S.TextWrapper>
+            <SubTitleText color="#777777">{} 입니다.</SubTitleText>
+         </S.TextWrapper>
+         <S.ButtonWrapper>
+            <Button01Blue
+               func={props.onPressToLogin}
+               title={"로그인 하러가기"}
+            />
+         </S.ButtonWrapper>
+      </S.Wrapper>
+   );
+}
