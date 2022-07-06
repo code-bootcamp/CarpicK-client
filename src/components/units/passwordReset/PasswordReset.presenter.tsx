@@ -21,6 +21,7 @@ export default function PasswordResetUI(props) {
                      <S.InputLeft>
                         <S.Input
                            maxLength={13}
+                           keyboardType="numeric"
                            onChange={props.onChanePhone}
                            placeholder="휴대전화번호 입력"
                            value={phoneNumHypen(props.phone)}
@@ -43,9 +44,9 @@ export default function PasswordResetUI(props) {
                      <S.InputLeft>
                         <S.Input
                            maxLength={6}
+                           keyboardType="numeric"
                            onChange={props.onChanePhoneTruthNum}
                            placeholder="인증번호를 입력해 주세요."
-                           keyboardType="numeric"
                            style={{ includeFontPadding: false }}
                         />
                         <S.InputBottomLine />

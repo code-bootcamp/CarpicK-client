@@ -1,6 +1,9 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import IntroStack from "../screens/intro";
+import MainStack from "../screens/main";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../src/commons/store";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,16 +16,28 @@ const MyTheme = {
 };
 
 export default function Navigation() {
+   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+
    return (
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator>
-            <Stack.Screen
-               name="introStack"
-               component={IntroStack}
-               options={() => ({
-                  headerShown: false,
-               })}
-            />
+            {accessToken ? (
+               <Stack.Screen
+                  name="introStack"
+                  component={IntroStack}
+                  options={() => ({
+                     headerShown: false,
+                  })}
+               />
+            ) : (
+               <Stack.Screen
+                  name="mainStack"
+                  component={MainStack}
+                  options={() => ({
+                     headerShown: false,
+                  })}
+               />
+            )}
          </Stack.Navigator>
       </NavigationContainer>
    );

@@ -20,7 +20,10 @@ export default function LoginPageUI(props) {
                   placeholder="비밀번호를 입력해주세요"
                />
                <Button01Blue func={props.onPressLogin} title="로그인" />
-               <S.GoogleLoginTouch activeOpacity={0.3}>
+               <S.GoogleLoginTouch
+                  activeOpacity={0.3}
+                  onPress={props.onPressLogout}
+               >
                   <GoogleLogo />
                   <S.TextBox>
                      <S.GoogleText>Google 계정으로 로그인</S.GoogleText>
