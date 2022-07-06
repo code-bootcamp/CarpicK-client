@@ -7,6 +7,7 @@ export default function LoginPage({ navigation }) {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [login] = useMutation(LOGIN);
+   // const [logout] = useMutation(LOGOUT);
 
    const onChangeEmail = (e) => {
       setEmail(e.nativeEvent.text);
@@ -16,29 +17,56 @@ export default function LoginPage({ navigation }) {
       setPassword(String(e.nativeEvent.text));
    };
 
-   const onPressJoin = () => {
+   const onPressToFindId = () => {
+      navigation.navigate("findId");
+   };
+
+   const onPressToPasswordReset = () => {
+      navigation.navigate("passwordReset");
+   };
+
+   const onPressToJoin = () => {
       navigation.navigate("joinStack");
    };
 
    const onPressLogin = async () => {
-      try {
-         console.log(email, password);
-         const result = await login({
-            variables: {
-               email,
-               password,
-            },
-         });
-         console.log("this is result", result);
-      } catch (error) {
-         console.log("this is error", error);
+      if (email && password) {
+         try {
+            console.log(email, password);
+            const result = await login({
+               variables: {
+                  email,
+                  password,
+               },
+            });
+            console.log("this is result", result);
+         } catch (error) {
+            console.log("this is error", error);
+         }
       }
    };
+
+   // const onPressLogout = async () => {
+   //    try {
+   //       console.log(email, password);
+   //       const result = await logout({
+   //          variables: {
+   //             email,
+   //             password,
+   //          },
+   //       });
+   //       console.log("this is result", result);
+   //    } catch (error) {
+   //       console.log("this is error", error);
+   //    }
+   // };
 
    return (
       <LoginPageUI
          onPressLogin={onPressLogin}
-         onPressJoin={onPressJoin}
+         onPressToFindId={onPressToFindId}
+         onPressToPasswordReset={onPressToPasswordReset}
+         onPressToJoin={onPressToJoin}
          onChangeEmail={onChangeEmail}
          onChangePassword={onChangePassword}
       />
