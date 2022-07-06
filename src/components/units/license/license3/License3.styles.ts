@@ -28,6 +28,13 @@ export const ImageWrapper = styled.View`
    margin-bottom: 20px;
 `;
 
+export const ImageResult = styled.Image`
+   position: fixed;
+   top: 0;
+   width: 100%;
+   height: 100%;
+`;
+
 export const MainText = styled.Text`
    font-size: 14px;
    font-family: Bold;
@@ -53,4 +60,8 @@ export const InfoDetail = styled.Text`
    background-color: #ffffff;
    border-radius: 5px;
    color: #777777;
+`;
+
+export const ButtonWrapper = styled.View`
+   margin-bottom: 20px;
 `;

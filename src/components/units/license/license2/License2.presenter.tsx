@@ -9,8 +9,6 @@ const VIEW_HEIGTH: number = R.Dimensions.get("window").height - 260;
 const MIDDEL_HEIGTH: number = VIEW_HEIGTH - 290;
 
 export default function License2PageUI(props) {
-   console.log("this is padding top", MIDDEL_HEIGTH);
-
    return (
       <S.Wrapper>
          <S.Header />

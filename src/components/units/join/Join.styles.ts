@@ -1,3 +1,4 @@
+//
 import styled from "@emotion/native";
 
 export const Wrapper = styled.View`
@@ -13,13 +14,13 @@ export const TitleBlue = styled.Text`
    font-size: 20px;
    font-family: Bold;
    color: #5d8bff;
-   padding: 40px 0px; ;
+   padding: 40px 0px;
 `;
 
 export const Title = styled.Text`
    font-size: 20px;
    font-family: Bold;
-   padding: 40px 0px; ;
+   padding: 40px 0px;
 `;
 
 export const Body = styled.View`
@@ -31,9 +32,13 @@ export const InputBottomLine = styled.View`
    border: 0.5px solid #353535;
 `;
 
-export const EmailWrapper = styled.View`
-   margin-bottom: 35px;
+export const ErrorText = styled.Text`
+   font-size: 10px;
+   font-family: Regular;
+   color: #ff6347;
 `;
+
+export const EmailWrapper = styled.View``;
 
 export const EmailLeft = styled.View`
    width: 70%;
@@ -70,7 +75,7 @@ export const EmailCheckText = styled.Text`
 
 export const NameWrapper = styled.View`
    width: 100%;
-   margin-bottom: 35px;
+   margin-bottom: 12px;
 `;
 
 export const NameText = styled.Text`
@@ -85,7 +90,7 @@ export const NameInput = styled.TextInput`
 
 export const PhoneWrapper = styled.View`
    width: 100%;
-   margin-bottom: 35px;
+   margin-bottom: 12px;
 `;
 
 export const PhoneText = styled.Text`
@@ -100,7 +105,6 @@ export const PhoneInput = styled.TextInput`
 
 export const PwWrapper = styled.View`
    width: 100%;
-   margin-bottom: 35px;
 `;
 
 export const PwText = styled.Text`
@@ -115,7 +119,7 @@ export const PwInput = styled.TextInput`
 
 export const PwAgainWrapper = styled.View`
    width: 100%;
-   margin-bottom: 35px;
+   margin-bottom: 20px;
 `;
 
 export const PwAgainText = styled.Text`
