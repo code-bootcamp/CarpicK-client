@@ -61,6 +61,7 @@ export default function License2Page({ navigation }) {
                data.responses[0].fullTextAnnotation.text.split("\n")
             );
             navigation.navigate("license3", { result, base64 });
+            console.log(data.responses[0].fullTextAnnotation.text.split("\n"));
          })
          .catch((err) => console.log("error : ", err));
    };

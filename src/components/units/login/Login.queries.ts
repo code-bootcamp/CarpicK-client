@@ -13,7 +13,7 @@ export const LOGIN = gql`
 `;
 
 export const LOGOUT = gql`
-   mutation logout($email: String!, $password: String!) {
-      logout(email: $email, password: $password)
+   mutation logout {
+      logout
    }
 `;

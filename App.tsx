@@ -4,20 +4,15 @@ import * as Font from "expo-font";
 import Entypo from "@expo/vector-icons/Entypo";
 import Navigation from "./pages/navigation";
 import SafeViewAndroid from "./src/commons/styles/globalStyle";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 import { LogBox } from "react-native";
-import { REACT_APP_GRAPHQL_URL } from "@env";
-
-const client = new ApolloClient({
-   uri: "https://carpick.shop/graphql",
-   cache: new InMemoryCache(),
-   credentials: "include",
-});
+import { RecoilRoot } from "recoil";
+import ApolloSetting from "./src/components/commons/apollo";
 
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);
    LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
+
    useEffect(() => {
       async function prepare() {
          try {
@@ -47,13 +42,20 @@ export default function App() {
    }
 
    return (
-      <ApolloProvider client={client}>
-         <N.SafeAreaView
-            onLayout={onLayoutRootView}
-            style={SafeViewAndroid.AndroidSafeArea}
-         >
-            <Navigation style={{ fontFamily: "Regular,Bold" }} />
-         </N.SafeAreaView>
-      </ApolloProvider>
+      <RecoilRoot>
+         <ApolloSetting>
+            <N.SafeAreaView
+               onLayout={onLayoutRootView}
+               style={SafeViewAndroid.AndroidSafeArea}
+            >
+               <Navigation
+                  style={{
+                     fontFamily: "Regular,Bold",
+                     includeFontPadding: false,
+                  }}
+               />
+            </N.SafeAreaView>
+         </ApolloSetting>
+      </RecoilRoot>
    );
 }
