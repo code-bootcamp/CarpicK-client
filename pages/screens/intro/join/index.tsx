@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NavigationHeaderLeft from "../../../../src/components/commons/navigationHeader";
+import NavigationHeaderLeft from "../../../../src/components/commons/navigationHeader/headerLeft";
 import JoinPage from "../../../../src/components/units/join/Join.conainer";
 import License1Page from "../../../../src/components/units/license/license1/License1.container";
 import License2Page from "../../../../src/components/units/license/license2/License2.container";

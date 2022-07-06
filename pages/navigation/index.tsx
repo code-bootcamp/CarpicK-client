@@ -1,6 +1,6 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import IntroStack from "../screens/intro";
+import CustomerServiceStack from "../screens/customerService";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +15,7 @@ const MyTheme = {
 export default function Navigation() {
    return (
       <NavigationContainer theme={MyTheme}>
-         <Stack.Navigator>
+         {/* <Stack.Navigator>
             <Stack.Screen
                name="introStack"
                component={IntroStack}
@@ -23,7 +23,8 @@ export default function Navigation() {
                   headerShown: false,
                })}
             />
-         </Stack.Navigator>
+         </Stack.Navigator> */}
+         <CustomerServiceStack style={{ fontFamily: "Regular,Bold" }} />
       </NavigationContainer>
    );
 }
