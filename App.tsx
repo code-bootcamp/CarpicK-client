@@ -10,6 +10,7 @@ import { RecoilRoot } from "recoil";
 import ApolloSetting from "./src/components/commons/apollo";
 import "react-native-gesture-handler";
 
+
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);
    LogBox.ignoreLogs(["ViewPropTypes will be removed"]);

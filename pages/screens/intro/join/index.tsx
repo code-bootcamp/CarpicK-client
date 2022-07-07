@@ -27,7 +27,7 @@ export default function Join({ navigation }) {
                         { navigation },
                         "",
                         "회원가입",
-                        "white"
+                        "#ffffff"
                      ),
                })}
             />

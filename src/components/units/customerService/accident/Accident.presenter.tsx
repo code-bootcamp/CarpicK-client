@@ -17,14 +17,16 @@ export default function AccidentUI(props) {
          </CustomerService>
          <S.Wrapper>
             <S.HeaderMenu>
-               <S.AccidentMenuTouch>
-                  <TitleText fontSize="14" color="#ffffff">
-                     사고 대처 안내
-                  </TitleText>
-               </S.AccidentMenuTouch>
-               <S.InsuranceMenuTouch onPress={props.onPressToInsurance}>
-                  <TitleText fontSize="14">보험적용 안내</TitleText>
-               </S.InsuranceMenuTouch>
+               <S.TouchWrapper>
+                  <S.AccidentMenuTouch>
+                     <TitleText fontSize="14" color="#ffffff">
+                        사고 대처 안내
+                     </TitleText>
+                  </S.AccidentMenuTouch>
+                  <S.InsuranceMenuTouch onPress={props.onPressToInsurance}>
+                     <TitleText fontSize="14">보험적용 안내</TitleText>
+                  </S.InsuranceMenuTouch>
+               </S.TouchWrapper>
             </S.HeaderMenu>
             <S.GlobalBox>
                <R.ScrollView showsVerticalScrollIndicator={false}>
