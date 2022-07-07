@@ -11,6 +11,7 @@ export default function LoginPageUI(props) {
             <S.Title style={{ includeFontPadding: false }}>CarpicK</S.Title>
             <S.Body>
                <S.Input
+                  textContentType="emailAddress"
                   onChange={props.onChangeEmail}
                   placeholder="이메일을 입력해주세요"
                />

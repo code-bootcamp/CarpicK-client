@@ -14,17 +14,10 @@ export default function NavigationHeaderLeft(
             name={Platform.OS === "ios" ? "ios-arrow-back" : "md-arrow-back"}
             size={Platform.OS === "ios" ? 35 : 24}
             color={color}
-            style={
-               Platform.OS === "ios"
-                  ? {
-                       fontSize: 32,
-                       width: 25,
-                    }
-                  : {
-                       fontSize: 32,
-                       width: 25,
-                    }
-            }
+            style={{
+               fontSize: 32,
+               width: 25,
+            }}
             onPress={
                target
                   ? () => {
@@ -38,7 +31,7 @@ export default function NavigationHeaderLeft(
          <R.Text
             style={{
                fontSize: 20,
-               color: { color },
+               color: color,
                fontFamily: "Regular",
                marginLeft: 20,
             }}
