@@ -22,7 +22,7 @@ export default function Navigation() {
 
    return (
       <NavigationContainer theme={MyTheme}>
-         {/* <Stack.Navigator>
+         <Stack.Navigator>
             {accessToken ? (
                <Stack.Screen
                   name="introStack"
@@ -40,8 +40,7 @@ export default function Navigation() {
                   })}
                />
             )}
-         </Stack.Navigator> */}
-         <RentHistoryStack />
+         </Stack.Navigator>
       </NavigationContainer>
    );
 }
