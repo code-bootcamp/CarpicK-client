@@ -8,8 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import { LogBox } from "react-native";
 import { RecoilRoot } from "recoil";
 import ApolloSetting from "./src/components/commons/apollo";
-import RentHistoryStack from "./pages/screens/rentHistory";
-import RentHistoryNonePage from "./src/components/units/rentHistory/RentHistoryNone.container";
+import UpdateUserInfoStack from "./pages/screens/updateUserInfo";
 
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);
