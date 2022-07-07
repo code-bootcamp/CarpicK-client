@@ -8,7 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 import { LogBox } from "react-native";
 import { RecoilRoot } from "recoil";
 import ApolloSetting from "./src/components/commons/apollo";
-import UpdateUserInfoStack from "./pages/screens/updateUserInfo";
+import "react-native-gesture-handler";
+
 
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);

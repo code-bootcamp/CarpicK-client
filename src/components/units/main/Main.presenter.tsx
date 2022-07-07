@@ -14,13 +14,14 @@ const VIEW_WIDTH: number = R.Dimensions.get("window").width;
 const CARD_WIDTH: number = (VIEW_WIDTH - 50) / 2;
 const CARD_HEIGTH: number = CARD_WIDTH * 1.53;
 
-export default function MainPageUI() {
+export default function MainPageUI(props) {
    return (
       <>
          <R.ScrollView showsVerticalScrollIndicator={false}>
             <S.Wrapper style={globalStyles.GlobalStyles}>
                <S.DoubleWrapper>
                   <S.VerticalCard
+                     onPress={props.onPressToMap}
                      width={CARD_WIDTH}
                      height={CARD_HEIGTH}
                      activeOpacity={0.5}
@@ -54,7 +55,7 @@ export default function MainPageUI() {
                </S.DoubleWrapper>
                <S.HorizontalCard height={CARD_WIDTH}>
                   <S.TitleWrapper>
-                     <TitleText color="#353535">빌리러 가기</TitleText>
+                     <TitleText color="#353535">CarpicKey</TitleText>
                      <S.SubTitleWrapper>
                         <Contents1Text fontSize="14" color="#777777">
                            스마트키로 간편하게

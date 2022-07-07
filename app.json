@@ -20,9 +20,19 @@
       },
       "assetBundlePatterns": ["**/*"],
       "ios": {
-         "supportsTablet": true
+         "supportsTablet": true,
+         "bundleIdentifier": "com.expo.CarpicK",
+         "config": {
+            "googleMapsApiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"
+         }
       },
       "android": {
+         "package": "com.expo.CarpicK",
+         "config": {
+            "googleMaps": {
+               "apiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"
+            }
+         },
          "adaptiveIcon": {
             "foregroundImage": "./assets/adaptive-icon.png",
             "backgroundColor": "#F7F8F9"

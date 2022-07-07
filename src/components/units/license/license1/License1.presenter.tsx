@@ -2,6 +2,7 @@ import * as R from "react-native";
 import * as S from "./License1.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import LicenseImage from "../../../../../assets/license/license-image.svg";
+import Contents1Text from "../../../commons/text/Contents1Text";
 
 export default function License1PageUI(props) {
    return (
@@ -28,6 +29,11 @@ export default function License1PageUI(props) {
                면허 인증 진행하기
             </S.NextText>
          </S.NextTouch>
+         <S.Contents1TextTouch>
+            <Contents1Text color="#777777">
+               지금 면허증이 없어요 다음에 진행할게요
+            </Contents1Text>
+         </S.Contents1TextTouch>
       </S.Wrapper>
    );
 }
