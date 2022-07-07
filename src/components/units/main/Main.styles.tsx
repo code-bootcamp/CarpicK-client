@@ -45,3 +45,30 @@ export const ImageWrapper = styled.View`
    bottom: 10px;
    right: 0;
 `;
+
+export const ImageWrapperGap = styled.View`
+   position: absolute;
+   bottom: 10px;
+   right: 5px;
+`;
+
+export const IconWrapper = styled.View`
+   width: 100%;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 0px 30px;
+`;
+
+export const HorizontalCardView = styled.View`
+   position: relative;
+   padding-top: 24px;
+   width: 100%;
+   height: ${(props) => props.height + "px"};
+   border-radius: 20px;
+   background-color: #ffffff;
+   margin-bottom: 20px;
+`;
+
+export const IconTouch = styled.TouchableOpacity`
+   align-items: center;
+`;

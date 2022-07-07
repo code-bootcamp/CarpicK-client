@@ -148,9 +148,18 @@ export default function MainStack({ navigation }) {
                }}
             />
             <Drawer.Screen
-               name="고객센터"
+               name="customerService"
                component={CustomerServiceStack}
                options={{
+                  title: "고객센터",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="licenseLater"
+               component={CustomerServiceStack}
+               options={{
+                  title: "면허등록",
                   headerShown: false,
                }}
             />

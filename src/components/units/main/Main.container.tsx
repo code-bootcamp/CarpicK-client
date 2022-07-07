@@ -1,8 +1,30 @@
 import MainPageUI from "./Main.presenter";
+import { Linking } from "react-native";
 
 export default function MainPage({ navigation }) {
    const onPressToMap = () => {
       navigation.navigate("map");
    };
-   return <MainPageUI onPressToMap={onPressToMap} />;
+
+   const onPressToCustomerService = () => {
+      navigation.navigate("customerService");
+   };
+
+   const onPressToLicense = () => {
+      navigation.navigate("licenseLater");
+   };
+
+   const onPressCall = () => {
+      const url = "tel://12341234";
+      Linking.openURL(url);
+   };
+
+   return (
+      <MainPageUI
+         onPressToMap={onPressToMap}
+         onPressCall={onPressCall}
+         onPressToCustomerService={onPressToCustomerService}
+         onPressToLicense={onPressToLicense}
+      />
+   );
 }

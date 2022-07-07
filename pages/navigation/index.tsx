@@ -22,7 +22,7 @@ export default function Navigation() {
    return (
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator>
-            {!accessToken ? (
+            {accessToken ? (
                <Stack.Screen
                   name="introStack"
                   component={IntroStack}
