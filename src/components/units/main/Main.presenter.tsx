@@ -3,12 +3,13 @@ import * as S from "./Main.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
 import TitleText from "../../commons/text/TitleText";
 import Contents1Text from "../../commons/text/Contents1Text";
-import SubTitleText from "../../commons/text/SubTitleText";
 import MainImage1 from "../../../../assets/main/main-1.svg";
 import MainImage2 from "../../../../assets/main/main-2.svg";
 import MainImage3 from "../../../../assets/main/main-3.svg";
 import MainImage4 from "../../../../assets/main/main-4.svg";
 import MainImage5 from "../../../../assets/main/main-5.svg";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 const VIEW_WIDTH: number = R.Dimensions.get("window").width;
 const CARD_WIDTH: number = (VIEW_WIDTH - 50) / 2;
@@ -62,9 +63,9 @@ export default function MainPageUI(props) {
                         </Contents1Text>
                      </S.SubTitleWrapper>
                   </S.TitleWrapper>
-                  <S.ImageWrapper>
+                  <S.ImageWrapperGap>
                      <MainImage3 />
-                  </S.ImageWrapper>
+                  </S.ImageWrapperGap>
                </S.HorizontalCard>
                <S.HorizontalCard height={CARD_WIDTH}>
                   <S.TitleWrapper>
@@ -75,9 +76,9 @@ export default function MainPageUI(props) {
                         </Contents1Text>
                      </S.SubTitleWrapper>
                   </S.TitleWrapper>
-                  <S.ImageWrapper>
+                  <S.ImageWrapperGap>
                      <MainImage4 />
-                  </S.ImageWrapper>
+                  </S.ImageWrapperGap>
                </S.HorizontalCard>
                <S.HorizontalCard height={CARD_WIDTH}>
                   <S.TitleWrapper>
@@ -88,10 +89,46 @@ export default function MainPageUI(props) {
                         </Contents1Text>
                      </S.SubTitleWrapper>
                   </S.TitleWrapper>
-                  <S.ImageWrapper>
+                  <S.ImageWrapperGap>
                      <MainImage5 />
-                  </S.ImageWrapper>
+                  </S.ImageWrapperGap>
                </S.HorizontalCard>
+               <S.HorizontalCardView height={CARD_WIDTH / 1.8}>
+                  <S.IconWrapper>
+                     <S.IconTouch onPress={props.onPressToCustomerService}>
+                        <MaterialIcons
+                           name="support-agent"
+                           size={24}
+                           color="#353535"
+                        />
+                        <Contents1Text>고객센터</Contents1Text>
+                     </S.IconTouch>
+                     <S.IconTouch>
+                        <MaterialIcons
+                           name="insert-drive-file"
+                           size={24}
+                           color="#353535"
+                        />
+                        <Contents1Text>이용내역</Contents1Text>
+                     </S.IconTouch>
+                     <S.IconTouch>
+                        <FontAwesome
+                           name="drivers-license-o"
+                           size={24}
+                           color="#353535"
+                        />
+                        <Contents1Text
+                           onPressToLicense={props.onPressToLicense}
+                        >
+                           면허등록
+                        </Contents1Text>
+                     </S.IconTouch>
+                     <S.IconTouch onPress={props.onPressCall}>
+                        <FontAwesome name="phone" size={24} color="#353535" />
+                        <Contents1Text>긴급전화</Contents1Text>
+                     </S.IconTouch>
+                  </S.IconWrapper>
+               </S.HorizontalCardView>
             </S.Wrapper>
          </R.ScrollView>
       </>
