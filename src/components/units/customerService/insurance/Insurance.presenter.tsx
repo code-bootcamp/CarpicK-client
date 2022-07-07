@@ -13,14 +13,16 @@ export default function InsuranceUI(props) {
          </CustomerService>
          <S.Wrapper>
             <S.HeaderMenu>
-               <S.AccidentMenuTouch onPress={props.onPressAccident}>
-                  <TitleText fontSize="14">사고 대처 안내</TitleText>
-               </S.AccidentMenuTouch>
-               <S.InsuranceMenuTouch>
-                  <TitleText fontSize="14" color="#ffffff">
-                     보험적용 안내
-                  </TitleText>
-               </S.InsuranceMenuTouch>
+               <S.TouchWrapper>
+                  <S.AccidentMenuTouch onPress={props.onPressAccident}>
+                     <TitleText fontSize="14">사고 대처 안내</TitleText>
+                  </S.AccidentMenuTouch>
+                  <S.InsuranceMenuTouch>
+                     <TitleText fontSize="14" color="#ffffff">
+                        보험적용 안내
+                     </TitleText>
+                  </S.InsuranceMenuTouch>
+               </S.TouchWrapper>
             </S.HeaderMenu>
             <S.GlobalBox>
                <R.ScrollView showsVerticalScrollIndicator={false}>

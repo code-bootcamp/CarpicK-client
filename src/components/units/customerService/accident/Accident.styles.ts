@@ -10,8 +10,12 @@ export const HeaderMenu = styled.View`
    margin-bottom: 5px;
 `;
 
+export const TouchWrapper = styled.View`
+   flex-direction: row;
+   width: 100%;
+`;
 export const AccidentMenuTouch = styled.TouchableOpacity`
-   width: 197px;
+   width: 50%;
    height: 62px;
    align-items: center;
    justify-content: center;
@@ -19,7 +23,7 @@ export const AccidentMenuTouch = styled.TouchableOpacity`
 `;
 
 export const InsuranceMenuTouch = styled.TouchableOpacity`
-   width: 197px;
+   width: 50%;
    height: 62px;
    align-items: center;
    justify-content: center;
