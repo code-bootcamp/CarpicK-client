@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader";
+import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
 import FindIdPage from "../../../src/components/units/findId/FindId.container";
 import IdResultPage from "../../../src/components/units/findId/idResult/IdResult.container";
 import IntroPage from "../../../src/components/units/intro/Intro.container";
@@ -39,7 +39,12 @@ export default function IntroStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft({ navigation }, "", "아이디 찾기"),
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "",
+                        "아이디 찾기",
+                        "#ffffff"
+                     ),
                })}
             />
             <Stack.Screen
@@ -51,7 +56,8 @@ export default function IntroStack({ navigation }) {
                      NavigationHeaderLeft(
                         { navigation },
                         "login",
-                        "아이디 찾기"
+                        "아이디 찾기",
+                        "#ffffff"
                      ),
                })}
             />
@@ -64,7 +70,8 @@ export default function IntroStack({ navigation }) {
                      NavigationHeaderLeft(
                         { navigation },
                         "",
-                        "비밀번호 재설정"
+                        "비밀번호 재설정",
+                        "#ffffff"
                      ),
                })}
             />

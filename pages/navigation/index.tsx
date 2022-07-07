@@ -4,6 +4,8 @@ import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../src/commons/store";
+import RentHistoryStack from "../screens/rentHistory";
+import CustomerServiceStack from "../screens/customerService";
 
 const Stack = createNativeStackNavigator();
 
