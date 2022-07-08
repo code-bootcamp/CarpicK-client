@@ -41,13 +41,13 @@ export default function MainPageUI(props) {
                      </S.ImageWrapper>
                   </S.VerticalCard>
                   <S.VerticalCard
+                     onPress={props.onPressToCarRegist}
                      width={CARD_WIDTH}
                      height={CARD_HEIGTH}
                      activeOpacity={0.5}
                   >
                      <S.TitleWrapper>
-                        <TitleText color="#353535">My Car</TitleText>
-                        <TitleText color="#353535">등록하기</TitleText>
+                        <TitleText color="#353535">{`My Car\n등록하기`}</TitleText>
                      </S.TitleWrapper>
                      <S.ImageWrapper>
                         <MainImage2 />

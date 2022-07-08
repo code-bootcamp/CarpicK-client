@@ -14,7 +14,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
       <R.View style={{ flex: 1 }}>
          <R.ScrollView style={{ backgroundColor: "#fff" }}>
             <S.Wrapper style={globalStyle.GlobalStyles}>
-               <TitleText>{`내 차를 등록하고\n용돈을 벌어가세요!`}</TitleText>
+               <TitleText>{`카픽으로 손쉽게\n오너가 되어보세요!`}</TitleText>
                <R.View>
                   <S.InputBox>
                      <Contents1Text>이름</Contents1Text>

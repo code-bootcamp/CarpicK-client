@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import colors from "../../../src/commons/lib/colors";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
 import CarInfoPage from "../../../src/components/units/registration/carInfo/CarInfo.container";
-import CarPhotosPage from "../../../src/components/units/registration/carPhotos/CarPhotos.container";
+// import CarPhotosPage from "../../../src/components/units/registration/carPhotos/CarPhotos.container";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +26,7 @@ export default function RegistrationStack({ navigation }) {
             }}
          >
             <Stack.Screen name="carInfo" component={CarInfoPage} />
-            <Stack.Screen name="carPhotos" component={CarPhotosPage} />
+            {/* <Stack.Screen name="carPhotos" component={CarPhotosPage} /> */}
          </Stack.Navigator>
       </>
    );

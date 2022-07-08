@@ -22,6 +22,7 @@ import TitleText from "../../../src/components/commons/text/TitleText";
 import Contents1Text from "../../../src/components/commons/text/Contents1Text";
 import colors from "../../../src/commons/lib/colors";
 import UpdateUserInfoStack from "../updateUserInfo";
+import RegistrationStack from "../carRegistration";
 const LOGOUT = gql`
    mutation logout {
       logout
@@ -177,6 +178,14 @@ export default function MainStack({ navigation }) {
                   title: "카픽존",
                   headerTitleStyle: { fontSize: 20, fontWeight: "300" },
                   headerLeft: () => BackArrow(navigation),
+               }}
+            />
+            <Drawer.Screen
+               name="registrationStack"
+               component={RegistrationStack}
+               options={{
+                  title: "My Car 등록하기",
+                  headerShown: false,
                }}
             />
             <Drawer.Screen
