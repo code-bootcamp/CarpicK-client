@@ -19,7 +19,7 @@ export const TitleBlue = styled.Text`
 export const Title = styled.Text`
    font-size: 20px;
    font-family: Bold;
-   padding: 40px 0px; ;
+   padding: 40px 0px;
 `;
 
 export const ImageWrapper = styled.View`
@@ -64,4 +64,8 @@ export const InfoDetail = styled.Text`
 
 export const ButtonWrapper = styled.View`
    margin-bottom: 20px;
+`;
+
+export const ButtonWrapperFail = styled.View`
+   margin: 20px 0px;
 `;

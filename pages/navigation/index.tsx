@@ -5,6 +5,7 @@ import { accessTokenState } from "../../src/commons/store";
 import CustomerServiceStack from "../screens/customerService";
 import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
+import UpdateUserInfoStack from "../screens/updateUserInfo";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,13 +32,22 @@ export default function Navigation() {
                   })}
                />
             ) : (
-               <Stack.Screen
-                  name="mainStack"
-                  component={MainStack}
-                  options={() => ({
-                     headerShown: false,
-                  })}
-               />
+               <>
+                  <Stack.Screen
+                     name="mainStack"
+                     component={MainStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+                  <Stack.Screen
+                     name="updateUserInfoStack"
+                     component={UpdateUserInfoStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+               </>
             )}
          </Stack.Navigator>
       </NavigationContainer>
