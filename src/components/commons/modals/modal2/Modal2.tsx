@@ -1,107 +1,60 @@
 /* title, contents, negative/positive buttons */
 
-import styled from "@emotion/native"
-import { useState } from "react"
-import { Dimensions, Modal, Text } from "react-native"
+import { useState } from "react";
+import { Modal } from "react-native";
+import * as S from "../style/Modal.styles";
 
 interface IModal2Props {
-    title: string;
-    contents: string;
-    positiveText: string;
-    negativeText: string;
-    positive: () => void;
-    negative: () => void;
+   title: string;
+   contents: string;
+   positiveText: string;
+   negativeText: string;
+   positive: () => void;
+   negative: () => void;
 }
 
 export default function Modal2(props: IModal2Props) {
-    const [isVisible, setIsVisible] = useState(true)
+   const [isVisible, setIsVisible] = useState(true);
 
-    const onClickPositive = () => {
-        props.positive()
-        setIsVisible(false)
-    }
+   const onClickPositive = () => {
+      props.positive();
+      setIsVisible(false);
+   };
 
-    const onClickNegative = () => {
-        props.negative()
-        setIsVisible(false)
-    }
+   const onClickNegative = () => {
+      props.negative();
+      setIsVisible(false);
+   };
 
-    return(
-        <Modal
-        //animationType='fade'
-        //animationType='slide'
-        transparent={true}
-        visible={isVisible}
-        >
-            <ModalCenteredView>
-                <ModalView>
-                    <ContentsView>
-                        <TitleText>{props.title}</TitleText>
-                        <ContentsText>{props.contents}</ContentsText>
-                    </ContentsView>
-                    <ButtonsView>
-                        <NegativeButton activeOpacity={0.7} onPress={onClickNegative}><ButtonText>{props.negativeText}</ButtonText></NegativeButton>
-                        <PositiveButton activeOpacity={0.7} onPress={onClickPositive}><ButtonText>{props.positiveText}</ButtonText></PositiveButton>
-                    </ButtonsView>
-                </ModalView>
-            </ModalCenteredView>
-        </Modal>
-    )
+   return (
+      <Modal
+         //animationType='fade'
+         //animationType='slide'
+         transparent={true}
+         visible={isVisible}
+      >
+         <S.ModalCenteredView>
+            <S.ModalView>
+               <S.ContentsView>
+                  <S.TitleText>{props.title}</S.TitleText>
+                  <S.ContentsText>{props.contents}</S.ContentsText>
+               </S.ContentsView>
+               <S.ButtonsView>
+                  <S.NegativeButton
+                     activeOpacity={0.7}
+                     onPress={onClickNegative}
+                  >
+                     <S.ButtonText>{props.negativeText}</S.ButtonText>
+                  </S.NegativeButton>
+                  <S.PositiveButton
+                     activeOpacity={0.7}
+                     onPress={onClickPositive}
+                  >
+                     <S.ButtonText>{props.positiveText}</S.ButtonText>
+                  </S.PositiveButton>
+               </S.ButtonsView>
+            </S.ModalView>
+         </S.ModalCenteredView>
+      </Modal>
+   );
 }
-
-const ModalCenteredView = styled.View`
-    width: ${(Dimensions.get("window").width)}px;
-    height: ${(Dimensions.get("window").height)}px;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
-`
-
-const ModalView = styled.View`
-    width: 100%;
-    background-color: white;
-    border-radius: 21px 21px 0 0;
-`
-
-const ContentsView = styled.View`
-    padding: 25px;
-`
-
-const TitleText = styled.Text`
-    font-size: 18px;
-    font-weight: 600;
-`
-
-const ContentsText = styled.Text`
-    font-size: 16px;
-    font-weight: normal;
-    margin-top: 10px;
-`
-
-const ButtonsView = styled.View`
-    flex: 1;
-    flex-direction: row;
-`
-
-const ButtonText = styled.Text`
-  color: white;
-`
-
-const buttonDefault = styled.TouchableOpacity`
-  width: 50%;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-`
-
-const NegativeButton = styled(buttonDefault)`
-  background-color: #A5A5A5;
-  border-bottom-left-radius: 21px;
-`
-
-const PositiveButton = styled(buttonDefault)`
-  background-color: #5D8BFF;
-  color: white;
-  border-bottom-right-radius: 21px;
-`
