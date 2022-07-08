@@ -71,7 +71,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         <Contents1Text>연료</Contents1Text>
                         <R.View style={{ marginTop: 7 }}>
                            <Radio
-                              options={["휘발유", "경유", "LPG"]}
+                              options={["휘발유", "경유", "LPG", "전기"]}
                               onChange={(option) => console.log(option)}
                            />
                         </R.View>
