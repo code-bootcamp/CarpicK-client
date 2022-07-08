@@ -46,7 +46,7 @@ export const ButtonText = styled.Text`
 
 export const buttonDefault = styled.TouchableOpacity`
    width: 50%;
-   height: 40px;
+   height: 50px;
    align-items: center;
    justify-content: center;
 `;
