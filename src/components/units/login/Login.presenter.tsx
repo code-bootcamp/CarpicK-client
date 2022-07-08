@@ -11,6 +11,7 @@ export default function LoginPageUI(props) {
             <S.Title style={{ includeFontPadding: false }}>CarpicK</S.Title>
             <S.Body>
                <S.Input
+                  textContentType="emailAddress"
                   onChange={props.onChangeEmail}
                   placeholder="이메일을 입력해주세요"
                />
@@ -20,7 +21,10 @@ export default function LoginPageUI(props) {
                   placeholder="비밀번호를 입력해주세요"
                />
                <Button01Blue func={props.onPressLogin} title="로그인" />
-               <S.GoogleLoginTouch activeOpacity={0.3}>
+               <S.GoogleLoginTouch
+                  activeOpacity={0.3}
+                  onPress={props.onPressLogout}
+               >
                   <GoogleLogo />
                   <S.TextBox>
                      <S.GoogleText>Google 계정으로 로그인</S.GoogleText>
@@ -28,19 +32,25 @@ export default function LoginPageUI(props) {
                </S.GoogleLoginTouch>
             </S.Body>
             <S.Footer>
-               <S.FooterTouch activeOpacity={0.5}>
+               <S.FooterTouch
+                  activeOpacity={0.5}
+                  onPress={props.onPressToFindId}
+               >
                   <S.IdFind style={{ includeFontPadding: false }}>
                      아이디 찾기
                   </S.IdFind>
                </S.FooterTouch>
                <S.SectionBar />
-               <S.FooterTouch activeOpacity={0.5}>
+               <S.FooterTouch
+                  activeOpacity={0.5}
+                  onPress={props.onPressToPasswordReset}
+               >
                   <S.PwReset style={{ includeFontPadding: false }}>
                      비밀번호 재설정
                   </S.PwReset>
                </S.FooterTouch>
                <S.SectionBar />
-               <S.FooterTouch onPress={props.onPressJoin} activeOpacity={0.5}>
+               <S.FooterTouch onPress={props.onPressToJoin} activeOpacity={0.5}>
                   <S.ToJoin style={{ includeFontPadding: false }}>
                      회원가입
                   </S.ToJoin>

@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NavigationHeaderLeft from "../../../../src/components/commons/navigationHeader";
-import JoinPage from "../../../../src/components/units/join/Join.conainer";
+import NavigationHeaderLeft from "../../../../src/components/commons/navigationHeader/headerLeft";
+import JoinPage from "../../../../src/components/units/join/Join.container";
 import License1Page from "../../../../src/components/units/license/license1/License1.container";
 import License2Page from "../../../../src/components/units/license/license2/License2.container";
 import License3Page from "../../../../src/components/units/license/license3/License3.container";
@@ -23,7 +23,12 @@ export default function Join({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft({ navigation }, "", "회원가입"),
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "",
+                        "회원가입",
+                        "#ffffff"
+                     ),
                })}
             />
             <Stack.Screen
@@ -32,7 +37,12 @@ export default function Join({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft({ navigation }, "join", "회원가입"),
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "join",
+                        "회원가입",
+                        "#ffffff"
+                     ),
                })}
             />
             <Stack.Screen

@@ -1,5 +1,4 @@
 export function VisionParsing(arr) {
-   // 1. 운전면허증인지? 판단
    const result = {
       BirthDate: "",
       Name: "",
@@ -8,6 +7,7 @@ export function VisionParsing(arr) {
       Fail: "",
    };
 
+   // 1. 운전면허증인지? 판단
    const isLicence = arr
       .filter((el: string) => el.includes("Driver's License"))
       .filter((el: string) => el.replace(" ", "").includes("자동차운전면허증"));
@@ -20,9 +20,10 @@ export function VisionParsing(arr) {
    // 2. flag(licNumber index) ,  (전처리)
    let LicNumber = "";
    let flag = null;
-   arr.forEach((el: string, i: number) => {
+   console.log("this is slice 4", arr.slice(4));
+   arr.slice(0, 4).forEach((el: string, i: number) => {
       const tmp = el.split("-");
-      if (tmp.length === 3) {
+      if (tmp.length >= 2) {
          tmp[0] = tmp[0].split(" ").join("-");
          LicNumber = tmp.join("-");
          flag = i;
@@ -64,3 +65,23 @@ export function VisionParsing(arr) {
    // return
    if (result) return result;
 }
+
+const locationNum = {
+   11: "서울",
+   12: "부산",
+   13: "경기",
+   14: "강원",
+   15: "충북",
+   16: "충남",
+   17: "전북",
+   18: "전남",
+   19: "경북",
+   20: "경남",
+   21: "제주",
+   22: "대구",
+   23: "인천",
+   24: "광주",
+   25: "대전",
+   26: "울산",
+   28: "없음",
+};

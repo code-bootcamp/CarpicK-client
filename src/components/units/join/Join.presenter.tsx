@@ -1,7 +1,10 @@
 import * as R from "react-native";
 import * as S from "./Join.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
+import TitleText from "../../commons/text/TitleText";
 import Button01Blue from "../../commons/button/button_01_blue";
+import Contents1Text from "../../commons/text/Contents1Text";
+import Contents2Text from "../../commons/text/Contents2Text";
 import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
 
 export default function JoinPageUI(props) {
@@ -9,69 +12,91 @@ export default function JoinPageUI(props) {
       <S.Wrapper style={globalStyles.GlobalStyles}>
          <R.ScrollView showsVerticalScrollIndicator={false}>
             <S.TitleWrapper>
-               <S.TitleBlue style={{ includeFontPadding: false }}>
-                  카픽{" "}
-               </S.TitleBlue>
-               <S.Title style={{ includeFontPadding: false }}>
-                  회원가입{" "}
-               </S.Title>
+               <TitleText color="#5D8BFF">카픽 </TitleText>
+               <TitleText>회원가입 </TitleText>
             </S.TitleWrapper>
             <S.Body>
-               <S.EmailWrapper>
-                  <S.EmailText style={{ includeFontPadding: false }}>
-                     이메일
-                  </S.EmailText>
-                  <S.EmailRow>
-                     <S.EmailLeft>
-                        <S.EmailInput
+               <S.InputWrapper>
+                  <Contents1Text fontSize="14">이메일</Contents1Text>
+                  <S.InputRow>
+                     <S.InputLeft>
+                        <S.Input
                            onChange={props.onChaneEmail}
                            placeholder="이메일 형식으로 입력해주세요."
                            style={{ includeFontPadding: false }}
                         />
                         <S.InputBottomLine />
-                     </S.EmailLeft>
-                     <S.EmailCheckTouch
+                     </S.InputLeft>
+                     <S.SubTouch
                         activeOpacity={0.7}
                         onPress={props.onPressCheckEmail}
                      >
-                        <S.EmailCheckText style={{ includeFontPadding: false }}>
+                        <Contents1Text color="#ffffff" fontSize="14">
                            중복확인
-                        </S.EmailCheckText>
-                     </S.EmailCheckTouch>
-                  </S.EmailRow>
-               </S.EmailWrapper>
-               <S.ErrorText style={{ includeFontPadding: false }}>
+                        </Contents1Text>
+                     </S.SubTouch>
+                  </S.InputRow>
+               </S.InputWrapper>
+               <Contents2Text color="#ff6347">
                   {!props.isValidEmail ? "이메일 형식으로 입력해주세요." : ""}
-               </S.ErrorText>
-               <S.NameWrapper>
-                  <S.NameText style={{ includeFontPadding: false }}>
-                     이름
-                  </S.NameText>
-                  <S.NameInput
+               </Contents2Text>
+               <S.InputWrapperMarginBtm>
+                  <Contents1Text fontSize="14">전화번호</Contents1Text>
+                  <S.InputRow>
+                     <S.InputLeft>
+                        <S.Input
+                           maxLength={13}
+                           onChange={props.onChanePhone}
+                           placeholder="전화번호를 입력해 주세요."
+                           value={phoneNumHypen(props.phone)}
+                        />
+                        <S.InputBottomLine />
+                     </S.InputLeft>
+                     <S.SubTouch
+                        activeOpacity={0.7}
+                        onPress={props.onPressCheckEmail}
+                     >
+                        <Contents1Text color="#ffffff" fontSize="14">
+                           인증요청
+                        </Contents1Text>
+                     </S.SubTouch>
+                  </S.InputRow>
+               </S.InputWrapperMarginBtm>
+               <S.InputWrapperMarginBtm>
+                  <Contents1Text fontSize="14">인증번호</Contents1Text>
+                  <S.InputRow>
+                     <S.InputLeft>
+                        <S.Input
+                           maxLength={6}
+                           onChange={props.onChanePhoneTruthNum}
+                           placeholder="인증번호를 입력해 주세요."
+                           keyboardType="numeric"
+                           style={{ includeFontPadding: false }}
+                        />
+                        <S.InputBottomLine />
+                     </S.InputLeft>
+                     <S.SubTouch
+                        activeOpacity={0.7}
+                        onPress={props.onPressCheckEmail}
+                     >
+                        <Contents1Text color="#ffffff" fontSize="14">
+                           인증확인
+                        </Contents1Text>
+                     </S.SubTouch>
+                  </S.InputRow>
+               </S.InputWrapperMarginBtm>
+               <S.InputWrapperMarginBtm>
+                  <Contents1Text fontSize="14">이름</Contents1Text>
+                  <S.Input
                      onChange={props.onChaneName}
                      placeholder="실명을 입력해 주세요."
                      style={{ includeFontPadding: false }}
                   />
                   <S.InputBottomLine />
-               </S.NameWrapper>
-               <S.PhoneWrapper>
-                  <S.PhoneText style={{ includeFontPadding: false }}>
-                     전화번호
-                  </S.PhoneText>
-                  <S.PhoneInput
-                     maxLength={13}
-                     onChange={props.onChanePhone}
-                     placeholder="전화번호를 입력해 주세요."
-                     value={phoneNumHypen(props.phone)}
-                     style={{ includeFontPadding: false }}
-                  />
-                  <S.InputBottomLine />
-               </S.PhoneWrapper>
-               <S.PwWrapper>
-                  <S.PwText style={{ includeFontPadding: false }}>
-                     비밀번호
-                  </S.PwText>
-                  <S.PwInput
+               </S.InputWrapperMarginBtm>
+               <S.InputWrapper>
+                  <Contents1Text fontSize="14">비밀번호</Contents1Text>
+                  <S.Input
                      maxLength={16}
                      onChange={props.onChanePassword}
                      secureTextEntry={true}
@@ -79,17 +104,15 @@ export default function JoinPageUI(props) {
                      style={{ includeFontPadding: false }}
                   />
                   <S.InputBottomLine />
-               </S.PwWrapper>
-               <S.ErrorText style={{ includeFontPadding: false }}>
+               </S.InputWrapper>
+               <Contents2Text color="#ff6347">
                   {!props.isValidPassword
                      ? "영문+숫자 조합 8~16자리를 입력해주세요."
                      : ""}
-               </S.ErrorText>
-               <S.PwAgainWrapper>
-                  <S.PwAgainText style={{ includeFontPadding: false }}>
-                     비밀번호 재확인
-                  </S.PwAgainText>
-                  <S.PwAgainInput
+               </Contents2Text>
+               <S.InputWrapperMarginBtm>
+                  <Contents1Text fontSize="14">비밀번호 재확인</Contents1Text>
+                  <S.Input
                      maxLength={16}
                      onChange={props.onChanePasswordAgain}
                      secureTextEntry={true}
@@ -97,7 +120,7 @@ export default function JoinPageUI(props) {
                      style={{ includeFontPadding: false }}
                   />
                   <S.InputBottomLine />
-               </S.PwAgainWrapper>
+               </S.InputWrapperMarginBtm>
                <Button01Blue func={props.onPressNext} title="다음" />
             </S.Body>
          </R.ScrollView>

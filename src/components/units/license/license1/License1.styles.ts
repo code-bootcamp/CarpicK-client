@@ -57,3 +57,10 @@ export const NextText = styled.Text`
    font-family: Regular;
    color: #ffffff;
 `;
+
+export const Contents1TextTouch = styled.TouchableOpacity`
+   width: 100%;
+   height: 40px;
+   align-items: center;
+   /* background-color: red; */
+`;
