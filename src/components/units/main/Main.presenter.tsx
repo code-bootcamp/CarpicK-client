@@ -103,7 +103,7 @@ export default function MainPageUI(props) {
                         />
                         <Contents1Text>고객센터</Contents1Text>
                      </S.IconTouch>
-                     <S.IconTouch>
+                     <S.IconTouch onPress={props.onPressToRentHistoryStack}>
                         <MaterialIcons
                            name="insert-drive-file"
                            size={24}
@@ -111,17 +111,13 @@ export default function MainPageUI(props) {
                         />
                         <Contents1Text>이용내역</Contents1Text>
                      </S.IconTouch>
-                     <S.IconTouch>
+                     <S.IconTouch onPress={props.onPressToLicense}>
                         <FontAwesome
                            name="drivers-license-o"
                            size={24}
                            color="#353535"
                         />
-                        <Contents1Text
-                           onPressToLicense={props.onPressToLicense}
-                        >
-                           면허등록
-                        </Contents1Text>
+                        <Contents1Text>면허등록</Contents1Text>
                      </S.IconTouch>
                      <S.IconTouch onPress={props.onPressCall}>
                         <FontAwesome name="phone" size={24} color="#353535" />

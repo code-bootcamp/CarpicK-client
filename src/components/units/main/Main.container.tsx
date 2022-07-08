@@ -10,6 +10,10 @@ export default function MainPage({ navigation }) {
       navigation.navigate("customerService");
    };
 
+   const onPressToRentHistoryStack = () => {
+      navigation.navigate("rentHistoryStack");
+   };
+
    const onPressToLicense = () => {
       navigation.navigate("licenseLater");
    };
@@ -24,6 +28,7 @@ export default function MainPage({ navigation }) {
          onPressToMap={onPressToMap}
          onPressCall={onPressCall}
          onPressToCustomerService={onPressToCustomerService}
+         onPressToRentHistoryStack={onPressToRentHistoryStack}
          onPressToLicense={onPressToLicense}
       />
    );

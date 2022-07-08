@@ -148,3 +148,18 @@ export const TipText = styled.Text`
    color: #ffffff;
    elevation: 1;
 `;
+
+export const TouchShield = styled.View`
+   width: 100%;
+   height: 100%;
+   background-color: #a5a5a5;
+   opacity: 0.5;
+   position: absolute;
+   z-index: 999;
+   align-items: center;
+   justify-content: center;
+`;
+
+export const TextMargin = styled.View`
+   padding-bottom: 25px;
+`;
