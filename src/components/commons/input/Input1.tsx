@@ -1,37 +1,29 @@
-/*
- * Parameter
- * placeholder(string), onChangeText(method)
- */
-
 import styled from "@emotion/native";
 import { useState } from "react";
-import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
+import colors from "../../../commons/lib/colors";
+import { ICustomTextInputStyledProps, IInputProps } from "./Input.types";
 
-interface IInput1Props {
-   placeholder?: string;
-   onChangeText?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
-}
-
-export default function Input1(props: IInput1Props) {
+export default function Input1(props: IInputProps) {
    const [isFocus, setIsFocus] = useState(false);
 
    return (
       <CustomTextInput
+         isFocus={isFocus}
          onFocus={() => setIsFocus(true)}
          onBlur={() => setIsFocus(false)}
-         style={{ borderColor: isFocus ? "#5D8BFF" : "white" }}
-         placeholderTextColor={"#A5A5A5"}
+         placeholderTextColor={colors.gray}
          placeholder={props.placeholder}
-         onChange={props.onChangeText}
+         onChangeText={props.onChangeText}
       />
    );
 }
 
-const CustomTextInput = styled.TextInput`
+const CustomTextInput = styled.TextInput<ICustomTextInputStyledProps>`
    width: 100%;
    height: 45px;
-   padding: 0 12px;
+   padding: 0 10px;
    border-style: solid;
    border-width: 1px;
    border-radius: 5px;
+   border-color: ${(props) => (props.isFocus ? colors.theme : "white")};
 `;
