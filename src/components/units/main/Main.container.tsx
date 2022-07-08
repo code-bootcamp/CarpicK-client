@@ -6,6 +6,10 @@ export default function MainPage({ navigation }) {
       navigation.navigate("map");
    };
 
+   const onPressToCarRegist = () => {
+      navigation.navigate("registrationStack");
+   };
+
    const onPressToCustomerService = () => {
       navigation.navigate("customerService");
    };
@@ -27,6 +31,7 @@ export default function MainPage({ navigation }) {
       <MainPageUI
          onPressToMap={onPressToMap}
          onPressCall={onPressCall}
+         onPressToCarRegist={onPressToCarRegist}
          onPressToCustomerService={onPressToCustomerService}
          onPressToRentHistoryStack={onPressToRentHistoryStack}
          onPressToLicense={onPressToLicense}
