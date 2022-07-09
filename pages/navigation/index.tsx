@@ -23,7 +23,7 @@ export default function Navigation() {
    return (
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator>
-            {accessToken ? (
+            {!accessToken ? (
                <Stack.Screen
                   name="introStack"
                   component={IntroStack}
@@ -43,6 +43,7 @@ export default function Navigation() {
                   <Stack.Screen
                      name="updateUserInfoStack"
                      component={UpdateUserInfoStack}
+                     ß
                      options={() => ({
                         headerShown: false,
                      })}
