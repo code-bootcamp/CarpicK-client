@@ -6,7 +6,6 @@ import TitleText from "../../../commons/text/TitleText";
 
 export default function MarkerWithDetails({ point, onToggle }) {
    const { coordinates, title, description, showDetails } = point;
-   console.log("this is showDetails:", showDetails);
    return (
       <>
          <Marker
