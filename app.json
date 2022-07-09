@@ -20,15 +20,50 @@
       },
       "assetBundlePatterns": ["**/*"],
       "ios": {
-         "supportsTablet": true,
-         "infoPlist": {
-            "NSAppTransportSecurity": {
-               "NSAllowsArbitraryLoads": true
-            }
-         },
          "bundleIdentifier": "com.expo.CarpicK",
          "config": {
             "googleMapsApiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"
+         },
+         "supportsTablet": true,
+         "infoPlist": {
+            "LSApplicationQueriesSchemes": [
+               "kftc-bankpay",
+               "ispmobile",
+               "itms-apps",
+               "hdcardappcardansimclick",
+               "smhyundaiansimclick",
+               "shinhan-sr-ansimclick",
+               "smshinhanansimclick",
+               "kb-acp",
+               "mpocket.online.ansimclick",
+               "ansimclickscard",
+               "ansimclickipcollect",
+               "vguardstart",
+               "samsungpay",
+               "scardcertiapp",
+               "lottesmartpay",
+               "lotteappcard",
+               "cloudpay",
+               "nhappcardansimclick",
+               "nonghyupcardansimclick",
+               "citispay",
+               "citicardappkr",
+               "citimobileapp",
+               "kakaotalk",
+               "payco",
+               "chaipayment",
+               "kb-auth",
+               "hyundaicardappcardid",
+               "com.wooricard.wcard",
+               "lmslpay",
+               "lguthepay-xpay",
+               "liivbank",
+               "supertoss"
+            ],
+            "NSAppTransportSecurity": {
+               "NSAllowsArbitraryLoads": true,
+               "NSAllowsArbitraryLoadsInWebContent": true
+            }
          }
       },
       "android": {
@@ -41,7 +76,16 @@
          "adaptiveIcon": {
             "foregroundImage": "./assets/adaptive-icon.png",
             "backgroundColor": "#F7F8F9"
-         }
+         },
+         "intentFilters": [
+            {
+               "action": "VIEW",
+               "category": ["DEFAULT", "BROWSABLE"],
+               "data": {
+                  "scheme": "exampleformanagedexpo"
+               }
+            }
+         ]
       },
       "web": {
          "favicon": "./assets/favicon.png"

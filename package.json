@@ -55,6 +55,7 @@
     "react-native-svg": "12.3.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "0.17.7",
+    "react-native-webview": "^11.22.5",
     "react-navigation": "^4.4.4",
     "recoil": "^0.7.4",
     "rn-bottom-drawer": "^1.4.3",

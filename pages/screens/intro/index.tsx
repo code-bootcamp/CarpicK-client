@@ -5,7 +5,7 @@ import IdResultPage from "../../../src/components/units/findId/idResult/IdResult
 import IntroPage from "../../../src/components/units/intro/Intro.container";
 import LoginPage from "../../../src/components/units/login/Login.container";
 import PasswordResetPage from "../../../src/components/units/passwordReset/PasswordReset.container";
-import Join from "./join";
+import JoinStack from "./joinStack";
 
 const Stack = createNativeStackNavigator();
 
@@ -77,7 +77,7 @@ export default function IntroStack({ navigation }) {
             />
             <Stack.Screen
                name="joinStack"
-               component={Join}
+               component={JoinStack}
                options={() => ({
                   headerShown: false,
                })}

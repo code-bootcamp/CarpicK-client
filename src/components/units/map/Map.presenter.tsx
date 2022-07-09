@@ -58,7 +58,10 @@ export default function MainPageUI(props) {
                <Contents2Text>{props.Markers[0].address}</Contents2Text>
                <R.ScrollView style={{ width: "100%" }}>
                   {props.Markers.map((el) => (
-                     <S.CarList key={el.id}>
+                     <S.CarList
+                        key={el.id}
+                        onPress={props.onPressToRentProcess}
+                     >
                         <S.CarListBody>
                            <S.CarImage
                               source={el.imageRequire}
