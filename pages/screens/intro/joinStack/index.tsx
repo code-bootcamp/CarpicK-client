@@ -7,7 +7,7 @@ import License3Page from "../../../../src/components/units/license/license3/Lice
 
 const Stack = createNativeStackNavigator();
 
-export default function Join({ navigation }) {
+export default function JoinStack({ navigation }) {
    return (
       <>
          <Stack.Navigator

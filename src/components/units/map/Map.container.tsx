@@ -100,9 +100,10 @@ export default function MapPage({ navigation }) {
    const panelRef = useRef(null);
    const [carLocation, setCarLocation] = useState(Markers);
 
-   const updateMapStyle = () => {
-      setMapWidth("100%");
+   const onPressToRentProcess = () => {
+      navigation.navigate("rentProcessStack");
    };
+
    const handleRegionChange = async (region) => {
       // setBoundsBox(await mapRef.getMapBoundaries());
       // setSouth_west_lng(boundsBox.southWest.longitude);
@@ -150,13 +151,13 @@ export default function MapPage({ navigation }) {
 
    return (
       <MapPageUI
-         updateMapStyle={updateMapStyle}
          location={location}
          panelRef={panelRef}
          VIEW_HEIGHT={VIEW_HEIGHT}
          carLocation={carLocation}
          handleToggle={handleToggle}
          handleRegionChange={handleRegionChange}
+         onPressToRentProcess={onPressToRentProcess}
          setIsDrawerOpen={setIsDrawerOpen}
          Markers={Markers}
       />
