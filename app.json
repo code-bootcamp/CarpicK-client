@@ -68,6 +68,7 @@
       },
       "android": {
          "package": "com.expo.CarpicK",
+         "versionCode": 1,
          "config": {
             "googleMaps": {
                "apiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"
@@ -82,13 +83,14 @@
                "action": "VIEW",
                "category": ["DEFAULT", "BROWSABLE"],
                "data": {
-                  "scheme": "exampleformanagedexpo"
+                  "scheme": "CarpicK"
                }
             }
          ]
       },
       "web": {
          "favicon": "./assets/favicon.png"
-      }
+      },
+      "scheme": "CarpicK"
    }
 }
