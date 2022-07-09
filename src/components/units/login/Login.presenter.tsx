@@ -32,10 +32,7 @@ export default function LoginPageUI(props) {
                </S.GoogleLoginTouch>
             </S.Body>
             <S.Footer>
-               <S.FooterTouch
-                  activeOpacity={0.5}
-                  onPress={props.onPressToFindId}
-               >
+               <S.FooterTouch activeOpacity={0.5} onPress={props.onPressLogin}>
                   <S.IdFind style={{ includeFontPadding: false }}>
                      아이디 찾기
                   </S.IdFind>

@@ -21,6 +21,11 @@
       "assetBundlePatterns": ["**/*"],
       "ios": {
          "supportsTablet": true,
+         "infoPlist": {
+            "NSAppTransportSecurity": {
+               "NSAllowsArbitraryLoads": true
+            }
+         },
          "bundleIdentifier": "com.expo.CarpicK",
          "config": {
             "googleMapsApiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"

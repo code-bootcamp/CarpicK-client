@@ -54,7 +54,7 @@ export default function IntroPageUI(props) {
                onSnapToItem={(i) => props.setActiveTab(i)}
                activeSlideAlignment="end"
                autoplay
-               autoplayInterval={4500}
+               autoplayInterval={3800}
                swipeThreshold={50}
                decelerationRate={5}
                loop

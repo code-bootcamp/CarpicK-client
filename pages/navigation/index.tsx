@@ -43,7 +43,6 @@ export default function Navigation() {
                   <Stack.Screen
                      name="updateUserInfoStack"
                      component={UpdateUserInfoStack}
-                     ß
                      options={() => ({
                         headerShown: false,
                      })}
