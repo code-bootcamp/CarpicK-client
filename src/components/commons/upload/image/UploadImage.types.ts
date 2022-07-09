@@ -1,5 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface IUploadImageProps {
-   imageFile?: string;
-   uploadImage: (index: number) => Promise<void>;
+   imageFile: string;
+   imageFiles: string[];
+   setImageFiles: Dispatch<SetStateAction<string[]>>;
    index: number;
 }
