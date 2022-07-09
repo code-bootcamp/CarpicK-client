@@ -27,6 +27,7 @@ export default function ApolloSetting(props) {
       async function accessTokenSet() {
          const result = await AsyncStorage.getItem("accessToken");
          console.log("this is accessToken from storage", result);
+         console.log("this is accessToken from recoill", accessToken);
          setAccessToken(result || "");
       }
       accessTokenSet();

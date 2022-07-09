@@ -69,8 +69,8 @@ export default function MainStack({ navigation }) {
    const [openModal, setOpenModal] = useState(false);
 
    const modalNegativeLogOut = async () => {
-      const result = await logout();
       await AsyncStorage.removeItem("accessToken");
+      const result = await logout();
       setAccessToken("");
       console.log("this is result", result);
    };
@@ -113,10 +113,6 @@ export default function MainStack({ navigation }) {
             >
                <DrawerContentScrollView {...props}>
                   <DrawerItemList {...props} />
-                  {/* <DrawerItem
-                     label="로그아웃"
-                     onPress={() => setOpenModal(true)}
-                  /> */}
                </DrawerContentScrollView>
             </S.DrawerContentWrapper>
             <S.LogoutTouch onPress={() => setOpenModal(true)}>
