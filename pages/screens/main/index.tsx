@@ -23,6 +23,10 @@ import Contents1Text from "../../../src/components/commons/text/Contents1Text";
 import colors from "../../../src/commons/lib/colors";
 import UpdateUserInfoStack from "../updateUserInfo";
 import RegistrationStack from "../carRegistration";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../src/commons/store";
+
 const LOGOUT = gql`
    mutation logout {
       logout
@@ -61,10 +65,13 @@ const BackArrow = (navigation) => {
 
 export default function MainStack({ navigation }) {
    const [logout] = useMutation(LOGOUT);
+   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
 
    const modalNegativeLogOut = async () => {
       const result = await logout();
+      await AsyncStorage.removeItem("accessToken");
+      setAccessToken("");
       console.log("this is result", result);
    };
 

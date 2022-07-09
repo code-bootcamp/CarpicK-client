@@ -36,7 +36,6 @@ export default function MainPageUI(props) {
                   />
                ))}
             </MapView>
-
             <BottomSheet
                isOpen={false}
                onOpen={() => props.setIsDrawerOpen(true)}

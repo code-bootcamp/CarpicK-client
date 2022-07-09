@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/store";
 import LoginPageUI from "./Login.presenter";
 import { LOGIN, LOGOUT } from "./Login.queries";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginPage({ navigation }) {
    const [email, setEmail] = useState("");
@@ -43,6 +44,7 @@ export default function LoginPage({ navigation }) {
                },
             });
             // const accessToken = result.data.loginUser.accessToken;
+            AsyncStorage.setItem("accessToken", result.data.login);
             setAccessToken(result.data.login);
             console.log("this is result", result);
          } catch (error) {
