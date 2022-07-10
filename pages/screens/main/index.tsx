@@ -4,7 +4,6 @@ import {
    createDrawerNavigator,
    DrawerContentScrollView,
    DrawerItemList,
-   DrawerItem,
 } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
@@ -21,7 +20,6 @@ import RentHistoryStack from "../rentHistory";
 import TitleText from "../../../src/components/commons/text/TitleText";
 import Contents1Text from "../../../src/components/commons/text/Contents1Text";
 import colors from "../../../src/commons/lib/colors";
-import UpdateUserInfoStack from "../updateUserInfo";
 import RegistrationStack from "../carRegistration";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilState } from "recoil";
