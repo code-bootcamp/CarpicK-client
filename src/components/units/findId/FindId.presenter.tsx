@@ -1,4 +1,3 @@
-import * as R from "react-native";
 import * as S from "./FindId.styles";
 import TitleText from "../../commons/text/TitleText";
 import globalStyles from "../../../commons/styles/globalStyle";
@@ -20,7 +19,7 @@ export default function FindIdPageUI(props) {
                      maxLength={13}
                      keyboardType="numeric"
                      onChange={props.onChanePhone}
-                     placeholder="휴대전화번호 입력"
+                     placeholder="휴대전화번호 입력."
                      value={phoneNumHypen(props.phone)}
                   />
                   <S.InputBottomLine />
