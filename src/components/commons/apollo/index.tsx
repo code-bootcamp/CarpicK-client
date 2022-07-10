@@ -33,23 +33,29 @@ export default function ApolloSetting(props) {
       accessTokenSet();
    }, []);
 
+   const tokkenExpire = async () => {
+      await AsyncStorage.removeItem("accessToken");
+      setAccessToken("");
+   };
+
    const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-      // if (graphQLErrors) {
-      //    for (const err of graphQLErrors) {
-      //       if (err.extensions.code === "UNAUTHENTICATED") {
-      //          getAccessToken().then((newAccessToken) => {
-      //             setAccessToken(newAccessToken);
-      //             operation.setContext({
-      //                headers: {
-      //                   ...operation.getContext().headers,
-      //                   Authorization: `Bearer ${newAccessToken}`,
-      //                },
-      //             });
-      //             return forward(operation);
-      //          });
-      //       }
-      //    }
-      // }
+      if (graphQLErrors) {
+         for (const err of graphQLErrors) {
+            if (err.extensions.code === "UNAUTHENTICATED") {
+               // getAccessToken().then((newAccessToken) => {
+               //    setAccessToken(newAccessToken);
+               //    operation.setContext({
+               //       headers: {
+               //          ...operation.getContext().headers,
+               //          Authorization: `Bearer ${newAccessToken}`,
+               //       },
+               //    });
+               //    return forward(operation);
+               // });
+               tokkenExpire();
+            }
+         }
+      }
    });
 
    const uploadLink = createUploadLink({
