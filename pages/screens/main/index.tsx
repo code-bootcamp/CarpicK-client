@@ -24,6 +24,7 @@ import RegistrationStack from "../carRegistration";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../src/commons/store";
+import LicenseLaterStack from "../licenseLaterStack";
 
 const LOGOUT = gql`
    mutation logout {
@@ -207,7 +208,7 @@ export default function MainStack({ navigation }) {
             />
             <Drawer.Screen
                name="licenseLater"
-               component={CustomerServiceStack}
+               component={LicenseLaterStack}
                options={{
                   title: "면허등록",
                   headerShown: false,
