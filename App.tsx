@@ -11,7 +11,7 @@ import "react-native-gesture-handler";
 
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);
-   LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
+   LogBox.ignoreLogs(["exported from 'deprecated-react-native-prop-types'."]);
 
    useEffect(() => {
       async function prepare() {

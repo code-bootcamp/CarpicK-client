@@ -18,3 +18,9 @@ export const CREATE_USER = gql`
       }
    }
 `;
+
+export const SEND_SMS = gql`
+   mutation sendTokenToSMS($phone: String!) {
+      sendTokenToSMS(phone: $phone)
+   }
+`;

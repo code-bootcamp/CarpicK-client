@@ -91,7 +91,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
          </R.ScrollView>
          <Button1
             isDisabled={!props.formState.isValid}
-            // onPress={props.handleSubmit(props.onPressNext)}
+            onPress={props.handleSubmit(props.onPressNext)}
          >
             다음
          </Button1>
