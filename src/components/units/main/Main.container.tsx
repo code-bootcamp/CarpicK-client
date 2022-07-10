@@ -3,7 +3,6 @@ import { Linking } from "react-native";
 import { useAuth } from "../../../commons/hooks/useAuth";
 
 export default function MainPage({ navigation }) {
-   useAuth(navigation);
    const onPressToMap = () => {
       navigation.navigate("map");
    };
