@@ -1,4 +1,3 @@
-import * as R from "react-native";
 import * as S from "./PaymentResult.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import Button1 from "../../../commons/button/Button1";

@@ -23,9 +23,8 @@ export default function Payment({ navigation }) {
       buyer_email: "example@naver.com",
       buyer_addr: "서울시 강남구 신사동 661-16",
       buyer_postcode: "06018",
-      app_scheme: "example",
-      escrow: true,
-      // [Deprecated v1.0.3]: m_redirect_url
+      app_scheme: "carpick",
+      escrow: false,
    };
 
    return (
@@ -39,7 +38,6 @@ export default function Payment({ navigation }) {
       >
          <IMP.Payment
             userCode={"imp49910675"} // 가맹점 식별코드
-            // tierCode={"AAA"} // 티어 코드: agency 기능 사용자에 한함
             data={data} // 결제 데이터
             loading={<Loading />}
             callback={callback} // 결제 종료 후 콜백

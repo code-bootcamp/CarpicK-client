@@ -23,6 +23,7 @@ export default function App() {
             });
             await new Promise((resolve) => setTimeout(resolve, 2000));
          } catch (e) {
+            console.log("this is error : ", e);
          } finally {
             setAppIsReady(true);
          }
@@ -36,25 +37,25 @@ export default function App() {
       }
    }, [appIsReady]);
 
-   if (!appIsReady) {
+   if (appIsReady) {
+      return (
+         <RecoilRoot>
+            <ApolloSetting>
+               <N.SafeAreaView
+                  onLayout={onLayoutRootView}
+                  style={SafeViewAndroid.AndroidSafeArea}
+               >
+                  <Navigation
+                     style={{
+                        fontFamily: "Regular,Bold",
+                        includeFontPadding: false,
+                     }}
+                  />
+               </N.SafeAreaView>
+            </ApolloSetting>
+         </RecoilRoot>
+      );
+   } else {
       return null;
    }
-
-   return (
-      <RecoilRoot>
-         <ApolloSetting>
-            <N.SafeAreaView
-               onLayout={onLayoutRootView}
-               style={SafeViewAndroid.AndroidSafeArea}
-            >
-               <Navigation
-                  style={{
-                     fontFamily: "Regular,Bold",
-                     includeFontPadding: false,
-                  }}
-               />
-            </N.SafeAreaView>
-         </ApolloSetting>
-      </RecoilRoot>
-   );
 }

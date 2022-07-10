@@ -1,7 +1,7 @@
 {
    "expo": {
-      "name": "CarpicK",
-      "slug": "CarpicK",
+      "name": "carpick",
+      "slug": "carpick",
       "version": "1.0.0",
       "orientation": "portrait",
       "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
       },
       "assetBundlePatterns": ["**/*"],
       "ios": {
-         "bundleIdentifier": "com.expo.CarpicK",
+         "bundleIdentifier": "com.expo.carpick",
          "config": {
             "googleMapsApiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"
          },
@@ -67,7 +67,7 @@
          }
       },
       "android": {
-         "package": "com.expo.CarpicK",
+         "package": "com.expo.carpick",
          "versionCode": 1,
          "config": {
             "googleMaps": {
@@ -83,7 +83,7 @@
                "action": "VIEW",
                "category": ["DEFAULT", "BROWSABLE"],
                "data": {
-                  "scheme": "CarpicK"
+                  "scheme": "carpick"
                }
             }
          ]
@@ -91,6 +91,6 @@
       "web": {
          "favicon": "./assets/favicon.png"
       },
-      "scheme": "CarpicK"
+      "scheme": "carpick"
    }
 }
