@@ -12,7 +12,9 @@ import "react-native-gesture-handler";
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);
    LogBox.ignoreLogs(["exported from 'deprecated-react-native-prop-types'."]);
-
+   LogBox.ignoreLogs([
+      "Non-serializable values were found in the navigation state",
+   ]);
    useEffect(() => {
       async function prepare() {
          try {
