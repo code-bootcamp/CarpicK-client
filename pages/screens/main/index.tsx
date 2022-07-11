@@ -12,7 +12,7 @@ import HamburgerImage from "../../../assets/main/hamburger.svg";
 import MapPage from "../../../src/components/units/map/Map.container";
 import { Platform } from "react-native";
 import CustomerServiceStack from "../customerService";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { gql } from "apollo-boost";
 import Modal1 from "../../../src/components/commons/modals/modal1/Modal1";
 import { useState } from "react";
@@ -29,6 +29,18 @@ import LicenseLaterStack from "../licenseLaterStack";
 const LOGOUT = gql`
    mutation logout {
       logout
+   }
+`;
+
+const FETCH_LOGIN_USER = gql`
+   query fetchLoginUser {
+      fetchLoginUser {
+         id
+         name
+         email
+         phone
+         isAuth
+      }
    }
 `;
 
@@ -66,6 +78,8 @@ export default function MainStack({ navigation }) {
    const [logout] = useMutation(LOGOUT);
    const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
+   const { data } = useQuery(FETCH_LOGIN_USER);
+   console.log("ths is data", data);
 
    const modalNegativeLogOut = async () => {
       await AsyncStorage.removeItem("accessToken");
@@ -92,7 +106,7 @@ export default function MainStack({ navigation }) {
                         />
                      </S.UserImage>
                      <S.UserInfoWrapper>
-                        <TitleText>여명현</TitleText>
+                        <TitleText>{data?.fetchLoginUser.name}</TitleText>
                         <S.UpdateUserInfoTouch
                            activeOpacity={0.7}
                            onPress={onPressToUpdateUserInfo}
