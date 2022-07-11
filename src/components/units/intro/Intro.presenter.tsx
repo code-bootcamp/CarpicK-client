@@ -56,6 +56,8 @@ export default function IntroPageUI(props) {
                autoplay
                autoplayInterval={3800}
                swipeThreshold={50}
+               decelerationRate="normal"
+               pagingEnabled={true}
                loop
             />
             <Pagination
@@ -67,7 +69,6 @@ export default function IntroPageUI(props) {
                inactiveDotOpacity={0.3}
                inactiveDotScale={0.6}
                activeDotIndex={props.activeTab}
-               animatedDuration={1}
             />
          </S.CarouselContainer>
          <S.Footer>
