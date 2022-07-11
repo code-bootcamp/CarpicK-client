@@ -18,13 +18,17 @@ export const PrefixBar = styled.View`
    width: ${(props) => props.barLength + "%"};
    height: 3px;
    background-color: #d8d8d8;
+   position: absolute;
+   left: 0;
 `;
 
 export const Bar = styled.View`
    width: ${(props) => props.barLength + "%"};
-   margin-left: ${(props) => props.barStart + "%"};
+   left: ${(props) => props.barStart + "%"};
    height: 3px;
    background-color: #d8d8d8;
    position: absolute;
    z-index: 999;
 `;
+
+/* width: ${(props) => props.barLength + "%"}; */

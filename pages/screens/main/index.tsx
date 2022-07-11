@@ -79,13 +79,11 @@ export default function MainStack({ navigation }) {
    const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
    const { data } = useQuery(FETCH_LOGIN_USER);
-   console.log("ths is data", data);
 
    const modalNegativeLogOut = async () => {
       await AsyncStorage.removeItem("accessToken");
       const result = await logout();
       setAccessToken("");
-      console.log("this is result", result);
    };
 
    const onPressToUpdateUserInfo = () => {
