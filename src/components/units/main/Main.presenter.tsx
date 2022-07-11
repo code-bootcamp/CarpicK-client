@@ -82,7 +82,7 @@ export default function MainPageUI(props) {
                </S.HorizontalCard>
                <S.HorizontalCard
                   height={CARD_WIDTH}
-                  onPress={props.onPressToUserGuideAlone}
+                  onPress={props.onPressToUserGuide}
                >
                   <S.TitleWrapper>
                      <TitleText color="#353535">CarpicK 시작하기</TitleText>
