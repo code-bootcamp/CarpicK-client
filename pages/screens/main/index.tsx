@@ -1,13 +1,12 @@
 import * as R from "react-native";
+import * as S from "./Drawer.styles";
 import {
    createDrawerNavigator,
    DrawerContentScrollView,
    DrawerItemList,
-   DrawerItem,
 } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import MainPage from "../../../src/components/units/main/Main.container";
 import HamburgerImage from "../../../assets/main/hamburger.svg";
 import MapPage from "../../../src/components/units/map/Map.container";
@@ -17,6 +16,16 @@ import { useMutation } from "@apollo/client";
 import { gql } from "apollo-boost";
 import Modal1 from "../../../src/components/commons/modals/modal1/Modal1";
 import { useState } from "react";
+import RentHistoryStack from "../rentHistory";
+import TitleText from "../../../src/components/commons/text/TitleText";
+import Contents1Text from "../../../src/components/commons/text/Contents1Text";
+import colors from "../../../src/commons/lib/colors";
+import RegistrationStack from "../carRegistration";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../src/commons/store";
+import LicenseLaterStack from "../licenseLaterStack";
+
 const LOGOUT = gql`
    mutation logout {
       logout
@@ -27,29 +36,13 @@ const Drawer = createDrawerNavigator();
 
 const Hambergur = (onPress) => {
    return (
-      <R.TouchableOpacity
-         onPress={() => onPress(DrawerActions.openDrawer())}
-         style={{
-            width: 80,
-            height: 30,
-            marginRight: 20,
-            alignItems: "flex-end",
-            justifyContent: "center",
-         }}
-      >
-         <R.View
-            style={{
-               width: 65,
-               height: 30,
-               justifyContent: "center",
-               alignItems: "flex-end",
-            }}
-         >
+      <S.HamburgerTouch onPress={() => onPress(DrawerActions.openDrawer())}>
+         <S.HamburgerImageWrapper>
             <R.View>
                <HamburgerImage />
             </R.View>
-         </R.View>
-      </R.TouchableOpacity>
+         </S.HamburgerImageWrapper>
+      </S.HamburgerTouch>
    );
 };
 const BackArrow = (navigation) => {
@@ -71,19 +64,61 @@ const BackArrow = (navigation) => {
 
 export default function MainStack({ navigation }) {
    const [logout] = useMutation(LOGOUT);
+   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
 
    const modalNegativeLogOut = async () => {
+      await AsyncStorage.removeItem("accessToken");
       const result = await logout();
+      setAccessToken("");
       console.log("this is result", result);
+   };
+
+   const onPressToUpdateUserInfo = () => {
+      navigation.navigate("updateUserInfoStack");
    };
 
    const CustomDrawerContent = (props) => {
       return (
-         <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
-            <DrawerItem label="로그아웃" onPress={() => setOpenModal(true)} />
-         </DrawerContentScrollView>
+         <R.View style={{ flex: 1 }}>
+            <S.DrawerHeader>
+               <S.DrawerHeader>
+                  <S.DrawerContents>
+                     <S.UserImage>
+                        <FontAwesome5
+                           name="user-circle"
+                           size={50}
+                           color={colors.theme}
+                        />
+                     </S.UserImage>
+                     <S.UserInfoWrapper>
+                        <TitleText>여명현</TitleText>
+                        <S.UpdateUserInfoTouch
+                           activeOpacity={0.7}
+                           onPress={onPressToUpdateUserInfo}
+                        >
+                           <S.UpdateUserInfoTextHitBox>
+                              <Contents1Text color="#a5a5a5">
+                                 내 정보 수정하기
+                              </Contents1Text>
+                           </S.UpdateUserInfoTextHitBox>
+                        </S.UpdateUserInfoTouch>
+                     </S.UserInfoWrapper>
+                  </S.DrawerContents>
+               </S.DrawerHeader>
+            </S.DrawerHeader>
+            <S.DrawerContentWrapper
+               style={{ flex: 1, backgroundColor: "#fff", paddingTop: 10 }}
+            >
+               <DrawerContentScrollView {...props}>
+                  <DrawerItemList {...props} />
+               </DrawerContentScrollView>
+            </S.DrawerContentWrapper>
+            <S.LogoutTouch onPress={() => setOpenModal(true)}>
+               <MaterialIcons name="logout" size={12} color="#a5a5a5" />
+               <Contents1Text color="#a5a5a5">로그아웃</Contents1Text>
+            </S.LogoutTouch>
+         </R.View>
       );
    };
 
@@ -148,6 +183,14 @@ export default function MainStack({ navigation }) {
                }}
             />
             <Drawer.Screen
+               name="registrationStack"
+               component={RegistrationStack}
+               options={{
+                  title: "My Car 등록하기",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
                name="customerService"
                component={CustomerServiceStack}
                options={{
@@ -156,8 +199,16 @@ export default function MainStack({ navigation }) {
                }}
             />
             <Drawer.Screen
+               name="rentHistoryStack"
+               component={RentHistoryStack}
+               options={{
+                  title: "이용내역",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
                name="licenseLater"
-               component={CustomerServiceStack}
+               component={LicenseLaterStack}
                options={{
                   title: "면허등록",
                   headerShown: false,

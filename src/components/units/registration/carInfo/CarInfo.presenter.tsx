@@ -14,17 +14,39 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
       <R.View style={{ flex: 1 }}>
          <R.ScrollView style={{ backgroundColor: "#fff" }}>
             <S.Wrapper style={globalStyle.GlobalStyles}>
-               <TitleText>{`내 차를 등록하고\n용돈을 벌어가세요!`}</TitleText>
+               <TitleText>{`카픽으로 손쉽게\n오너가 되어보세요!`}</TitleText>
                <R.View>
                   <S.InputBox>
                      <Contents1Text>이름</Contents1Text>
                      <Input2 placeholder="홍길동" disabled={false} />
                   </S.InputBox>
                   <S.InputBox>
-                     <Contents1Text>전화번호</Contents1Text>
+                     <Contents1Text>휴대폰번호</Contents1Text>
                      <Input2 placeholder="01012345678" disabled={false} />
                   </S.InputBox>
                   <R.View style={{ marginTop: 10 }}>
+                     <S.InputBox>
+                        <Contents1Text>주소</Contents1Text>
+                        <Controller
+                           control={props.control}
+                           name="address"
+                           render={({ onChange }) => (
+                              <Input2
+                                 placeholder="서울특별시 구로 G밸리비즈플라자 지하 2층"
+                                 onChangeText={onChange}
+                              />
+                           )}
+                           rules={{
+                              required: {
+                                 value: true,
+                                 message: "카픽존의 주소를 입력해주세요,",
+                              },
+                           }}
+                        />
+                        <Contents1Text color="red">
+                           {props.formState.errors.address?.message}
+                        </Contents1Text>
+                     </S.InputBox>
                      <S.InputBox>
                         <Contents1Text>차량번호</Contents1Text>
                         <Controller
@@ -37,14 +59,15 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                               />
                            )}
                            rules={{
-                              required: true,
+                              required: {
+                                 value: true,
+                                 message: "차량번호를 입력해주세요.",
+                              },
                            }}
                         />
-                        {props.formState.errors?.carNumber && (
-                           <Contents1Text color="red">
-                              차량번호를 입력해주세요.
-                           </Contents1Text>
-                        )}
+                        <Contents1Text color="red">
+                           {props.formState.errors.carNumber?.message}
+                        </Contents1Text>
                      </S.InputBox>
                      <S.InputBox>
                         <Contents1Text>차종</Contents1Text>
@@ -58,14 +81,15 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                               />
                            )}
                            rules={{
-                              required: true,
+                              required: {
+                                 value: true,
+                                 message: "차종을 입력해주세요.",
+                              },
                            }}
                         />
-                        {props.formState.errors?.carType && (
-                           <Contents1Text color="red">
-                              차종을 입력해주세요.
-                           </Contents1Text>
-                        )}
+                        <Contents1Text color="red">
+                           {props.formState.errors.carType?.message}
+                        </Contents1Text>
                      </S.InputBox>
                      <R.View style={{ marginTop: 20 }}>
                         <Contents1Text>연료</Contents1Text>
@@ -91,7 +115,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
          </R.ScrollView>
          <Button1
             isDisabled={!props.formState.isValid}
-            // onPress={props.handleSubmit(props.onPressNext)}
+            onPress={props.handleSubmit(props.onPressNext)}
          >
             다음
          </Button1>

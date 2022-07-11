@@ -11,8 +11,10 @@ import "react-native-gesture-handler";
 
 export default function App() {
    const [appIsReady, setAppIsReady] = useState(false);
-   LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
-
+   LogBox.ignoreLogs(["exported from 'deprecated-react-native-prop-types'."]);
+   LogBox.ignoreLogs([
+      "Non-serializable values were found in the navigation state",
+   ]);
    useEffect(() => {
       async function prepare() {
          try {
@@ -23,6 +25,7 @@ export default function App() {
             });
             await new Promise((resolve) => setTimeout(resolve, 2000));
          } catch (e) {
+            console.log("this is error : ", e);
          } finally {
             setAppIsReady(true);
          }
@@ -36,25 +39,25 @@ export default function App() {
       }
    }, [appIsReady]);
 
-   if (!appIsReady) {
+   if (appIsReady) {
+      return (
+         <RecoilRoot>
+            <ApolloSetting>
+               <N.SafeAreaView
+                  onLayout={onLayoutRootView}
+                  style={SafeViewAndroid.AndroidSafeArea}
+               >
+                  <Navigation
+                     style={{
+                        fontFamily: "Regular,Bold",
+                        includeFontPadding: false,
+                     }}
+                  />
+               </N.SafeAreaView>
+            </ApolloSetting>
+         </RecoilRoot>
+      );
+   } else {
       return null;
    }
-
-   return (
-      <RecoilRoot>
-         <ApolloSetting>
-            <N.SafeAreaView
-               onLayout={onLayoutRootView}
-               style={SafeViewAndroid.AndroidSafeArea}
-            >
-               <Navigation
-                  style={{
-                     fontFamily: "Regular,Bold",
-                     includeFontPadding: false,
-                  }}
-               />
-            </N.SafeAreaView>
-         </ApolloSetting>
-      </RecoilRoot>
-   );
 }

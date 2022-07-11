@@ -1,0 +1,39 @@
+import * as R from "react-native";
+import * as S from "./CarRegistration.styles";
+import globalStyle from "../../../../commons/styles/globalStyle";
+import TitleText from "../../../commons/text/TitleText";
+import Contents1Text from "../../../commons/text/Contents1Text";
+import UploadImage from "../../../commons/upload/image/UploadImage";
+import { ICarRegistrationUIProps } from "./CarRegistration.types";
+import Button1 from "../../../commons/button/Button1";
+
+export default function CarRegistrationUI(props: ICarRegistrationUIProps) {
+   return (
+      <S.Wrapper>
+         <S.Container style={globalStyle.GlobalStyles}>
+            <R.View>
+               <TitleText fontSize="17" fontFamily="Bold">
+                  차량 등록증
+               </TitleText>
+               <R.View style={{ marginTop: 7 }}>
+                  <Contents1Text>{`본인 차량등록증을 사진으로 찍어서 보내주세요!\n확인 후 결과를 알림으로 보내드릴께요!`}</Contents1Text>
+               </R.View>
+            </R.View>
+            <S.ImageContainer>
+               <UploadImage
+                  imageFile={props.imageFiles[0]}
+                  imageFiles={props.imageFiles}
+                  setImageFiles={props.setImageFiles}
+                  index={0}
+               />
+            </S.ImageContainer>
+         </S.Container>
+         <Button1
+            onPress={props.onPressRegister}
+            isDisabled={!(props.imageFiles?.[0] !== "")}
+         >
+            마이카 신청
+         </Button1>
+      </S.Wrapper>
+   );
+}

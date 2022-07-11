@@ -5,6 +5,8 @@ import { accessTokenState } from "../../src/commons/store";
 import CustomerServiceStack from "../screens/customerService";
 import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
+import RentProcessStack from "../screens/rentProcess";
+import UpdateUserInfoStack from "../screens/updateUserInfo";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +24,7 @@ export default function Navigation() {
    return (
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator>
-            {accessToken ? (
+            {!accessToken ? (
                <Stack.Screen
                   name="introStack"
                   component={IntroStack}
@@ -31,13 +33,29 @@ export default function Navigation() {
                   })}
                />
             ) : (
-               <Stack.Screen
-                  name="mainStack"
-                  component={MainStack}
-                  options={() => ({
-                     headerShown: false,
-                  })}
-               />
+               <>
+                  <Stack.Screen
+                     name="mainStack"
+                     component={MainStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+                  <Stack.Screen
+                     name="updateUserInfoStack"
+                     component={UpdateUserInfoStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+                  <Stack.Screen
+                     name="rentProcessStack"
+                     component={RentProcessStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+               </>
             )}
          </Stack.Navigator>
       </NavigationContainer>

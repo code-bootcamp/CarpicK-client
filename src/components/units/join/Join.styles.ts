@@ -1,4 +1,5 @@
 import styled from "@emotion/native";
+import colors from "../../../commons/lib/colors";
 
 export const Wrapper = styled.View`
    flex: 1;
