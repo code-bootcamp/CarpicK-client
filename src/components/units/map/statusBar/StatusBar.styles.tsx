@@ -15,7 +15,7 @@ export const FullStatusBar = styled.View`
 `;
 
 export const PrefixBar = styled.View`
-   width: 72.5%;
+   width: ${(props) => props.barLength + "%"};
    height: 3px;
    background-color: #d8d8d8;
 `;
