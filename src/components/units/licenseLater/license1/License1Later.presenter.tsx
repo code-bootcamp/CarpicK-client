@@ -11,7 +11,7 @@ export default function License1LaterPageUI(props) {
             <S.TitleBlue style={{ includeFontPadding: false }}>
                면허{" "}
             </S.TitleBlue>
-            <S.Title style={{ includeFontPadding: false }}>인증 </S.Title>
+            <S.Title style={{ includeFontPadding: false }}>등록 </S.Title>
          </S.TitleWrapper>
          <S.Body>
             <S.MainText style={{ includeFontPadding: false }}>
