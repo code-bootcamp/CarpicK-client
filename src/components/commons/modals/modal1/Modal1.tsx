@@ -44,12 +44,12 @@ export default function Modal1(props: IModal1Props) {
                   >
                      <S.ButtonText>{props.negativeText}</S.ButtonText>
                   </S.NegativeButton>
-                  <S.PositiveButton
+                  <S.PositiveHalfButton
                      activeOpacity={0.7}
                      onPress={onClickPositive}
                   >
                      <S.ButtonText>{props.positiveText}</S.ButtonText>
-                  </S.PositiveButton>
+                  </S.PositiveHalfButton>
                </S.ButtonsView>
             </S.ModalView>
          </S.ModalCenteredView>
