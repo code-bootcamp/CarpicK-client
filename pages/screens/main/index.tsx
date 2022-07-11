@@ -25,6 +25,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../src/commons/store";
 import LicenseLaterStack from "../licenseLaterStack";
+import UserGuideAlonePage from "../../../src/components/units/customerService/userGuideAlone/userGuideAlone.container";
 
 const LOGOUT = gql`
    mutation logout {
@@ -199,6 +200,14 @@ export default function MainStack({ navigation }) {
                component={RegistrationStack}
                options={{
                   title: "My Car 등록하기",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="userGuideAlone"
+               component={UserGuideAlonePage}
+               options={{
+                  title: "Carpick 시작하기",
                   headerShown: false,
                }}
             />
