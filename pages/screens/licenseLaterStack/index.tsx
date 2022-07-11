@@ -25,7 +25,7 @@ export default function LicenseLaterStack({ navigation }) {
                      NavigationHeaderLeft(
                         { navigation },
                         "main",
-                        "면허인증",
+                        "면허등록",
                         "#ffffff"
                      ),
                })}
