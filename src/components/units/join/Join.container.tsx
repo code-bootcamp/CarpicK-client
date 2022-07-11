@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { CHECK_EMAIL, CREATE_USER, SEND_SMS } from "./Join.queries";
+import { ISVALID_EMAIL, CREATE_USER, SEND_SMS } from "./Join.queries";
 import JoinPageUI from "./Join.presenter";
 import Modal3 from "../../commons/modals/modal3/Modal3";
 
@@ -14,7 +14,7 @@ export default function JoinPage({ navigation }) {
    const [isValidPhone, setIsValidPhone] = useState(false);
 
    const [createUser] = useMutation(CREATE_USER);
-   const [checkEmail] = useMutation(CHECK_EMAIL);
+   const [checkEmail] = useMutation(ISVALID_EMAIL);
    const [sendSMS] = useMutation(SEND_SMS);
 
    const { control, handleSubmit, formState, getValues, watch } = useForm({
@@ -42,12 +42,13 @@ export default function JoinPage({ navigation }) {
                email: getValues("email"),
             },
          });
-         if (result.data.checkEmail) {
+         console.log(result);
+         if (result.data.isValidEmail.isValid) {
             setMsg("사용가능한 이메일 입니다.");
             setOpenModal(true);
             setIsValidEmail(true);
          }
-         if (!result.data.checkEmail) {
+         if (!result.data.isValidEmail.isValid) {
             setMsg("이미 사용중인 아이디입니다.");
             setOpenModal(true);
          }

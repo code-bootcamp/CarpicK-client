@@ -62,12 +62,12 @@ const Markers = [
       costPerHour: 9500,
       reservation: [
          {
-            start_time: "2022-07-09 18:00:00",
-            end_time: "2022-07-09 22:00:00",
+            start_time: "2022-07-11 16:00:00",
+            end_time: "2022-07-11 18:00:00",
          },
          {
-            start_time: "2022-07-09 19:17:00",
-            end_time: "2022-07-10 04:00:00",
+            start_time: "2022-07-11 22:00:00",
+            end_time: "2022-07-11 24:00:00",
          },
       ],
    },
@@ -76,9 +76,6 @@ const Markers = [
 const VIEW_HEIGHT = R.Dimensions.get("window").height;
 
 export default function MapPage({ navigation }) {
-   const nowTime = moment(moment().format("YYYY-MM-DD HH:mm:ss"));
-   const time1 = moment(Markers[2].reservation[1].end_time);
-
    const [location, setLocation] = useState({
       latitude: 0,
       longitude: 0,

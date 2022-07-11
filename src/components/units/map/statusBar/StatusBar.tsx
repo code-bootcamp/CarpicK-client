@@ -3,10 +3,10 @@ import * as S from "./StatusBar.styles";
 
 export function statusBar(reservation) {
    const nowTime = moment();
-   const nowTimeHourFormat = (
+   const nowTimeHourFormat =
       Number(nowTime.format("HH:mm").split(":")[0]) +
-      Number(nowTime.format("HH:mm").split(":")[1]) / 60
-   ).toFixed(2);
+      Number(nowTime.format("HH:mm").split(":")[1]) / 60;
+
    const nowTimeStartPoint = moment(
       moment().format("YYYY-MM-DD") + " 00:00:00"
    );
@@ -16,54 +16,69 @@ export function statusBar(reservation) {
       .asHours();
 
    const result = [];
-   reservation.forEach((el, i) => {
-      const timeStartPoint = moment(el.start_time);
-      const timeEndPoint = moment(el.end_time);
-      const timeDiffStart = moment
-         .duration(timeStartPoint.diff(nowTime))
-         .asHours();
-      const timeDiffEndDay = moment
-         .duration(timeEndPoint.diff(nowTime))
-         .asDays();
+   if (reservation.length !== 0) {
+      reservation
+         .filter((el) => {
+            const timeEndPoint = moment(el.end_time);
+            const timeDiffEndHours = moment
+               .duration(nowTime.diff(timeEndPoint))
+               .asDays();
+            console.log("this is timeDiff", timeDiffEndHours);
+            return timeDiffEndHours < 0;
+         })
+         .forEach((el, i) => {
+            const timeStartPoint = moment(el.start_time);
+            const timeEndPoint = moment(el.end_time);
+            const timeDiffStart = moment
+               .duration(timeStartPoint.diff(nowTime))
+               .asHours();
+            const timeDiffEndDay = moment
+               .duration(timeEndPoint.diff(nowTime))
+               .asDays();
 
-      if (timeDiffStart < 0 && timeDiffEndDay > 0 && timeDiffEndDay < 1) {
-         // case1
+            if (timeDiffStart < 0 && timeDiffEndDay > 0 && timeDiffEndDay < 1) {
+               // case1
 
-         result.push({
-            totalHour: moment.duration(timeEndPoint.diff(nowTime)).asHours(),
-            grayStartPoint: moment(nowTime).format("HH:mm"),
-            grayEndPoint: moment(timeEndPoint).format("HH:mm"),
+               result.push({
+                  totalHour: moment
+                     .duration(timeEndPoint.diff(nowTime))
+                     .asHours(),
+                  grayStartPoint: moment(nowTime).format("HH:mm"),
+                  grayEndPoint: moment(timeEndPoint).format("HH:mm"),
+               });
+            } else if (timeDiffStart < 0 && timeDiffEndDay > 1) {
+               // case 2
+
+               result.push({
+                  totalHour: moment
+                     .duration(nowTimeEndPoint.diff(nowTime))
+                     .asHours(),
+                  grayStartPoint: moment(nowTime).format("HH:mm"),
+                  grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
+               });
+            } else if (timeDiffStart > 0 && timeDiffEndDay > 1) {
+               // case 4
+
+               result.push({
+                  totalHour: moment
+                     .duration(nowTimeEndPoint.diff(timeStartPoint))
+                     .asHours(),
+                  grayStartPoint: moment(timeStartPoint).format("HH:mm"),
+                  grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
+               });
+            } else if (timeDiffStart > 0 && timeDiffEndDay < 1) {
+               // case 5
+
+               result.push({
+                  totalHour: moment
+                     .duration(timeEndPoint.diff(timeStartPoint))
+                     .asHours(),
+                  grayStartPoint: moment(timeStartPoint).format("HH:mm"),
+                  grayEndPoint: moment(timeEndPoint).format("HH:mm"),
+               });
+            }
          });
-      } else if (timeDiffStart < 0 && timeDiffEndDay > 1) {
-         // case 2
-
-         result.push({
-            totalHour: moment.duration(nowTimeEndPoint.diff(nowTime)).asHours(),
-            grayStartPoint: moment(nowTime).format("HH:mm"),
-            grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
-         });
-      } else if (timeDiffStart > 0 && timeDiffEndDay > 1) {
-         // case 4
-
-         result.push({
-            totalHour: moment
-               .duration(nowTimeEndPoint.diff(timeStartPoint))
-               .asHours(),
-            grayStartPoint: moment(timeStartPoint).format("HH:mm"),
-            grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
-         });
-      } else if (timeDiffStart > 0 && timeDiffEndDay < 1) {
-         // case 5
-
-         result.push({
-            totalHour: moment
-               .duration(timeEndPoint.diff(timeStartPoint))
-               .asHours(),
-            grayStartPoint: moment(timeStartPoint).format("HH:mm"),
-            grayEndPoint: moment(timeEndPoint).format("HH:mm"),
-         });
-      }
-   });
+   }
 
    // console.log("this start", nowTimeStartPoint);
    // console.log("this end", nowTimeEndPoint);
@@ -77,21 +92,21 @@ export function statusBar(reservation) {
    return (
       <S.Wrapper>
          <S.FullStatusBar />
-         <S.PrefixBar barLength={nowTimeHourFormat / 0.24} />
+         <S.PrefixBar barLength={(nowTimeHourFormat / 0.24).toFixed(3)} />
          {result.map((el, i) => {
-            if (el) {
-               return (
-                  <S.Bar
-                     key={i}
-                     barLength={String(el.totalHour / 0.24)}
-                     barStart={String(
+            return (
+               <S.Bar
+                  key={i}
+                  barLength={String((el.totalHour / 0.24).toFixed(3))}
+                  barStart={String(
+                     (
                         (Number(el.grayStartPoint.split(":")[0]) +
                            Number(el.grayStartPoint.split(":")[1]) / 60) /
-                           0.24
-                     )}
-                  />
-               );
-            }
+                        0.24
+                     ).toFixed(3)
+                  )}
+               />
+            );
          })}
       </S.Wrapper>
    );
