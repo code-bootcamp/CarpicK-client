@@ -67,7 +67,7 @@ export default function PasswordResetUI(props) {
                   </S.InputRow>
                </S.InputWrapperMarginBtm>
                <S.InputWrapper>
-                  <Contents1Text fontSize="14">비밀번호</Contents1Text>
+                  <Contents1Text fontSize="14">새로운 비밀번호</Contents1Text>
                   <Input2
                      maxLength={16}
                      onChangeText={(text) => props.setPassword(text)}
