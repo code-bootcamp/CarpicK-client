@@ -6,13 +6,13 @@ export default function CarInfoPage({ navigation }) {
       mode: "onChange",
       reValidateMode: "onChange",
       defaultValues: {
+         address: "",
          carNumber: "",
          carType: "",
       },
    });
 
    const onPressNext = (data: any) => {
-      console.log(data);
       navigation.navigate("carPhotos");
    };
 
