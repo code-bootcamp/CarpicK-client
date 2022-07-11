@@ -11,6 +11,10 @@ export default function MainPage({ navigation }) {
       navigation.navigate("registrationStack");
    };
 
+   const onPressToUserGuide = () => {
+      navigation.navigate("userGuide");
+   };
+
    const onPressToCustomerService = () => {
       navigation.navigate("customerService");
    };
@@ -33,6 +37,7 @@ export default function MainPage({ navigation }) {
          onPressToMap={onPressToMap}
          onPressCall={onPressCall}
          onPressToCarRegist={onPressToCarRegist}
+         onPressToUserGuide={onPressToUserGuide}
          onPressToCustomerService={onPressToCustomerService}
          onPressToRentHistoryStack={onPressToRentHistoryStack}
          onPressToLicense={onPressToLicense}
