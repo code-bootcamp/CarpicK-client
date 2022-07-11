@@ -62,6 +62,17 @@ export const InfoDetail = styled.Text`
    color: #777777;
 `;
 
+export const InfoDetailSpecialNum = styled.TextInput`
+   width: 100%;
+   height: 30px;
+   padding: 3px 14px;
+   margin-bottom: 15px;
+   font-family: Regular;
+   background-color: #ffffff;
+   border-radius: 5px;
+   color: #777777;
+`;
+
 export const ButtonWrapper = styled.View`
    margin-bottom: 20px;
 `;

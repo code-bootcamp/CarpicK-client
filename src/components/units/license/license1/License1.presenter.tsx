@@ -29,7 +29,7 @@ export default function License1PageUI(props) {
                면허 인증 진행하기
             </S.NextText>
          </S.NextTouch>
-         <S.Contents1TextTouch>
+         <S.Contents1TextTouch onPress={props.onPressSubmitNoLicense}>
             <Contents1Text color="#777777">
                지금 면허증이 없어요 다음에 진행할게요
             </Contents1Text>

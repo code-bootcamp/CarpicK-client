@@ -1,21 +1,29 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { ISVALID_EMAIL, CREATE_USER, SEND_SMS } from "./Join.queries";
+import {
+   ISVALID_EMAIL,
+   CREATE_USER,
+   SEND_SMS,
+   CHECK_TOKEN,
+} from "./Join.queries";
 import JoinPageUI from "./Join.presenter";
 import Modal3 from "../../commons/modals/modal3/Modal3";
 
 export default function JoinPage({ navigation }) {
-   const [openModal, setOpenModal] = useState(false);
    const [msg, setMsg] = useState("");
-   const [phoneTruthNum, setPhoneTruthNum] = useState("");
-   const [isCheckPhone, setIsCheckPhone] = useState(false);
+   const [openModal, setOpenModal] = useState(false);
+   const [openTimer, setOpenTimer] = useState(false);
+   const [openRedo, setOpenRedo] = useState(false);
+
+   const [token, setToken] = useState("");
    const [isValidEmail, setIsValidEmail] = useState(false);
    const [isValidPhone, setIsValidPhone] = useState(false);
 
    const [createUser] = useMutation(CREATE_USER);
    const [checkEmail] = useMutation(ISVALID_EMAIL);
    const [sendSMS] = useMutation(SEND_SMS);
+   const [checkToken] = useMutation(CHECK_TOKEN);
 
    const { control, handleSubmit, formState, getValues, watch } = useForm({
       mode: "onChange",
@@ -32,6 +40,10 @@ export default function JoinPage({ navigation }) {
    useEffect(() => {
       if (isValidEmail && watch("email")) setIsValidEmail(false);
    }, [watch("email")]);
+
+   useEffect(() => {
+      if (isValidPhone && watch("phone")) setIsValidPhone(false);
+   }, [watch("phone")]);
 
    const onPressCheckEmail = async () => {
       if (formState.errors.email || !getValues("email")) return;
@@ -59,15 +71,39 @@ export default function JoinPage({ navigation }) {
 
    const onPressSMS = async () => {
       if (!getValues("phone")) return;
+      setOpenTimer(true);
+      setMsg("3분 이내에 인증번호를 입력해주세요.");
+      setOpenModal(true);
       try {
          const result = await sendSMS({
             variables: {
                phone: getValues("phone").split("-").join(""),
             },
          });
-         console.log("this is result", result);
+         console.log("this is sms", result);
       } catch (error) {
          console.log(error.message);
+      }
+   };
+
+   const onPressCheckPhoneTruthNum = async () => {
+      if (!token) return;
+
+      const result = await checkToken({
+         variables: {
+            token,
+         },
+      });
+
+      if (result.data.checkToken) {
+         setOpenTimer(false);
+         setIsValidPhone(true);
+         setMsg("인증이 완료되었습니다.");
+         setOpenModal(true);
+         setOpenRedo(false);
+      } else {
+         setMsg("인증번호가 일치하지 않습니다.");
+         setOpenModal(true);
       }
    };
 
@@ -80,7 +116,7 @@ export default function JoinPage({ navigation }) {
          isValidEmail &&
          getValues("password") === getValues("passwordAgain")
       ) {
-         navigation.navigate("license1");
+         navigation.navigate("license1", getValues());
       }
    };
 
@@ -112,16 +148,21 @@ export default function JoinPage({ navigation }) {
             />
          )}
          <JoinPageUI
+            openTimer={openTimer}
+            openRedo={openRedo}
+            setOpenRedo={setOpenRedo}
+            setOpenTimer={setOpenTimer}
             isValidEmail={isValidEmail}
             isValidPhone={isValidPhone}
             onPressSubmit={onPressSubmit}
             onPressNext={onPressNext}
             onPressCheckEmail={onPressCheckEmail}
             onPressSMS={onPressSMS}
+            onPressCheckPhoneTruthNum={onPressCheckPhoneTruthNum}
             control={control}
             handleSubmit={handleSubmit}
             formState={formState}
-            setPhoneTruthNum={setPhoneTruthNum}
+            setToken={setToken}
          />
       </>
    );

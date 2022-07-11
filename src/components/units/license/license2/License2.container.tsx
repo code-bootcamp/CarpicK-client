@@ -7,22 +7,21 @@ import * as R from "react-native";
 import { VisionParsing } from "../../../../commons/utilities/visionParsing copy";
 import { REACT_APP_GOOGLEVISION_API_KEY } from "@env";
 import TitleText from "../../../commons/text/TitleText";
-import { color } from "react-native-reanimated";
 
-export default function License2Page({ navigation }) {
-   let cameraRef = useRef();
+export default function License2Page({ navigation, route }) {
+   const [data2, setData2] = useState({});
    const [isLoad, setIsLoad] = useState(false);
    const [hasPermission, setHasPermission] = useState(null);
    const [photo, setPhoto] = useState(null);
    const [isPhoto, setIsPhoto] = useState(false);
 
-   const [licData, setLicData] = useState({
-      BirthDate: "",
-      Name: "",
-      LicNumber: "",
-      SpecialNumber: "",
-      Fail: "",
-   });
+   let cameraRef = useRef();
+
+   useEffect(() => {
+      setData2({
+         ...route.params.data,
+      });
+   }, []);
 
    useEffect(() => {
       (async () => {
@@ -66,7 +65,13 @@ export default function License2Page({ navigation }) {
             const result = VisionParsing(
                data.responses[0].fullTextAnnotation.text.split("\n")
             );
-            navigation.navigate("license3", { result, base64, setIsPhoto });
+            navigation.navigate("license3", {
+               result,
+               // base64,
+               setIsPhoto,
+               data2,
+            });
+            setIsPhoto((prev) => !prev);
             console.log(data.responses[0].fullTextAnnotation.text.split("\n"));
          })
          .catch((err) => console.log("error : ", err));

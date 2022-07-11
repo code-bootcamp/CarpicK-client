@@ -9,6 +9,8 @@ import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
 import { Controller } from "react-hook-form";
 import Button1 from "../../commons/button/Button1";
 import Input2 from "../../commons/input/Input2";
+import Timer from "./timer/timer.container";
+import RedoButton from "./redoButton/redoButton.container";
 const emailRegExp =
    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])/;
@@ -88,14 +90,26 @@ export default function JoinPageUI(props) {
                               }}
                            />
                         </S.InputLeft>
-                        <S.SubTouch
-                           activeOpacity={0.7}
-                           onPress={props.onPressSMS}
-                        >
-                           <Contents1Text color="#ffffff" fontSize="14">
-                              인증요청
-                           </Contents1Text>
-                        </S.SubTouch>
+                        {!props.openTimer && !props.openRedo && (
+                           <S.SubTouch
+                              activeOpacity={0.7}
+                              onPress={props.onPressSMS}
+                           >
+                              <Contents1Text color="#ffffff" fontSize="14">
+                                 인증요청
+                              </Contents1Text>
+                           </S.SubTouch>
+                        )}
+                        {props.openTimer && (
+                           <Timer
+                              setOpenTimer={props.setOpenTimer}
+                              setOpenRedo={props.setOpenRedo}
+                              setToken={props.setToken}
+                           />
+                        )}
+                        {props.openRedo && (
+                           <RedoButton setOpenRedo={props.setOpenRedo} />
+                        )}
                      </S.InputRow>
                   </S.InputWrapperMarginBtm>
                   <S.InputWrapperMarginBtm>
@@ -104,16 +118,14 @@ export default function JoinPageUI(props) {
                         <S.InputLeft>
                            <Input2
                               maxLength={6}
-                              onChangeText={(text) =>
-                                 props.setPhoneTruthNum(text)
-                              }
+                              onChangeText={(text) => props.setToken(text)}
                               placeholder="인증번호를 입력해 주세요."
                               keyboardType="numeric"
                            />
                         </S.InputLeft>
                         <S.SubTouch
                            activeOpacity={0.7}
-                           onPress={props.onPressCheckEmail}
+                           onPress={props.onPressCheckPhoneTruthNum}
                         >
                            <Contents1Text color="#ffffff" fontSize="14">
                               인증확인
@@ -196,7 +208,13 @@ export default function JoinPageUI(props) {
             </R.ScrollView>
          </S.Wrapper>
          <Button1
-            isDisabled={!(props.formState.isValid && props.isValidEmail)}
+            isDisabled={
+               !(
+                  props.formState.isValid &&
+                  props.isValidEmail &&
+                  props.isValidPhone
+               )
+            }
             onPress={props.onPressNext}
          >
             다음

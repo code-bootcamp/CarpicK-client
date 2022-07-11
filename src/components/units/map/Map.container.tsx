@@ -18,7 +18,7 @@ const Markers = [
       costPerHour: 15000,
       reservation: [
          {
-            start_time: "2022-07-11 11:00:00",
+            start_time: "2022-07-12 11:00:00",
             end_time: "2022-07-12 15:00:00",
          },
          {
@@ -40,13 +40,13 @@ const Markers = [
       costPerHour: 10000,
       reservation: [
          {
-            start_time: "2022-07-09 08:00:00",
-            end_time: "2022-07-09 12:00:00",
+            start_time: "2022-07-11 16:30:00",
+            end_time: "2022-07-11 18:30:00",
          },
-         // {
-         //    start_time: "2022-07-09 18:40:00",
-         //    end_time: "2022-07-10 17:10:00",
-         // },
+         {
+            start_time: "2022-07-11 19:30:00",
+            end_time: "2022-07-11 22:30:00",
+         },
       ],
    },
    {
