@@ -42,6 +42,12 @@ export const ImageWrapper = styled.View`
    align-items: center;
 `;
 
+export const ImageWrapperDone = styled.View`
+   width: 100%;
+   align-items: center;
+   padding-top: 50px;
+`;
+
 export const NextTouch = styled.TouchableOpacity`
    width: 100%;
    height: 60px;

@@ -2,10 +2,11 @@ import * as R from "react-native";
 import * as S from "./License3.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import LicenseImage from "../../../../../assets/license/license-image.svg";
+import Button01Blue from "../../../commons/button/button_01_blue";
 import Button02Blue from "../../../commons/button/button_02_blue";
 import Button02Gray from "../../../commons/button/button_02_gray";
-import ImagePicker from "react-native-image-crop-picker";
 import SubTitleText from "../../../commons/text/SubTitleText";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function License3PageUI(props) {
    return (
@@ -65,23 +66,50 @@ export default function License3PageUI(props) {
                      </S.InfoDetail>
                   </S.InfoWrapper>
                   <S.InfoWrapper>
-                     <S.InfoTitle style={{ includeFontPadding: false }}>
-                        식별번호:
-                     </S.InfoTitle>
-                     <S.InfoDetail style={{ includeFontPadding: false }}>
+                     <R.View
+                        style={{ flexDirection: "row", alignItems: "center" }}
+                     >
+                        <S.InfoTitle style={{ includeFontPadding: false }}>
+                           식별번호
+                        </S.InfoTitle>
+                        <MaterialIcons
+                           name="edit"
+                           size={15}
+                           color="#353535"
+                           style={{ paddingBottom: 5 }}
+                        />
+                     </R.View>
+                     <S.InfoDetailSpecialNum
+                        onChangeText={props.setSpecialNumber}
+                        style={{ includeFontPadding: false }}
+                     >
                         {props.result.SpecialNumber}
-                     </S.InfoDetail>
+                     </S.InfoDetailSpecialNum>
                   </S.InfoWrapper>
-                  <S.ButtonWrapper>
-                     <Button02Blue func={""} title="등록" />
-                  </S.ButtonWrapper>
+                  {!props.openSubmitButton && (
+                     <S.ButtonWrapper>
+                        <Button02Blue
+                           func={props.onPressCheckLisense}
+                           title="등록"
+                        />
+                     </S.ButtonWrapper>
+                  )}
+                  {props.openSubmitButton && (
+                     <S.ButtonWrapper>
+                        <Button01Blue
+                           func={props.onPressSubmit}
+                           title="회원가입"
+                        />
+                     </S.ButtonWrapper>
+                  )}
                </>
             )}
-            {props.result.Fail !== "" ? (
+            {props.result.Fail !== "" && (
                <S.ButtonWrapperFail>
                   <Button02Blue func={props.onPressGoback} title="다시찍기" />
                </S.ButtonWrapperFail>
-            ) : (
+            )}
+            {props.result.Fail === "" && !props.openSubmitButton && (
                <S.ButtonWrapper>
                   <Button02Gray func={props.onPressGoback} title="다시찍기" />
                </S.ButtonWrapper>

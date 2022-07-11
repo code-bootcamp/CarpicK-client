@@ -19,12 +19,22 @@ export function statusBar(reservation) {
    if (reservation.length !== 0) {
       reservation
          .filter((el) => {
+            // 필터 1 : 현재시각 기준 end_time 끝난 예약 고려할 필요 X
             const timeEndPoint = moment(el.end_time);
             const timeDiffEndHours = moment
                .duration(nowTime.diff(timeEndPoint))
-               .asDays();
+               .asHours();
             console.log("this is timeDiff", timeDiffEndHours);
             return timeDiffEndHours < 0;
+         })
+         .filter((el) => {
+            // 필터 2 : 오늘 24:00 보다 start_time 이후라면 고려할 필요 X
+            const timeStartPoint = moment(el.start_time);
+            const timeDiffEndHours = moment
+               .duration(nowTimeEndPoint.diff(timeStartPoint))
+               .asHours();
+            console.log("this is timeDiff", timeDiffEndHours);
+            return timeDiffEndHours > 0;
          })
          .forEach((el, i) => {
             const timeStartPoint = moment(el.start_time);
@@ -35,47 +45,52 @@ export function statusBar(reservation) {
             const timeDiffEndDay = moment
                .duration(timeEndPoint.diff(nowTime))
                .asDays();
+            const timeDiffNowEndEnd = moment
+               .duration(nowTimeEndPoint.diff(timeEndPoint))
+               .asHours();
 
-            if (timeDiffStart < 0 && timeDiffEndDay > 0 && timeDiffEndDay < 1) {
-               // case1
-
-               result.push({
-                  totalHour: moment
-                     .duration(timeEndPoint.diff(nowTime))
-                     .asHours(),
-                  grayStartPoint: moment(nowTime).format("HH:mm"),
-                  grayEndPoint: moment(timeEndPoint).format("HH:mm"),
-               });
-            } else if (timeDiffStart < 0 && timeDiffEndDay > 1) {
-               // case 2
-
-               result.push({
-                  totalHour: moment
-                     .duration(nowTimeEndPoint.diff(nowTime))
-                     .asHours(),
-                  grayStartPoint: moment(nowTime).format("HH:mm"),
-                  grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
-               });
-            } else if (timeDiffStart > 0 && timeDiffEndDay > 1) {
-               // case 4
-
-               result.push({
-                  totalHour: moment
-                     .duration(nowTimeEndPoint.diff(timeStartPoint))
-                     .asHours(),
-                  grayStartPoint: moment(timeStartPoint).format("HH:mm"),
-                  grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
-               });
-            } else if (timeDiffStart > 0 && timeDiffEndDay < 1) {
-               // case 5
-
-               result.push({
-                  totalHour: moment
-                     .duration(timeEndPoint.diff(timeStartPoint))
-                     .asHours(),
-                  grayStartPoint: moment(timeStartPoint).format("HH:mm"),
-                  grayEndPoint: moment(timeEndPoint).format("HH:mm"),
-               });
+            if (timeDiffStart < 0 && timeDiffEndDay > 0) {
+               // case 1 : 기존 예약 시작 지점이 현재시간 이전
+               if (timeDiffNowEndEnd >= 0) {
+                  // case 1-1 : 오늘내로 반납하는 예약
+                  result.push({
+                     totalHour: moment
+                        .duration(timeEndPoint.diff(nowTime))
+                        .asHours(),
+                     grayStartPoint: moment(nowTime).format("HH:mm"),
+                     grayEndPoint: moment(timeEndPoint).format("HH:mm"),
+                  });
+               } else {
+                  // case 1-2 : 오늘 이후에 반납하는 예약
+                  // result.push({
+                  //    totalHour: moment
+                  //       .duration(nowTimeEndPoint.diff(nowTime))
+                  //       .asHours(),
+                  //    grayStartPoint: moment(nowTime).format("HH:mm"),
+                  //    grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
+                  // });
+               }
+            } else if (timeDiffStart > 0 && timeDiffEndDay > 0) {
+               // case 2 : 기존 예약 시작 지점이 현재시간 이후
+               if (timeDiffNowEndEnd >= 0) {
+                  // case 2-1 : 오늘내로 반납하는 예약
+                  result.push({
+                     totalHour: moment
+                        .duration(timeEndPoint.diff(timeStartPoint))
+                        .asHours(),
+                     grayStartPoint: moment(timeStartPoint).format("HH:mm"),
+                     grayEndPoint: moment(timeEndPoint).format("HH:mm"),
+                  });
+               } else {
+                  // case 2-2 : 오늘 이후에 반납하는 예약
+                  // result.push({
+                  //    totalHour: moment
+                  //       .duration(nowTimeEndPoint.diff(timeStartPoint))
+                  //       .asHours(),
+                  //    grayStartPoint: moment(timeStartPoint).format("HH:mm"),
+                  //    grayEndPoint: moment(nowTimeEndPoint).format("HH:mm"),
+                  // });
+               }
             }
          });
    }
