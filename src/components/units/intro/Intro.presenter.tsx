@@ -56,7 +56,8 @@ export default function IntroPageUI(props) {
                autoplay
                autoplayInterval={3800}
                swipeThreshold={50}
-               decelerationRate={5}
+               decelerationRate="normal"
+               pagingEnabled={true}
                loop
             />
             <Pagination
