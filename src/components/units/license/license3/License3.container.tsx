@@ -6,6 +6,7 @@ import { CHECK_LICENSE, CREATE_USER } from "./Lisense3.quries";
 
 export default function License3Page({ navigation, route }) {
    const [data3, setData3] = useState({});
+   const [uri, setUri] = useState();
    const [specialNumber, setSpecialNumber] = useState({});
    const [msg, setMsg] = useState("");
    const [isAuth, setIsAuth] = useState(false);
@@ -14,13 +15,14 @@ export default function License3Page({ navigation, route }) {
    const [openSubmitButton, setOpenSubmitButton] = useState(false);
    const [checkLicense] = useMutation(CHECK_LICENSE);
    const [createUser] = useMutation(CREATE_USER);
-   console.log("this is params 3", route.params.data2);
+   console.log("this is params 3", route.params);
 
    useEffect(() => {
       setData3({
          ...route.params.data2,
       });
       setSpecialNumber(route.params.result.SpecialNumber);
+      setUri(route.params.uri);
    }, []);
 
    const onPressGoback = () => {
@@ -89,7 +91,7 @@ export default function License3Page({ navigation, route }) {
       setOpenModal2(false);
       navigation.navigate("login");
    };
-   console.log("this is special", specialNumber);
+
    return (
       <>
          {openModal1 && (
@@ -114,6 +116,7 @@ export default function License3Page({ navigation, route }) {
             onPressCheckLisense={onPressCheckLisense}
             onPressSubmit={onPressSubmit}
             setSpecialNumber={setSpecialNumber}
+            uri={uri}
          />
       </>
    );

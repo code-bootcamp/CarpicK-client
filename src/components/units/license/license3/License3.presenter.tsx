@@ -9,6 +9,7 @@ import SubTitleText from "../../../commons/text/SubTitleText";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function License3PageUI(props) {
+   console.log("this is uri", props.uri);
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
          <R.ScrollView showsVerticalScrollIndicator={false}>
@@ -19,13 +20,26 @@ export default function License3PageUI(props) {
                <S.Title style={{ includeFontPadding: false }}>인증 </S.Title>
             </S.TitleWrapper>
             <S.ImageWrapper>
-               <LicenseImage />
-               {/* <S.ImageResult
-                  resizeMode="contain"
-                  source={{
-                     uri: `data:image/png;base64,${props.base64}`,
+               {/* <LicenseImage /> */}
+               <R.View
+                  style={{
+                     width: 200,
+                     height: 125,
+                     overflow: "hidden",
+                     justifyContent: "center",
                   }}
-               /> */}
+               >
+                  <R.Image
+                     source={{ uri: props.uri }}
+                     style={{
+                        width: 200,
+                        height: 500,
+                        bottom: -270,
+                        right: 0,
+                        position: "absolute",
+                     }}
+                  />
+               </R.View>
             </S.ImageWrapper>
             <S.MainText style={{ includeFontPadding: false }}>
                면허증 정보를 확인해주세요.
