@@ -20,7 +20,14 @@ export default function LicenseLaterStack({ navigation }) {
                name="license1Later"
                component={License1LaterPage}
                options={() => ({
-                  headerShown: false,
+                  headerShown: true,
+                  headerLeft: () =>
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "",
+                        "면허 등록",
+                        "#fff"
+                     ),
                })}
             />
             <Stack.Screen

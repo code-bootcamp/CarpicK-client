@@ -1,23 +1,34 @@
 import * as R from "react-native";
 import * as S from "./CarPickKey.styles";
-import ArrowBack from "../../../../assets/carPickKey/ic_back_arrow.svg";
 import UnlockIcon from "../../../../assets/carPickKey/ic_unlock.svg";
 import LockIcon from "../../../../assets/carPickKey/ic_lock.svg";
 import globalStyle from "../../../commons/styles/globalStyle";
 import Contents1Text from "../../commons/text/Contents1Text";
 import colors from "../../../commons/lib/colors";
 import { ICarPickKeyUIProps } from "./CarPickKey.types";
+import { Ionicons } from "@expo/vector-icons";
+import { Platform } from "react-native";
 
 export default function CarPickKeyUI(props: ICarPickKeyUIProps) {
    return (
       <S.Wrapper>
          <S.Container style={globalStyle.GlobalStyles}>
             <S.Header>
-               <S.ArrowBackButton
-                  activeOpacity={0.7}
-                  onPress={props.onPressBack}
-               >
-                  <ArrowBack />
+               <S.ArrowBackButton>
+                  <Ionicons
+                     name={
+                        Platform.OS === "ios"
+                           ? "ios-arrow-back"
+                           : "md-arrow-back"
+                     }
+                     size={Platform.OS === "ios" ? 35 : 24}
+                     color={"#fff"}
+                     style={{
+                        fontSize: 32,
+                        width: 25,
+                     }}
+                     onPress={props.onPressBack}
+                  />
                </S.ArrowBackButton>
                <S.TitleText>CarpicKey</S.TitleText>
             </S.Header>
