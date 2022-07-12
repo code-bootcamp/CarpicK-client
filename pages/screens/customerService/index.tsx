@@ -25,6 +25,7 @@ export default function CustomerServiceStack({ navigation }) {
                component={MainPage}
                options={() => ({
                   headerShown: true,
+                  headerShadowVisible: false,
                   headerLeft: () =>
                      NavigationHeaderLeft(
                         { navigation },

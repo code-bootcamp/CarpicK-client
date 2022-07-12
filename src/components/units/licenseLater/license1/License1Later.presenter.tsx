@@ -38,7 +38,7 @@ export default function License1LaterPageUI(props) {
             <>
                <S.TitleBlue style={{ includeFontPadding: false }}>
                   {" "}
-                  면허등록을 완료하셨습니다.
+                  면허 등록을 완료하셨습니다.
                </S.TitleBlue>
                <S.ImageWrapperDone>
                   <LicenseDone />

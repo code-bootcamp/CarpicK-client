@@ -71,7 +71,7 @@ export default function License2LaterPage({ navigation }) {
                base64,
                setIsPhoto,
             });
-            navigation.setOption
+            setIsPhoto((prev) => !prev);
             console.log(data.responses[0].fullTextAnnotation.text.split("\n"));
          })
          .catch((err) => console.log("error : ", err));
