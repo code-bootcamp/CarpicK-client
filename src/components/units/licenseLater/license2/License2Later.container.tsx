@@ -43,7 +43,7 @@ export default function License2LaterPage({ navigation }) {
       return <R.Text>No access to camera</R.Text>;
    }
 
-   const callGoogleVIsionApi = async (base64: String) => {
+   const callGoogleVIsionApi = async (base64: String, newPhotoUri: String) => {
       setIsPhoto((prev) => !prev);
       let url: string =
          "https://vision.googleapis.com/v1/images:annotate?key=" +
@@ -68,8 +68,8 @@ export default function License2LaterPage({ navigation }) {
             );
             navigation.navigate("license3Later", {
                result,
-               base64,
                setIsPhoto,
+               uri: newPhotoUri,
             });
             setIsPhoto((prev) => !prev);
             console.log(data.responses[0].fullTextAnnotation.text.split("\n"));
@@ -90,7 +90,7 @@ export default function License2LaterPage({ navigation }) {
       let newPhoto = await cameraRef.current.takePictureAsync(options);
       await cameraRef.current.pausePreview();
       setPhoto(newPhoto);
-      callGoogleVIsionApi(newPhoto.base64);
+      callGoogleVIsionApi(newPhoto.base64, newPhoto.uri);
    };
 
    return (

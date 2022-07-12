@@ -15,6 +15,7 @@ export default function JoinStack({ navigation }) {
                headerTintColor: "#ffffff",
                headerTitle: "",
                headerStyle: { backgroundColor: "#5D8BFF" },
+               animation: "slide_from_right",
             }}
          >
             <Stack.Screen

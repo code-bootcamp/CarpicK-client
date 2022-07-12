@@ -4,8 +4,9 @@ import globalStyles from "../../../../commons/styles/globalStyle";
 import LicenseImage from "../../../../../assets/license/license-image.svg";
 import Button02Blue from "../../../commons/button/button_02_blue";
 import Button02Gray from "../../../commons/button/button_02_gray";
-import ImagePicker from "react-native-image-crop-picker";
 import SubTitleText from "../../../commons/text/SubTitleText";
+import { MaterialIcons } from "@expo/vector-icons";
+import Button01Blue from "../../../commons/button/button_01_blue";
 
 export default function License3LaterPageUI(props) {
    return (
@@ -18,13 +19,26 @@ export default function License3LaterPageUI(props) {
                <S.Title style={{ includeFontPadding: false }}>인증 </S.Title>
             </S.TitleWrapper>
             <S.ImageWrapper>
-               <LicenseImage />
-               {/* <S.ImageResult
-                  resizeMode="contain"
-                  source={{
-                     uri: `data:image/png;base64,${props.base64}`,
+               {/* <LicenseImage /> */}
+               <R.View
+                  style={{
+                     width: 200,
+                     height: 125,
+                     overflow: "hidden",
+                     justifyContent: "center",
                   }}
-               /> */}
+               >
+                  <R.Image
+                     source={{ uri: props.uri }}
+                     style={{
+                        width: 200,
+                        height: 500,
+                        bottom: -270,
+                        right: 0,
+                        position: "absolute",
+                     }}
+                  />
+               </R.View>
             </S.ImageWrapper>
             <S.MainText style={{ includeFontPadding: false }}>
                면허증 정보를 확인해주세요.
@@ -65,23 +79,50 @@ export default function License3LaterPageUI(props) {
                      </S.InfoDetail>
                   </S.InfoWrapper>
                   <S.InfoWrapper>
-                     <S.InfoTitle style={{ includeFontPadding: false }}>
-                        식별번호:
-                     </S.InfoTitle>
-                     <S.InfoDetail style={{ includeFontPadding: false }}>
+                     <R.View
+                        style={{ flexDirection: "row", alignItems: "center" }}
+                     >
+                        <S.InfoTitle style={{ includeFontPadding: false }}>
+                           식별번호
+                        </S.InfoTitle>
+                        <MaterialIcons
+                           name="edit"
+                           size={15}
+                           color="#353535"
+                           style={{ paddingBottom: 5 }}
+                        />
+                     </R.View>
+                     <S.InfoDetailSpecialNum
+                        onChangeText={props.setSpecialNumber}
+                        style={{ includeFontPadding: false }}
+                     >
                         {props.result.SpecialNumber}
-                     </S.InfoDetail>
+                     </S.InfoDetailSpecialNum>
                   </S.InfoWrapper>
-                  <S.ButtonWrapper>
-                     <Button02Blue func={""} title="등록" />
-                  </S.ButtonWrapper>
+                  {!props.openSubmitButton && (
+                     <S.ButtonWrapper>
+                        <Button02Blue
+                           func={props.onPressCheckLisense}
+                           title="등록"
+                        />
+                     </S.ButtonWrapper>
+                  )}
+                  {props.openSubmitButton && (
+                     <S.ButtonWrapper>
+                        <Button01Blue
+                           func={props.onPressSubmit}
+                           title="인증 완료"
+                        />
+                     </S.ButtonWrapper>
+                  )}
                </>
             )}
-            {props.result.Fail !== "" ? (
+            {props.result.Fail !== "" && (
                <S.ButtonWrapperFail>
                   <Button02Blue func={props.onPressGoback} title="다시찍기" />
                </S.ButtonWrapperFail>
-            ) : (
+            )}
+            {props.result.Fail === "" && !props.openSubmitButton && (
                <S.ButtonWrapper>
                   <Button02Gray func={props.onPressGoback} title="다시찍기" />
                </S.ButtonWrapper>
