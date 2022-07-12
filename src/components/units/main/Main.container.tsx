@@ -11,6 +11,14 @@ export default function MainPage({ navigation }) {
       navigation.navigate("registrationStack");
    };
 
+   const onPressToCarpicKey = () => {
+      navigation.navigate("carpicKey");
+   };
+
+   const onPressToPopularCar = () => {
+      navigation.navigate("popularCar");
+   };
+
    const onPressToUserGuide = () => {
       navigation.navigate("userGuide");
    };
@@ -37,6 +45,8 @@ export default function MainPage({ navigation }) {
          onPressToMap={onPressToMap}
          onPressCall={onPressCall}
          onPressToCarRegist={onPressToCarRegist}
+         onPressToCarpicKey={onPressToCarpicKey}
+         onPressToPopularCar={onPressToPopularCar}
          onPressToUserGuide={onPressToUserGuide}
          onPressToCustomerService={onPressToCustomerService}
          onPressToRentHistoryStack={onPressToRentHistoryStack}

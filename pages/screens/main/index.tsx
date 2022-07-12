@@ -26,6 +26,9 @@ import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../src/commons/store";
 import LicenseLaterStack from "../licenseLaterStack";
 import UserGuidePage from "../../../src/components/units/customerService/userGuide/UserGuide.container";
+import CarPickKeyPage from "../../../src/components/units/carPickKey/CarPickKey.container";
+import PopularCarPage from "../../../src/components/units/popularCar/PopularCar.container";
+import OperationStatusPage from "../../../src/components/units/operationStatus/OperationStatus.container";
 
 const LOGOUT = gql`
    mutation logout {
@@ -191,7 +194,7 @@ export default function MainStack({ navigation }) {
                component={MapPage}
                options={{
                   title: "카픽존",
-                  headerTitleStyle: { fontSize: 20, fontWeight: "300" },
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),
                }}
             />
@@ -201,6 +204,23 @@ export default function MainStack({ navigation }) {
                options={{
                   title: "My Car 등록하기",
                   headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="carpicKey"
+               component={CarPickKeyPage}
+               options={{
+                  title: "CarpicKey",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="popularCar"
+               component={PopularCarPage}
+               options={{
+                  title: "인기차 보러가기",
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
                }}
             />
             <Drawer.Screen
@@ -220,6 +240,16 @@ export default function MainStack({ navigation }) {
                }}
             />
             <Drawer.Screen
+               name="operationStatus"
+               component={OperationStatusPage}
+               options={{
+                  title: "운행현황",
+                  headerShown: true,
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
+               }}
+            />
+            <Drawer.Screen
                name="rentHistoryStack"
                component={RentHistoryStack}
                options={{
@@ -232,7 +262,9 @@ export default function MainStack({ navigation }) {
                component={LicenseLaterStack}
                options={{
                   title: "면허등록",
-                  headerShown: false,
+                  headerShown: true,
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
                }}
             />
          </Drawer.Navigator>

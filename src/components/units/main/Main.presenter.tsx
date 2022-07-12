@@ -54,7 +54,10 @@ export default function MainPageUI(props) {
                      </S.ImageWrapper>
                   </S.VerticalCard>
                </S.DoubleWrapper>
-               <S.HorizontalCard height={CARD_WIDTH}>
+               <S.HorizontalCard
+                  height={CARD_WIDTH}
+                  onPress={props.onPressToCarpicKey}
+               >
                   <S.TitleWrapper>
                      <TitleText color="#353535">CarpicKey</TitleText>
                      <S.SubTitleWrapper>
@@ -67,12 +70,15 @@ export default function MainPageUI(props) {
                      <MainImage3 />
                   </S.ImageWrapperGap>
                </S.HorizontalCard>
-               <S.HorizontalCard height={CARD_WIDTH}>
+               <S.HorizontalCard
+                  height={CARD_WIDTH}
+                  onPress={props.onPressToPopularCar}
+               >
                   <S.TitleWrapper>
                      <TitleText color="#353535">인기 차 보러가기</TitleText>
                      <S.SubTitleWrapper>
                         <Contents1Text fontSize="14" color="#777777">
-                           실시간 Top 10
+                           실시간 Top 5
                         </Contents1Text>
                      </S.SubTitleWrapper>
                   </S.TitleWrapper>
