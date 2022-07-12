@@ -21,6 +21,7 @@ export default function LicenseLaterStack({ navigation }) {
                component={License1LaterPage}
                options={() => ({
                   headerShown: true,
+                  headerShadowVisible: false,
                   headerLeft: () =>
                      NavigationHeaderLeft(
                         { navigation },

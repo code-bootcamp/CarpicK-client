@@ -19,6 +19,7 @@ export default function RentHistoryStack({ navigation }) {
                component={RentHistoryNonePage}
                options={() => ({
                   headerShown: true,
+                  headerShadowVisible: false,
                   headerLeft: () =>
                      NavigationHeaderLeft(
                         { navigation },
