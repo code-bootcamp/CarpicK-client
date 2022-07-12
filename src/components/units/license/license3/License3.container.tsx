@@ -31,6 +31,12 @@ export default function License3Page({ navigation, route }) {
    };
 
    const onPressCheckLisense = async () => {
+      if (route.params.data2.name !== route.params.result.Name) {
+         setMsg("이름이 일치하지 않습니다.\n본인 명의의 면허증만 가능합니다.");
+         setOpenModal1(true);
+         return;
+      }
+
       const { Fail, SpecialNumber, ...rest } = route.params.result;
       console.log({ ...rest, SpecialNumber: specialNumber });
       if (
