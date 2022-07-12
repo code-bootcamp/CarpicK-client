@@ -13,12 +13,14 @@ export default function RentProcessStack({ navigation }) {
       <>
          <Stack.Navigator
             screenOptions={{
+               headerShadowVisible: false,
                headerTitle: "",
                headerTitleStyle: {
                   color: colors.black,
                   fontSize: 15,
                   fontWeight: "500",
                },
+               animation: "slide_from_right",
             }}
          >
             <Stack.Screen
@@ -38,7 +40,12 @@ export default function RentProcessStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft({ navigation }, "", "", "#000000"),
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "rentProcess1",
+                        "",
+                        "#000000"
+                     ),
                   headerTitle: "결제 정보 확인",
                   headerTitleAlign: "center",
                })}

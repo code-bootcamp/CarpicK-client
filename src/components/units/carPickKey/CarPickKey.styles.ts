@@ -16,7 +16,7 @@ export const Header = styled.View`
    justify-content: center;
 `;
 
-export const ArrowBackButton = styled.TouchableOpacity`
+export const ArrowBackButton = styled.View`
    position: absolute;
    left: 0;
 `;

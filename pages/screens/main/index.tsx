@@ -5,12 +5,9 @@ import {
    DrawerContentScrollView,
    DrawerItemList,
 } from "@react-navigation/drawer";
-import { DrawerActions } from "@react-navigation/native";
-import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import MainPage from "../../../src/components/units/main/Main.container";
-import HamburgerImage from "../../../assets/main/hamburger.svg";
 import MapPage from "../../../src/components/units/map/Map.container";
-import { Platform } from "react-native";
 import CustomerServiceStack from "../customerService";
 import { useMutation, useQuery } from "@apollo/client";
 import { gql } from "apollo-boost";
@@ -29,6 +26,8 @@ import UserGuidePage from "../../../src/components/units/customerService/userGui
 import CarPickKeyPage from "../../../src/components/units/carPickKey/CarPickKey.container";
 import PopularCarPage from "../../../src/components/units/popularCar/PopularCar.container";
 import OperationStatusPage from "../../../src/components/units/operationStatus/OperationStatus.container";
+import { BackArrow } from "../../../src/components/commons/navigationHeader/icon/BackArrow";
+import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
 
 const LOGOUT = gql`
    mutation logout {
@@ -49,34 +48,6 @@ const FETCH_LOGIN_USER = gql`
 `;
 
 const Drawer = createDrawerNavigator();
-
-const Hambergur = (onPress) => {
-   return (
-      <S.HamburgerTouch onPress={() => onPress(DrawerActions.openDrawer())}>
-         <S.HamburgerImageWrapper>
-            <R.View>
-               <HamburgerImage />
-            </R.View>
-         </S.HamburgerImageWrapper>
-      </S.HamburgerTouch>
-   );
-};
-const BackArrow = (navigation) => {
-   return (
-      <R.View style={{ paddingLeft: 15 }}>
-         <Ionicons
-            name={Platform.OS === "ios" ? "ios-arrow-back" : "md-arrow-back"}
-            size={Platform.OS === "ios" ? 35 : 24}
-            color="#ffffff"
-            style={{
-               fontSize: 32,
-               width: 25,
-            }}
-            onPress={() => navigation.goBack()}
-         />
-      </R.View>
-   );
-};
 
 export default function MainStack({ navigation }) {
    const [logout] = useMutation(LOGOUT);
@@ -163,7 +134,7 @@ export default function MainStack({ navigation }) {
                   width: 250,
                },
                headerLeft: () => null,
-               headerRight: () => Hambergur(navigation.dispatch),
+               headerRight: () => Hamburger(navigation.dispatch),
                headerTitleAlign: "left",
                headerStyle: {
                   backgroundColor: "#5D8BFF",
@@ -204,6 +175,8 @@ export default function MainStack({ navigation }) {
                options={{
                   title: "My Car 등록하기",
                   headerShown: false,
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
                }}
             />
             <Drawer.Screen
@@ -262,9 +235,7 @@ export default function MainStack({ navigation }) {
                component={LicenseLaterStack}
                options={{
                   title: "면허등록",
-                  headerShown: true,
-                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
-                  headerLeft: () => BackArrow(navigation),
+                  headerShown: false,
                }}
             />
          </Drawer.Navigator>
