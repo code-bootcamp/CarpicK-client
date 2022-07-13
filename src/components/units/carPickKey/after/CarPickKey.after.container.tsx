@@ -5,6 +5,11 @@ import CarPickKeyAfterUI from "./CarPickKey.after.presenter";
 export default function CarPickKeyAfter({ navigation }) {
    const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]);
    const [imageUris, setImageUris] = useState(["", ""]);
+   const [rating, setRating] = useState(0);
+
+   const onChangeRating = (rating: number) => {
+      setRating(rating);
+   };
 
    const onPressReturn = () => {
       // TODO 사진 전송하고 반납완료
@@ -18,6 +23,8 @@ export default function CarPickKeyAfter({ navigation }) {
          setImageFiles={setImageFiles}
          imageUris={imageUris}
          setImageUris={setImageUris}
+         rating={rating}
+         onChangeRating={onChangeRating}
          onPressReturn={onPressReturn}
       />
    );

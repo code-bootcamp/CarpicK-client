@@ -6,5 +6,7 @@ export interface ICarPickKeyAfterUIProps {
    setImageFiles: Dispatch<SetStateAction<ReactNativeFile[]>>;
    imageUris: string[];
    setImageUris: Dispatch<SetStateAction<string[]>>;
+   rating: number;
+   onChangeRating: (rating: number) => void;
    onPressReturn: () => void;
 }
