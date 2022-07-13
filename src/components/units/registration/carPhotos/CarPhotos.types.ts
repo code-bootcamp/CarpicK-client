@@ -1,7 +1,10 @@
+import { ReactNativeFile } from "apollo-upload-client";
 import { Dispatch, SetStateAction } from "react";
 
 export interface ICarPhotosUIProps {
-   imageFiles: string[];
-   setImageFiles: Dispatch<SetStateAction<string[]>>;
+   imageFiles: ReactNativeFile[];
+   setImageFiles: Dispatch<SetStateAction<ReactNativeFile[]>>;
+   imageUris: string[];
+   setImageUris: Dispatch<SetStateAction<string[]>>;
    onPressNext: () => void;
 }

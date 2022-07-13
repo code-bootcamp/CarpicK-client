@@ -20,12 +20,13 @@ export default function CarPhotosUI(props: ICarPhotosUIProps) {
                </R.View>
             </R.View>
             <S.ImageContainer>
-               {props.imageFiles?.map((imageFile, index) => (
+               {props.imageUris?.map((_, index) => (
                   <UploadImage
                      key={index}
-                     imageFile={imageFile}
                      imageFiles={props.imageFiles}
                      setImageFiles={props.setImageFiles}
+                     imageUris={props.imageUris}
+                     setImageUris={props.setImageUris}
                      index={index}
                   />
                ))}
@@ -35,9 +36,9 @@ export default function CarPhotosUI(props: ICarPhotosUIProps) {
             onPress={props.onPressNext}
             isDisabled={
                !(
-                  props.imageFiles?.[0] !== "" &&
-                  props.imageFiles?.[1] !== "" &&
-                  props.imageFiles?.[2] !== ""
+                  props.imageUris?.[0] !== "" &&
+                  props.imageUris?.[1] !== "" &&
+                  props.imageUris?.[2] !== ""
                )
             }
          >

@@ -10,6 +10,28 @@ import { Controller } from "react-hook-form";
 import Button1 from "../../../commons/button/Button1";
 
 export default function CarInfoUI(props: ICarInfoUIProps) {
+   const oilOptionConverter = (option: string) => {
+      switch (option) {
+         case "휘발유":
+            return "GASOLINE";
+         case "경유":
+            return "LIGHT_OIL";
+         case "LPG":
+            return "LPG";
+         case "전기":
+            return "ELECTRIC";
+      }
+   };
+
+   const hipassOptionConverter = (option: string) => {
+      switch (option) {
+         case "장착":
+            return true;
+         case "미장착":
+            return false;
+      }
+   };
+
    return (
       <R.View style={{ flex: 1 }}>
          <R.ScrollView style={{ backgroundColor: "#fff" }}>
@@ -73,7 +95,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         <Contents1Text>차종</Contents1Text>
                         <Controller
                            control={props.control}
-                           name="carType"
+                           name="model"
                            render={({ onChange }) => (
                               <Input2
                                  placeholder="아반떼"
@@ -88,7 +110,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                            }}
                         />
                         <Contents1Text color="red">
-                           {props.formState.errors.carType?.message}
+                           {props.formState.errors.model?.message}
                         </Contents1Text>
                      </S.InputBox>
                      <R.View style={{ marginTop: 20 }}>
@@ -96,7 +118,9 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         <R.View style={{ marginTop: 7 }}>
                            <Radio
                               options={["휘발유", "경유", "LPG", "전기"]}
-                              onChange={(option) => console.log(option)}
+                              onChange={(option) =>
+                                 props.setOil(oilOptionConverter(option)!!)
+                              }
                            />
                         </R.View>
                      </R.View>
@@ -105,7 +129,11 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         <R.View style={{ marginTop: 7 }}>
                            <Radio
                               options={["장착", "미장착"]}
-                              onChange={(option) => console.log(option)}
+                              onChange={(option) =>
+                                 props.setIsHipass(
+                                    hipassOptionConverter(option)!!
+                                 )
+                              }
                            />
                         </R.View>
                      </R.View>

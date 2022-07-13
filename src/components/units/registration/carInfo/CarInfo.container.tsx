@@ -1,5 +1,6 @@
 import CarInfoUI from "./CarInfo.presenter";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export default function CarInfoPage({ navigation }) {
    const { control, handleSubmit, formState } = useForm({
@@ -8,12 +9,16 @@ export default function CarInfoPage({ navigation }) {
       defaultValues: {
          address: "",
          carNumber: "",
-         carType: "",
+         model: "",
       },
    });
 
+   const [oil, setOil] = useState("GASOLINE");
+   const [isHipass, setIsHipass] = useState(true);
+
    const onPressNext = (data: any) => {
-      navigation.navigate("carPhotos");
+      const carInfo = { ...data, oil, isHipass };
+      navigation.navigate("carPhotos", { carInfo });
    };
 
    return (
@@ -21,6 +26,8 @@ export default function CarInfoPage({ navigation }) {
          control={control}
          handleSubmit={handleSubmit}
          formState={formState}
+         setOil={setOil}
+         setIsHipass={setIsHipass}
          onPressNext={onPressNext}
       />
    );

@@ -1,40 +1,50 @@
+import CarRegistrationUI from "./CarRegistration.presenter";
 import { useMutation } from "@apollo/client";
 import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
-import CarRegistrationUI from "./CarRegistration.presenter";
-import { UPLOAD_FILE } from "./CarRegistration.queries";
+import { CREATE_CAR_REGISTRATION, UPLOAD_FILE } from "../Registration.types";
 
-const generateRNFile = (uri, name) => {
-   return uri
-      ? new ReactNativeFile({
-           uri,
-           type: "image",
-           name,
-        })
-      : null;
-};
-
-export default function CarRegistrationPage({ navigation }) {
+export default function CarRegistrationPage({ navigation, route }) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
+   const [createCarRegistration] = useMutation(CREATE_CAR_REGISTRATION);
 
    const [isModalVisible, setIsModalVisible] = useState(false);
-   const [imageFiles, setImageFiles] = useState([""]);
+   const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]); // 미리볼수있는 이미지 주소(캐시파일)
+   const [imageUris, setImageUris] = useState([""]); // 실질적으로 전송할 이미지 파일(ReactNativeFile)
+
+   const onPressSuccess = () => {
+      navigation.navigate("mainStack");
+   };
 
    const onPressRegister = async () => {
-      // TODO 마이카 api 요청 후 메인페이지로 이동
-      console.log(imageFiles);
-      const file = generateRNFile(imageFiles[0], `picture-${Date.now()}`);
       try {
-         const imageUrl = await uploadFile({
+         // 차량사진 uri
+         const carUrl = await uploadFile({
             variables: {
-               files: file,
+               files: route.params.carUrl,
             },
          });
 
-         console.log(imageUrl);
+         // 차량 등록증 uri
+         const registrationUrl = await uploadFile({
+            variables: {
+               files: imageFiles,
+            },
+         });
+
+         const result = await createCarRegistration({
+            variables: {
+               createCarRegistrationInput: {
+                  ...route.params.carInfo,
+                  carUrl: carUrl.data.uploadFile,
+                  registrationUrl: registrationUrl.data.uploadFile[0],
+               },
+            },
+         });
+
+         console.log(`======== 등록성공 ========\n${result}`);
       } catch (error: any) {
-         console.log("실패!!");
-         console.error(error.message);
+         console.error(`======== 등록 에러발생 ========\n${error.message}`);
       }
    };
 
@@ -42,9 +52,12 @@ export default function CarRegistrationPage({ navigation }) {
       <CarRegistrationUI
          imageFiles={imageFiles}
          setImageFiles={setImageFiles}
+         imageUris={imageUris}
+         setImageUris={setImageUris}
          onPressRegister={onPressRegister}
          isModalVisible={isModalVisible}
          setIsModalVisible={setIsModalVisible}
+         onPressSuccess={onPressSuccess}
       />
    );
 }
