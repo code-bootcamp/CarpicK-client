@@ -7,7 +7,7 @@ export const Wrapper = styled.View`
 `;
 
 export const Container = styled.View`
-   height: 180px;
+   height: 160px;
    flex: 1;
    flex-direction: row;
    background-color: white;
