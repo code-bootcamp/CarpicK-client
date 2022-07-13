@@ -40,11 +40,17 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                <R.View>
                   <S.InputBox>
                      <Contents1Text>이름</Contents1Text>
-                     <Input2 placeholder="홍길동" disabled={false} />
+                     <Input2
+                        value={props.data?.fetchLoginUser.name}
+                        disabled={false}
+                     />
                   </S.InputBox>
                   <S.InputBox>
                      <Contents1Text>휴대폰번호</Contents1Text>
-                     <Input2 placeholder="01012345678" disabled={false} />
+                     <Input2
+                        value={props.data?.fetchLoginUser.phone}
+                        disabled={false}
+                     />
                   </S.InputBox>
                   <R.View style={{ marginTop: 10 }}>
                      <S.InputBox>

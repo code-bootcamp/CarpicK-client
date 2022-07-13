@@ -1,4 +1,3 @@
-import { useMutation } from "@apollo/client";
 import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
 import CarPhotosUI from "./CarPhotos.presenter";
