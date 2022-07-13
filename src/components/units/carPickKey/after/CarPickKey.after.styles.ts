@@ -11,8 +11,12 @@ export const Container = styled.View`
 `;
 
 export const ImageContainer = styled.View`
-   flex: 1;
    flex-direction: row;
    justify-content: space-evenly;
    margin-top: 50px;
+`;
+
+export const RatingBox = styled.View`
+   margin-top: 50px;
+   align-items: center;
 `;

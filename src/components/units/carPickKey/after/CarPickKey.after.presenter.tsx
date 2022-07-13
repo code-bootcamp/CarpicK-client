@@ -6,6 +6,7 @@ import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import Button1 from "../../../commons/button/Button1";
 import UploadImage from "../../../commons/upload/image/UploadImage";
+import { Rating } from "react-native-ratings";
 
 export default function CarPickKeyAfterUI(props: ICarPickKeyAfterUIProps) {
    return (
@@ -31,11 +32,26 @@ export default function CarPickKeyAfterUI(props: ICarPickKeyAfterUIProps) {
                   />
                ))}
             </S.ImageContainer>
+            <S.RatingBox style={{ marginTop: 50 }}>
+               <Contents1Text fontFamily="Regular" fontSize="14">
+                  차량 이용은 어떠셨나요?
+               </Contents1Text>
+               <Rating
+                  style={{ paddingVertical: 15 }}
+                  imageSize={30}
+                  startingValue={0}
+                  onFinishRating={props.onChangeRating}
+               />
+            </S.RatingBox>
          </S.Container>
          <Button1
             onPress={props.onPressReturn}
             isDisabled={
-               !(props.imageUris?.[0] !== "" && props.imageUris?.[1] !== "")
+               !(
+                  props.imageUris?.[0] !== "" &&
+                  props.imageUris?.[1] !== "" &&
+                  props.rating > 0
+               )
             }
          >
             반납 완료하기
