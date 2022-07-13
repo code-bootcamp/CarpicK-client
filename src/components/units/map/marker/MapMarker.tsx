@@ -1,25 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./MapMarker.styles";
 import * as R from "react-native";
 import { Marker } from "react-native-maps";
 import TitleText from "../../../commons/text/TitleText";
 
-export default function MarkerWithDetails({ point, onToggle }) {
-   const { coordinates, title, description, showDetails } = point;
+export default function MapMarker({
+   carLocationId,
+   lat,
+   lng,
+   isDrawerOpen,
+   onToggle,
+   func,
+   setCarLocationId,
+}) {
+   // const { coordinates, title, description, showDetails } = point;
+   // useEffect(() => {
+   //    setCarLocationId(carLocationId);
+   // }, []);
+
    return (
-      <>
-         <Marker
-            onPress={onToggle}
-            coordinate={{
-               latitude: point.coordinates.lat,
-               longitude: point.coordinates.long,
-            }}
-            image={require(".././../../../../assets/map/marker-150.png")}
-            title="this is a marker"
-            description="this is a marker example"
-         />
-         <></>
-      </>
+      <Marker
+         nativeID={"test"}
+         onPress={func}
+         coordinate={{
+            latitude: lat,
+            longitude: lng,
+         }}
+         style={{ width: 100, height: 100 }}
+         image={require(".././../../../../assets/map/marker-150.png")}
+         title="this is a marker"
+         description="this is a marker example"
+      >
+         {/* <R.Image
+            source={require("../../../../../assets/map/marker-150.png")}
+            style={{ width: 26, height: 28 }}
+            resizeMode="contain"
+            resizeMethod="resize"
+         /> */}
+      </Marker>
    );
 }
 

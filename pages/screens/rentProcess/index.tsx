@@ -8,7 +8,9 @@ import RentProcess2Page from "../../../src/components/units/rentProcess/rentProc
 
 const Stack = createNativeStackNavigator();
 
-export default function RentProcessStack({ navigation }) {
+export default function RentProcessStack({ navigation, route }) {
+   console.log("this is params", route.params);
+
    return (
       <>
          <Stack.Navigator
@@ -26,6 +28,7 @@ export default function RentProcessStack({ navigation }) {
             <Stack.Screen
                name="rentProcess1"
                component={RentProcess1Page}
+               initialParams={{ id: route.params }}
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>

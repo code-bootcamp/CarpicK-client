@@ -24,7 +24,7 @@ export function statusBar(reservation) {
             const timeDiffEndHours = moment
                .duration(nowTime.diff(timeEndPoint))
                .asHours();
-            console.log("this is timeDiff", timeDiffEndHours);
+            // console.log("this is timeDiff", timeDiffEndHours);
             return timeDiffEndHours < 0;
          })
          .filter((el) => {
@@ -33,7 +33,7 @@ export function statusBar(reservation) {
             const timeDiffEndHours = moment
                .duration(nowTimeEndPoint.diff(timeStartPoint))
                .asHours();
-            console.log("this is timeDiff", timeDiffEndHours);
+            // console.log("this is timeDiff", timeDiffEndHours);
             return timeDiffEndHours > 0;
          })
          .forEach((el, i) => {
@@ -100,8 +100,8 @@ export function statusBar(reservation) {
    // console.log("this how much", timeDiffNowTime);
    // console.log("this is result", result);
    // console.log("this is reserve", reservation);
-   console.log("this is result", result);
-   console.log("this is nowTime", nowTimeHourFormat);
+   // console.log("this is result", result);
+   // console.log("this is nowTime", nowTimeHourFormat);
 
    const PREFIXBAR_WIDTH = timeDiffNowTime / 0.24;
    return (
