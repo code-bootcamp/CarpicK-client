@@ -1,8 +1,12 @@
 import CarInfoUI from "./CarInfo.presenter";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { FETCH_LOGIN_USER } from "../Registration.queries";
 
 export default function CarInfoPage({ navigation }) {
+   const { data } = useQuery(FETCH_LOGIN_USER);
+
    const { control, handleSubmit, formState } = useForm({
       mode: "onChange",
       reValidateMode: "onChange",
@@ -23,6 +27,7 @@ export default function CarInfoPage({ navigation }) {
 
    return (
       <CarInfoUI
+         data={data}
          control={control}
          handleSubmit={handleSubmit}
          formState={formState}

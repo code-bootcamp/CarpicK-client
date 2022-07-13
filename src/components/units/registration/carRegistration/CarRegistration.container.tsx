@@ -35,7 +35,7 @@ export default function CarRegistrationPage({ navigation, route }) {
          const result = await createCarRegistration({
             variables: {
                createCarRegistrationInput: {
-                  ...route.params.carInfo,
+                  ...route.params.carInfo, // address, carNumber,
                   carUrl: carUrl.data.uploadFile,
                   registrationUrl: registrationUrl.data.uploadFile[0],
                },
