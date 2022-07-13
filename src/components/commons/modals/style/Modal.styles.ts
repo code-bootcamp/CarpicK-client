@@ -23,9 +23,21 @@ export const ContentsView = styled.View`
    padding: 35px;
 `;
 
+export const TimeContentsView = styled.View`
+   width: 100%;
+   padding: 20px 50px;
+   flex-direction: row;
+`;
+
 export const TitleText = styled.Text`
    font-size: 18px;
    font-weight: 600;
+`;
+
+export const TitleView = styled.View`
+   width: 50%;
+   flex-direction: row;
+   justify-content: center;
 `;
 
 export const ContentsText = styled.Text`
@@ -69,4 +81,16 @@ export const PositiveFullButton = styled(buttonDefault)`
    color: white;
    border-bottom-left-radius: 21px;
    border-bottom-right-radius: 21px;
+`;
+
+export const TimePickerView = styled.View`
+   width: 50px;
+   justify-content: center;
+   align-items: center;
+`;
+
+export const TimePickerMiddleView = styled.View`
+   width: 30px;
+   justify-content: center;
+   align-items: center;
 `;
