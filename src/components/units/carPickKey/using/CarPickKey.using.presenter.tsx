@@ -1,15 +1,15 @@
 import * as R from "react-native";
-import * as S from "./CarPickKey.styles";
-import UnlockIcon from "../../../../assets/carPickKey/ic_unlock.svg";
-import LockIcon from "../../../../assets/carPickKey/ic_lock.svg";
-import globalStyle from "../../../commons/styles/globalStyle";
-import Contents1Text from "../../commons/text/Contents1Text";
-import colors from "../../../commons/lib/colors";
-import { ICarPickKeyUIProps } from "./CarPickKey.types";
+import * as S from "./CarPickKey.using.styles";
+import { ICarPickKeyUsingUIProps } from "./CarPickKey.using.types";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
+import UnlockIcon from "../../../../../assets/carPickKey/using/ic_unlock.svg";
+import LockIcon from "../../../../../assets/carPickKey/using/ic_lock.svg";
+import globalStyle from "../../../../commons/styles/globalStyle";
+import Contents1Text from "../../../commons/text/Contents1Text";
+import colors from "../../../../commons/lib/colors";
 
-export default function CarPickKeyUI(props: ICarPickKeyUIProps) {
+export default function CarPickKeyUsingUI(props: ICarPickKeyUsingUIProps) {
    return (
       <S.Wrapper>
          <S.Container style={globalStyle.GlobalStyles}>
@@ -27,7 +27,7 @@ export default function CarPickKeyUI(props: ICarPickKeyUIProps) {
                         fontSize: 32,
                         width: 25,
                      }}
-                     onPress={props.onPressBack}
+                     onPress={props.onPressToMain}
                   />
                </S.ArrowBackButton>
                <S.TitleText>CarpicKey</S.TitleText>

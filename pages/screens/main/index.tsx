@@ -23,11 +23,11 @@ import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../src/commons/store";
 import LicenseLaterStack from "../licenseLaterStack";
 import UserGuidePage from "../../../src/components/units/customerService/userGuide/UserGuide.container";
-import CarPickKeyPage from "../../../src/components/units/carPickKey/CarPickKey.container";
 import PopularCarPage from "../../../src/components/units/popularCar/PopularCar.container";
 import OperationStatusPage from "../../../src/components/units/operationStatus/OperationStatus.container";
 import { BackArrow } from "../../../src/components/commons/navigationHeader/icon/BackArrow";
 import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
+import CarPickKeyStack from "../carPickKey";
 
 const LOGOUT = gql`
    mutation logout {
@@ -180,8 +180,8 @@ export default function MainStack({ navigation }) {
                }}
             />
             <Drawer.Screen
-               name="carpicKey"
-               component={CarPickKeyPage}
+               name="carpicKeyStack"
+               component={CarPickKeyStack}
                options={{
                   title: "CarpicKey",
                   headerShown: false,
