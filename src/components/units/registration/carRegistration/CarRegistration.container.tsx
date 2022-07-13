@@ -2,7 +2,7 @@ import CarRegistrationUI from "./CarRegistration.presenter";
 import { useMutation } from "@apollo/client";
 import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
-import { CREATE_CAR_REGISTRATION, UPLOAD_FILE } from "../Registration.types";
+import { CREATE_CAR_REGISTRATION, UPLOAD_FILE } from "../Registration.queries";
 
 export default function CarRegistrationPage({ navigation, route }) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
