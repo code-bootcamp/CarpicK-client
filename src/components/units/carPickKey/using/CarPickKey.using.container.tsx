@@ -1,7 +1,8 @@
-import CarPickKeyUI from "./CarPickKey.presenter";
+import CarPickKeyUsingUI from "./CarPickKey.using.presenter";
 
-export default function CarPickKeyPage({ navigation }) {
-   const onPressBack = () => {
+export default function CarPickKeyUsing({ navigation }) {
+   const onPressToMain = () => {
+      // navigation.navigate("main");
       navigation.goBack();
    };
 
@@ -14,12 +15,12 @@ export default function CarPickKeyPage({ navigation }) {
    };
 
    const onPressReturn = () => {
-      console.log("차량 반납");
+      navigation.navigate("carPickKeyAfter");
    };
 
    return (
-      <CarPickKeyUI
-         onPressBack={onPressBack}
+      <CarPickKeyUsingUI
+         onPressToMain={onPressToMain}
          onPressUnlock={onPressUnlock}
          onPressLock={onPressLock}
          onPressReturn={onPressReturn}

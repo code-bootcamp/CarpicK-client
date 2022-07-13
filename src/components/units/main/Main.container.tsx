@@ -12,7 +12,7 @@ export default function MainPage({ navigation }) {
    };
 
    const onPressToCarpicKey = () => {
-      navigation.navigate("carpicKey");
+      navigation.navigate("carpicKeyStack");
    };
 
    const onPressToPopularCar = () => {
