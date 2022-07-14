@@ -113,7 +113,7 @@ export default function Modal5(props: IModal5Props) {
                      <TitleText>:</TitleText>
                   </S.TimePickerMiddleView>
                   <ScrollPicker
-                     dataSource={["00", "10", "20", "30", "40", "50", "60"]}
+                     dataSource={["00", "10", "20", "30", "40", "50"]}
                      selectedIndex={Number(startMin[0])}
                      renderItem={(data) => {
                         return (
@@ -159,7 +159,7 @@ export default function Modal5(props: IModal5Props) {
                      <TitleText>:</TitleText>
                   </S.TimePickerMiddleView>
                   <ScrollPicker
-                     dataSource={["00", "10", "20", "30", "40", "50", "60"]}
+                     dataSource={["00", "10", "20", "30", "40", "50"]}
                      selectedIndex={Number(endMin[0])}
                      renderItem={(data, index) => {
                         return (

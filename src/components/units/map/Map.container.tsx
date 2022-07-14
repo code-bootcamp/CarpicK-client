@@ -80,6 +80,7 @@ export default function MapPage({ navigation, route }) {
    }, [isFocused]);
 
    console.log("route.params", route.params);
+   console.log("selectedCar", selectedCar);
    useEffect(() => {
       (async () => {
          setIsReady(false);
