@@ -1,12 +1,11 @@
 import * as R from "react-native";
 import * as S from "./RentProcess1.styles";
-import globalStyles from "../../../../commons/styles/globalStyle";
-import Button1 from "../../../commons/button/Button1";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import SubTitleText from "../../../commons/text/SubTitleText";
 import Contents2Text from "../../../commons/text/Contents2Text";
 import TitleText from "../../../commons/text/TitleText";
 import colors from "../../../../commons/lib/colors";
+import Radio2 from "../../../commons/radio/Radio2";
 
 export default function RentProcess1PageUI(props) {
    return (
@@ -76,6 +75,44 @@ export default function RentProcess1PageUI(props) {
                      </Contents1Text>
                   </S.TimeTextWrapper>
                </S.TimeWrapper>
+               <S.InsuranceWrapper>
+                  <S.TitleWrapper>
+                     <SubTitleText fontSize="14">자동차종합보험</SubTitleText>
+                  </S.TitleWrapper>
+                  <S.InsuranceTextWrapper>
+                     <Contents2Text color={colors.gray}>
+                        카픽의 모든 차량은 차량손해면책 외 자손/대인/대물의
+                        피해를 보상하는 자동차 종합보험에 가입되어 있습니다.
+                     </Contents2Text>
+                  </S.InsuranceTextWrapper>
+                  <S.TitleWrapper>
+                     <SubTitleText fontSize="14">
+                        차량손해면책 상품
+                     </SubTitleText>
+                  </S.TitleWrapper>
+                  <S.InsuranceTextWrapper>
+                     <Contents2Text color={colors.gray}>
+                        운행 중 사고로 인하여 카픽 차량을 수리할 경우, 회원님의
+                        자기부담금(사고시 부담해야 할 최대 한도 금액)을
+                        선택하세요.
+                     </Contents2Text>
+                  </S.InsuranceTextWrapper>
+               </S.InsuranceWrapper>
+               <Radio2
+                  value="first"
+                  checked={props.checked}
+                  setChecked={props.setChecked}
+               />
+               <Radio2
+                  value="second"
+                  checked={props.checked}
+                  setChecked={props.setChecked}
+               />
+               <Radio2
+                  value="third"
+                  checked={props.checked}
+                  setChecked={props.setChecked}
+               />
             </R.ScrollView>
          </S.Wrapper>
          <S.ButtonWrapper>
