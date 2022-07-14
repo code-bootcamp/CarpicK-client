@@ -21,6 +21,8 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
 interface IMultiRadioProps {
    data?: any; // 'data?.fetchCarCategory'를 보내줘야함
+   selectedCar: string[]; // 선택했을때 담아두는 state
+   PSelectedCar: string[]; // 페이지 열때마다 기존 배열에 데이터가 있는지 확인하는 용도
    onChange: (selectedCar: string[]) => void; // 선택이 변경될때마다 배열로 return
 }
 
@@ -36,7 +38,9 @@ interface ICarModelProps {
 }
 
 export default forwardRef(function MultiRadio(props: IMultiRadioProps, ref) {
-   const [selectedModel, setSelectedModel] = useState<string[]>([]);
+   const [selectedModel, setSelectedModel] = useState<string[]>(
+      props.PSelectedCar
+   );
 
    useEffect(() => {
       props.onChange(selectedModel);
@@ -97,7 +101,7 @@ const Wrapper = styled.ScrollView`
 
 const Container = styled.View`
    flex: 1;
-   padding: 20px 0;
+   padding: 20px 0 30px;
    border-bottom-width: 0.7px;
    border-bottom-color: ${colors.light_gray};
 `;
@@ -105,6 +109,7 @@ const Container = styled.View`
 const RadioContainer = styled.View`
    flex-direction: row;
    flex-wrap: wrap;
+   margin-top: 5px;
 `;
 
 const RadioButton = styled.TouchableOpacity`
