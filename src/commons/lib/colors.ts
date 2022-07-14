@@ -6,6 +6,9 @@ const colors = {
    gray: "#A5A5A5",
    light_gray: "#DFDFDF",
    dark_gray: "#353535",
+   purple: "#9966EC",
+   light_purple: "#CFB1FF",
+   dark_purple: "#5723AB",
 };
 
 export default colors;

@@ -7,22 +7,21 @@ import * as R from "react-native";
 import { VisionParsing } from "../../../../commons/utilities/visionParsing copy";
 import { REACT_APP_GOOGLEVISION_API_KEY } from "@env";
 import TitleText from "../../../commons/text/TitleText";
-import { color } from "react-native-reanimated";
 
-export default function License2Page({ navigation }) {
-   let cameraRef = useRef();
+export default function License2Page({ navigation, route }) {
+   const [data2, setData2] = useState({});
    const [isLoad, setIsLoad] = useState(false);
    const [hasPermission, setHasPermission] = useState(null);
    const [photo, setPhoto] = useState(null);
    const [isPhoto, setIsPhoto] = useState(false);
 
-   const [licData, setLicData] = useState({
-      BirthDate: "",
-      Name: "",
-      LicNumber: "",
-      SpecialNumber: "",
-      Fail: "",
-   });
+   let cameraRef = useRef();
+
+   useEffect(() => {
+      setData2({
+         ...route.params.data,
+      });
+   }, []);
 
    useEffect(() => {
       (async () => {
@@ -43,7 +42,7 @@ export default function License2Page({ navigation }) {
       return <R.Text>No access to camera</R.Text>;
    }
 
-   const callGoogleVIsionApi = async (base64: String) => {
+   const callGoogleVIsionApi = async (base64: String, newPhotoUri: String) => {
       setIsPhoto((prev) => !prev);
       let url: string =
          "https://vision.googleapis.com/v1/images:annotate?key=" +
@@ -66,7 +65,13 @@ export default function License2Page({ navigation }) {
             const result = VisionParsing(
                data.responses[0].fullTextAnnotation.text.split("\n")
             );
-            navigation.navigate("license3", { result, base64, setIsPhoto });
+            navigation.navigate("license3", {
+               result,
+               setIsPhoto,
+               data2,
+               uri: newPhotoUri,
+            });
+            setIsPhoto((prev) => !prev);
             console.log(data.responses[0].fullTextAnnotation.text.split("\n"));
          })
          .catch((err) => console.log("error : ", err));
@@ -85,7 +90,7 @@ export default function License2Page({ navigation }) {
       let newPhoto = await cameraRef.current.takePictureAsync(options);
       await cameraRef.current.pausePreview();
       setPhoto(newPhoto);
-      callGoogleVIsionApi(newPhoto.base64);
+      callGoogleVIsionApi(newPhoto.base64, newPhoto.uri);
    };
 
    return (

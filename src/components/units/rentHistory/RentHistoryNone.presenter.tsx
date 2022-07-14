@@ -15,7 +15,7 @@ export default function RentHistoryNoneUI() {
          </S.TitleWrapper>
          <S.ContentWrapper>
             <Contents1Text fontSize="17" color={colors.dark_gray}>
-               이용 내역이 없습니다.
+               이용내역이 없습니다.
             </Contents1Text>
          </S.ContentWrapper>
          <S.ImageWrapper>

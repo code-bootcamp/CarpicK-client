@@ -8,7 +8,11 @@ export default function Input2(props: IInputProps) {
 
    return (
       <CustomTextInput
+         value={props.value}
          editable={props.disabled}
+         keyboardType={props.keyboardType}
+         maxLength={props.maxLength}
+         secureTextEntry={props.secureTextEntry}
          isFocus={isFocus}
          onFocus={() => setIsFocus(true)}
          onBlur={() => setIsFocus(false)}

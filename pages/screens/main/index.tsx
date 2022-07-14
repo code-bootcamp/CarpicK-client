@@ -4,16 +4,12 @@ import {
    createDrawerNavigator,
    DrawerContentScrollView,
    DrawerItemList,
-   DrawerItem,
 } from "@react-navigation/drawer";
-import { DrawerActions } from "@react-navigation/native";
-import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import MainPage from "../../../src/components/units/main/Main.container";
-import HamburgerImage from "../../../assets/main/hamburger.svg";
 import MapPage from "../../../src/components/units/map/Map.container";
-import { Platform } from "react-native";
 import CustomerServiceStack from "../customerService";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { gql } from "apollo-boost";
 import Modal1 from "../../../src/components/commons/modals/modal1/Modal1";
 import { useState } from "react";
@@ -21,50 +17,50 @@ import RentHistoryStack from "../rentHistory";
 import TitleText from "../../../src/components/commons/text/TitleText";
 import Contents1Text from "../../../src/components/commons/text/Contents1Text";
 import colors from "../../../src/commons/lib/colors";
-import UpdateUserInfoStack from "../updateUserInfo";
+import RegistrationStack from "../carRegistration";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../src/commons/store";
+import LicenseLaterStack from "../licenseLaterStack";
+import UserGuidePage from "../../../src/components/units/customerService/userGuide/UserGuide.container";
+import PopularCarPage from "../../../src/components/units/popularCar/PopularCar.container";
+import OperationStatusPage from "../../../src/components/units/operationStatus/OperationStatus.container";
+import { BackArrow } from "../../../src/components/commons/navigationHeader/icon/BackArrow";
+import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
+import CarPickKeyStack from "../carPickKey";
+import { Filter } from "../../../src/components/commons/navigationHeader/icon/Filter";
+import FilterPage from "../../../src/components/units/map/filter/Filter.cotnainer";
+
 const LOGOUT = gql`
    mutation logout {
       logout
    }
 `;
 
-const Drawer = createDrawerNavigator();
+const FETCH_LOGIN_USER = gql`
+   query fetchLoginUser {
+      fetchLoginUser {
+         id
+         name
+         email
+         phone
+         isAuth
+      }
+   }
+`;
 
-const Hambergur = (onPress) => {
-   return (
-      <S.HamburgerTouch onPress={() => onPress(DrawerActions.openDrawer())}>
-         <S.HamburgerImageWrapper>
-            <R.View>
-               <HamburgerImage />
-            </R.View>
-         </S.HamburgerImageWrapper>
-      </S.HamburgerTouch>
-   );
-};
-const BackArrow = (navigation) => {
-   return (
-      <R.View style={{ paddingLeft: 15 }}>
-         <Ionicons
-            name={Platform.OS === "ios" ? "ios-arrow-back" : "md-arrow-back"}
-            size={Platform.OS === "ios" ? 35 : 24}
-            color="#ffffff"
-            style={{
-               fontSize: 32,
-               width: 25,
-            }}
-            onPress={() => navigation.goBack()}
-         />
-      </R.View>
-   );
-};
+const Drawer = createDrawerNavigator();
 
 export default function MainStack({ navigation }) {
    const [logout] = useMutation(LOGOUT);
+   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
+   const { data } = useQuery(FETCH_LOGIN_USER);
 
    const modalNegativeLogOut = async () => {
+      await AsyncStorage.removeItem("accessToken");
       const result = await logout();
-      console.log("this is result", result);
+      setAccessToken("");
    };
 
    const onPressToUpdateUserInfo = () => {
@@ -85,7 +81,7 @@ export default function MainStack({ navigation }) {
                         />
                      </S.UserImage>
                      <S.UserInfoWrapper>
-                        <TitleText>여명현</TitleText>
+                        <TitleText>{data?.fetchLoginUser.name}</TitleText>
                         <S.UpdateUserInfoTouch
                            activeOpacity={0.7}
                            onPress={onPressToUpdateUserInfo}
@@ -105,10 +101,6 @@ export default function MainStack({ navigation }) {
             >
                <DrawerContentScrollView {...props}>
                   <DrawerItemList {...props} />
-                  {/* <DrawerItem
-                     label="로그아웃"
-                     onPress={() => setOpenModal(true)}
-                  /> */}
                </DrawerContentScrollView>
             </S.DrawerContentWrapper>
             <S.LogoutTouch onPress={() => setOpenModal(true)}>
@@ -144,7 +136,7 @@ export default function MainStack({ navigation }) {
                   width: 250,
                },
                headerLeft: () => null,
-               headerRight: () => Hambergur(navigation.dispatch),
+               headerRight: () => Hamburger(navigation.dispatch),
                headerTitleAlign: "left",
                headerStyle: {
                   backgroundColor: "#5D8BFF",
@@ -175,8 +167,44 @@ export default function MainStack({ navigation }) {
                component={MapPage}
                options={{
                   title: "카픽존",
-                  headerTitleStyle: { fontSize: 20, fontWeight: "300" },
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),
+                  headerRight: () => Filter(navigation),
+               }}
+            />
+            <Drawer.Screen
+               name="registrationStack"
+               component={RegistrationStack}
+               options={{
+                  title: "My Car 등록하기",
+                  headerShown: false,
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
+               }}
+            />
+            <Drawer.Screen
+               name="carpicKeyStack"
+               component={CarPickKeyStack}
+               options={{
+                  title: "CarpicKey",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="popularCar"
+               component={PopularCarPage}
+               options={{
+                  title: "인기차 보러가기",
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
+               }}
+            />
+            <Drawer.Screen
+               name="userGuide"
+               component={UserGuidePage}
+               options={{
+                  title: "Carpick 시작하기",
+                  headerShown: false,
                }}
             />
             <Drawer.Screen
@@ -185,6 +213,16 @@ export default function MainStack({ navigation }) {
                options={{
                   title: "고객센터",
                   headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="operationStatus"
+               component={OperationStatusPage}
+               options={{
+                  title: "운행현황",
+                  headerShown: true,
+                  headerTitleStyle: { fontSize: 20, fontWeight: "500" },
+                  headerLeft: () => BackArrow(navigation),
                }}
             />
             <Drawer.Screen
@@ -197,7 +235,7 @@ export default function MainStack({ navigation }) {
             />
             <Drawer.Screen
                name="licenseLater"
-               component={CustomerServiceStack}
+               component={LicenseLaterStack}
                options={{
                   title: "면허등록",
                   headerShown: false,

@@ -1,8 +1,11 @@
 import { gql } from "apollo-boost";
 
-export const CHECK_EMAIL = gql`
-   mutation checkEmail($email: String!) {
-      checkEmail(email: $email)
+export const ISVALID_EMAIL = gql`
+   mutation isValidEmail($email: String!) {
+      isValidEmail(email: $email) {
+         isValid
+         phone
+      }
    }
 `;
 
@@ -16,5 +19,17 @@ export const CREATE_USER = gql`
          phone
          isAuth
       }
+   }
+`;
+
+export const SEND_SMS = gql`
+   mutation sendTokenToSMS($phone: String!) {
+      sendTokenToSMS(phone: $phone)
+   }
+`;
+
+export const CHECK_TOKEN = gql`
+   mutation checkToken($token: String!) {
+      checkToken(token: $token)
    }
 `;

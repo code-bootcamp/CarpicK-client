@@ -2,7 +2,7 @@ import UserGuidePageUI from "./UserGuide.presenter";
 
 export default function UserGuidePage({ navigation }) {
    const onPressToCsMain = () => {
-      navigation.navigate("csMain");
+      navigation.goBack();
    };
    return <UserGuidePageUI onPress={onPressToCsMain} />;
 }
