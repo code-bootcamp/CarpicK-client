@@ -87,9 +87,6 @@ export default forwardRef(function MultiRadio(props: IMultiRadioProps, ref) {
                </RadioContainer>
             </Container>
          ))}
-         <R.TouchableOpacity onPress={resetSelected}>
-            <R.Text>초기화</R.Text>
-         </R.TouchableOpacity>
       </Wrapper>
    );
 });
