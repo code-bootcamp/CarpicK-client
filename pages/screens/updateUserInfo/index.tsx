@@ -10,8 +10,8 @@ export default function UpdateUserInfoStack({ navigation }) {
       <>
          <Stack.Navigator
             screenOptions={{
-               headerTintColor: "#5D8BFF",
                headerTitle: "",
+               headerShadowVisible: false,
                headerStyle: { backgroundColor: "#f7f8f9" },
             }}
          >

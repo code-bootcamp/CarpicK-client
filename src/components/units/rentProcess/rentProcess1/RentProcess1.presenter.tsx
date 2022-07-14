@@ -20,7 +20,7 @@ export default function RentProcess1PageUI(props) {
                      }}
                      resizeMode="center"
                   />
-                  <SubTitleText fontSize="14">
+                  <SubTitleText>
                      {props.data?.fetchCar.carModel.name}
                   </SubTitleText>
                   <S.TextWrapper>
@@ -32,9 +32,7 @@ export default function RentProcess1PageUI(props) {
                </S.HeaderWrapper>
                <S.PlaceWrapper>
                   <S.TitleWrapper>
-                     <SubTitleText fontSize="14">
-                        차량 대여/반납 장소
-                     </SubTitleText>
+                     <SubTitleText>차량 대여/반납 장소</SubTitleText>
                   </S.TitleWrapper>
                   <S.BodyRentPlace>
                      <S.RentLabel>
@@ -55,7 +53,7 @@ export default function RentProcess1PageUI(props) {
                </S.PlaceWrapper>
                <S.TimeWrapper>
                   <S.TitleWrapper>
-                     <SubTitleText fontSize="14">이용시간</SubTitleText>
+                     <SubTitleText>이용시간</SubTitleText>
                      <S.TouchTimeChange
                         activeOpacity={0.5}
                         onPress={() => props.setIsVisible(true)}
@@ -105,7 +103,11 @@ export default function RentProcess1PageUI(props) {
                            checked={props.checked}
                            setChecked={props.setChecked}
                         />
-                        <Contents1Text>자기부담금 최대 5만원</Contents1Text>
+                        <R.TouchableOpacity
+                           onPress={() => props.setChecked("first")}
+                        >
+                           <Contents1Text>자기부담금 최대 5만원</Contents1Text>
+                        </R.TouchableOpacity>
                      </S.RadioLeft>
                      <Contents1Text>
                         +{numberWithCommas(Math.ceil(props.price * 2))}원
@@ -118,7 +120,11 @@ export default function RentProcess1PageUI(props) {
                            checked={props.checked}
                            setChecked={props.setChecked}
                         />
-                        <Contents1Text>자기부담금 최대 30만원</Contents1Text>
+                        <R.TouchableOpacity
+                           onPress={() => props.setChecked("second")}
+                        >
+                           <Contents1Text>자기부담금 최대 30만원</Contents1Text>
+                        </R.TouchableOpacity>
                      </S.RadioLeft>
                      <Contents1Text>
                         +{numberWithCommas(Math.ceil(props.price))}원
@@ -131,7 +137,11 @@ export default function RentProcess1PageUI(props) {
                            checked={props.checked}
                            setChecked={props.setChecked}
                         />
-                        <Contents1Text>자기부담금 최대 70만원</Contents1Text>
+                        <R.TouchableOpacity
+                           onPress={() => props.setChecked("third")}
+                        >
+                           <Contents1Text>자기부담금 최대 70만원</Contents1Text>
+                        </R.TouchableOpacity>
                      </S.RadioLeft>
                      <Contents1Text>
                         +{numberWithCommas(Math.ceil(props.price / 2))}원

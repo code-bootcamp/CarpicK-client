@@ -20,12 +20,14 @@ export default function PasswordInputUI(props) {
          </S.TitleSubWrapper>
          <S.PasswordInputWrapper>
             <S.PasswordInput
+               secureTextEntry={true}
                placeholder="비밀번호를 입력해 주세요"
                style={{ includeFontPadding: false }}
+               onChangeText={(text) => props.setPassword(text)}
             ></S.PasswordInput>
             <S.PassWordCheckTouch
                activeOpacity={0.7}
-               onPress={props.onPressToUpdateMyInfo}
+               onPress={props.onPressLoginCheck}
             >
                <Contents1Text fontSize="12" color="#ffffff">
                   확인

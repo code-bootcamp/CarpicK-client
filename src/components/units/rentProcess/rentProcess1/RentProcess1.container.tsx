@@ -10,7 +10,7 @@ export default function RentProcess1Page({ navigation, route }) {
    // console.log("this is rp1", route.params.id);
    const result = GetRentTime();
    const [checked, setChecked] = useState("first");
-   const [insuPrcie, setInsuPrcie] = useState(0);
+   const [insuPrice, setInsuPrice] = useState(0);
    const [isVisible, setIsVisible] = useState(false);
 
    const [startTimeHour, setStartTimeHour] = useState("");
@@ -31,12 +31,12 @@ export default function RentProcess1Page({ navigation, route }) {
 
    useEffect(() => {
       if (checked === "first")
-         setInsuPrcie(Math.ceil(data?.fetchCar.price * 2));
+         setInsuPrice(Math.ceil(data?.fetchCar.price * 2));
       else if (checked === "second")
-         setInsuPrcie(Math.ceil(data?.fetchCar.price));
+         setInsuPrice(Math.ceil(data?.fetchCar.price));
       else if (checked === "third")
-         setInsuPrcie(Math.ceil(data?.fetchCar.price / 2));
-      else setInsuPrcie(Math.ceil(data?.fetchCar.price * 2));
+         setInsuPrice(Math.ceil(data?.fetchCar.price / 2));
+      else setInsuPrice(Math.ceil(data?.fetchCar.price * 2));
    }, [data?.fetchCar, checked]);
 
    useEffect(() => {
@@ -91,7 +91,7 @@ export default function RentProcess1Page({ navigation, route }) {
    const finalHour = parseInt(String(TotalMin / 60));
    const finalMin = TotalMin - finalHour * 60;
    const totalPrice =
-      Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100 + insuPrcie;
+      Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100 + insuPrice;
 
    console.log("this is startTime", `${startTimeHour}:${startTimeMin}`);
    console.log("this is endTime", `${endTimeHour}:${endTimeMin}`);
@@ -109,6 +109,9 @@ export default function RentProcess1Page({ navigation, route }) {
          endTimeMin: endTimeMin,
          TotalMin: TotalMin,
          TotalHour: TotalHour,
+         rentPrice: Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100,
+         insuPrice: insuPrice,
+         totalPrice: totalPrice,
       });
    };
 

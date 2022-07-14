@@ -20,12 +20,12 @@ export default function UpdateMyInfoUI(props) {
                <S.UserInfo>
                   <S.UserName>
                      <TitleText fontSize="15" color={colors.black}>
-                        여명현
+                        {props.name}
                      </TitleText>
                   </S.UserName>
                   <S.UserId>
                      <Contents1Text fontSize="10" color={colors.gray}>
-                        carPick777@gmail.com
+                        {props.email}
                      </Contents1Text>
                   </S.UserId>
                </S.UserInfo>
