@@ -6,13 +6,19 @@ import * as R from "react-native";
 import styled from "@emotion/native";
 import colors from "../../../commons/lib/colors";
 import SubTitleText from "../text/SubTitleText";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
-/*   ===== 사용방법 =====
+/*   ===== 사용방법(부모 컴포넌트 사용 예시) =====
+ *   1. 변경할때마다 배열 return
  *   const className = (selectedCar: string[]) => {
  *       console.log(selectedCar)
  *   }
+ *
+ *   2. reset (useRef 사용)
+ *   const resetRef = useRef({})
+ *   버튼눌렀을때 -> () => resetRef.current.resetSelected()
  */
+
 interface IMultiRadioProps {
    data?: any; // 'data?.fetchCarCategory'를 보내줘야함
    onChange: (selectedCar: string[]) => void; // 선택이 변경될때마다 배열로 return
@@ -29,7 +35,7 @@ interface ICarModelProps {
    name: string;
 }
 
-export default function MultiRadio(props: IMultiRadioProps) {
+export default forwardRef(function MultiRadio(props: IMultiRadioProps, ref) {
    const [selectedModel, setSelectedModel] = useState<string[]>([]);
 
    useEffect(() => {
@@ -49,6 +55,14 @@ export default function MultiRadio(props: IMultiRadioProps) {
          setSelectedModel(selectedCarModel);
       }
    };
+
+   const resetSelected = () => {
+      setSelectedModel([]);
+   };
+
+   useImperativeHandle(ref, () => ({
+      resetSelected,
+   }));
 
    return (
       <Wrapper>
@@ -73,9 +87,12 @@ export default function MultiRadio(props: IMultiRadioProps) {
                </RadioContainer>
             </Container>
          ))}
+         <R.TouchableOpacity onPress={resetSelected}>
+            <R.Text>초기화</R.Text>
+         </R.TouchableOpacity>
       </Wrapper>
    );
-}
+});
 
 const Wrapper = styled.ScrollView`
    margin: 30px 0;
@@ -91,16 +108,15 @@ const Container = styled.View`
 const RadioContainer = styled.View`
    flex-direction: row;
    flex-wrap: wrap;
-   margin-top: 12px;
 `;
 
 const RadioButton = styled.TouchableOpacity`
-   /* flex: 1; */
    width: ${(props: any) => props.radioWidth}px;
    height: 35px;
    justify-content: center;
    padding: 0 10px;
    margin-right: 7px;
+   margin-top: 7px;
    border-radius: 5px;
    background-color: ${(props: any) =>
       props.isActive ? colors.theme : "white"};
