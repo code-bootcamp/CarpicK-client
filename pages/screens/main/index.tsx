@@ -29,7 +29,6 @@ import { BackArrow } from "../../../src/components/commons/navigationHeader/icon
 import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
 import CarPickKeyStack from "../carPickKey";
 import { Filter } from "../../../src/components/commons/navigationHeader/icon/Filter";
-import FilterPage from "../../../src/components/units/map/filter/Filter.cotnainer";
 
 const LOGOUT = gql`
    mutation logout {
