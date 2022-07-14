@@ -3,7 +3,7 @@ import { useState } from "react";
 import FilterUI from "./Filter.presenter";
 import { FETCH_CAR_CATEGORY } from "./Filter.queries";
 
-export default function FilterPage() {
+export default function FilterPage({ navigation }) {
    const { data } = useQuery(FETCH_CAR_CATEGORY);
 
    const [selectedCar, setSelectedCar] = useState<string[]>([]);
@@ -16,6 +16,7 @@ export default function FilterPage() {
    // 하단 최종 선택 버튼 동작
    const onPressSelected = () => {
       console.log(selectedCar);
+      navigation.navigate("map", { selectedCar: selectedCar });
    };
 
    return (

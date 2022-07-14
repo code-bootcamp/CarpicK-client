@@ -1,6 +1,7 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRecoilState } from "recoil";
+import colors from "../../src/commons/lib/colors";
 import { accessTokenState } from "../../src/commons/store";
 import NavigationHeaderLeft from "../../src/components/commons/navigationHeader/headerLeft";
 import FilterPage from "../../src/components/units/map/filter/Filter.cotnainer";
@@ -25,7 +26,19 @@ export default function Navigation() {
 
    return (
       <NavigationContainer theme={MyTheme}>
-         <Stack.Navigator>
+         <Stack.Navigator
+            screenOptions={{
+               headerShadowVisible: false,
+               headerStyle: { backgroundColor: "#fff" },
+               headerTitleAlign: "center",
+               headerTitleStyle: {
+                  color: colors.black,
+                  fontSize: 15,
+                  fontWeight: "500",
+               },
+               animation: "slide_from_right",
+            }}
+         >
             {!accessToken ? (
                <Stack.Screen
                   name="introStack"
@@ -47,8 +60,9 @@ export default function Navigation() {
                      name="filter"
                      component={FilterPage}
                      options={() => ({
-                        headerShown: false,
+                        headerShown: true,
                         headerShadowVisible: false,
+                        headerTitle: "차종필터",
                      })}
                   />
                   <Stack.Screen
