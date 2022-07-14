@@ -18,9 +18,9 @@ const FilterImageWrapper = styled.View`
    justify-content: center;
 `;
 
-export const Filter = (onPress) => {
+export const Filter = (navigation) => {
    return (
-      <FilterTouch onPress={() => onPress(DrawerActions.openDrawer())}>
+      <FilterTouch onPress={() => navigation.navigate("filter")}>
          <FilterImageWrapper>
             <R.View>
                <FilterImage />

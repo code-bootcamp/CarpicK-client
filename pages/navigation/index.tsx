@@ -2,6 +2,8 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../src/commons/store";
+import NavigationHeaderLeft from "../../src/components/commons/navigationHeader/headerLeft";
+import FilterPage from "../../src/components/units/map/filter/Filter.cotnainer";
 import CustomerServiceStack from "../screens/customerService";
 import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
@@ -39,6 +41,14 @@ export default function Navigation() {
                      component={MainStack}
                      options={() => ({
                         headerShown: false,
+                     })}
+                  />
+                  <Stack.Screen
+                     name="filter"
+                     component={FilterPage}
+                     options={() => ({
+                        headerShown: false,
+                        headerShadowVisible: false,
                      })}
                   />
                   <Stack.Screen
