@@ -36,8 +36,8 @@ export default function CarPhotosUI(props: ICarPhotosUIProps) {
             onPress={props.onPressNext}
             isDisabled={
                !(
-                  props.imageUris?.[0] !== "" &&
-                  props.imageUris?.[1] !== "" &&
+                  props.imageUris?.[0] !== "" ||
+                  props.imageUris?.[1] !== "" ||
                   props.imageUris?.[2] !== ""
                )
             }
