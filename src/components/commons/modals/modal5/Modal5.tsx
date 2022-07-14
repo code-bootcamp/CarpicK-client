@@ -10,10 +10,19 @@ import TitleText from "../../text/TitleText";
 import Contents1Text from "../../text/Contents1Text";
 
 interface IModal5Props {
+   initialStartTime: String;
+   initialEndTime: String;
    startTime: string;
    endTime: string;
+   arrHour: [];
    positiveText: string;
    negativeText: string;
+   setStartTimeHour: (time: string) => void;
+   setStartTimeMin: (time: string) => void;
+   setEndTimeHour: (time: string) => void;
+   setEndTimeMin: (time: string) => void;
+   indexStartHour: number;
+   indexEndHour: number;
    positive: () => void;
    negative: () => void;
 }
@@ -21,12 +30,23 @@ interface IModal5Props {
 export default function Modal5(props: IModal5Props) {
    const [isVisible, setIsVisible] = useState(true);
    const [arrHour, setArrHour] = useState([]);
+   const [tmpStartTimeHour, setTmpStartTimeHour] = useState("");
+   const [tmpStartTimeMin, setTmpStartTimeMin] = useState("");
+   const [tmpEndTimeHour, setTmpEndTimeHour] = useState("");
+   const [tmpEndTimeMin, setTmpEndTimeMin] = useState("");
 
    useEffect(() => {
-      genValidTime(startHour);
+      setTmpStartTimeHour(props.startTime.split(":")[0]);
+      setTmpStartTimeMin(props.startTime.split(":")[1]);
+      setTmpEndTimeHour(props.endTime.split(":")[0]);
+      setTmpEndTimeMin(props.endTime.split(":")[1]);
    }, []);
 
    const onClickPositive = () => {
+      props.setStartTimeHour(tmpStartTimeHour);
+      props.setStartTimeMin(tmpStartTimeMin);
+      props.setEndTimeHour(tmpEndTimeHour);
+      props.setEndTimeMin(tmpEndTimeMin);
       props.positive();
       setIsVisible(false);
    };
@@ -45,30 +65,12 @@ export default function Modal5(props: IModal5Props) {
    const endHour = endTime.split(":")[0];
    const endMin = endTime.split(":")[1];
 
+   const initialStartHour = props.initialStartTime.split(":")[0];
+
    console.log(startHour + ":" + startMin, endHour + ":" + endMin);
    console.log("this is test", endHour[1]);
    console.log("this is startHour", startHour);
    console.log("this is endHour", endHour);
-
-   const genValidTime = (startHour) => {
-      if (startHour[0] === "0") {
-         const tmp = Number(startHour[1]);
-         const arr = [];
-
-         for (let i = tmp; i <= 24; i++) {
-            arr.push(String(i).padStart(2, "0"));
-         }
-         setArrHour(arr);
-      } else {
-         const tmp = Number(startHour);
-         const arr = [];
-
-         for (let i = 0; i <= tmp; i++) {
-            arr.push(String(i));
-         }
-         setArrHour(arr);
-      }
-   };
    console.log("this is arr", arrHour);
 
    return (
@@ -91,8 +93,8 @@ export default function Modal5(props: IModal5Props) {
                <R.View style={{ flexDirection: "row" }}>
                   <S.TimePickerView />
                   <ScrollPicker
-                     dataSource={arrHour}
-                     selectedIndex={0}
+                     dataSource={props.arrHour}
+                     selectedIndex={props.indexStartHour}
                      renderItem={(data, index) => {
                         return (
                            <R.View>
@@ -103,7 +105,7 @@ export default function Modal5(props: IModal5Props) {
                         );
                      }}
                      onValueChange={(data, selectedIndex) => {
-                        //
+                        setTmpStartTimeHour(data);
                      }}
                      wrapperHeight={180}
                      wrapperColor="#fff"
@@ -127,7 +129,7 @@ export default function Modal5(props: IModal5Props) {
                         );
                      }}
                      onValueChange={(data, selectedIndex) => {
-                        //
+                        setTmpStartTimeMin(data);
                      }}
                      wrapperHeight={180}
                      wrapperColor="#fff"
@@ -137,8 +139,8 @@ export default function Modal5(props: IModal5Props) {
                   />
                   <S.TimePickerMiddleView />
                   <ScrollPicker
-                     dataSource={arrHour}
-                     selectedIndex={4}
+                     dataSource={props.arrHour}
+                     selectedIndex={props.indexEndHour}
                      renderItem={(data, index) => {
                         return (
                            <R.View>
@@ -149,7 +151,7 @@ export default function Modal5(props: IModal5Props) {
                         );
                      }}
                      onValueChange={(data, selectedIndex) => {
-                        //
+                        setTmpEndTimeHour(data);
                      }}
                      wrapperHeight={180}
                      wrapperColor="#fff"
@@ -173,7 +175,7 @@ export default function Modal5(props: IModal5Props) {
                         );
                      }}
                      onValueChange={(data, selectedIndex) => {
-                        //
+                        setTmpEndTimeMin(data);
                      }}
                      wrapperHeight={180}
                      wrapperColor="#fff"

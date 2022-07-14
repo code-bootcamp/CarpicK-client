@@ -130,3 +130,15 @@ export const InsuranceTextWrapper = styled.View`
    margin-bottom: 17.5px;
    align-items: center;
 `;
+
+export const RadioWrapper = styled.View`
+   width: 100%;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+`;
+
+export const RadioLeft = styled.View`
+   flex-direction: row;
+   align-items: center;
+`;
