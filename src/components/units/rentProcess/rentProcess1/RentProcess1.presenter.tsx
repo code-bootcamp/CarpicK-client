@@ -6,6 +6,7 @@ import Contents2Text from "../../../commons/text/Contents2Text";
 import TitleText from "../../../commons/text/TitleText";
 import colors from "../../../../commons/lib/colors";
 import Radio2 from "../../../commons/radio/Radio2";
+import { numberWithCommas } from "../../../../commons/utilities/numberWithCommas";
 
 export default function RentProcess1PageUI(props) {
    return (
@@ -107,7 +108,7 @@ export default function RentProcess1PageUI(props) {
                         <Contents1Text>자기부담금 최대 5만원</Contents1Text>
                      </S.RadioLeft>
                      <Contents1Text>
-                        +{Math.ceil(props.data?.fetchCar.price / 4)}원
+                        +{numberWithCommas(Math.ceil(props.price * 2))}원
                      </Contents1Text>
                   </S.RadioWrapper>
                   <S.RadioWrapper>
@@ -120,7 +121,7 @@ export default function RentProcess1PageUI(props) {
                         <Contents1Text>자기부담금 최대 30만원</Contents1Text>
                      </S.RadioLeft>
                      <Contents1Text>
-                        +{Math.ceil(props.data?.fetchCar.price / 2)}원
+                        +{numberWithCommas(Math.ceil(props.price))}원
                      </Contents1Text>
                   </S.RadioWrapper>
                   <S.RadioWrapper>
@@ -133,7 +134,7 @@ export default function RentProcess1PageUI(props) {
                         <Contents1Text>자기부담금 최대 70만원</Contents1Text>
                      </S.RadioLeft>
                      <Contents1Text>
-                        +{Math.ceil(props.data?.fetchCar.price)}원
+                        +{numberWithCommas(Math.ceil(props.price / 2))}원
                      </Contents1Text>
                   </S.RadioWrapper>
                </S.InsuranceWrapper>
@@ -141,7 +142,10 @@ export default function RentProcess1PageUI(props) {
          </S.Wrapper>
          <S.ButtonWrapper>
             <S.ButtonTextLeftWrapper>
-               <SubTitleText>총 {"0"}원</SubTitleText>
+               <SubTitleText>
+                  총 {numberWithCommas(Math.ceil(props.totalPrice / 100) * 100)}
+                  원
+               </SubTitleText>
                <Contents2Text>대여요금 + 면책상품 요금</Contents2Text>
             </S.ButtonTextLeftWrapper>
             <S.ButtonNext onPress={props.onPressNext}>

@@ -10,6 +10,7 @@ export default function RentProcess1Page({ navigation, route }) {
    // console.log("this is rp1", route.params.id);
    const result = GetRentTime();
    const [checked, setChecked] = useState("first");
+   const [insuPrcie, setInsuPrcie] = useState(0);
    const [isVisible, setIsVisible] = useState(false);
 
    const [startTimeHour, setStartTimeHour] = useState("");
@@ -28,19 +29,15 @@ export default function RentProcess1Page({ navigation, route }) {
       },
    });
 
-   const TimeTotal = moment
-      .duration(
-         moment(
-            moment().format("YYYY-MM-DD") + " " + `${endTimeHour}:${endTimeMin}`
-         ).diff(
-            moment(
-               moment().format("YYYY-MM-DD") +
-                  " " +
-                  `${startTimeHour}:${startTimeMin}`
-            )
-         )
-      )
-      .asHours();
+   useEffect(() => {
+      if (checked === "first")
+         setInsuPrcie(Math.ceil(data?.fetchCar.price * 2));
+      else if (checked === "second")
+         setInsuPrcie(Math.ceil(data?.fetchCar.price));
+      else if (checked === "third")
+         setInsuPrcie(Math.ceil(data?.fetchCar.price / 2));
+      else setInsuPrcie(Math.ceil(data?.fetchCar.price * 2));
+   }, [data?.fetchCar, checked]);
 
    useEffect(() => {
       genValidTime(result.startTime.split(":")[0]);
@@ -53,14 +50,54 @@ export default function RentProcess1Page({ navigation, route }) {
 
    useEffect(() => {
       searchIndex(arrHour, startTimeHour, endTimeHour);
-   }, [startTimeHour]);
+   }, [startTimeHour, endTimeHour]);
+
+   const TotalMin = moment
+      .duration(
+         moment(
+            moment().format("YYYY-MM-DD") +
+               " " +
+               `${endTimeHour}:${endTimeMin}`,
+            "YYYY-MM-DD HH:mm:ss"
+         ).diff(
+            moment(
+               moment().format("YYYY-MM-DD") +
+                  " " +
+                  `${startTimeHour}:${startTimeMin}`,
+               "YYYY-MM-DD HH:mm:ss"
+            )
+         )
+      )
+      .asMinutes();
+
+   const TotalHour = moment
+      .duration(
+         moment(
+            moment().format("YYYY-MM-DD") +
+               " " +
+               `${endTimeHour}:${endTimeMin}`,
+            "YYYY-MM-DD HH:mm:ss"
+         ).diff(
+            moment(
+               moment().format("YYYY-MM-DD") +
+                  " " +
+                  `${startTimeHour}:${startTimeMin}`,
+               "YYYY-MM-DD HH:mm:ss"
+            )
+         )
+      )
+      .asHours();
+
+   const finalHour = parseInt(String(TotalMin / 60));
+   const finalMin = TotalMin - finalHour * 60;
+   const totalPrice =
+      Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100 + insuPrcie;
 
    console.log("this is startTime", `${startTimeHour}:${startTimeMin}`);
    console.log("this is endTime", `${endTimeHour}:${endTimeMin}`);
-
    console.log("this is data", data);
-   console.log("this is result", result);
-   console.log("time TOTAl", TimeTotal);
+
+   // console.log("this is result", result);
 
    const onPressNext = () => {
       navigation.navigate("rentProcess2", {
@@ -70,7 +107,8 @@ export default function RentProcess1Page({ navigation, route }) {
          startTimeMin: startTimeMin,
          endTimeHour: endTimeHour,
          endTimeMin: endTimeMin,
-         TimeTotal: TimeTotal,
+         TotalMin: TotalMin,
+         TotalHour: TotalHour,
       });
    };
 
@@ -98,11 +136,11 @@ export default function RentProcess1Page({ navigation, route }) {
       setIndexStartHour(arr.indexOf(startTimeHour));
       setIndexEndHour(arr.indexOf(endTimeHour));
    };
-   console.log("this is index", indexStartHour, indexEndHour);
 
-   console.log("this is typeof", typeof indexStartHour);
-   console.log("this is typeof", typeof indexEndHour);
-
+   // console.log("this is index", indexStartHour, indexEndHour);
+   // console.log("this is typeof", typeof indexStartHour);
+   // console.log("this is typeof", typeof indexEndHour);
+   console.log("total price", totalPrice);
    return (
       <>
          {isVisible && (
@@ -137,8 +175,11 @@ export default function RentProcess1Page({ navigation, route }) {
             data={data}
             startTime={`${startTimeHour}:${startTimeMin}`}
             endTime={`${endTimeHour}:${endTimeMin}`}
-            finalHour={result.finalHour}
-            finalMin={result.finalMin}
+            finalHour={finalHour}
+            finalMin={finalMin}
+            TotalHour={TotalHour}
+            price={data?.fetchCar.price}
+            totalPrice={totalPrice}
             setIsVisible={setIsVisible}
             checked={checked}
             setChecked={setChecked}
