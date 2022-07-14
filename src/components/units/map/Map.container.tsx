@@ -5,11 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { FETCH_CARS, FETCH_CAR_LOCATION } from "./Map.queries";
+import { useIsFocused } from "@react-navigation/native";
 
 const VIEW_HEIGHT = R.Dimensions.get("window").height;
 
-export default function MapPage({ navigation }) {
+export default function MapPage({ navigation, route }) {
    const client = useApolloClient();
+   const isFocused = useIsFocused();
+   const [selectedCar, setSelectedCar] = useState<string[]>([]);
    const [dataTest, setCarListData] = useState();
    const [loading, setLoading] = useState(true);
    const [location, setLocation] = useState({
@@ -33,6 +36,7 @@ export default function MapPage({ navigation }) {
             northEastLng: north_east_lng,
             southWestLat: south_west_lat,
             northEastLat: north_east_lat,
+            filter: selectedCar,
          },
       },
    });
@@ -70,6 +74,12 @@ export default function MapPage({ navigation }) {
       setCarListData(null);
    };
 
+   useEffect(() => {
+      if (route.params?.selectedCar !== undefined)
+         setSelectedCar(route.params?.selectedCar);
+   }, [isFocused]);
+
+   console.log("route.params", route.params);
    useEffect(() => {
       (async () => {
          setIsReady(false);
@@ -124,7 +134,7 @@ export default function MapPage({ navigation }) {
       setCarLocationId(id);
    };
 
-   console.log("carListData", data);
+   // console.log("carListData", data);
 
    return (
       <>
