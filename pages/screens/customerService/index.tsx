@@ -55,6 +55,7 @@ export default function CustomerServiceStack({ navigation }) {
                component={InsurancePage}
                options={() => ({
                   headerShown: false,
+                  animation: "slide_from_right",
                })}
             />
             <Stack.Screen

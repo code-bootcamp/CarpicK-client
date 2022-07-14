@@ -30,13 +30,14 @@ export default function MapPage({ navigation, route }) {
    const [boundsBox, setBoundsBox] = useState();
 
    const { data, loading: loadingLocation } = useQuery(FETCH_CAR_LOCATION, {
+      fetchPolicy: "network-only",
       variables: {
          fetchCarLocationInput: {
             southWestLng: south_west_lng,
             northEastLng: north_east_lng,
             southWestLat: south_west_lat,
             northEastLat: north_east_lat,
-            filter: selectedCar,
+            filter: selectedCar.length === 0 ? null : selectedCar,
          },
       },
    });
@@ -118,6 +119,7 @@ export default function MapPage({ navigation, route }) {
             variables: {
                carLocationId: id,
             },
+            fetchPolicy: "network-only",
          });
          if (!isDrawerOpen && !resultCars.loading) {
             panelRef.current.togglePanel();

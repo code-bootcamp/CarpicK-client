@@ -43,9 +43,14 @@ export default function Modal5(props: IModal5Props) {
 
    const onClickPositive = () => {
       props.setStartTimeHour(tmpStartTimeHour);
-      props.setStartTimeMin(tmpStartTimeMin);
+      if (tmpStartTimeHour === "24" && tmpStartTimeMin !== "00")
+         props.setStartTimeMin("00");
+      else props.setStartTimeMin(tmpStartTimeMin);
+
       props.setEndTimeHour(tmpEndTimeHour);
-      props.setEndTimeMin(tmpEndTimeMin);
+      if (tmpEndTimeHour === "24" && tmpEndTimeMin !== "00")
+         props.setEndTimeMin("00");
+      else props.setEndTimeMin(tmpEndTimeMin);
       props.positive();
       setIsVisible(false);
    };

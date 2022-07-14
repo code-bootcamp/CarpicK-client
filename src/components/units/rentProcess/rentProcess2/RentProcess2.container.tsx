@@ -7,7 +7,7 @@ const baseTime = moment().format("YYYY-MM-DD");
 
 export default function RentProcess2Page({ navigation, route }) {
    // console.log("baseTime", baseTime);
-
+   console.log(route);
    const [createRsrv] = useMutation(CREATE_RESERVATION);
 
    console.log("this is r2 params", route.params);
@@ -26,17 +26,22 @@ export default function RentProcess2Page({ navigation, route }) {
                      " " +
                      `${route.params.endTimeHour}:${route.params.endTimeMin}`
                ),
-               amount: Math.ceil(
-                  route.params.data.fetchCar.price * route.params.TimeTotal
-               ),
+               amount: Math.ceil(route.params.totalPrice),
                carId: route.params.data.fetchCar.id,
             },
          },
       });
       console.log("this is final result", result);
       // navigation.navigate("payment");
-      navigation.navigate("main");
+      navigation.navigate("payment");
    };
 
-   return <RentProcess2PageUI onPressToPayment={onPressToPayment} />;
+   return (
+      <RentProcess2PageUI
+         onPressToPayment={onPressToPayment}
+         rentPrice={route.params.rentPrice}
+         insuPrice={route.params.insuPrice}
+         totalPrice={route.params.totalPrice}
+      />
+   );
 }
