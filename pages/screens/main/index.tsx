@@ -29,6 +29,7 @@ import { BackArrow } from "../../../src/components/commons/navigationHeader/icon
 import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
 import CarPickKeyStack from "../carPickKey";
 import { Filter } from "../../../src/components/commons/navigationHeader/icon/Filter";
+import FilterPage from "../../../src/components/units/map/filter/Filter.cotnainer";
 
 const LOGOUT = gql`
    mutation logout {
@@ -135,7 +136,7 @@ export default function MainStack({ navigation }) {
                   width: 250,
                },
                headerLeft: () => null,
-               headerRight: () => Filter(navigation.dispatch),
+               headerRight: () => Hamburger(navigation.dispatch),
                headerTitleAlign: "left",
                headerStyle: {
                   backgroundColor: "#5D8BFF",
@@ -168,6 +169,7 @@ export default function MainStack({ navigation }) {
                   title: "카픽존",
                   headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),
+                  headerRight: () => Filter(navigation),
                }}
             />
             <Drawer.Screen

@@ -29,7 +29,6 @@ interface IModal5Props {
 
 export default function Modal5(props: IModal5Props) {
    const [isVisible, setIsVisible] = useState(true);
-   const [arrHour, setArrHour] = useState([]);
    const [tmpStartTimeHour, setTmpStartTimeHour] = useState("");
    const [tmpStartTimeMin, setTmpStartTimeMin] = useState("");
    const [tmpEndTimeHour, setTmpEndTimeHour] = useState("");
@@ -65,13 +64,10 @@ export default function Modal5(props: IModal5Props) {
    const endHour = endTime.split(":")[0];
    const endMin = endTime.split(":")[1];
 
-   const initialStartHour = props.initialStartTime.split(":")[0];
-
    console.log(startHour + ":" + startMin, endHour + ":" + endMin);
    console.log("this is test", endHour[1]);
    console.log("this is startHour", startHour);
    console.log("this is endHour", endHour);
-   console.log("this is arr", arrHour);
 
    return (
       <Modal
@@ -119,7 +115,7 @@ export default function Modal5(props: IModal5Props) {
                   <ScrollPicker
                      dataSource={["00", "10", "20", "30", "40", "50", "60"]}
                      selectedIndex={Number(startMin[0])}
-                     renderItem={(data, index) => {
+                     renderItem={(data) => {
                         return (
                            <R.View>
                               <Contents1Text fontSize="20" color={colors.theme}>
@@ -141,7 +137,7 @@ export default function Modal5(props: IModal5Props) {
                   <ScrollPicker
                      dataSource={props.arrHour}
                      selectedIndex={props.indexEndHour}
-                     renderItem={(data, index) => {
+                     renderItem={(data) => {
                         return (
                            <R.View>
                               <Contents1Text fontSize="20" color={colors.theme}>
@@ -150,7 +146,7 @@ export default function Modal5(props: IModal5Props) {
                            </R.View>
                         );
                      }}
-                     onValueChange={(data, selectedIndex) => {
+                     onValueChange={(data) => {
                         setTmpEndTimeHour(data);
                      }}
                      wrapperHeight={180}
@@ -174,7 +170,7 @@ export default function Modal5(props: IModal5Props) {
                            </R.View>
                         );
                      }}
-                     onValueChange={(data, selectedIndex) => {
+                     onValueChange={(data) => {
                         setTmpEndTimeMin(data);
                      }}
                      wrapperHeight={180}
