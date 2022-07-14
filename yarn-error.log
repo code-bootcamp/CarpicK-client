@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/myeonghyeonyeo/.yarn/bin/yarn.js add @types/react-native-picker-scrollview
+  /usr/local/bin/node /Users/myeonghyeonyeo/.yarn/bin/yarn.js add react-native-pape
 
 PATH: 
   /Users/myeonghyeonyeo/.yarn/bin:/Users/myeonghyeonyeo/.config/yarn/global/node_modules/.bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/myeonghyeonyeo/.yarn/bin:/Users/myeonghyeonyeo/.config/yarn/global/node_modules/.bin:/opt/homebrew/bin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-native-picker-scrollview: Not found
+  Error: https://registry.yarnpkg.com/react-native-pape: Not found
       at Request.params.callback [as _callback] (/Users/myeonghyeonyeo/.yarn/lib/cli.js:66145:18)
       at Request.self.callback (/Users/myeonghyeonyeo/.yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:527:28)
@@ -92,6 +92,7 @@ npm manifest:
         "react-native-vector-icons": "^9.2.0",
         "react-native-web": "0.17.7",
         "react-native-webview": "11.18.1",
+        "react-native-wheel-scrollview-picker": "^2.0.1",
         "react-navigation": "^4.4.4",
         "recoil": "^0.7.4",
         "rn-bottom-drawer": "^1.4.3",
@@ -8853,6 +8854,11 @@ Lockfile:
     dependencies:
       escape-string-regexp "2.0.0"
       invariant "2.2.4"
+  
+  react-native-wheel-scrollview-picker@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/react-native-wheel-scrollview-picker/-/react-native-wheel-scrollview-picker-2.0.1.tgz#130fb9c4c6080376d4166d53e626c67d65193931"
+    integrity sha512-jNhOU/gsw9TDumMev4vMaIfR9Coicc4Pgo3kizdam0UC0NQga1gpLWnXuZoYIwEIDElwbHXAEGINOoiF1MM5Hw==
   
   react-native@0.68.2:
     version "0.68.2"

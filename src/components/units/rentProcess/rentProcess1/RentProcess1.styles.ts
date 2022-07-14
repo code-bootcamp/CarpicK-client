@@ -113,3 +113,20 @@ export const ButtonNext = styled.TouchableOpacity`
    justify-content: center;
    align-items: center;
 `;
+
+export const InsuranceWrapper = styled.View`
+   width: 100%;
+   height: 400px;
+   background-color: #ffffff;
+   padding: 20px 20px 25px 20px;
+   margin-top: 10px;
+   margin-bottom: 50px;
+`;
+
+export const InsuranceTextWrapper = styled.View`
+   width: 100%;
+   flex-direction: row;
+   justify-content: space-between;
+   margin-bottom: 17.5px;
+   align-items: center;
+`;

@@ -188,7 +188,7 @@ export default function MapPage({ navigation }) {
 
       setCarListData(resultCars.data);
       setLoading(resultCars.loading);
-      console.log(resultCars);
+      console.log("resultCars", resultCars);
    };
 
    const handleToggle = (id) => {

@@ -28,8 +28,7 @@ export default function MapMarker({
          }}
          style={{ width: 100, height: 100 }}
          image={require(".././../../../../assets/map/marker-150.png")}
-         title="this is a marker"
-         description="this is a marker example"
+         title="카픽존"
       >
          {/* <R.Image
             source={require("../../../../../assets/map/marker-150.png")}

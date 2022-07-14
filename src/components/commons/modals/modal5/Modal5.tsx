@@ -20,7 +20,7 @@ interface IModal5Props {
 
 export default function Modal5(props: IModal5Props) {
    const [isVisible, setIsVisible] = useState(true);
-   const [arr, setArr] = useState([]);
+   const [arrHour, setArrHour] = useState([]);
 
    useEffect(() => {
       genValidTime(startHour);
@@ -47,6 +47,8 @@ export default function Modal5(props: IModal5Props) {
 
    console.log(startHour + ":" + startMin, endHour + ":" + endMin);
    console.log("this is test", endHour[1]);
+   console.log("this is startHour", startHour);
+   console.log("this is endHour", endHour);
 
    const genValidTime = (startHour) => {
       if (startHour[0] === "0") {
@@ -56,7 +58,7 @@ export default function Modal5(props: IModal5Props) {
          for (let i = tmp; i <= 24; i++) {
             arr.push(String(i).padStart(2, "0"));
          }
-         setArr(arr);
+         setArrHour(arr);
       } else {
          const tmp = Number(startHour);
          const arr = [];
@@ -64,10 +66,10 @@ export default function Modal5(props: IModal5Props) {
          for (let i = 0; i <= tmp; i++) {
             arr.push(String(i));
          }
-         setArr(arr);
+         setArrHour(arr);
       }
    };
-   console.log("this is arr", arr);
+   console.log("this is arr", arrHour);
 
    return (
       <Modal
@@ -89,12 +91,8 @@ export default function Modal5(props: IModal5Props) {
                <R.View style={{ flexDirection: "row" }}>
                   <S.TimePickerView />
                   <ScrollPicker
-                     dataSource={arr}
-                     selectedIndex={
-                        startHour[1][0] !== "0"
-                           ? Number(startHour[1][0])
-                           : Number(startHour[1])
-                     }
+                     dataSource={arrHour}
+                     selectedIndex={0}
                      renderItem={(data, index) => {
                         return (
                            <R.View>
@@ -139,12 +137,8 @@ export default function Modal5(props: IModal5Props) {
                   />
                   <S.TimePickerMiddleView />
                   <ScrollPicker
-                     dataSource={arr}
-                     selectedIndex={
-                        endHour[1][0] !== "0"
-                           ? Number(endHour[1][0])
-                           : Number(endHour[1])
-                     }
+                     dataSource={arrHour}
+                     selectedIndex={4}
                      renderItem={(data, index) => {
                         return (
                            <R.View>
