@@ -1,10 +1,11 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import colors from "../../src/commons/lib/colors";
 import { accessTokenState } from "../../src/commons/store";
 import NavigationHeaderLeft from "../../src/components/commons/navigationHeader/headerLeft";
-import FilterPage from "../../src/components/units/map/filter/Filter.cotnainer";
+import FilterPage from "../../src/components/units/map/filter/Filter.container";
 import CustomerServiceStack from "../screens/customerService";
 import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
@@ -23,6 +24,7 @@ const MyTheme = {
 
 export default function Navigation() {
    const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+   const [selectedCar, setSelectedCar] = useState<string[]>([]);
 
    return (
       <NavigationContainer theme={MyTheme}>
@@ -59,8 +61,12 @@ export default function Navigation() {
                   <Stack.Screen
                      name="filter"
                      component={FilterPage}
+                     initialParams={{
+                        selectedCar,
+                        setSelectedCar,
+                     }}
                      options={() => ({
-                        headerShown: true,
+                        headerShown: false,
                         headerShadowVisible: false,
                         headerTitle: "차종필터",
                      })}
