@@ -62,7 +62,7 @@ export default function MainPageUI(props) {
                   <>
                      <TitleText fontSize="12">
                         {
-                           props.carListData?.fetchCars[0].carLocation
+                           props?.carListData?.fetchCars[0].carLocation
                               .addressDetail
                         }
                      </TitleText>

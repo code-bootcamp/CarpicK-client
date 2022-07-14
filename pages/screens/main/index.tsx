@@ -28,6 +28,7 @@ import OperationStatusPage from "../../../src/components/units/operationStatus/O
 import { BackArrow } from "../../../src/components/commons/navigationHeader/icon/BackArrow";
 import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
 import CarPickKeyStack from "../carPickKey";
+import { Filter } from "../../../src/components/commons/navigationHeader/icon/Filter";
 
 const LOGOUT = gql`
    mutation logout {
@@ -134,7 +135,7 @@ export default function MainStack({ navigation }) {
                   width: 250,
                },
                headerLeft: () => null,
-               headerRight: () => Hamburger(navigation.dispatch),
+               headerRight: () => Filter(navigation.dispatch),
                headerTitleAlign: "left",
                headerStyle: {
                   backgroundColor: "#5D8BFF",

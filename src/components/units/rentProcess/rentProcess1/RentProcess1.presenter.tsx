@@ -97,22 +97,46 @@ export default function RentProcess1PageUI(props) {
                         선택하세요.
                      </Contents2Text>
                   </S.InsuranceTextWrapper>
+                  <S.RadioWrapper>
+                     <S.RadioLeft>
+                        <Radio2
+                           value="first"
+                           checked={props.checked}
+                           setChecked={props.setChecked}
+                        />
+                        <Contents1Text>자기부담금 최대 5만원</Contents1Text>
+                     </S.RadioLeft>
+                     <Contents1Text>
+                        +{Math.ceil(props.data?.fetchCar.price / 4)}원
+                     </Contents1Text>
+                  </S.RadioWrapper>
+                  <S.RadioWrapper>
+                     <S.RadioLeft>
+                        <Radio2
+                           value="second"
+                           checked={props.checked}
+                           setChecked={props.setChecked}
+                        />
+                        <Contents1Text>자기부담금 최대 30만원</Contents1Text>
+                     </S.RadioLeft>
+                     <Contents1Text>
+                        +{Math.ceil(props.data?.fetchCar.price / 2)}원
+                     </Contents1Text>
+                  </S.RadioWrapper>
+                  <S.RadioWrapper>
+                     <S.RadioLeft>
+                        <Radio2
+                           value="third"
+                           checked={props.checked}
+                           setChecked={props.setChecked}
+                        />
+                        <Contents1Text>자기부담금 최대 70만원</Contents1Text>
+                     </S.RadioLeft>
+                     <Contents1Text>
+                        +{Math.ceil(props.data?.fetchCar.price)}원
+                     </Contents1Text>
+                  </S.RadioWrapper>
                </S.InsuranceWrapper>
-               <Radio2
-                  value="first"
-                  checked={props.checked}
-                  setChecked={props.setChecked}
-               />
-               <Radio2
-                  value="second"
-                  checked={props.checked}
-                  setChecked={props.setChecked}
-               />
-               <Radio2
-                  value="third"
-                  checked={props.checked}
-                  setChecked={props.setChecked}
-               />
             </R.ScrollView>
          </S.Wrapper>
          <S.ButtonWrapper>

@@ -19,8 +19,8 @@ export function statusBar(reservation) {
    if (reservation.length !== 0) {
       reservation
          .filter((el) => {
-            // 필터 1 : 현재시각 기준 end_time 끝난 예약 고려할 필요 X
-            const timeEndPoint = moment(el.end_time);
+            // 필터 1 : 현재시각 기준 endTime 끝난 예약 고려할 필요 X
+            const timeEndPoint = moment(el.endTime);
             const timeDiffEndHours = moment
                .duration(nowTime.diff(timeEndPoint))
                .asHours();
@@ -28,8 +28,8 @@ export function statusBar(reservation) {
             return timeDiffEndHours < 0;
          })
          .filter((el) => {
-            // 필터 2 : 오늘 24:00 보다 start_time 이후라면 고려할 필요 X
-            const timeStartPoint = moment(el.start_time);
+            // 필터 2 : 오늘 24:00 보다 startTime 이후라면 고려할 필요 X
+            const timeStartPoint = moment(el.startTime);
             const timeDiffEndHours = moment
                .duration(nowTimeEndPoint.diff(timeStartPoint))
                .asHours();
@@ -37,8 +37,8 @@ export function statusBar(reservation) {
             return timeDiffEndHours > 0;
          })
          .forEach((el, i) => {
-            const timeStartPoint = moment(el.start_time);
-            const timeEndPoint = moment(el.end_time);
+            const timeStartPoint = moment(el.startTime);
+            const timeEndPoint = moment(el.endTime);
             const timeDiffStart = moment
                .duration(timeStartPoint.diff(nowTime))
                .asHours();
