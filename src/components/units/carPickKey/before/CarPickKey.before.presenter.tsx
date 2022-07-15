@@ -4,8 +4,8 @@ import globalStyle from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import Button1 from "../../../commons/button/Button1";
-import UploadImage from "../../../commons/upload/image/UploadImage";
 import { ICarPickKeyBeforeUIProps } from "./CarPickKey.before.types";
+import UploadCamera from "../../../commons/upload/camera/UploadCamera";
 
 export default function CarPickKeyBeforeUI(props: ICarPickKeyBeforeUIProps) {
    return (
@@ -21,7 +21,7 @@ export default function CarPickKeyBeforeUI(props: ICarPickKeyBeforeUIProps) {
             </R.View>
             <S.ImageContainer>
                {props.imageUris?.map((_, index) => (
-                  <UploadImage
+                  <UploadCamera
                      key={index}
                      imageFiles={props.imageFiles}
                      setImageFiles={props.setImageFiles}
