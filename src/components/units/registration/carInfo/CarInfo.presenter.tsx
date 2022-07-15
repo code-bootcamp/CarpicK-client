@@ -9,6 +9,11 @@ import { ICarInfoUIProps } from "./CarInfo.types";
 import { Controller } from "react-hook-form";
 import Button1 from "../../../commons/button/Button1";
 
+const RADIO_OPTIONS = {
+   OIL: ["휘발유", "경유", "LPG", "전기"],
+   HI_PASS: ["장착", "미장착"],
+};
+
 export default function CarInfoUI(props: ICarInfoUIProps) {
    const oilOptionConverter = (option: string) => {
       switch (option) {
@@ -123,7 +128,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         <Contents1Text>연료</Contents1Text>
                         <R.View style={{ marginTop: 7 }}>
                            <Radio
-                              options={["휘발유", "경유", "LPG", "전기"]}
+                              options={RADIO_OPTIONS.OIL}
                               onChange={(option) =>
                                  props.setOil(oilOptionConverter(option)!!)
                               }
@@ -134,7 +139,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         <Contents1Text>하이패스</Contents1Text>
                         <R.View style={{ marginTop: 7 }}>
                            <Radio
-                              options={["장착", "미장착"]}
+                              options={RADIO_OPTIONS.HI_PASS}
                               onChange={(option) =>
                                  props.setIsHipass(
                                     hipassOptionConverter(option)!!
