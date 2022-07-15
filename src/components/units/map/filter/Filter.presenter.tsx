@@ -39,6 +39,8 @@ export default function FilterUI(props: IFilterUIProps) {
                <TitleText fontSize="17" fontFamily="Regular">
                   {`선택하신 차종이 포함된\n카픽존을 보실 수 있습니다!`}
                </TitleText>
+            </R.View>
+            {props.data?.fetchCarCategory.length !== 0 ? (
                <R.View>
                   <MultiRadio
                      ref={props.resetRef}
@@ -48,7 +50,13 @@ export default function FilterUI(props: IFilterUIProps) {
                      onChange={props.onChangeSelectedCar}
                   />
                </R.View>
-            </R.View>
+            ) : (
+               <S.EmptyDataContainer>
+                  <TitleText fontFamily="Regular" fontSize="17" color="#e0e0e0">
+                     차량 카테고리가 없습니다
+                  </TitleText>
+               </S.EmptyDataContainer>
+            )}
          </S.Container>
          <Button1
             isDisabled={props.PSelectedCar === props.selectedCar}
