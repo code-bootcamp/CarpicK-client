@@ -20,7 +20,6 @@ export default function JoinPage({ navigation }) {
    const [isValidEmail, setIsValidEmail] = useState(false);
    const [isValidPhone, setIsValidPhone] = useState(false);
 
-   const [createUser] = useMutation(CREATE_USER);
    const [checkEmail] = useMutation(ISVALID_EMAIL);
    const [sendSMS] = useMutation(SEND_SMS);
    const [checkToken] = useMutation(CHECK_TOKEN);
@@ -120,24 +119,6 @@ export default function JoinPage({ navigation }) {
       }
    };
 
-   const onPressSubmit = async () => {
-      try {
-         const result = await createUser({
-            variables: {
-               createUserInput: {
-                  email,
-                  name,
-                  password,
-                  phone: phone.split("-").join(""),
-               },
-            },
-         });
-         console.log("this is result", result);
-      } catch (error) {
-         console.log("this is error", error);
-      }
-   };
-
    return (
       <>
          {openModal && (
@@ -154,7 +135,6 @@ export default function JoinPage({ navigation }) {
             setOpenTimer={setOpenTimer}
             isValidEmail={isValidEmail}
             isValidPhone={isValidPhone}
-            onPressSubmit={onPressSubmit}
             onPressNext={onPressNext}
             onPressCheckEmail={onPressCheckEmail}
             onPressSMS={onPressSMS}

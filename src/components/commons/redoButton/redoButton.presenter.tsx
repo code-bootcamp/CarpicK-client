@@ -1,5 +1,5 @@
 import * as R from "react-native";
-import Contents1Text from "../../../commons/text/Contents1Text";
+import Contents1Text from "../text/Contents1Text";
 import * as S from "./redoButton.styles";
 
 export default function RedoButtonUI({ setOpenRedo }) {

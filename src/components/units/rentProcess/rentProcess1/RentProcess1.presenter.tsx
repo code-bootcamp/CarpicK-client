@@ -153,8 +153,7 @@ export default function RentProcess1PageUI(props) {
          <S.ButtonWrapper>
             <S.ButtonTextLeftWrapper>
                <SubTitleText>
-                  총 {numberWithCommas(Math.ceil(props.totalPrice / 100) * 100)}
-                  원
+                  총 {numberWithCommas(props.totalPrice)}원
                </SubTitleText>
                <Contents2Text>대여요금 + 면책상품 요금</Contents2Text>
             </S.ButtonTextLeftWrapper>
