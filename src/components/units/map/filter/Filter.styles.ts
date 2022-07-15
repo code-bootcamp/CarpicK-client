@@ -27,3 +27,8 @@ export const ResetBox = styled.TouchableOpacity`
 export const Container = styled.ScrollView`
    background-color: white;
 `;
+
+export const EmptyDataContainer = styled.View`
+   align-items: center;
+   margin-top: 175px;
+`;
