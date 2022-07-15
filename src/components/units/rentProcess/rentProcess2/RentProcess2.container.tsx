@@ -13,27 +13,29 @@ export default function RentProcess2Page({ navigation, route }) {
    console.log("this is r2 params", route.params);
 
    const onPressToPayment = async () => {
-      const result = await createRsrv({
-         variables: {
-            createReservationInput: {
-               startTime: moment(
-                  baseTime +
-                     " " +
-                     `${route.params.startTimeHour}:${route.params.startTimeMin}`
-               ),
-               endTime: moment(
-                  baseTime +
-                     " " +
-                     `${route.params.endTimeHour}:${route.params.endTimeMin}`
-               ),
-               amount: Math.ceil(route.params.totalPrice),
-               carId: route.params.data.fetchCar.id,
-            },
-         },
-      });
-      console.log("this is final result", result);
+      // const result = await createRsrv({
+      //    variables: {
+      //       createReservationInput: {
+      //          startTime: moment(
+      //             baseTime +
+      //                " " +
+      //                `${route.params.startTimeHour}:${route.params.startTimeMin}`
+      //          ),
+      //          endTime: moment(
+      //             baseTime +
+      //                " " +
+      //                `${route.params.endTimeHour}:${route.params.endTimeMin}`
+      //          ),
+      //          amount: Math.ceil(route.params.totalPrice),
+      //          carId: route.params.data.fetchCar.id,
+      //       },
+      //    },
+      // });
+      // console.log("this is final result", result);
       // navigation.navigate("payment");
-      navigation.navigate("payment");
+      navigation.navigate("payment", {
+         amount: Math.ceil(route.params.totalPrice),
+      });
    };
 
    return (

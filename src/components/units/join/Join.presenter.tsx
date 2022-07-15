@@ -2,15 +2,14 @@ import * as R from "react-native";
 import * as S from "./Join.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
 import TitleText from "../../commons/text/TitleText";
-import Button01Blue from "../../commons/button/button_01_blue";
 import Contents1Text from "../../commons/text/Contents1Text";
 import Contents2Text from "../../commons/text/Contents2Text";
 import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
 import { Controller } from "react-hook-form";
 import Button1 from "../../commons/button/Button1";
 import Input2 from "../../commons/input/Input2";
-import Timer from "./timer/timer.container";
-import RedoButton from "./redoButton/redoButton.container";
+import Timer from "../../commons/timer/timer.container";
+import RedoButton from "../../commons/redoButton/redoButton.container";
 const emailRegExp =
    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])/;

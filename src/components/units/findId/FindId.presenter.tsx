@@ -4,6 +4,8 @@ import globalStyles from "../../../commons/styles/globalStyle";
 import Contents1Text from "../../commons/text/Contents1Text";
 import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
 import Button01Blue from "../../commons/button/button_01_blue";
+import Timer from "../../commons/timer/timer.container";
+import RedoButton from "../../commons/redoButton/redoButton.container";
 
 export default function FindIdPageUI(props) {
    return (
@@ -18,20 +20,29 @@ export default function FindIdPageUI(props) {
                   <S.Input
                      maxLength={13}
                      keyboardType="numeric"
-                     onChange={props.onChanePhone}
+                     onChangeText={(text) => props.setPhone(text)}
                      placeholder="휴대전화번호 입력."
                      value={phoneNumHypen(props.phone)}
                   />
                   <S.InputBottomLine />
                </S.InputLeft>
-               <S.SubTouch
-                  activeOpacity={0.7}
-                  onPress={props.onPressCheckEmail}
-               >
-                  <Contents1Text color="#ffffff" fontSize="14">
-                     인증요청
-                  </Contents1Text>
-               </S.SubTouch>
+               {!props.openTimer && !props.openRedo && (
+                  <S.SubTouch activeOpacity={0.7} onPress={props.onPressSMS}>
+                     <Contents1Text color="#ffffff" fontSize="14">
+                        인증요청
+                     </Contents1Text>
+                  </S.SubTouch>
+               )}
+               {props.openTimer && (
+                  <Timer
+                     setOpenTimer={props.setOpenTimer}
+                     setOpenRedo={props.setOpenRedo}
+                     setToken={props.setToken}
+                  />
+               )}
+               {props.openRedo && (
+                  <RedoButton setOpenRedo={props.setOpenRedo} />
+               )}
             </S.InputRow>
          </S.InputWrapperMarginBtm>
          <S.InputWrapperMarginBtm>
@@ -41,7 +52,7 @@ export default function FindIdPageUI(props) {
                   <S.Input
                      maxLength={6}
                      keyboardType="numeric"
-                     onChange={props.onChanePhoneTruthNum}
+                     onChangeText={(text) => props.setToken(text)}
                      placeholder="인증번호를 입력해 주세요."
                      style={{ includeFontPadding: false }}
                   />
@@ -49,7 +60,7 @@ export default function FindIdPageUI(props) {
                </S.InputLeft>
                <S.SubTouch
                   activeOpacity={0.7}
-                  onPress={props.onPressCheckEmail}
+                  onPress={props.onPressCheckPhoneTruthNum}
                >
                   <Contents1Text color="#ffffff" fontSize="14">
                      인증확인
@@ -61,6 +72,7 @@ export default function FindIdPageUI(props) {
             <Button01Blue
                func={props.onPressToIdResult}
                title={"아이디 찾기"}
+               disabled={!props.isValidPhone}
             />
          </S.ButtonWrapper>
       </S.Wrapper>

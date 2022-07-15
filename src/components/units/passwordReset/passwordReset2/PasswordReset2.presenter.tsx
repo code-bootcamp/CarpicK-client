@@ -1,16 +1,16 @@
-import * as S from "./PasswordReset.styles";
+import * as S from "./PasswordReset2.styles";
 import * as R from "react-native";
-import globalStyles from "../../../commons/styles/globalStyle";
-import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
-import Button01Blue from "../../commons/button/button_01_blue";
-import Contents1Text from "../../commons/text/Contents1Text";
-import Contents2Text from "../../commons/text/Contents2Text";
-import TitleText from "../../commons/text/TitleText";
-import Input2 from "../../commons/input/Input2";
+import globalStyle from "../../../../commons/styles/globalStyle";
+import TitleText from "../../../commons/text/TitleText";
+import Contents1Text from "../../../commons/text/Contents1Text";
+import Input2 from "../../../commons/input/Input2";
+import Contents2Text from "../../../commons/text/Contents2Text";
+import Button01Blue from "../../../commons/button/button_01_blue";
+import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
 
-export default function PasswordResetUI(props) {
+export default function PasswordReset2UI(props) {
    return (
-      <S.Wrapper style={globalStyles.GlobalStyles}>
+      <S.Wrapper style={globalStyle.GlobalStyles}>
          <R.ScrollView showsVerticalScrollIndicator={false}>
             <S.TitleWrapper>
                <TitleText color="#5D8BFF">비밀번호 재설정 </TitleText>
@@ -52,7 +52,7 @@ export default function PasswordResetUI(props) {
                         <Input2
                            maxLength={6}
                            keyboardType="numeric"
-                           onChangeText={(text) => props.setPhoneTruthNum(text)}
+                           onChangeText={(text) => props.setToken(text)}
                            placeholder="인증번호를 입력해 주세요."
                         />
                      </S.InputLeft>

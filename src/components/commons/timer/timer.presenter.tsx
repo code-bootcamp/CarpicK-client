@@ -1,6 +1,6 @@
 import * as R from "react-native";
+import Contents1Text from "../text/Contents1Text";
 import * as S from "./timer.styles";
-import Contents1Text from "../../../commons/text/Contents1Text";
 
 export default function TimerUI(props) {
    return (
