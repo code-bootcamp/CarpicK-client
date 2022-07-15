@@ -45,19 +45,18 @@ const Container = styled.View`
 `;
 
 const RadioButton = styled.TouchableOpacity`
-   /* flex: 1; */
    width: ${(props: any) => props.radioWidth}px;
-   height: 30px;
+   height: 33px;
    border-radius: 5px;
    background-color: ${(props: any) =>
       props.isActive ? colors.theme : "white"};
    border: ${(props: any) =>
       props.isActive ? "none" : `1px solid ${colors.gray}`};
+   justify-content: center;
 `;
 
 const ButtonText = styled.Text`
    color: ${(props: any) => (props.isActive ? "white" : colors.gray)};
    font-size: 12px;
    text-align: center;
-   line-height: 30px;
 `;
