@@ -4,5 +4,10 @@ export default function calTime(startTime: string, endTime: string) {
       new Date(endTime).getTime() - new Date(startTime).getTime();
    const seconds = millisecond / 1000;
    const minutes = seconds / 60;
-   return minutes;
+
+   if (minutes > 60) {
+      return `${minutes / 60}시간 ${minutes % 60}분`;
+   } else {
+      return `${minutes}분`;
+   }
 }
