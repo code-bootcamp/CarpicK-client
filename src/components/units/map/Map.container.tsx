@@ -13,7 +13,7 @@ export default function MapPage({ navigation, route }) {
    const client = useApolloClient();
    const isFocused = useIsFocused();
    const [selectedCar, setSelectedCar] = useState<string[]>([]);
-   const [dataTest, setCarListData] = useState();
+   const [carListData, setCarListData] = useState();
    const [loading, setLoading] = useState(true);
    const [location, setLocation] = useState({
       latitude: 0,
@@ -80,8 +80,9 @@ export default function MapPage({ navigation, route }) {
          setSelectedCar(route.params?.selectedCar);
    }, [isFocused]);
 
-   console.log("route.params", route.params);
-   console.log("selectedCar", selectedCar);
+   // console.log("route.params", route.params);
+   // console.log("selectedCar", selectedCar);
+   console.log("boundsBox", boundsBox);
    useEffect(() => {
       (async () => {
          setIsReady(false);
@@ -118,6 +119,7 @@ export default function MapPage({ navigation, route }) {
             query: FETCH_CARS,
             variables: {
                carLocationId: id,
+               page: 1,
             },
             fetchPolicy: "network-only",
          });
@@ -137,7 +139,7 @@ export default function MapPage({ navigation, route }) {
       setCarLocationId(id);
    };
 
-   // console.log("carListData", data);
+   console.log("carListData", data);
 
    return (
       <>
@@ -152,7 +154,7 @@ export default function MapPage({ navigation, route }) {
             isDrawerOpen={isDrawerOpen}
             setIsDrawerOpen={setIsDrawerOpen}
             data={data}
-            carListData={dataTest}
+            carListData={carListData}
             setCarLocationId={setCarLocationId}
             loadingLocation={!loadingLocation}
             onPressQuery={onPressQuery}

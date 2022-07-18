@@ -6,9 +6,9 @@ import SubTitleText from "../../../commons/text/SubTitleText";
 
 export default function IdResultPageUI(props) {
    return (
-      <S.Wrapper style={globalStyles.GlobalStyles}>
+      <S.Wrapper style={globalStyles.GlobalStyles40}>
          <S.TitleWrapper>
-            <TitleText color="#5D8BFF">아이디찾기</TitleText>
+            <TitleText color="#5D8BFF">아이디 찾기</TitleText>
          </S.TitleWrapper>
          <S.TextWrapper>
             <SubTitleText>

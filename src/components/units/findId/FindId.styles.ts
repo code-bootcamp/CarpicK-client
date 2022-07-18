@@ -19,16 +19,19 @@ export const InputRow = styled.View`
    width: 100%;
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 `;
 
 export const InputLeft = styled.View`
-   width: 70%;
+   width: 65%;
 `;
 
 export const Input = styled.TextInput`
    font-family: Regular;
    padding: 0px 14px;
    height: 45px;
+   border-bottom-width: 0.5px;
+   border-bottom-color: #353535;
 `;
 
 export const InputBottomLine = styled.View`

@@ -30,7 +30,7 @@ export default function Navigation() {
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator
             screenOptions={{
-               headerShadowVisible: false,
+               headerShadowVisible: true,
                headerStyle: { backgroundColor: "#fff" },
                headerTitleAlign: "center",
                headerTitleStyle: {
@@ -67,7 +67,7 @@ export default function Navigation() {
                      }}
                      options={() => ({
                         headerShown: false,
-                        headerShadowVisible: false,
+                        headerShadowVisible: true,
                         headerTitle: "차종필터",
                      })}
                   />

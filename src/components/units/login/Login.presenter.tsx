@@ -7,7 +7,7 @@ import Button01Blue from "../../commons/button/button_01_blue";
 export default function LoginPageUI(props) {
    return (
       <>
-         <S.Wrapper style={globalStyles.GlobalStyles}>
+         <S.Wrapper style={globalStyles.GlobalStyles40}>
             <S.Title style={{ includeFontPadding: false }}>CarpicK</S.Title>
             <S.Body>
                <S.Input
@@ -29,7 +29,9 @@ export default function LoginPageUI(props) {
                   activeOpacity={0.3}
                   onPress={props.onPressLogout}
                >
-                  <GoogleLogo />
+                  <S.LogoWrapper>
+                     <GoogleLogo />
+                  </S.LogoWrapper>
                   <S.TextBox>
                      <S.GoogleText>Google 계정으로 로그인</S.GoogleText>
                   </S.TextBox>

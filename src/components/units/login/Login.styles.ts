@@ -42,8 +42,11 @@ export const GoogleLoginTouch = styled.TouchableOpacity`
    align-items: center;
    display: flex;
    flex-direction: row;
-   padding-left: 14px;
    position: relative;
+`;
+
+export const LogoWrapper = styled.View`
+   padding-left: 14px;
 `;
 
 export const GoogleText = styled.Text`

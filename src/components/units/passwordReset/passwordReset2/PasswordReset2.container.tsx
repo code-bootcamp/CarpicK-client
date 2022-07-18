@@ -1,47 +1,68 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import PasswordResetPage2UI from "./PasswordReset2.presenter";
-import { FETCH_LOGIN_USER, ISVALID_EMAIL } from "./PasswordReset2.queries";
+import { SEND_SMS, CHECK_TOKEN } from "./PasswordReset2.queries";
 
-export default function PasswordResetPage2({ navigation }) {
-   const [openModal, setOpenModal] = useState(false);
-   const [msg, setMsg] = useState("");
+export default function PasswordResetPage2({ navigation, route }) {
    const [email, setEmail] = useState("");
    const [phone, setPhone] = useState("");
    const [token, setToken] = useState("");
-   const [password, setPassword] = useState("");
-   const [passwordAgain, setPasswordAgain] = useState("");
 
-   // const { data, refetch } = useQuery(FETCH_LOGIN_USER);
-   const [checkEmail] = useMutation(ISVALID_EMAIL);
+   const [msg, setMsg] = useState("");
+   const [openModal, setOpenModal] = useState(false);
+   const [openTimer, setOpenTimer] = useState(false);
+   const [openRedo, setOpenRedo] = useState(false);
+   const [isValidPhone, setIsValidPhone] = useState(false);
+
+   const [sendSMS] = useMutation(SEND_SMS);
+   const [checkToken] = useMutation(CHECK_TOKEN);
+
+   useEffect(() => {
+      setEmail(route.params.email);
+   }, []);
 
    const onPressSMS = async () => {
-      // refetch();
-      // console.log(data);
-      if (!email) return;
+      setIsValidPhone(false);
+      if (!phone) return;
+      setOpenTimer(true);
+      setMsg("3분 이내에 인증번호를 입력해주세요.");
+      setOpenModal(true);
       try {
-         const result = await checkEmail({
+         const result = await sendSMS({
             variables: {
-               email,
+               phone: phone.split("-").join(""),
             },
          });
-         if (result.data.isValidEmail.isValid) {
-            setMsg("사용가능한 이메일 입니다.");
-            setOpenModal(true);
-         }
-         console.log(result);
-
-         if (result.data.isValidEmail.phone === phone.split("-").join("")) {
-            setMsg("휴대폰으로 인증번호가 전송되었습니다.");
-            setOpenModal(true);
-         } else {
-            setMsg("휴대폰번호가 일치하지 않습니다.");
-            setOpenModal(true);
-         }
+         console.log("this is sms", result);
       } catch (error) {
          console.log(error.message);
       }
+   };
+
+   const onPressCheckPhoneTruthNum = async () => {
+      if (!token) return;
+
+      const result = await checkToken({
+         variables: {
+            token,
+         },
+      });
+
+      if (result.data.checkToken) {
+         setOpenTimer(false);
+         setIsValidPhone(true);
+         setMsg("인증이 완료되었습니다.");
+         setOpenModal(true);
+         setOpenRedo(false);
+      } else {
+         setMsg("인증번호가 일치하지 않습니다.");
+         setOpenModal(true);
+      }
+   };
+
+   const onPressNext = () => {
+      navigation.navigate("passwordReset3", { email });
    };
 
    return (
@@ -55,12 +76,14 @@ export default function PasswordResetPage2({ navigation }) {
          )}
          <PasswordResetPage2UI
             phone={phone}
-            setEmail={setEmail}
+            openTimer={openTimer}
+            openRedo={openRedo}
+            isValidPhone={isValidPhone}
             setPhone={setPhone}
             setToken={setToken}
-            setPassword={setPassword}
-            setPasswordAgain={setPasswordAgain}
             onPressSMS={onPressSMS}
+            onPressCheckPhoneTruthNum={onPressCheckPhoneTruthNum}
+            onPressNext={onPressNext}
          />
       </>
    );

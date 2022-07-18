@@ -10,14 +10,14 @@ import Button01Blue from "../../../commons/button/button_01_blue";
 
 export default function PasswordReset1UI(props) {
    return (
-      <S.Wrapper style={globalStyle.GlobalStyles}>
+      <S.Wrapper style={globalStyle.GlobalStyles40}>
          <R.ScrollView showsVerticalScrollIndicator={false}>
             <S.TitleWrapper>
                <TitleText color="#5D8BFF">비밀번호 재설정 </TitleText>
             </S.TitleWrapper>
             <S.Body>
                <S.InputWrapperMarginBtm>
-                  <Contents1Text fontSize="14">이메일</Contents1Text>
+                  <Contents1Text fontSize="12">이메일</Contents1Text>
                   <S.InputRow>
                      <Input2
                         maxLength={13}

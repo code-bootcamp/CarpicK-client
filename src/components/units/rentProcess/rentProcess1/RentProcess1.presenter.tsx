@@ -16,9 +16,9 @@ export default function RentProcess1PageUI(props) {
                <S.HeaderWrapper>
                   <S.CarImage
                      source={{
-                        uri: "https://storage.googleapis.com/carpick_bucket/dog.png",
+                        uri: `https://storage.googleapis.com/${props.data?.fetchCar.imageCar[0].url}`,
                      }}
-                     resizeMode="center"
+                     resizeMode="contain"
                   />
                   <SubTitleText>
                      {props.data?.fetchCar.carModel.name}

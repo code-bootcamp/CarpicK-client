@@ -39,12 +39,7 @@ export default function IntroStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "아이디 찾기",
-                        "#ffffff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#ffffff"),
                })}
             />
             <Stack.Screen
@@ -56,9 +51,10 @@ export default function IntroStack({ navigation }) {
                      NavigationHeaderLeft(
                         { navigation },
                         "login",
-                        "아이디 찾기",
+                        "",
                         "#ffffff"
                      ),
+                  animation: "slide_from_right",
                })}
             />
             <Stack.Screen
@@ -67,12 +63,7 @@ export default function IntroStack({ navigation }) {
                options={() => ({
                   headerShown: false,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "비밀번호 재설정",
-                        "#ffffff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#ffffff"),
                })}
             />
             <Stack.Screen
