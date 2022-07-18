@@ -16,6 +16,7 @@ export default function JoinPage({ navigation }) {
    const [openTimer, setOpenTimer] = useState(false);
    const [openRedo, setOpenRedo] = useState(false);
 
+   const [passwordAgain, setPasswordAgain] = useState("");
    const [token, setToken] = useState("");
    const [isValidEmail, setIsValidEmail] = useState(false);
    const [isValidPhone, setIsValidPhone] = useState(false);
@@ -43,6 +44,10 @@ export default function JoinPage({ navigation }) {
    useEffect(() => {
       if (isValidPhone && watch("phone")) setIsValidPhone(false);
    }, [watch("phone")]);
+
+   useEffect(() => {
+      setPasswordAgain(getValues("passwordAgain"));
+   }, [watch("passwordAgain")]);
 
    const onPressCheckEmail = async () => {
       if (formState.errors.email || !getValues("email")) return;
@@ -143,6 +148,7 @@ export default function JoinPage({ navigation }) {
             handleSubmit={handleSubmit}
             formState={formState}
             setToken={setToken}
+            passwordAgain={passwordAgain}
          />
       </>
    );

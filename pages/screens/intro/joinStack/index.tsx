@@ -24,12 +24,7 @@ export default function JoinStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "회원가입",
-                        "#ffffff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#ffffff"),
                })}
             />
             <Stack.Screen

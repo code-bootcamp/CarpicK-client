@@ -4,8 +4,9 @@ import globalStyle from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import Input2 from "../../../commons/input/Input2";
-import Contents2Text from "../../../commons/text/Contents2Text";
 import Button01Blue from "../../../commons/button/button_01_blue";
+import Timer from "../../../commons/timer/timer.container";
+import RedoButton from "../../../commons/redoButton/redoButton.container";
 import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
 
 export default function PasswordReset2UI(props) {
@@ -33,11 +34,26 @@ export default function PasswordReset2UI(props) {
                            value={phoneNumHypen(props.phone)}
                         />
                      </S.InputLeft>
-                     <S.SubTouch activeOpacity={0.7} onPress={props.onPressSMS}>
-                        <Contents1Text color="#ffffff" fontSize="14">
-                           인증요청
-                        </Contents1Text>
-                     </S.SubTouch>
+                     {!props.openTimer && !props.openRedo && (
+                        <S.SubTouch
+                           activeOpacity={0.7}
+                           onPress={props.onPressSMS}
+                        >
+                           <Contents1Text color="#ffffff" fontSize="14">
+                              인증요청
+                           </Contents1Text>
+                        </S.SubTouch>
+                     )}
+                     {props.openTimer && (
+                        <Timer
+                           setOpenTimer={props.setOpenTimer}
+                           setOpenRedo={props.setOpenRedo}
+                           setToken={props.setToken}
+                        />
+                     )}
+                     {props.openRedo && (
+                        <RedoButton setOpenRedo={props.setOpenRedo} />
+                     )}
                   </S.InputRow>
                </S.InputWrapperMarginBtm>
                <S.InputWrapperMarginBtm>

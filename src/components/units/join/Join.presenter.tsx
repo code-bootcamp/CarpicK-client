@@ -12,12 +12,12 @@ import Timer from "../../commons/timer/timer.container";
 import RedoButton from "../../commons/redoButton/redoButton.container";
 const emailRegExp =
    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])/;
+const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
 
 export default function JoinPageUI(props) {
    return (
       <>
-         <S.Wrapper style={globalStyles.GlobalStyles}>
+         <S.Wrapper style={globalStyles.GlobalStyles40}>
             <R.ScrollView showsVerticalScrollIndicator={false}>
                <S.TitleWrapper>
                   <TitleText color="#5D8BFF">카픽 </TitleText>
@@ -25,7 +25,7 @@ export default function JoinPageUI(props) {
                </S.TitleWrapper>
                <S.Body>
                   <S.InputWrapper>
-                     <Contents1Text fontSize="14">이메일</Contents1Text>
+                     <Contents1Text fontSize="12">이메일</Contents1Text>
                      <S.InputRow>
                         <S.InputLeft>
                            <Controller
@@ -66,7 +66,7 @@ export default function JoinPageUI(props) {
                      {props.formState.errors.email?.message}
                   </Contents2Text>
                   <S.InputWrapperMarginBtm>
-                     <Contents1Text fontSize="14">전화번호</Contents1Text>
+                     <Contents1Text fontSize="12">전화번호</Contents1Text>
                      <S.InputRow>
                         <S.InputLeft>
                            <Controller
@@ -112,7 +112,7 @@ export default function JoinPageUI(props) {
                      </S.InputRow>
                   </S.InputWrapperMarginBtm>
                   <S.InputWrapperMarginBtm>
-                     <Contents1Text fontSize="14">인증번호</Contents1Text>
+                     <Contents1Text fontSize="12">인증번호</Contents1Text>
                      <S.InputRow>
                         <S.InputLeft>
                            <Input2
@@ -133,7 +133,7 @@ export default function JoinPageUI(props) {
                      </S.InputRow>
                   </S.InputWrapperMarginBtm>
                   <S.InputWrapperMarginBtm>
-                     <Contents1Text fontSize="14">이름</Contents1Text>
+                     <Contents1Text fontSize="12">이름</Contents1Text>
                      <Controller
                         name="name"
                         control={props.control}
@@ -152,7 +152,7 @@ export default function JoinPageUI(props) {
                      />
                   </S.InputWrapperMarginBtm>
                   <S.InputWrapper>
-                     <Contents1Text fontSize="14">비밀번호</Contents1Text>
+                     <Contents1Text fontSize="12">비밀번호</Contents1Text>
                      <Controller
                         name="password"
                         control={props.control}
@@ -187,7 +187,7 @@ export default function JoinPageUI(props) {
                      {props.formState.errors.password?.message}
                   </Contents2Text>
                   <S.InputWrapperMarginBtm>
-                     <Contents1Text fontSize="14">
+                     <Contents1Text fontSize="12">
                         비밀번호 재확인
                      </Contents1Text>
                      <Controller
@@ -211,7 +211,8 @@ export default function JoinPageUI(props) {
                !(
                   props.formState.isValid &&
                   props.isValidEmail &&
-                  props.isValidPhone
+                  props.isValidPhone &&
+                  props.passwordAgain
                )
             }
             onPress={props.onPressNext}

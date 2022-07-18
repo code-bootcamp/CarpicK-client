@@ -13,7 +13,7 @@ export const FETCH_CAR_LOCATION = gql`
 `;
 
 export const FETCH_CARS = gql`
-   query fetchCars($carLocationId: String!, $page: Float!) {
+   query fetchCars($carLocationId: String!, $page: Int!) {
       fetchCars(carLocationId: $carLocationId, page: $page) {
          id
          carNumber

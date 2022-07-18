@@ -8,6 +8,8 @@ import Contents1Text from "../../../commons/text/Contents1Text";
 import Contents2Text from "../../../commons/text/Contents2Text";
 import colors from "../../../../commons/lib/colors";
 import TitleText from "../../../commons/text/TitleText";
+import CheckBox1 from "../../../commons/checkbox/CheckBox1";
+import CheckBox2 from "../../../commons/checkbox/CheckBox2";
 
 export default function RentProcess2PageUI(props) {
    return (
@@ -50,7 +52,27 @@ export default function RentProcess2PageUI(props) {
                         }
                      </Contents1Text>
                   </S.ContentsTextWrapper>
-                  <SubTitleText>약관 및 이용 안내 동의</SubTitleText>
+                  <R.View style={{ marginTop: 15 }}>
+                     <SubTitleText>약관 및 이용 안내 동의</SubTitleText>
+                     <S.CheckBoxWrapper>
+                        <CheckBox1
+                           onChange={props.onChangeCheck}
+                           contents="예약 정보 확인 및 모든 약관에 동의합니다."
+                        />
+                        <CheckBox2
+                           onChange={props.onChangeCheck}
+                           contents="[필수] 카픽 자동차대여약관"
+                        />
+                        <CheckBox2
+                           onChange={props.onChangeCheck}
+                           contents="[필수] 카픽 차량손해면책제도 이용약관"
+                        />
+                        <CheckBox2
+                           onChange={props.onChangeCheck}
+                           contents="[필수] 개인정보 수집 및 이용 동의"
+                        />
+                     </S.CheckBoxWrapper>
+                  </R.View>
                </S.FooterWrapper>
             </R.ScrollView>
          </S.Wrapper>

@@ -25,7 +25,6 @@ export default function PasswordReset1UI(props) {
                   <Contents1Text fontSize="12">이메일</Contents1Text>
                   <S.InputRow>
                      <Input2
-                        maxLength={13}
                         onChangeText={(text) => props.setEmail(text)}
                         placeholder="이메일을 입력해주세요."
                      />

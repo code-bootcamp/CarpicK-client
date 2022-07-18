@@ -38,7 +38,7 @@ export const PriceWrapper = styled.View`
 
 export const FooterWrapper = styled.View`
    width: 100%;
-   height: 330px;
+   height: 315px;
    background-color: #ffffff;
    padding: 15px 20px;
    margin-top: 10px;
@@ -47,4 +47,9 @@ export const FooterWrapper = styled.View`
 export const ContentsTextWrapper = styled.View`
    width: 100%;
    margin: 15px 0px;
+`;
+
+export const CheckBoxWrapper = styled.View`
+   width: 100%;
+   padding-top: 20px;
 `;

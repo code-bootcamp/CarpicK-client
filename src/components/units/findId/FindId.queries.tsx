@@ -11,3 +11,9 @@ export const CHECK_TOKEN = gql`
       checkToken(token: $token)
    }
 `;
+
+export const FETCH_EMAIL = gql`
+   query fetchEmail($phone: String!) {
+      fetchEmail(phone: $phone)
+   }
+`;

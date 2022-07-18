@@ -12,11 +12,11 @@ export default function LoginPageUI(props) {
             <S.Body>
                <S.Input
                   textContentType="emailAddress"
-                  onChange={props.onChangeEmail}
+                  onChangeText={(text) => props.setEmail(text)}
                   placeholder="이메일을 입력해주세요"
                />
                <S.Input
-                  onChange={props.onChangePassword}
+                  onChangeText={(text) => props.setPassword(String(text))}
                   secureTextEntry={true}
                   placeholder="비밀번호를 입력해주세요"
                />
@@ -27,7 +27,9 @@ export default function LoginPageUI(props) {
                />
                <S.GoogleLoginTouch
                   activeOpacity={0.3}
-                  onPress={props.onPressLogout}
+                  onPress={() => {
+                     props.promptAsync();
+                  }}
                >
                   <S.LogoWrapper>
                      <GoogleLogo />

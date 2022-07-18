@@ -15,13 +15,10 @@ export default function IdResultPageUI(props) {
             </S.ProcessWrapper>
          </S.TitleWrapper>
          <S.TextWrapper>
-            <SubTitleText>
-               {}
-               님의 아이디는 !
-            </SubTitleText>
+            <SubTitleText>회원님의 아이디는 !</SubTitleText>
          </S.TextWrapper>
          <S.TextWrapper>
-            <SubTitleText color="#777777">{} 입니다.</SubTitleText>
+            <SubTitleText color="#777777">{props.email} 입니다.</SubTitleText>
          </S.TextWrapper>
          <S.ButtonWrapper>
             <Button01Blue
