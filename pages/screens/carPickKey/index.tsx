@@ -3,6 +3,7 @@ import colors from "../../../src/commons/lib/colors";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
 import CarPickKeyAfter from "../../../src/components/units/carPickKey/after/CarPickKey.after.container";
 import CarPickKeyBefore from "../../../src/components/units/carPickKey/before/CarPickKey.before.container";
+import CarPickKeyDetail from "../../../src/components/units/carPickKey/detail/CarPickKey.detail.container";
 import CarPickKeyUsing from "../../../src/components/units/carPickKey/using/CarPickKey.using.container";
 
 const Stack = createNativeStackNavigator();
@@ -15,6 +16,7 @@ export default function CarPickKeyStack({ navigation }) {
                headerShadowVisible: false,
                headerStyle: { backgroundColor: "#fff" },
                headerTitleAlign: "center",
+               animation: "slide_from_right",
                headerTitleStyle: {
                   color: colors.black,
                   fontSize: 15,
@@ -23,13 +25,28 @@ export default function CarPickKeyStack({ navigation }) {
             }}
          >
             <Stack.Screen
+               name="carPickKeyDetail"
+               component={CarPickKeyDetail}
+               options={() => ({
+                  headerShown: true,
+                  headerTitle: "예약 상세정보",
+                  headerLeft: () =>
+                     NavigationHeaderLeft({ navigation }, "", "", "#000"),
+               })}
+            />
+            <Stack.Screen
                name="carPickKeyBefore"
                component={CarPickKeyBefore}
                options={() => ({
                   headerShown: true,
                   headerTitle: "차량 인수하기",
                   headerLeft: () =>
-                     NavigationHeaderLeft({ navigation }, "", "", "#000"),
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "carPickKeyDetail",
+                        "",
+                        "#000"
+                     ),
                })}
             />
             <Stack.Screen
