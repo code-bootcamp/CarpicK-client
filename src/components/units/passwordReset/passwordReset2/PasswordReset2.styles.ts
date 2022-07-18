@@ -23,17 +23,18 @@ export const InputWrapper = styled.View``;
 
 export const InputWrapperMarginBtm = styled.View`
    width: 100%;
-   margin-bottom: 12px;
+   margin-bottom: 20px;
 `;
 
 export const InputLeft = styled.View`
-   width: 70%;
+   width: 65%;
 `;
 
 export const InputRow = styled.View`
    width: 100%;
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 `;
 
 export const Input = styled.TextInput`
@@ -48,4 +49,8 @@ export const SubTouch = styled.TouchableOpacity`
    align-items: center;
    justify-content: center;
    border-radius: 5px;
+`;
+
+export const ButtonWrapper = styled.View`
+   padding-top: 12px;
 `;

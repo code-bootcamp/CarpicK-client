@@ -23,7 +23,7 @@ export const InputWrapper = styled.View``;
 
 export const InputWrapperMarginBtm = styled.View`
    width: 100%;
-   margin-bottom: 32px;
+   margin-bottom: 12px;
 `;
 
 export const InputLeft = styled.View`
@@ -48,4 +48,8 @@ export const SubTouch = styled.TouchableOpacity`
    align-items: center;
    justify-content: center;
    border-radius: 5px;
+`;
+
+export const ButtonWrapper = styled.View`
+   padding-top: 12px;
 `;

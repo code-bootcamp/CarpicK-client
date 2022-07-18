@@ -116,11 +116,11 @@ export const ButtonNext = styled.TouchableOpacity`
 
 export const InsuranceWrapper = styled.View`
    width: 100%;
-   height: 400px;
+   height: 320px;
    background-color: #ffffff;
    padding: 20px 20px 25px 20px;
    margin-top: 10px;
-   margin-bottom: 50px;
+   margin-bottom: 30px;
 `;
 
 export const InsuranceTextWrapper = styled.View`

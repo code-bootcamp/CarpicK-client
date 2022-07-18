@@ -27,7 +27,7 @@ const CustomTextInput = styled.TextInput<ICustomTextInputStyledProps>`
    width: 100%;
    height: 45px;
    padding: 0 5px;
-   border-bottom-width: 1px;
+   border-bottom-width: 0.5px;
    border-bottom-color: ${(props) =>
       props.isFocus ? colors.theme : colors.black};
 `;

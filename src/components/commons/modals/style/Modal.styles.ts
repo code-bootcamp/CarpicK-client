@@ -16,7 +16,7 @@ export const ModalView = styled.View`
    width: 100%;
    background-color: white;
    border-radius: 21px 21px 0 0;
-   margin-bottom: 120px;
+   margin-bottom: 50px;
 `;
 
 export const ContentsView = styled.View`

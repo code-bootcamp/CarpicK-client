@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
 import PasswordResetPage1 from "../../../src/components/units/passwordReset/passwordReset1/PasswordReset1.container";
 import PasswordResetPage2 from "../../../src/components/units/passwordReset/passwordReset2/PasswordReset2.container";
+import PasswordResetPage3 from "../../../src/components/units/passwordReset/passwordReset3/PasswordReset3.container";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +14,7 @@ export default function PasswordResetStack({ navigation }) {
                headerTintColor: "#ffffff",
                headerTitle: "",
                headerStyle: { backgroundColor: "#5D8BFF" },
+               animation: "slide_from_right",
             }}
          >
             <Stack.Screen
@@ -20,14 +22,9 @@ export default function PasswordResetStack({ navigation }) {
                component={PasswordResetPage1}
                options={() => ({
                   headerShown: true,
-                  headerShadowVisible: false,
+                  headerShadowVisible: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "비밀번호 재설정",
-                        "#ffffff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#ffffff"),
                })}
             />
             <Stack.Screen
@@ -35,12 +32,27 @@ export default function PasswordResetStack({ navigation }) {
                component={PasswordResetPage2}
                options={() => ({
                   headerShown: true,
-                  headerShadowVisible: false,
+                  headerShadowVisible: true,
                   headerLeft: () =>
                      NavigationHeaderLeft(
                         { navigation },
+                        "passwordReset1",
                         "",
-                        "비밀번호 재설정",
+                        "#ffffff"
+                     ),
+               })}
+            />
+            <Stack.Screen
+               name="passwordReset3"
+               component={PasswordResetPage3}
+               options={() => ({
+                  headerShown: true,
+                  headerShadowVisible: true,
+                  headerLeft: () =>
+                     NavigationHeaderLeft(
+                        { navigation },
+                        "passwordReset2",
+                        "",
                         "#ffffff"
                      ),
                })}

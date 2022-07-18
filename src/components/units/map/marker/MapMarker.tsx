@@ -27,15 +27,15 @@ export default function MapMarker({
             longitude: lng,
          }}
          style={{ width: 100, height: 100 }}
-         image={require(".././../../../../assets/map/marker-150.png")}
+         // image={require(".././../../../../assets/map/marker-150.png")}
          title="카픽존"
       >
-         {/* <R.Image
+         <R.Image
             source={require("../../../../../assets/map/marker-150.png")}
-            style={{ width: 26, height: 28 }}
+            style={{ width: 100, height: 100 }}
             resizeMode="contain"
             resizeMethod="resize"
-         /> */}
+         />
       </Marker>
    );
 }

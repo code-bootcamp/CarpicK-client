@@ -130,6 +130,7 @@ export default function MainStack({ navigation }) {
                drawerType: "front",
                headerShown: true,
                swipeEnabled: true,
+               headerShadowVisible: true,
                drawerStyle: {
                   backgroundColor: "#ffffff",
                   width: 250,

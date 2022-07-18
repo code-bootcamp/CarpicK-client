@@ -77,10 +77,12 @@ export default function MainPageUI(props) {
                               onPress={() => props.onPressToRentProcess(el.id)}
                            >
                               <S.CarListBody>
-                                 {/* <S.CarImage
-                              source={el.imageRequire}
-                              resizeMode="contain"
-                           /> */}
+                                 <S.CarImage
+                                    source={{
+                                       uri: `https://storage.googleapis.com/${el.imageCar[0].url}`,
+                                    }}
+                                    resizeMode="contain"
+                                 />
                                  <S.CarListTextWrapper>
                                     <SubTitleText>
                                        {el.carModel.name}

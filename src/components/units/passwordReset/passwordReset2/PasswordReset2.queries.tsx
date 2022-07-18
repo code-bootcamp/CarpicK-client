@@ -6,23 +6,8 @@ export const SEND_SMS = gql`
    }
 `;
 
-export const ISVALID_EMAIL = gql`
-   mutation isValidEmail($email: String!) {
-      isValidEmail(email: $email) {
-         isValid
-         phone
-      }
-   }
-`;
-
-export const FETCH_LOGIN_USER = gql`
-   query fetchLoginUser {
-      fetchLoginUser {
-         id
-         name
-         email
-         phone
-         isAuth
-      }
+export const CHECK_TOKEN = gql`
+   mutation checkToken($token: String!) {
+      checkToken(token: $token)
    }
 `;

@@ -21,7 +21,7 @@ export default function PasswordResetPage1({ navigation }) {
             setOpenModal(true);
          }
          if (!result.data.isValidEmail.isValid) {
-            navigation.navigate("passwordReset2");
+            navigation.navigate("passwordReset2", { email });
          }
       } catch (error) {
          console.log("Error:", error);
