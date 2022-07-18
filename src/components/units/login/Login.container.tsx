@@ -1,5 +1,8 @@
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
+import * as AuthSession from "expo-auth-session";
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/store";
 import LoginPageUI from "./Login.presenter";
@@ -7,21 +10,40 @@ import { LOGIN, LOGOUT } from "./Login.queries";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Modal3 from "../../commons/modals/modal3/Modal3";
 
+WebBrowser.maybeCompleteAuthSession();
+
 export default function LoginPage({ navigation }) {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [login] = useMutation(LOGIN);
    const [logout] = useMutation(LOGOUT);
    const [_, setAccessToken] = useRecoilState(accessTokenState);
+   const [googleToken, setGoogleToken] = useState();
+   const [userInfo, setUserInfo] = useState();
+
    const [openModal, setOpenModal] = useState(false);
    const [errMsg, setErrMsg] = useState("");
 
-   const onChangeEmail = (e) => {
-      setEmail(e.nativeEvent.text);
-   };
+   const [request, response, promptAsync] = Google.useAuthRequest({
+      expoClientId:
+         "326184472330-p2206o8g8r2jvuab4790b5pq9de1tnu5.apps.googleusercontent.com",
+      iosClientId:
+         "326184472330-i3vm3b1eop2l01ofp6mm1cobsdrk2nfk.apps.googleusercontent.com",
+      androidClientId:
+         "326184472330-nrm3dk8vfjfmkvmicvvms81ia34c1376.apps.googleusercontent.com",
+      webClientId:
+         "326184472330-p2206o8g8r2jvuab4790b5pq9de1tnu5.apps.googleusercontent.com",
+   });
 
-   const onChangePassword = (e) => {
-      setPassword(String(e.nativeEvent.text));
+   useEffect(() => {
+      if (response?.type === "success") {
+         setGoogleToken(response.authentication?.accessToken);
+         console.log(response.authentication?.accessToken);
+      }
+   }, [response]);
+
+   const getUserDate = async () => {
+      let userInfoResponse = await fetch("");
    };
 
    const onPressToFindId = () => {
@@ -82,8 +104,9 @@ export default function LoginPage({ navigation }) {
             onPressToFindId={onPressToFindId}
             onPressToPasswordReset={onPressToPasswordReset}
             onPressToJoin={onPressToJoin}
-            onChangeEmail={onChangeEmail}
-            onChangePassword={onChangePassword}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            promptAsync={promptAsync}
          />
       </>
    );

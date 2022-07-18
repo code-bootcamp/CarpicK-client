@@ -11,5 +11,11 @@ export default function License1LaterPage({ navigation }) {
       navigation.navigate("license2Later");
    };
 
-   return <License1LaterPageUI data={data} onPressNext={onPressNext} />;
+   return (
+      !loading && (
+         <>
+            <License1LaterPageUI data={data} onPressNext={onPressNext} />
+         </>
+      )
+   );
 }

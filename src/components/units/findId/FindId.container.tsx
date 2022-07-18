@@ -1,10 +1,12 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 import { useState } from "react";
 import Modal3 from "../../commons/modals/modal3/Modal3";
 import FindIdPageUI from "./FindId.presenter";
-import { CHECK_TOKEN, SEND_SMS } from "./FindId.queries";
+import { SEND_SMS, CHECK_TOKEN, FETCH_EMAIL } from "./FindId.queries";
 
 export default function FindIdPage({ navigation }) {
+   const client = useApolloClient();
+   const [email, setEmail] = useState("");
    const [phone, setPhone] = useState("");
    const [token, setToken] = useState("");
 
@@ -17,26 +19,45 @@ export default function FindIdPage({ navigation }) {
    const [sendSMS] = useMutation(SEND_SMS);
    const [checkToken] = useMutation(CHECK_TOKEN);
 
-   const onPressToIdResult = () => {
-      navigation.navigate("idResult", { phone });
-   };
-
    const onPressSMS = async () => {
       setIsValidPhone(false);
       if (!phone) return;
-      setOpenTimer(true);
-      setMsg("3분 이내에 인증번호를 입력해주세요.");
-      setOpenModal(true);
       try {
-         const result = await sendSMS({
+         const resultId = await client.query({
+            query: FETCH_EMAIL,
             variables: {
                phone: phone.split("-").join(""),
             },
+            fetchPolicy: "network-only",
          });
-         console.log("this is sms", result);
+         console.log(resultId.data.fetchEmail);
+         if (resultId.data.fetchEmail === "등록되지 않은 번호입니다") {
+            setMsg("등록되어있지 않는 전화번호입니다.");
+            setOpenModal(true);
+            return;
+         } else {
+            setEmail(resultId.data.fetchEmail);
+            setOpenTimer(true);
+            setMsg("3분 이내에 인증번호를 입력해주세요.");
+            setOpenModal(true);
+            try {
+               const result = await sendSMS({
+                  variables: {
+                     phone: phone.split("-").join(""),
+                  },
+               });
+               console.log("this is sms", result);
+            } catch (error) {
+               console.log(error.message);
+            }
+         }
       } catch (error) {
-         console.log(error.message);
+         console.log("ErrorMsg :", error.message);
       }
+   };
+
+   const onPressToIdResult = () => {
+      navigation.navigate("idResult", { email });
    };
 
    const onPressCheckPhoneTruthNum = async () => {
@@ -76,6 +97,8 @@ export default function FindIdPage({ navigation }) {
             isValidPhone={isValidPhone}
             setPhone={setPhone}
             setToken={setToken}
+            setOpenTimer={setOpenTimer}
+            setOpenRedo={setOpenRedo}
             onPressSMS={onPressSMS}
             onPressCheckPhoneTruthNum={onPressCheckPhoneTruthNum}
             onPressToIdResult={onPressToIdResult}

@@ -1,12 +1,12 @@
 import * as S from "./FindId.styles";
-import TitleText from "../../commons/text/TitleText";
 import globalStyles from "../../../commons/styles/globalStyle";
+import TitleText from "../../commons/text/TitleText";
 import Contents1Text from "../../commons/text/Contents1Text";
-import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
+import Input2 from "../../commons/input/Input2";
 import Button01Blue from "../../commons/button/button_01_blue";
 import Timer from "../../commons/timer/timer.container";
 import RedoButton from "../../commons/redoButton/redoButton.container";
-import Input2 from "../../commons/input/Input2";
+import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
 
 export default function FindIdPageUI(props) {
    return (

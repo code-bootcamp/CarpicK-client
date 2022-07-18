@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import PasswordResetPage3UI from "./PasswordReset3.presenter";
 import { RESET_PWD } from "./PasswordReset3.queries";
-const passwordRegExp = /^(?=.[a-zA-Z])(?=.*[0-9]).{8,16}/;
+const passwordRegExp = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,16}$/;
 
 export default function PasswordResetPage3({ navigation, route }) {
    const [email, setEmail] = useState("");

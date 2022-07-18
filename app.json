@@ -18,6 +18,7 @@
       "updates": {
          "fallbackToCacheTimeout": 0
       },
+      "plugins": ["@react-native-google-signin/google-signin"],
       "assetBundlePatterns": ["**/*"],
       "ios": {
          "bundleIdentifier": "com.expo.carpick",
