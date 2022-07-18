@@ -9,6 +9,10 @@ export default function IdResultPageUI(props) {
       <S.Wrapper style={globalStyles.GlobalStyles40}>
          <S.TitleWrapper>
             <TitleText color="#5D8BFF">아이디 찾기</TitleText>
+            <S.ProcessWrapper>
+               <S.ProcessIconGray />
+               <S.ProcessIcon />
+            </S.ProcessWrapper>
          </S.TitleWrapper>
          <S.TextWrapper>
             <SubTitleText>

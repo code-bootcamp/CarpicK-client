@@ -4,6 +4,7 @@ export const Wrapper = styled.View`
    flex-direction: row;
    align-items: center;
    position: relative;
+   margin-top: 5px;
 `;
 
 export const FullStatusBar = styled.View`
@@ -30,5 +31,3 @@ export const Bar = styled.View`
    position: absolute;
    z-index: 999;
 `;
-
-/* width: ${(props) => props.barLength + "%"}; */

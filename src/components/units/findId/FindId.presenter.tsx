@@ -13,6 +13,10 @@ export default function FindIdPageUI(props) {
       <S.Wrapper style={globalStyles.GlobalStyles40}>
          <S.TitleWrapper>
             <TitleText color="#5D8BFF">아이디 찾기</TitleText>
+            <S.ProcessWrapper>
+               <S.ProcessIcon />
+               <S.ProcessIconGray />
+            </S.ProcessWrapper>
          </S.TitleWrapper>
          <S.InputWrapperMarginBtm>
             <Contents1Text fontSize="12">전화번호</Contents1Text>
