@@ -8,13 +8,15 @@ import LicenseDone from "../../../../../assets/license/done.svg";
 export default function License1LaterPageUI(props) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
-         {!props.data.fetchLoginUser.isAuth && (
+         {!props.data?.fetchLoginUser.isAuth && (
             <>
                <S.TitleWrapper>
                   <S.TitleBlue style={{ includeFontPadding: false }}>
-                     면허{" "}
+                     면허 등록{" "}
                   </S.TitleBlue>
-                  <S.Title style={{ includeFontPadding: false }}>등록 </S.Title>
+                  <S.Title style={{ includeFontPadding: false }}>
+                     진행하기
+                  </S.Title>
                </S.TitleWrapper>
                <S.Body>
                   <S.MainText style={{ includeFontPadding: false }}>
@@ -34,7 +36,7 @@ export default function License1LaterPageUI(props) {
                </S.NextTouch>
             </>
          )}
-         {props.data.fetchLoginUser.isAuth && (
+         {props.data?.fetchLoginUser.isAuth && (
             <>
                <S.TitleBlue style={{ includeFontPadding: false }}>
                   {" "}

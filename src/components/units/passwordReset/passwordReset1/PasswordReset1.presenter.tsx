@@ -14,6 +14,11 @@ export default function PasswordReset1UI(props) {
          <R.ScrollView showsVerticalScrollIndicator={false}>
             <S.TitleWrapper>
                <TitleText color="#5D8BFF">비밀번호 재설정 </TitleText>
+               <S.ProcessWrapper>
+                  <S.ProcessIcon />
+                  <S.ProcessIconGray />
+                  <S.ProcessIconGray />
+               </S.ProcessWrapper>
             </S.TitleWrapper>
             <S.Body>
                <S.InputWrapperMarginBtm>

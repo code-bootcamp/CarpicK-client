@@ -14,6 +14,11 @@ export default function PasswordResetPage3UI(props) {
          <R.ScrollView showsVerticalScrollIndicator={false}>
             <S.TitleWrapper>
                <TitleText color="#5D8BFF">비밀번호 재설정 </TitleText>
+               <S.ProcessWrapper>
+                  <S.ProcessIconGray />
+                  <S.ProcessIconGray />
+                  <S.ProcessIcon />
+               </S.ProcessWrapper>
             </S.TitleWrapper>
             <S.Body>
                <S.InputWrapper>
@@ -30,6 +35,11 @@ export default function PasswordResetPage3UI(props) {
                      {!props.isValidPassword
                         ? "영문+숫자 조합 8~16자리를 입력해주세요."
                         : ""}
+                  </Contents2Text>
+               )}
+               {props.isVaildPassword && (
+                  <Contents2Text color="#00C73C">
+                     {!props.isValidPassword ? "알맞은 비밀번호입니다 : )" : ""}
                   </Contents2Text>
                )}
                <S.InputWrapperMarginBtm>

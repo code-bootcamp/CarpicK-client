@@ -15,3 +15,21 @@ export const CHECK_LICENSE = gql`
       )
    }
 `;
+
+export const FETCH_LOGIN_USER = gql`
+   query fetchLoginUser {
+      fetchLoginUser {
+         id
+         name
+         email
+         phone
+         isAuth
+      }
+   }
+`;
+
+export const UPDATE_LICENSE = gql`
+   mutation updateUserIsAuth($isAuth: Boolean!) {
+      updateUserIsAuth(isAuth: $isAuth)
+   }
+`;

@@ -26,13 +26,13 @@ export default function MapMarker({
             latitude: lat,
             longitude: lng,
          }}
-         style={{ width: 100, height: 100 }}
+         style={{ width: 80, height: 80 }}
          // image={require(".././../../../../assets/map/marker-150.png")}
          title="카픽존"
       >
          <R.Image
             source={require("../../../../../assets/map/marker-150.png")}
-            style={{ width: 100, height: 100 }}
+            style={{ width: 80, height: 80 }}
             resizeMode="contain"
             resizeMethod="resize"
          />

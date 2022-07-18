@@ -7,7 +7,7 @@ export const ModalCenteredView = styled.View`
    flex: 1;
    justify-content: center;
    align-items: center;
-   background-color: rgba(0, 0, 0, 0.2);
+   background-color: rgba(0, 0, 0, 0.65);
    padding-left: 30px;
    padding-right: 30px;
 `;

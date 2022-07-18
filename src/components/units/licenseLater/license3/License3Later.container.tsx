@@ -1,8 +1,13 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import License3LaterPageUI from "./License3Later.presenter";
-import { CHECK_LICENSE } from "./License3Later.queries";
+import {
+   CHECK_LICENSE,
+   FETCH_LOGIN_USER,
+   UPDATE_LICENSE,
+} from "./License3Later.queries";
 
 export default function License3LaterPage({ navigation, route }) {
    const [uri, setUri] = useState();
@@ -11,8 +16,12 @@ export default function License3LaterPage({ navigation, route }) {
    const [isAuth, setIsAuth] = useState(false);
    const [openModal1, setOpenModal1] = useState(false);
    const [openModal2, setOpenModal2] = useState(false);
+   const [openLoading, setOpenLoading] = useState(false);
    const [openSubmitButton, setOpenSubmitButton] = useState(false);
    const [checkLicense] = useMutation(CHECK_LICENSE);
+   const [updateLicense] = useMutation(UPDATE_LICENSE);
+
+   const { data } = useQuery(FETCH_LOGIN_USER, { fetchPolicy: "no-cache" });
 
    useEffect(() => {
       setUri(route.params.uri);
@@ -25,7 +34,7 @@ export default function License3LaterPage({ navigation, route }) {
    };
 
    const onPressCheckLisense = async () => {
-      if (route.params.data2.name !== route.params.result.Name) {
+      if (data.fetchLoginUser.name !== route.params.result.Name) {
          setMsg("이름이 일치하지 않습니다.\n본인 명의의 면허증만 가능합니다.");
          setOpenModal1(true);
          return;
@@ -39,9 +48,11 @@ export default function License3LaterPage({ navigation, route }) {
          route.params.result.Name &&
          specialNumber
       ) {
+         setOpenLoading(true);
          const result = await checkLicense({
             variables: { ...rest, SpecialNumber: specialNumber },
          });
+         setOpenLoading(false);
          console.log(
             "this is police return",
             JSON.parse(result.data.checkLicense)
@@ -66,12 +77,26 @@ export default function License3LaterPage({ navigation, route }) {
       }
    };
 
-   const onPressSubmit = () => {};
+   const onPressSubmit = async () => {
+      try {
+         const result = await updateLicense({ variables: { isAuth: true } });
 
-   console.log("this is result", route.params.result);
+         setMsg("면허인증이 완료되었습니다.");
+         setOpenModal2(true);
+         console.log("this is result", result);
+      } catch (error) {
+         console.log("this is error", error);
+      }
+   };
+
+   const onPressToMain = () => {
+      setOpenModal2(false);
+      navigation.replace("mainStack");
+   };
 
    return (
       <>
+         {openLoading && <LoadingCircle />}
          {openModal1 && (
             <Modal3
                contents={msg}
@@ -83,7 +108,7 @@ export default function License3LaterPage({ navigation, route }) {
             <Modal3
                contents={msg}
                positiveText="확인"
-               positive={onPressToLogin}
+               positive={onPressToMain}
             />
          )}
          <License3LaterPageUI
