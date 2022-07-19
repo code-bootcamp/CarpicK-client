@@ -1,14 +1,17 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_CAR } from "./RentProcess1.queries";
+import { FETCH_CAR, FETCH_LOGIN_USER } from "./RentProcess1.queries";
 import RentProcess1PageUI from "./RentProcess1.presenter";
 import GetRentTime from "../../../../commons/utilities/getRentTime";
 import { useEffect, useState } from "react";
 import Modal5 from "../../../commons/modals/modal5/Modal5";
 import moment from "moment";
+import Modal3 from "../../../commons/modals/modal3/Modal3";
 
 export default function RentProcess1Page({ navigation, route }) {
    // console.log("this is rp1", route.params.id);
    const result = GetRentTime();
+   const [msg, setMsg] = useState("");
+   const [openModal, setOpenModal] = useState(false);
    const [checked, setChecked] = useState("first");
    const [insuPrice, setInsuPrice] = useState(0);
    const [isVisible, setIsVisible] = useState(false);
@@ -22,7 +25,7 @@ export default function RentProcess1Page({ navigation, route }) {
    const [indexEndHour, setIndexEndHour] = useState(0);
 
    const [arrHour, setArrHour] = useState([]);
-
+   const { data: userData } = useQuery(FETCH_LOGIN_USER);
    const { data } = useQuery(FETCH_CAR, {
       variables: {
          carId: route.params.id,
@@ -98,8 +101,12 @@ export default function RentProcess1Page({ navigation, route }) {
    console.log("this is data", data);
 
    // console.log("this is result", result);
-
    const onPressNext = () => {
+      if (!userData.fetchLoginUser.isAuth) {
+         setMsg("운전면허를 등록해야 서비스 이용이 가능합니다.");
+         setOpenModal(true);
+         return;
+      }
       navigation.navigate("rentProcess2", {
          data,
          result,
@@ -146,6 +153,13 @@ export default function RentProcess1Page({ navigation, route }) {
    console.log("total price", totalPrice);
    return (
       <>
+         {openModal && (
+            <Modal3
+               contents={msg}
+               positiveText="확인"
+               positive={() => setOpenModal(false)}
+            />
+         )}
          {isVisible && (
             <Modal5
                initialStartTime={
