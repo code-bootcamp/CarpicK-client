@@ -25,8 +25,8 @@ export default function MainPageUI(props) {
                }}
                style={{ flex: 1, width: "100%" }}
                initialRegion={{
-                  latitude: 37.4848527,
-                  longitude: 126.8966316,
+                  latitude: props.location.latitude, // 37.4848527
+                  longitude: props.location.longitude, // 126.8966316
                   latitudeDelta: 0.004,
                   longitudeDelta: 0.009,
                }}

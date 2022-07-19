@@ -13,7 +13,6 @@ export default function PasswordInputPage({ navigation }) {
    const { data } = useQuery(FETCH_LOGIN_USER);
 
    // console.log(data.fetchLoginUser);
-   console.log(password);
 
    useEffect(() => {
       setEmail(data.fetchLoginUser.email);
