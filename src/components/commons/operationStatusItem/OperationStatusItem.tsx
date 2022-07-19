@@ -13,15 +13,29 @@ import TitleText from "../text/TitleText";
  *************************/
 
 interface OperationStatusItemProps {
-   status: string;
+   data?: any;
 }
 
 export default function OperationStatusItem(props: OperationStatusItemProps) {
-   const textDirectionVertical = (status: string) => {
-      return status.split("").join("\n");
+   console.log(props.data);
+   const statusTranslation = (status?: string) => {
+      switch (status) {
+         case "USING":
+            return "이용중";
+         case "RESERVATION":
+            return "예약완료";
+         case "CANCEL":
+            return "예약취소";
+         case "RETURN":
+            return "반납완료";
+      }
    };
 
-   const statusBackgroundColor = (status: string) => {
+   const textDirectionVertical = (status?: string) => {
+      return status?.split("").join("\n");
+   };
+
+   const statusBackgroundColor = (status?: string) => {
       switch (status) {
          case "이용중":
             return colors.theme;
@@ -38,10 +52,12 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
       <S.Wrapper>
          <S.Container>
             <S.StatusContainer
-               backgroundColor={statusBackgroundColor(props.status)}
+               backgroundColor={statusBackgroundColor(
+                  statusTranslation(props?.data.status)
+               )}
             >
                <S.StatusText>
-                  {textDirectionVertical(props.status)}
+                  {textDirectionVertical(statusTranslation(props?.data.status))}
                </S.StatusText>
             </S.StatusContainer>
             <S.ContentsContainer>
@@ -49,17 +65,19 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
                   <S.CarImage
                      resizeMode="contain"
                      source={{
-                        uri: "https://autoimg.danawa.com/photo/3742/48893/color_12_360.png",
+                        uri: `https://storage.googleapis.com/${props?.data.car.imageCar[0].url}`,
                      }}
                   />
-                  <TitleText fontSize="16">44호 0541</TitleText>
-                  <TitleText
-                     fontSize="14"
-                     fontFamily="Regular"
-                     color={colors.gray}
-                  >
-                     K5
-                  </TitleText>
+                  <R.View style={{ marginTop: 6, alignItems: "center" }}>
+                     <TitleText fontSize="16">44호 1041</TitleText>
+                     <TitleText
+                        fontSize="14"
+                        fontFamily="Regular"
+                        color={colors.gray}
+                     >
+                        K5
+                     </TitleText>
+                  </R.View>
                </S.CarInfoContainer>
                <S.ReservationContainer>
                   <R.View style={{ flexDirection: "row" }}>
