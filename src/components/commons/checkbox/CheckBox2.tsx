@@ -6,11 +6,12 @@ import CheckBoxActiveIcon from "../../../../assets/checkbox/checkbox2/ic_check_a
 
 interface ICheckBox2 {
    onChange: (isChecked: boolean) => void;
+   checked: boolean;
    contents: string;
 }
 
 export default function CheckBox2(props: ICheckBox2) {
-   const [isChecked, setIsChecked] = useState(false);
+   const [isChecked, setIsChecked] = useState(props.checked);
 
    const onPressCheck = () => {
       setIsChecked((prev) => !prev);
@@ -23,7 +24,7 @@ export default function CheckBox2(props: ICheckBox2) {
    return (
       <Container activeOpacity={1} onPress={onPressCheck}>
          <CheckBoxContainer>
-            {isChecked ? <CheckBoxActiveIcon /> : <CheckBoxInActiveIcon />}
+            {props.checked ? <CheckBoxActiveIcon /> : <CheckBoxInActiveIcon />}
          </CheckBoxContainer>
          <ContentsText os={R.Platform.OS}>{props.contents}</ContentsText>
       </Container>
