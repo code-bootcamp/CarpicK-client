@@ -19,7 +19,7 @@ export default function UpdateMyInfoUI(props) {
             회원정보 수정하기
          </UpdateUserInfo>
          <R.ScrollView>
-            <S.Profile>
+            {/* <S.Profile>
                <ProfileImg />
                <S.UserInfo>
                   <S.UserName>
@@ -33,14 +33,14 @@ export default function UpdateMyInfoUI(props) {
                      </Contents1Text>
                   </S.UserId>
                </S.UserInfo>
-            </S.Profile>
+            </S.Profile> */}
             <S.TopMenu>
                <S.TitleWrapper
                   isSelected={props.isSelected}
                   onPress={() => props.setIsSelected(true)}
                >
                   <TitleText
-                     fontSize="14"
+                     fontSize="12"
                      color={props.isSelected ? "#fff" : "#000"}
                   >
                      전화번호 수정하기
@@ -51,7 +51,7 @@ export default function UpdateMyInfoUI(props) {
                   onPress={() => props.setIsSelected(false)}
                >
                   <TitleText
-                     fontSize="14"
+                     fontSize="12"
                      color={!props.isSelected ? "#fff" : "#000"}
                   >
                      비밀번호 수정하기
