@@ -6,7 +6,9 @@ export const Footer = styled.View`
    height: 70px;
    background-color: #edf2ff;
    border-top-color: ${colors.light_gray};
-   border-top-width: 1.5px;
+   border-bottom-color: ${colors.light_gray};
+   border-top-width: 0.7px;
+   border-bottom-width: 0.7px;
    justify-content: center;
 `;
 

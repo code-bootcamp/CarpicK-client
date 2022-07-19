@@ -42,24 +42,29 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
          <R.ScrollView style={{ backgroundColor: "#fff" }}>
             <S.Wrapper style={globalStyle.GlobalStyles}>
                <TitleText>{`카픽으로 손쉽게\n오너가 되어보세요!`}</TitleText>
-               <R.View>
+               <R.View style={{ marginTop: 10 }}>
                   <S.InputBox>
                      <Contents1Text>이름</Contents1Text>
-                     <Input2
-                        value={props.data?.fetchLoginUser.name}
-                        disabled={false}
-                     />
+                     <S.InputDefault>
+                        <Contents1Text fontSize="13">
+                           {props.data?.fetchLoginUser.name}
+                        </Contents1Text>
+                     </S.InputDefault>
                   </S.InputBox>
                   <S.InputBox>
                      <Contents1Text>휴대폰번호</Contents1Text>
-                     <Input2
-                        value={props.data?.fetchLoginUser.phone}
-                        disabled={false}
-                     />
+                     <S.InputDefault>
+                        <Contents1Text fontSize="13">
+                           {props.data?.fetchLoginUser.phone}
+                        </Contents1Text>
+                     </S.InputDefault>
                   </S.InputBox>
                   <R.View style={{ marginTop: 10 }}>
                      <S.InputBox>
-                        <Contents1Text>주소</Contents1Text>
+                        <S.SubtitleWrapper>
+                           <Contents1Text>주소</Contents1Text>
+                           <S.RedDot />
+                        </S.SubtitleWrapper>
                         <Controller
                            control={props.control}
                            name="address"
@@ -81,7 +86,10 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         </Contents1Text>
                      </S.InputBox>
                      <S.InputBox>
-                        <Contents1Text>차량번호</Contents1Text>
+                        <S.SubtitleWrapper>
+                           <Contents1Text>차량번호</Contents1Text>
+                           <S.RedDot />
+                        </S.SubtitleWrapper>
                         <Controller
                            control={props.control}
                            name="carNumber"
@@ -103,7 +111,10 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                         </Contents1Text>
                      </S.InputBox>
                      <S.InputBox>
-                        <Contents1Text>차종</Contents1Text>
+                        <S.SubtitleWrapper>
+                           <Contents1Text>차종</Contents1Text>
+                           <S.RedDot />
+                        </S.SubtitleWrapper>
                         <Controller
                            control={props.control}
                            name="model"
