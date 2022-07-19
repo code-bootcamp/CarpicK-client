@@ -35,7 +35,9 @@ export const CarCostPerHour = styled.View`
 
 export const CarImage = styled.Image`
    height: 80px;
-   width: 100px;
+   width: 80px;
+   border-radius: 10px;
+   margin-right: 15px;
 `;
 
 export const DateNote = styled.View`

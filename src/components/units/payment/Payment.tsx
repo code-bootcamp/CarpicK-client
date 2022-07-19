@@ -3,9 +3,9 @@ import IMP from "iamport-react-native";
 import * as R from "react-native";
 import { useMutation, useQuery } from "@apollo/client";
 import { gql } from "apollo-boost";
-import LoadingCircle from "../../commons/loadingCircle/LoadingCircle";
 import moment from "moment";
 import Modal3 from "../../commons/modals/modal3/Modal3";
+import LoadingCircleLight from "../../commons/loadingCircle/LoadingCircleLight";
 
 export const CREATE_RESERVATION = gql`
    mutation createReservation(
@@ -124,7 +124,7 @@ export default function Payment({ navigation, route }) {
             <IMP.Payment
                userCode={"imp29986615"} // 가맹점 식별코드
                data={data} // 결제 데이터
-               loading={<LoadingCircle />}
+               loading={<LoadingCircleLight />}
                callback={callback} // 결제 종료 후 콜백
             />
          </R.View>
