@@ -29,6 +29,7 @@ import { BackArrow } from "../../../src/components/commons/navigationHeader/icon
 import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
 import CarPickKeyStack from "../carPickKey";
 import { Filter } from "../../../src/components/commons/navigationHeader/icon/Filter";
+import ProfileImg from "../../../assets/mypage/ic_profile.svg";
 
 const LOGOUT = gql`
    mutation logout {
@@ -61,7 +62,8 @@ export default function MainStack({ navigation }) {
       setAccessToken("");
    };
    const onPressToUpdateUserInfo = () => {
-      navigation.navigate("updateUserInfoStack");
+      // navigation.navigate("updateUserInfoStack");
+      navigation.navigate("myPageStack");
    };
 
    const CustomDrawerContent = (props) => {
@@ -70,25 +72,17 @@ export default function MainStack({ navigation }) {
             <S.DrawerHeader>
                <S.DrawerHeader>
                   <S.DrawerContents>
-                     <S.UserImage>
-                        <FontAwesome5
-                           name="user-circle"
-                           size={50}
-                           color={colors.theme}
-                        />
-                     </S.UserImage>
-                     <S.UserInfoWrapper>
-                        <TitleText>{data?.fetchLoginUser.name}</TitleText>
-                        <S.UpdateUserInfoTouch
-                           activeOpacity={0.7}
-                           onPress={onPressToUpdateUserInfo}
-                        >
-                           <S.UpdateUserInfoTextHitBox>
-                              <Contents1Text color="#a5a5a5">
-                                 내 정보 수정하기
-                              </Contents1Text>
-                           </S.UpdateUserInfoTextHitBox>
-                        </S.UpdateUserInfoTouch>
+                     <ProfileImg />
+                     <S.UserInfoWrapper
+                        activeOpacity={0.7}
+                        onPress={onPressToUpdateUserInfo}
+                     >
+                        <TitleText fontSize="16">
+                           {data?.fetchLoginUser.name}
+                        </TitleText>
+                        <Contents1Text fontSize="12" color="#a5a5a5">
+                           마이페이지
+                        </Contents1Text>
                      </S.UserInfoWrapper>
                   </S.DrawerContents>
                </S.DrawerHeader>
