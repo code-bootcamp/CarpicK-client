@@ -34,7 +34,6 @@ export default function PasswordResetPage2({ navigation, route }) {
             },
             fetchPolicy: "network-only",
          });
-         console.log(resultId.data.fetchEmail);
          if (resultId.data.fetchEmail === "등록되지 않은 번호입니다") {
             setMsg("등록되어있지 않는 전화번호입니다.");
             setOpenModal(true);

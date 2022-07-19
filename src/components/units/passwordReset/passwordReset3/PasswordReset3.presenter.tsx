@@ -30,16 +30,14 @@ export default function PasswordResetPage3UI(props) {
                      placeholder="영문+숫자 조합 8~16 자리를 입력해주세요."
                   />
                </S.InputWrapper>
-               {!props.isVaildPassword && (
+               {!props.isValidPassword && (
                   <Contents2Text color="#ff6347">
-                     {!props.isValidPassword
-                        ? "영문+숫자 조합 8~16자리를 입력해주세요."
-                        : ""}
+                     영문+숫자 조합 8~16자리를 입력해주세요.
                   </Contents2Text>
                )}
-               {props.isVaildPassword && (
+               {props.isValidPassword && (
                   <Contents2Text color="#00C73C">
-                     {!props.isValidPassword ? "알맞은 비밀번호입니다 : )" : ""}
+                     알맞은 비밀번호입니다 : )
                   </Contents2Text>
                )}
                <S.InputWrapperMarginBtm>
@@ -55,7 +53,7 @@ export default function PasswordResetPage3UI(props) {
                   <Button01Blue
                      func={props.onPressResetPassword}
                      title="비밀번호 재설정"
-                     disabled={!props.isVaildPassword || !props.passwordAgain}
+                     disabled={!props.isValidPassword || !props.passwordAgain}
                   />
                </S.ButtonWrapper>
             </S.Body>

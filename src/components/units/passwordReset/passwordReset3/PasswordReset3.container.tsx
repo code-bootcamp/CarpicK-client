@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import PasswordResetPage3UI from "./PasswordReset3.presenter";
 import { RESET_PWD } from "./PasswordReset3.queries";
-const passwordRegExp = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,16}$/;
+const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
 
 export default function PasswordResetPage3({ navigation, route }) {
    const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export default function PasswordResetPage3({ navigation, route }) {
    const [msg, setMsg] = useState("");
    const [password, setPassword] = useState("");
    const [passwordAgain, setPasswordAgain] = useState("");
-   const [isVaildPassword, setIsVaildPassword] = useState(false);
+   const [isValidPassword, setIsValidPassword] = useState(false);
    const [resetPwd] = useMutation(RESET_PWD);
 
    useEffect(() => {
@@ -21,7 +21,7 @@ export default function PasswordResetPage3({ navigation, route }) {
 
    const onChangePassword = (text) => {
       setPassword(text);
-      setIsVaildPassword(passwordRegExp.test(text));
+      setIsValidPassword(passwordRegExp.test(text));
    };
 
    const onPressResetPassword = async () => {
@@ -75,7 +75,7 @@ export default function PasswordResetPage3({ navigation, route }) {
             setEmail={setEmail}
             setPassword={setPassword}
             setPasswordAgain={setPasswordAgain}
-            isVaildPassword={isVaildPassword}
+            isValidPassword={isValidPassword}
             onPressResetPassword={onPressResetPassword}
          />
       </>
