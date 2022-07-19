@@ -60,7 +60,6 @@ export default function MainStack({ navigation }) {
       const result = await logout();
       setAccessToken("");
    };
-   console.log(data);
    const onPressToUpdateUserInfo = () => {
       navigation.navigate("updateUserInfoStack");
    };
@@ -202,7 +201,7 @@ export default function MainStack({ navigation }) {
                name="userGuide"
                component={UserGuidePage}
                options={{
-                  title: "Carpick 시작하기",
+                  title: "CarpicK 시작하기",
                   headerShown: false,
                }}
             />

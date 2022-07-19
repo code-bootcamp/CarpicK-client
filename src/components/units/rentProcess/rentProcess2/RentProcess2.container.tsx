@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 const baseTime = moment().format("YYYY-MM-DD");
 
 export default function RentProcess2Page({ navigation, route }) {
-   const [isAllChecked, setIsAllChecked] = useState(false);
-   const [isChecked1, setIsChecked1] = useState(false);
-   const [isChecked2, setIsChecked2] = useState(false);
-   const [isChecked3, setIsChecked3] = useState(false);
+   const [isAllChecked, setIsAllChecked] = useState(true);
+   const [isChecked1, setIsChecked1] = useState(true);
+   const [isChecked2, setIsChecked2] = useState(true);
+   const [isChecked3, setIsChecked3] = useState(true);
 
    const checkAllHandler = (isChecked: boolean) => {
       setIsAllChecked(isChecked);

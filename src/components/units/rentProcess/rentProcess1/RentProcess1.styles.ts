@@ -14,9 +14,9 @@ export const HeaderWrapper = styled.View`
 `;
 
 export const CarImage = styled.Image`
-   width: 100%;
+   width: 132px;
    height: 132px;
-   /* background-color: red; */
+   border-radius: 10px;
 `;
 
 export const TextWrapper = styled.View`
