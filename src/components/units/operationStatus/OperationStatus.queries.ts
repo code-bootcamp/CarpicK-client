@@ -29,3 +29,16 @@ export const FETCH_OWNER_RESERVATIONS = gql`
       }
    }
 `;
+
+export const FETCH_LOGIN_OWNER = gql`
+   query fetchLoginOwner {
+      fetchLoginOwner {
+         id
+         car {
+            carModel {
+               name
+            }
+         }
+      }
+   }
+`;

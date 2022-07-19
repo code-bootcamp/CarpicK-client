@@ -30,7 +30,7 @@ export default function OperationStatusUI(props: IOperationStatusProps) {
                      .map((el) => {
                         if (el.status !== "CANCEL") return el.amount;
                      })
-                     .reduce((a, c) => a + c)}{" "}
+                     .reduce((a, c) => a + c, 0)}{" "}
                   원
                </TitleText>
             </S.TitleWrapper>

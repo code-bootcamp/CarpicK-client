@@ -1,12 +1,17 @@
 import { useQuery } from "@apollo/client";
 import OperationStatusUI from "./OperationStatus.presenter";
-import { FETCH_OWNER_RESERVATIONS } from "./OperationStatus.queries";
+import {
+   FETCH_OWNER_RESERVATIONS,
+   FETCH_LOGIN_OWNER,
+} from "./OperationStatus.queries";
 
 export default function OperationStatusPage() {
    const { data, refetch, networkStatus, fetchMore } = useQuery(
       FETCH_OWNER_RESERVATIONS
    );
+   const { data: onwerData } = useQuery(FETCH_LOGIN_OWNER);
    console.log("this is owner_resrv", data);
+   console.log("this is ownerDATA", onwerData);
 
    const loadFunc = () => {
       if (!data) return;
