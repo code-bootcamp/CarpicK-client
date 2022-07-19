@@ -7,5 +7,5 @@ export default function OperationStatusPage() {
       variables: { page: 1 },
    });
    console.log(data);
-   return <OperationStatusUI />;
+   return <OperationStatusUI data={data} />;
 }
