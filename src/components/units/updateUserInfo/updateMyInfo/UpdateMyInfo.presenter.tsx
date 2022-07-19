@@ -121,25 +121,31 @@ export default function UpdateMyInfoUI(props) {
                      </Contents1Text>
                      <S.PasswordInputWrapper>
                         <S.PasswordInput
+                           maxLength={16}
+                           onChangeText={props.onChangePassword}
+                           secureTextEntry={true}
                            placeholder="변경할 비밀번호를 입력해 주세요."
                            style={{ includeFontPadding: false }}
-                        ></S.PasswordInput>
+                        />
                      </S.PasswordInputWrapper>
-                     <S.Error>
+                     {!props.isValidPassword && (
                         <Contents2Text color="#ff6347">
-                           영문+숫자 조합 8~16자리를 입력해 주세요.
+                           영문+숫자 조합 8~16자리를 입력해주세요.
                         </Contents2Text>
-                     </S.Error>
+                     )}
+                     {props.isValidPassword && (
+                        <Contents2Text color="#00C73C">
+                           알맞은 비밀번호입니다 : )
+                        </Contents2Text>
+                     )}
                      <S.PassWordCheckInputWrapper>
                         <S.PasswordCheckInput
+                           maxLength={16}
+                           onChangeText={(text) => props.setPasswordAgain(text)}
+                           secureTextEntry={true}
                            placeholder="변경할 비밀번호룰 다시 입력해 주세요."
                            style={{ includeFontPadding: false }}
-                        ></S.PasswordCheckInput>
-                        <S.Error>
-                           <Contents2Text color="#ff6347">
-                              비밀번호가 일치하지 않습니다.
-                           </Contents2Text>
-                        </S.Error>
+                        />
                      </S.PassWordCheckInputWrapper>
                   </S.Password>
                )}
@@ -147,7 +153,9 @@ export default function UpdateMyInfoUI(props) {
          </R.ScrollView>
          <Button1
             isDisabled={
-               props.isSelected ? !props.isValidPhone : props.isValidPwd
+               props.isSelected
+                  ? !props.isValidPhone
+                  : !props.isValidPassword || !props.passwordAgain
             }
             onPress={
                props.isSelected

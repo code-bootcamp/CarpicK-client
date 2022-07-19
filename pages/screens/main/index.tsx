@@ -60,7 +60,7 @@ export default function MainStack({ navigation }) {
       const result = await logout();
       setAccessToken("");
    };
-
+   console.log(data);
    const onPressToUpdateUserInfo = () => {
       navigation.navigate("updateUserInfoStack");
    };
