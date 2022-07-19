@@ -6,6 +6,7 @@ import moment from "moment";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { FETCH_CARS, FETCH_CAR_LOCATION } from "./Map.queries";
 import { useIsFocused } from "@react-navigation/native";
+import LoadingCircleLight from "../../commons/loadingCircle/LoadingCircleLight";
 
 const VIEW_HEIGHT = R.Dimensions.get("window").height;
 
@@ -42,17 +43,6 @@ export default function MapPage({ navigation, route }) {
       },
    });
 
-   // useEffect(() => {
-   //    const setInitialBoundsBox = async () => {
-   //       setBoundsBox(await mapRef.getMapBoundaries());
-   //       setSouth_west_lng(boundsBox.southWest.longitude);
-   //       setNorth_east_lng(boundsBox.northEast.longitude);
-   //       setSouth_west_lat(boundsBox.southWest.latitude);
-   //       setNorth_east_lat(boundsBox.northEast.latitude);
-   //    };
-   //    setInitialBoundsBox();
-   // }, []);
-
    const [isReady, setIsReady] = useState(false);
    const [errorMsg, setErrorMsg] = useState("");
    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -75,27 +65,13 @@ export default function MapPage({ navigation, route }) {
       setCarListData(null);
    };
 
-   useEffect(() => {
-      if (route.params?.selectedCar !== undefined)
-         setSelectedCar(route.params?.selectedCar);
-   }, [isFocused]);
-
    // console.log("route.params", route.params);
    // console.log("selectedCar", selectedCar);
    console.log("boundsBox", boundsBox);
-   useEffect(() => {
-      (async () => {
-         setIsReady(false);
-         setSouth_west_lng(location.longitude - 0.004);
-         setNorth_east_lng(location.longitude + 0.004);
-         setSouth_west_lat(location.latitude - 0.006);
-         setNorth_east_lat(location.latitude + 0.006);
-         setIsReady(true);
-      })();
-   }, [location]);
 
    useEffect(() => {
       (async () => {
+         setIsReady(false);
          let { status } = await Location.requestForegroundPermissionsAsync();
          if (status !== "granted") {
             setErrorMsg("카픽존을 이용하려면 위치 권한승인이 필요합니다!");
@@ -109,8 +85,23 @@ export default function MapPage({ navigation, route }) {
             latitudeDelta: 0.004,
             longitudeDelta: 0.009,
          });
+         setIsReady(true);
       })();
    }, []);
+
+   useEffect(() => {
+      (async () => {
+         setSouth_west_lng(location.longitude - 0.004);
+         setNorth_east_lng(location.longitude + 0.004);
+         setSouth_west_lat(location.latitude - 0.006);
+         setNorth_east_lat(location.latitude + 0.006);
+      })();
+   }, [location.latitude]);
+
+   useEffect(() => {
+      if (route.params?.selectedCar !== undefined)
+         setSelectedCar(route.params?.selectedCar);
+   }, [isFocused]);
 
    const onPressQuery = async (id) => {
       console.log(id);
@@ -119,7 +110,6 @@ export default function MapPage({ navigation, route }) {
             query: FETCH_CARS,
             variables: {
                carLocationId: id,
-               page: 1,
             },
             fetchPolicy: "network-only",
          });
@@ -143,23 +133,26 @@ export default function MapPage({ navigation, route }) {
 
    return (
       <>
-         <MapPageUI
-            location={location}
-            panelRef={panelRef}
-            setMapRef={setMapRef}
-            VIEW_HEIGHT={VIEW_HEIGHT}
-            handleToggle={handleToggle}
-            handleRegionChange={handleRegionChange}
-            onPressToRentProcess={onPressToRentProcess}
-            isDrawerOpen={isDrawerOpen}
-            setIsDrawerOpen={setIsDrawerOpen}
-            data={data}
-            carListData={carListData}
-            setCarLocationId={setCarLocationId}
-            loadingLocation={!loadingLocation}
-            onPressQuery={onPressQuery}
-            loading={loading}
-         />
+         {!isReady && <LoadingCircleLight />}
+         {isReady && (
+            <MapPageUI
+               location={location}
+               panelRef={panelRef}
+               setMapRef={setMapRef}
+               VIEW_HEIGHT={VIEW_HEIGHT}
+               handleToggle={handleToggle}
+               handleRegionChange={handleRegionChange}
+               onPressToRentProcess={onPressToRentProcess}
+               isDrawerOpen={isDrawerOpen}
+               setIsDrawerOpen={setIsDrawerOpen}
+               data={data}
+               carListData={carListData}
+               setCarLocationId={setCarLocationId}
+               loadingLocation={!loadingLocation}
+               onPressQuery={onPressQuery}
+               loading={loading}
+            />
+         )}
       </>
    );
 }
