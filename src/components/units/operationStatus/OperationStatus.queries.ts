@@ -10,6 +10,11 @@ export const FETCH_OWNER_RESERVATIONS = gql`
          status
          car {
             id
+            # carNumber
+            # carModel {
+            #    name
+            # }
+            # carLocation
             imageCar {
                url
             }
