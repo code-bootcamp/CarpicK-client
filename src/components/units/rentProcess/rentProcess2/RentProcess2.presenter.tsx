@@ -5,13 +5,13 @@ import Button1 from "../../../commons/button/Button1";
 import SubTitleText from "../../../commons/text/SubTitleText";
 import { numberWithCommas } from "../../../../commons/utilities/numberWithCommas";
 import Contents1Text from "../../../commons/text/Contents1Text";
-import Contents2Text from "../../../commons/text/Contents2Text";
 import colors from "../../../../commons/lib/colors";
 import TitleText from "../../../commons/text/TitleText";
 import CheckBox1 from "../../../commons/checkbox/CheckBox1";
 import CheckBox2 from "../../../commons/checkbox/CheckBox2";
+import { IRentProcess2Props } from "./RentProcess2.types";
 
-export default function RentProcess2PageUI(props) {
+export default function RentProcess2PageUI(props: IRentProcess2Props) {
    return (
       <>
          <S.Wrapper>
@@ -56,19 +56,23 @@ export default function RentProcess2PageUI(props) {
                      <SubTitleText>약관 및 이용 안내 동의</SubTitleText>
                      <S.CheckBoxWrapper>
                         <CheckBox1
-                           onChange={props.onChangeCheck}
+                           checked={props.isAllChecked}
+                           onChange={props.checkAllHandler}
                            contents="예약 정보 확인 및 모든 약관에 동의합니다."
                         />
                         <CheckBox2
-                           onChange={props.onChangeCheck}
+                           checked={props.isChecked1}
+                           onChange={props.check1Handler}
                            contents="[필수] 카픽 자동차대여약관"
                         />
                         <CheckBox2
-                           onChange={props.onChangeCheck}
+                           checked={props.isChecked2}
+                           onChange={props.check2Handler}
                            contents="[필수] 카픽 차량손해면책제도 이용약관"
                         />
                         <CheckBox2
-                           onChange={props.onChangeCheck}
+                           checked={props.isChecked3}
+                           onChange={props.check3Handler}
                            contents="[필수] 개인정보 수집 및 이용 동의"
                         />
                      </S.CheckBoxWrapper>
@@ -76,7 +80,10 @@ export default function RentProcess2PageUI(props) {
                </S.FooterWrapper>
             </R.ScrollView>
          </S.Wrapper>
-         <Button1 onPress={props.onPressToPayment}>
+         <Button1
+            isDisabled={!props.isAllChecked}
+            onPress={props.onPressToPayment}
+         >
             총 {numberWithCommas(props.totalPrice)}원 예약하기
          </Button1>
       </>
