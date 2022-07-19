@@ -6,6 +6,7 @@ import colors from "../../../commons/lib/colors";
 
 interface ICheckBox1 {
    onChange: (isChecked: boolean) => void;
+   checked: boolean;
    contents: string;
 }
 
@@ -22,7 +23,7 @@ export default function CheckBox1(props: ICheckBox1) {
 
    return (
       <Container activeOpacity={1} onPress={onPressCheck}>
-         <CheckBoxContainer isChecked={isChecked}>
+         <CheckBoxContainer isChecked={props.checked}>
             <CheckBoxIcon />
          </CheckBoxContainer>
          <ContentsText os={R.Platform.OS}>{props.contents}</ContentsText>
