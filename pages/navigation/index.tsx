@@ -4,11 +4,10 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import colors from "../../src/commons/lib/colors";
 import { accessTokenState } from "../../src/commons/store";
-import NavigationHeaderLeft from "../../src/components/commons/navigationHeader/headerLeft";
 import FilterPage from "../../src/components/units/map/filter/Filter.container";
-import CustomerServiceStack from "../screens/customerService";
 import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
+import MyPageStack from "../screens/mypage";
 import RentProcessStack from "../screens/rentProcess";
 import UpdateUserInfoStack from "../screens/updateUserInfo";
 
@@ -54,6 +53,13 @@ export default function Navigation() {
                   <Stack.Screen
                      name="mainStack"
                      component={MainStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+                  <Stack.Screen
+                     name="myPageStack"
+                     component={MyPageStack}
                      options={() => ({
                         headerShown: false,
                      })}

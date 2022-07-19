@@ -32,14 +32,9 @@ export const DrawerContentWrapper = styled.View`
 export const DrawerContents = styled.View`
    flex-direction: row;
 `;
-export const UserImage = styled.View``;
-export const UserInfoWrapper = styled.View`
-   padding-left: 10px;
-`;
-export const UpdateUserInfoTouch = styled.TouchableOpacity``;
-export const UpdateUserInfoTextHitBox = styled.View`
-   width: 150px;
-   height: 30px;
+export const UserInfoWrapper = styled.TouchableOpacity`
+   margin-left: 10px;
+   justify-content: center;
 `;
 
 export const LogoutTouch = styled.TouchableOpacity`

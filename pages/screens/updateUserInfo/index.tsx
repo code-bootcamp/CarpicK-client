@@ -21,12 +21,7 @@ export default function UpdateUserInfoStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "main",
-                        "",
-                        "#000000"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#000000"),
                })}
             />
             <Stack.Screen
