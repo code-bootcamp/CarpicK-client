@@ -7,12 +7,23 @@ import ProfileImg from "../../../../assets/mypage/ic_profile.svg";
 import ArrowRight from "../../../../assets/mypage/ic_arrow_right.svg";
 import NoAuthIcon from "../../../../assets/mypage/ic_no_auth.svg";
 import AuthIcon from "../../../../assets/mypage/ic_auth.svg";
+import LocationIcon from "../../.././../assets/mypage/ic_location.svg";
 import TitleText from "../../commons/text/TitleText";
 import Contents1Text from "../../commons/text/Contents1Text";
 import Contents2Text from "../../commons/text/Contents2Text";
 import oilTranslation from "../../../commons/lib/oilTranslation";
+import statusTranslation from "../../../commons/lib/statusTranslation";
+import { useEffect, useState } from "react";
 
 export default function MyPageUI(props: IMyPageProps) {
+   const [showStatus, setShowStatus] = useState(true);
+
+   useEffect(() => {
+      const interval = setInterval(() => {
+         setShowStatus((prev) => !prev);
+      }, 1500);
+      return () => clearInterval(interval);
+   }, []);
    return (
       <S.Wrapper>
          <R.ScrollView>
@@ -117,14 +128,130 @@ export default function MyPageUI(props: IMyPageProps) {
                                  )}
                               </Contents1Text>
                            </R.View>
+                           <R.View style={{ alignItems: "center" }}>
+                              <TitleText fontSize="16" color={colors.theme}>
+                                 하이패스
+                              </TitleText>
+                              <Contents1Text fontSize="15">
+                                 {props.data?.fetchLoginOwner.car.isHipass
+                                    ? "장착"
+                                    : "미장착"}
+                              </Contents1Text>
+                           </R.View>
                         </S.CarInfo>
+                        <S.CarLocation>
+                           <LocationIcon />
+                           <R.View style={{ marginLeft: 6 }}>
+                              <Contents1Text fontSize="14">
+                                 {
+                                    props.data?.fetchLoginOwner.car.carLocation
+                                       .addressDetail
+                                 }
+                              </Contents1Text>
+                           </R.View>
+                        </S.CarLocation>
                      </>
                   ) : (
-                     <S.EmptyMyCarBox>
-                        <Contents1Text color={colors.gray}>
-                           등록된 차량이 없습니다
-                        </Contents1Text>
-                     </S.EmptyMyCarBox>
+                     <>
+                        {props.data?.fetchLoginOwner.carRegistration !==
+                        null ? (
+                           <>
+                              <R.View style={{ height: 50 }}>
+                                 <S.CarStatusBox showStatus={showStatus}>
+                                    <S.CarStatus>
+                                       {statusTranslation(
+                                          props.data?.fetchLoginOwner
+                                             .carRegistration.status
+                                       )}
+                                    </S.CarStatus>
+                                 </S.CarStatusBox>
+                              </R.View>
+                              <R.View style={{ marginTop: 40 }}>
+                                 <S.CarImage
+                                    resizeMode="contain"
+                                    source={{
+                                       uri: `https://storage.googleapis.com/${props.data?.fetchLoginOwner.carRegistration.imageCar[0].url}`,
+                                    }}
+                                 />
+                              </R.View>
+                              <S.CarInfo>
+                                 <R.View style={{ alignItems: "center" }}>
+                                    <TitleText
+                                       fontSize="16"
+                                       color={colors.theme}
+                                    >
+                                       차량번호
+                                    </TitleText>
+                                    <Contents1Text fontSize="15">
+                                       {
+                                          props.data?.fetchLoginOwner
+                                             .carRegistration.carNumber
+                                       }
+                                    </Contents1Text>
+                                 </R.View>
+                                 <R.View style={{ alignItems: "center" }}>
+                                    <TitleText
+                                       fontSize="16"
+                                       color={colors.theme}
+                                    >
+                                       모델
+                                    </TitleText>
+                                    <Contents1Text fontSize="15">
+                                       {
+                                          props.data?.fetchLoginOwner
+                                             .carRegistration.model
+                                       }
+                                    </Contents1Text>
+                                 </R.View>
+                                 <R.View style={{ alignItems: "center" }}>
+                                    <TitleText
+                                       fontSize="16"
+                                       color={colors.theme}
+                                    >
+                                       연료
+                                    </TitleText>
+                                    <Contents1Text fontSize="15">
+                                       {oilTranslation(
+                                          props.data?.fetchLoginOwner
+                                             .carRegistration.oil
+                                       )}
+                                    </Contents1Text>
+                                 </R.View>
+                                 <R.View style={{ alignItems: "center" }}>
+                                    <TitleText
+                                       fontSize="16"
+                                       color={colors.theme}
+                                    >
+                                       하이패스
+                                    </TitleText>
+                                    <Contents1Text fontSize="15">
+                                       {props.data?.fetchLoginOwner
+                                          .carRegistration.isHipass
+                                          ? "장착"
+                                          : "미장착"}
+                                    </Contents1Text>
+                                 </R.View>
+                              </S.CarInfo>
+                              <S.CarLocation>
+                                 <LocationIcon />
+                                 <R.View style={{ marginLeft: 6 }}>
+                                    <Contents1Text fontSize="14">
+                                       {
+                                          props.data?.fetchLoginOwner
+                                             .carRegistration.address
+                                       }
+                                    </Contents1Text>
+                                 </R.View>
+                              </S.CarLocation>
+                           </>
+                        ) : (
+                           <S.EmptyMyCarBox>
+                              <Contents1Text color={colors.gray}>
+                                 등록된 차량이 없습니다
+                              </Contents1Text>
+                           </S.EmptyMyCarBox>
+                        )}
+                     </>
                   )}
                </R.View>
             </S.MyCarContainer>
