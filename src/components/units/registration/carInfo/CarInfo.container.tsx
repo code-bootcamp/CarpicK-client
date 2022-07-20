@@ -1,14 +1,17 @@
 import CarInfoUI from "./CarInfo.presenter";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { FETCH_LOGIN_USER } from "../Registration.queries";
+import { FETCH_LOGIN_OWNER } from "../Registration.queries";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 
 export default function CarInfoPage({ navigation }) {
-   const { data: userData } = useQuery(FETCH_LOGIN_USER);
+   const { data: userData } = useQuery(FETCH_LOGIN_OWNER, {
+      fetchPolicy: "network-only",
+   });
    const [msg, setMsg] = useState("");
    const [openModal, setOpenModal] = useState(false);
+   const [isLoad, setIsLoad] = useState(false);
 
    const { control, handleSubmit, formState } = useForm({
       mode: "onChange",
@@ -22,10 +25,21 @@ export default function CarInfoPage({ navigation }) {
 
    const [oil, setOil] = useState("GASOLINE");
    const [isHipass, setIsHipass] = useState(true);
-   console.log(userData);
+
+   useEffect(() => {
+      navigation.addListener("focus", () => setIsLoad(true));
+      navigation.addListener("blur", () => setIsLoad(false));
+   }, []);
+
+   console.log("userData", userData);
    const onPressNext = (data: any) => {
-      if (!userData.fetchLoginUser.isAuth) {
+      if (!userData.fetchLoginOwner.isAuth) {
          setMsg(`운전면허를 등록해야\n 서비스 이용이 가능합니다.`);
+         setOpenModal(true);
+         return;
+      }
+      if (userData.fetchLoginOwner.carRegistration !== null) {
+         setMsg(`이미 마이카를 등록하셨습니다.\n 마이페이지를 확인해주세요.`);
          setOpenModal(true);
          return;
       }
@@ -42,15 +56,17 @@ export default function CarInfoPage({ navigation }) {
                positive={() => setOpenModal(false)}
             />
          )}
-         <CarInfoUI
-            userData={userData}
-            control={control}
-            handleSubmit={handleSubmit}
-            formState={formState}
-            setOil={setOil}
-            setIsHipass={setIsHipass}
-            onPressNext={onPressNext}
-         />
+         {isLoad && (
+            <CarInfoUI
+               userData={userData}
+               control={control}
+               handleSubmit={handleSubmit}
+               formState={formState}
+               setOil={setOil}
+               setIsHipass={setIsHipass}
+               onPressNext={onPressNext}
+            />
+         )}
       </>
    );
 }

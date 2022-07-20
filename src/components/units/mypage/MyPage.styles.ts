@@ -66,17 +66,35 @@ export const MyCarContainer = styled.View`
 
 export const CarStatusBox = styled.View`
    flex: 1;
-   border: 2px solid ${colors.theme};
+   border: ${(props: { showStatus: boolean }) =>
+      props.showStatus
+         ? `2px solid ${colors.theme}`
+         : `2px solid ${colors.light_gray}`};
    border-radius: 10px;
    justify-content: center;
    align-items: center;
-   display: ${(props: { showStatus: boolean }) =>
-      props.showStatus ? "flex" : "none"};
+`;
+
+export const CarStatusBoxFail = styled.View`
+   flex: 1;
+   border: ${(props: { showStatus: boolean }) =>
+      props.showStatus ? `2px solid tomato` : `2px solid ${colors.light_gray}`};
+   border-radius: 10px;
+   justify-content: center;
+   align-items: center;
 `;
 
 export const CarStatus = styled.Text`
    font-size: 17px;
-   color: ${colors.theme};
+   color: ${(props: { showStatus: boolean }) =>
+      props.showStatus ? colors.theme : colors.light_gray};
+   font-weight: 700;
+`;
+
+export const CarStatusFail = styled.Text`
+   font-size: 17px;
+   color: ${(props: { showStatus: boolean }) =>
+      props.showStatus ? "tomato" : colors.light_gray};
    font-weight: 700;
 `;
 
@@ -94,4 +112,33 @@ export const CarLocation = styled.View`
    flex-direction: row;
    margin-top: 40px;
    align-items: center;
+`;
+
+export const InfoWrapper = styled.View`
+   position: relative;
+`;
+
+export const FailBackgound = styled.View`
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   background-color: ${colors.light_gray};
+   z-index: 999;
+   opacity: 0.7;
+   border-radius: 10px;
+   align-items: center;
+`;
+
+export const TitleBox = styled.View`
+   flex-direction: row;
+   align-items: center;
+`;
+
+export const StatusBox = styled.View`
+   width: 48px;
+   height: 18px;
+   background-color: ${colors.theme};
+   justify-content: center;
+   align-items: center;
+   margin-left: 14px;
 `;

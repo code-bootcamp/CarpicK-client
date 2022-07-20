@@ -211,7 +211,7 @@ export default function MainStack({ navigation }) {
                name="operationStatus"
                component={OperationStatusPage}
                options={{
-                  title: "운행현황",
+                  title: "마이카 운행현황",
                   headerShown: true,
                   headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),

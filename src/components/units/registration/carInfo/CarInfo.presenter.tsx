@@ -47,7 +47,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                      <Contents1Text>이름</Contents1Text>
                      <S.InputDefault>
                         <Contents1Text fontSize="13">
-                           {props.userData?.fetchLoginUser.name}
+                           {props.userData?.fetchLoginOwner.name}
                         </Contents1Text>
                      </S.InputDefault>
                   </S.InputBox>
@@ -55,7 +55,7 @@ export default function CarInfoUI(props: ICarInfoUIProps) {
                      <Contents1Text>휴대폰번호</Contents1Text>
                      <S.InputDefault>
                         <Contents1Text fontSize="13">
-                           {props.userData?.fetchLoginUser.phone}
+                           {props.userData?.fetchLoginOwner.phone}
                         </Contents1Text>
                      </S.InputDefault>
                   </S.InputBox>
