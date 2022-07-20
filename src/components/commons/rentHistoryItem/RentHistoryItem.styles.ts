@@ -8,8 +8,11 @@ export const Container = styled.View`
    flex-direction: row;
    background-color: white;
    overflow: hidden;
+   border-top-width: 0.7px;
+   border-top-color: ${colors.light_gray};
    border-bottom-width: 0.7px;
    border-bottom-color: ${colors.light_gray};
+   margin: 7.5px 0px;
 `;
 
 export const StatusText = styled.Text`
