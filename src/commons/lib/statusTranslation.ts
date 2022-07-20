@@ -3,7 +3,7 @@ export default function statusTranslation(status: string) {
       case "IN_PROCESS":
          return "심사중";
       case "FAIL":
-         return "거절";
+         return "심사 거절 되었습니다.";
       case "PASS":
          return "승인";
    }

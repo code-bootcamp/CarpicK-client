@@ -1,11 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import License3PageUI from "./License3.presenter";
 import { CHECK_LICENSE, CREATE_USER } from "./Lisense3.quries";
 
 export default function License3Page({ navigation, route }) {
    const [data3, setData3] = useState({});
+   const [isLoading, setIsLoading] = useState(false);
    const [uri, setUri] = useState();
    const [specialNumber, setSpecialNumber] = useState({});
    const [msg, setMsg] = useState("");
@@ -45,9 +47,11 @@ export default function License3Page({ navigation, route }) {
          route.params.result.Name &&
          specialNumber
       ) {
+         setIsLoading(true);
          const result = await checkLicense({
             variables: { ...rest, SpecialNumber: specialNumber },
          });
+         setIsLoading(false);
          console.log(
             "this is police return",
             JSON.parse(result.data.checkLicense)
@@ -114,6 +118,7 @@ export default function License3Page({ navigation, route }) {
                positive={onPressToLogin}
             />
          )}
+         {isLoading && <LoadingCircle />}
          <License3PageUI
             result={route.params.result}
             base64={route.params.base64}

@@ -96,7 +96,6 @@ export default function License3LaterPage({ navigation, route }) {
 
    return (
       <>
-         {openLoading && <LoadingCircle />}
          {openModal1 && (
             <Modal3
                contents={msg}
@@ -111,6 +110,7 @@ export default function License3LaterPage({ navigation, route }) {
                positive={onPressToMain}
             />
          )}
+         {openLoading && <LoadingCircle />}
          <License3LaterPageUI
             result={route.params.result}
             base64={route.params.base64}

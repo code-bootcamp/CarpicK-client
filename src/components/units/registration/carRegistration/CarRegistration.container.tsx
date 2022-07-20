@@ -4,6 +4,7 @@ import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
 import { CREATE_CAR_REGISTRATION, UPLOAD_FILE } from "../Registration.queries";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 
 export default function CarRegistrationPage({ navigation, route }) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
@@ -11,6 +12,7 @@ export default function CarRegistrationPage({ navigation, route }) {
    const [msg, setMsg] = useState("");
    const [openModal1, setOpenModal1] = useState(false);
    const [openModal2, setOpenModal2] = useState(false);
+   const [openLoading, setOpenLoading] = useState(false);
    const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]); // 미리볼수있는 이미지 주소(캐시파일)
    const [imageUris, setImageUris] = useState([""]); // 실질적으로 전송할 이미지 파일(ReactNativeFile)
 
@@ -21,6 +23,7 @@ export default function CarRegistrationPage({ navigation, route }) {
 
    const onPressRegister = async () => {
       try {
+         setOpenLoading(true);
          // 차량사진 uri
          const carUrl = await uploadFile({
             variables: {
@@ -44,6 +47,7 @@ export default function CarRegistrationPage({ navigation, route }) {
                },
             },
          });
+         setOpenLoading(false);
          console.log(`======== 등록성공 ========\n${result}`);
          setMsg(`차량 등록 신청이 완료되었습니다.\n검토 후 연락드리겠습니다.`);
          setOpenModal2(true);
@@ -70,6 +74,7 @@ export default function CarRegistrationPage({ navigation, route }) {
                positive={onPressToMain}
             />
          )}
+         {openLoading && <LoadingCircle />}
          <CarRegistrationUI
             imageFiles={imageFiles}
             setImageFiles={setImageFiles}

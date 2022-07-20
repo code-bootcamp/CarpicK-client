@@ -3,7 +3,9 @@ import MyPageUI from "./MyPage.presenter";
 import { FETCH_LOGIN_OWNER } from "./MyPage.queries";
 
 export default function MyPage({ navigation }) {
-   const { data } = useQuery(FETCH_LOGIN_OWNER);
+   const { data } = useQuery(FETCH_LOGIN_OWNER, {
+      fetchPolicy: "network-only",
+   });
    console.log(data);
 
    const onPressUpdateInfo = () => {

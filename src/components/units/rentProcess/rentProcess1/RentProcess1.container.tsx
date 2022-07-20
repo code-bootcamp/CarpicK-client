@@ -25,7 +25,9 @@ export default function RentProcess1Page({ navigation, route }) {
    const [indexEndHour, setIndexEndHour] = useState(0);
 
    const [arrHour, setArrHour] = useState([]);
-   const { data: userData } = useQuery(FETCH_LOGIN_USER);
+   const { data: userData } = useQuery(FETCH_LOGIN_USER, {
+      fetchPolicy: "network-only",
+   });
    const { data } = useQuery(FETCH_CAR, {
       variables: {
          carId: route.params.id,
