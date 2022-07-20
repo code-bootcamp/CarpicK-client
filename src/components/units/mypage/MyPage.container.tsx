@@ -4,6 +4,7 @@ import { FETCH_LOGIN_OWNER } from "./MyPage.queries";
 
 export default function MyPage({ navigation }) {
    const { data } = useQuery(FETCH_LOGIN_OWNER);
+   console.log(data);
 
    const onPressUpdateInfo = () => {
       navigation.navigate("updateUserInfoStack");

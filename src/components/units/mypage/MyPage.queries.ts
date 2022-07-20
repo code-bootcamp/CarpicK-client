@@ -22,6 +22,17 @@ export const FETCH_LOGIN_OWNER = gql`
                url
             }
          }
+         carRegistration {
+            carNumber
+            isHipass
+            model
+            oil
+            address
+            status
+            imageCar {
+               url
+            }
+         }
       }
    }
 `;

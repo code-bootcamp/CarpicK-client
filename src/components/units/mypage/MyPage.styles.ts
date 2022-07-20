@@ -64,6 +64,22 @@ export const MyCarContainer = styled.View`
    padding: 25px 0;
 `;
 
+export const CarStatusBox = styled.View`
+   flex: 1;
+   border: 2px solid ${colors.theme};
+   border-radius: 10px;
+   justify-content: center;
+   align-items: center;
+   display: ${(props: { showStatus: boolean }) =>
+      props.showStatus ? "flex" : "none"};
+`;
+
+export const CarStatus = styled.Text`
+   font-size: 17px;
+   color: ${colors.theme};
+   font-weight: 700;
+`;
+
 export const CarImage = styled.Image`
    height: 150px;
 `;
@@ -72,4 +88,10 @@ export const CarInfo = styled.View`
    flex-direction: row;
    justify-content: space-around;
    margin-top: 30px;
+`;
+
+export const CarLocation = styled.View`
+   flex-direction: row;
+   margin-top: 40px;
+   align-items: center;
 `;
