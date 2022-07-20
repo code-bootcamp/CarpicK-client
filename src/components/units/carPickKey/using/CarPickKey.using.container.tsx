@@ -1,9 +1,25 @@
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import CarPickKeyUsingUI from "./CarPickKey.using.presenter";
+import { FETCH_LOGIN_USER } from "./CarPickKey.using.queries";
 
 export default function CarPickKeyUsing({ navigation }) {
+   const { data } = useQuery(FETCH_LOGIN_USER);
+
+   const [openDoor, setOpenDoor] = useState(false);
+   const [closeDoor, setCloseDoor] = useState(false);
+
+   const onChangeOpenDoor = () => {
+      setOpenDoor((prev) => !prev);
+   };
+
+   const onChangeCloseDoor = () => {
+      setCloseDoor((prev) => !prev);
+   };
+
    const onPressToMain = () => {
-      // navigation.navigate("main");
-      navigation.goBack();
+      navigation.navigate("main");
+      // navigation.goBack();
    };
 
    const onPressUnlock = () => {
@@ -20,6 +36,13 @@ export default function CarPickKeyUsing({ navigation }) {
 
    return (
       <CarPickKeyUsingUI
+         data={data}
+         openDoor={openDoor}
+         closeDoor={closeDoor}
+         setOpenDoor={setOpenDoor}
+         setCloseDoor={setCloseDoor}
+         onChangeOpenDoor={onChangeOpenDoor}
+         onChangeCloseDoor={onChangeCloseDoor}
          onPressToMain={onPressToMain}
          onPressUnlock={onPressUnlock}
          onPressLock={onPressLock}
