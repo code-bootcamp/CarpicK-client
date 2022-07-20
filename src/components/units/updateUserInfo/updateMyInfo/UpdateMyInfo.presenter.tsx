@@ -40,7 +40,7 @@ export default function UpdateMyInfoUI(props) {
                   onPress={() => props.setIsSelected(true)}
                >
                   <TitleText
-                     fontSize="12"
+                     fontSize="14"
                      color={props.isSelected ? "#fff" : "#000"}
                   >
                      전화번호 수정하기
@@ -51,7 +51,7 @@ export default function UpdateMyInfoUI(props) {
                   onPress={() => props.setIsSelected(false)}
                >
                   <TitleText
-                     fontSize="12"
+                     fontSize="14"
                      color={!props.isSelected ? "#fff" : "#000"}
                   >
                      비밀번호 수정하기

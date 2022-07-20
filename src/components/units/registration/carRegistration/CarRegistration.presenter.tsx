@@ -36,14 +36,6 @@ export default function CarRegistrationUI(props: ICarRegistrationUIProps) {
          >
             마이카 신청
          </Button1>
-         {props.isModalVisible && (
-            <Modal4
-               title="차량 등록 신청 완료"
-               contents={`차량 등록 신청이 완료되었습니다.\n관리자가 확인 후 알려드리겠습니다.`}
-               positiveText="확인"
-               positive={props.onPressSuccess}
-            />
-         )}
       </S.Wrapper>
    );
 }

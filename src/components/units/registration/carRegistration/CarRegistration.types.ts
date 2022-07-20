@@ -7,7 +7,4 @@ export interface ICarRegistrationUIProps {
    imageUris: string[];
    setImageUris: Dispatch<SetStateAction<string[]>>;
    onPressRegister: () => void;
-   isModalVisible: boolean;
-   setIsModalVisible: Dispatch<SetStateAction<boolean>>;
-   onPressSuccess: () => void;
 }

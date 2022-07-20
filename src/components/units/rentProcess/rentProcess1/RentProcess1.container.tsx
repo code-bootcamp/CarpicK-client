@@ -103,7 +103,7 @@ export default function RentProcess1Page({ navigation, route }) {
    // console.log("this is result", result);
    const onPressNext = () => {
       if (!userData.fetchLoginUser.isAuth) {
-         setMsg("운전면허를 등록해야 서비스 이용이 가능합니다.");
+         setMsg(`운전면허를 등록해야\n 서비스 이용이 가능합니다.`);
          setOpenModal(true);
          return;
       }
