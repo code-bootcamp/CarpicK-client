@@ -1,5 +1,5 @@
 import * as R from "react-native";
-import * as S from "./OperationStatusItem.styles";
+import * as S from "./RentHistoryItem.styles";
 import LocationIcon from "../../../../assets/operationStatus/ic_location.svg";
 import colors from "../../../commons/lib/colors";
 import Contents1Text from "../text/Contents1Text";
@@ -14,11 +14,11 @@ import { numberWithCommas } from "../../../commons/utilities/numberWithCommas";
  *   'USING' : 이용중
  *************************/
 
-interface OperationStatusItemProps {
+interface RentHistoryItemProps {
    data?: any;
 }
 
-export default function OperationStatusItem(props: OperationStatusItemProps) {
+export default function RentHistoryItem(props: RentHistoryItemProps) {
    const statusTranslation = (status?: string) => {
       switch (status) {
          case "USING":
@@ -58,14 +58,6 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
       return `${yearMonthDay}(${day}) ${timeDuration}`;
    };
 
-   const maskingName = (name) => {
-      if (name === undefined || name === "") {
-         return "";
-      }
-      const pattern = /.$/; // 이름 뒤 한자리 마스킹
-      return name.replace(pattern, "*");
-   };
-
    return (
       <S.Wrapper>
          <S.Container>
@@ -100,12 +92,6 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
                         {statusTranslation(props.data?.status)}
                      </Contents1Text>
                   </S.StatusContainer>
-                  <R.View style={{ flexDirection: "row" }}>
-                     <Contents1Text fontFamily="Bold">[예약자] </Contents1Text>
-                     <Contents1Text>
-                        {maskingName(props.data?.user.name)} 이웃님
-                     </Contents1Text>
-                  </R.View>
                   <R.View style={{ marginTop: 5 }}>
                      <Contents1Text>
                         {createDate(props.data?.startTime, props.data?.endTime)}

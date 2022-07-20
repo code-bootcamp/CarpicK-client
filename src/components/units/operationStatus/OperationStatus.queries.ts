@@ -39,6 +39,7 @@ export const FETCH_LOGIN_OWNER = gql`
                name
             }
          }
+         revenue
       }
    }
 `;

@@ -8,6 +8,7 @@ import { FETCH_CARS, FETCH_CAR_LOCATION } from "./Map.queries";
 import { useIsFocused } from "@react-navigation/native";
 import LoadingCircleLight from "../../commons/loadingCircle/LoadingCircleLight";
 import Modal3 from "../../commons/modals/modal3/Modal3";
+import { Linking } from "react-native";
 
 const VIEW_HEIGHT = R.Dimensions.get("window").height;
 
@@ -58,13 +59,13 @@ export default function MapPage({ navigation, route }) {
    };
 
    const handleRegionChange = async () => {
-      setBoundsBox(await mapRef.getMapBoundaries());
+      setBoundsBox(await mapRef?.getMapBoundaries());
       setSouth_west_lng(boundsBox.southWest.longitude);
       setNorth_east_lng(boundsBox.northEast.longitude);
       setSouth_west_lat(boundsBox.southWest.latitude);
       setNorth_east_lat(boundsBox.northEast.latitude);
       if (isDrawerOpen) {
-         panelRef.current.togglePanel();
+         panelRef.current?.togglePanel();
          setIsDrawerOpen((prev) => !prev);
       }
       setCarListData(null);
@@ -116,7 +117,7 @@ export default function MapPage({ navigation, route }) {
             fetchPolicy: "network-only",
          });
          if (!isDrawerOpen && !resultCars.loading) {
-            panelRef.current.togglePanel();
+            panelRef.current?.togglePanel();
          }
 
          setCarListData(resultCars.data);
@@ -131,11 +132,9 @@ export default function MapPage({ navigation, route }) {
       setCarLocationId(id);
    };
 
-   const onPressToMain = async () => {
+   const onPressToLinking = async () => {
       setOpenModal(false);
-      await Location.requestForegroundPermissionsAsync();
-
-      // navigation.replace("mainStack");
+      Linking.openSettings();
    };
 
    console.log("carListData", data);
@@ -146,7 +145,7 @@ export default function MapPage({ navigation, route }) {
             <Modal3
                contents={msg}
                positiveText="확인"
-               positive={onPressToMain}
+               positive={onPressToLinking}
             />
          )}
          {!isReady && <LoadingCircleLight />}

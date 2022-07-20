@@ -93,9 +93,12 @@ export default function MyPageUI(props: IMyPageProps) {
             <S.MyCarContainer style={globalStyle.GlobalStyles}>
                <S.TitleBox>
                   <TitleText fontSize="18">내 차량</TitleText>
-                  <S.StatusBox>
-                     <Contents2Text color="#fff">운행중</Contents2Text>
-                  </S.StatusBox>
+                  {props.data?.fetchLoginOwner.carRegistration?.status ===
+                     "PASS" && (
+                     <S.StatusBox>
+                        <Contents2Text color="#fff">운행중</Contents2Text>
+                     </S.StatusBox>
+                  )}
                </S.TitleBox>
                <R.View style={{ marginTop: 10 }}>
                   {props.data?.fetchLoginOwner.car !== null ? (

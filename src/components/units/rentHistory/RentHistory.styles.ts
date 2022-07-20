@@ -2,12 +2,13 @@ import styled from "@emotion/native";
 
 export const Wrapper = styled.View`
    flex: 1;
-   background-color: #ffffff;
-   position: relative;
+   height: 100%;
 `;
 
 export const TitleWrapper = styled.View`
    padding-top: 11px;
+   background-color: #fff;
+   padding-bottom: 20px;
 `;
 export const ContentWrapper = styled.View`
    padding-top: 28px;

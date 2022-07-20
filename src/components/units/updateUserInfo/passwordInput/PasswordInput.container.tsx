@@ -15,7 +15,7 @@ export default function PasswordInputPage({ navigation }) {
    // console.log(data.fetchLoginUser);
 
    useEffect(() => {
-      setEmail(data.fetchLoginUser.email);
+      setEmail(data?.fetchLoginUser.email);
    }, [data]);
 
    const onPressToUpdateMyInfo = () => {
