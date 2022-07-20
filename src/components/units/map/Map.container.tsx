@@ -7,6 +7,7 @@ import { useApolloClient, useQuery } from "@apollo/client";
 import { FETCH_CARS, FETCH_CAR_LOCATION } from "./Map.queries";
 import { useIsFocused } from "@react-navigation/native";
 import LoadingCircleLight from "../../commons/loadingCircle/LoadingCircleLight";
+import Modal3 from "../../commons/modals/modal3/Modal3";
 
 const VIEW_HEIGHT = R.Dimensions.get("window").height;
 
@@ -41,10 +42,14 @@ export default function MapPage({ navigation, route }) {
             filter: selectedCar.length === 0 ? null : selectedCar,
          },
       },
+      onError: (error) => {
+         console.log(error.message);
+      },
    });
 
    const [isReady, setIsReady] = useState(false);
-   const [errorMsg, setErrorMsg] = useState("");
+   const [msg, setMsg] = useState("");
+   const [openModal, setOpenModal] = useState(false);
    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
    const panelRef = useRef(null);
 
@@ -65,16 +70,13 @@ export default function MapPage({ navigation, route }) {
       setCarListData(null);
    };
 
-   // console.log("route.params", route.params);
-   // console.log("selectedCar", selectedCar);
-   console.log("boundsBox", boundsBox);
-
    useEffect(() => {
       (async () => {
          setIsReady(false);
          let { status } = await Location.requestForegroundPermissionsAsync();
          if (status !== "granted") {
-            setErrorMsg("카픽존을 이용하려면 위치 권한승인이 필요합니다!");
+            setMsg(`카픽존을 이용하려면\n 위치 권한승인이 필요합니다!`);
+            setOpenModal(true);
             return;
          }
 
@@ -129,10 +131,24 @@ export default function MapPage({ navigation, route }) {
       setCarLocationId(id);
    };
 
+   const onPressToMain = async () => {
+      setOpenModal(false);
+      await Location.requestForegroundPermissionsAsync();
+
+      // navigation.replace("mainStack");
+   };
+
    console.log("carListData", data);
 
    return (
       <>
+         {openModal && (
+            <Modal3
+               contents={msg}
+               positiveText="확인"
+               positive={onPressToMain}
+            />
+         )}
          {!isReady && <LoadingCircleLight />}
          {isReady && (
             <MapPageUI
@@ -148,7 +164,6 @@ export default function MapPage({ navigation, route }) {
                data={data}
                carListData={carListData}
                setCarLocationId={setCarLocationId}
-               loadingLocation={!loadingLocation}
                onPressQuery={onPressQuery}
                loading={loading}
             />

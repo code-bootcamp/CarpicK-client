@@ -138,7 +138,7 @@ export const TopMenu = styled.View`
 
 export const TitleWrapper = styled.TouchableOpacity`
    width: 50%;
-   height: 50px;
+   height: 70px;
    justify-content: center;
    align-items: center;
    background-color: ${(props) => (props.isSelected ? colors.theme : "#fff")};
