@@ -6,7 +6,11 @@ export default function calTime(startTime: string, endTime: string) {
    const minutes = seconds / 60;
 
    if (minutes > 60) {
-      return `${minutes / 60}시간 ${minutes % 60}분`;
+      if (minutes % 60 === 0) {
+         return `${minutes / 60}시간`;
+      } else {
+         return `${minutes / 60}시간 ${minutes % 60}분`;
+      }
    } else {
       return `${minutes}분`;
    }

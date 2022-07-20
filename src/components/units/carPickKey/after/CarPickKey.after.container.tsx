@@ -6,6 +6,11 @@ export default function CarPickKeyAfter({ navigation }) {
    const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]);
    const [imageUris, setImageUris] = useState(["", ""]);
    const [rating, setRating] = useState(0);
+   const [isModalVisible, setIsModalVisible] = useState(false);
+
+   const onChangeModalVisible = () => {
+      setIsModalVisible((prev) => !prev);
+   };
 
    const onChangeRating = (rating: number) => {
       setRating(rating);
@@ -25,6 +30,8 @@ export default function CarPickKeyAfter({ navigation }) {
          setImageUris={setImageUris}
          rating={rating}
          onChangeRating={onChangeRating}
+         isModalVisible={isModalVisible}
+         onChangeModalVisible={onChangeModalVisible}
          onPressReturn={onPressReturn}
       />
    );

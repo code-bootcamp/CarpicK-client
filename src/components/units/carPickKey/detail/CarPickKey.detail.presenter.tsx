@@ -9,6 +9,8 @@ import Contents2Text from "../../../commons/text/Contents2Text";
 import Button1 from "../../../commons/button/Button1";
 import { ICarPickKeyDetailProps } from "./CarPickKey.detail.types";
 import CheckBox1 from "../../../commons/checkbox/CheckBox1";
+import calTime from "../../../../commons/lib/calTime";
+import dateFormat from "../../../../commons/lib/dateFormat";
 
 export default function CarPickKeyDetailUI(props: ICarPickKeyDetailProps) {
    return (
@@ -18,18 +20,35 @@ export default function CarPickKeyDetailUI(props: ICarPickKeyDetailProps) {
                <S.CarImage
                   resizeMode="contain"
                   source={{
-                     uri: "https://autoimg.danawa.com/photo/3742/48893/color_12_360.png",
+                     uri: `https://storage.googleapis.com/${props.data?.fetchLoginUser.reservation[0].car.imageCar[0].url}`,
                   }}
                />
-               <TitleText fontSize="20">44호 0541</TitleText>
-               <SubTitleText color={colors.gray}>K5</SubTitleText>
+               <TitleText fontSize="20">
+                  {props.data?.fetchLoginUser.reservation[0].car.carNumber}
+               </TitleText>
+               <SubTitleText color={colors.gray}>
+                  {props.data?.fetchLoginUser.reservation[0].car.carModel.name}
+               </SubTitleText>
             </R.View>
             <R.View style={{ marginTop: 30 }}>
                <TitleText fontSize="16">이용시간</TitleText>
                <R.View style={{ marginTop: 5 }}>
-                  <Contents1Text fontSize="14">총 4시간 이용</Contents1Text>
+                  <Contents1Text fontSize="14">
+                     총{" "}
+                     {calTime(
+                        props.data?.fetchLoginUser.reservation[0].startTime,
+                        props.data?.fetchLoginUser.reservation[0].endTime
+                     )}{" "}
+                     이용
+                  </Contents1Text>
                   <Contents1Text fontSize="14" color={colors.gray}>
-                     16:30 ~ 20:30
+                     {dateFormat(
+                        props.data?.fetchLoginUser.reservation[0].startTime
+                     )}{" "}
+                     ~{" "}
+                     {dateFormat(
+                        props.data?.fetchLoginUser.reservation[0].endTime
+                     )}
                   </Contents1Text>
                </R.View>
             </R.View>
@@ -53,6 +72,7 @@ export default function CarPickKeyDetailUI(props: ICarPickKeyDetailProps) {
             <R.View style={{ marginTop: 25 }}>
                <CheckBox1
                   onChange={props.onChangeCheck}
+                  checked={props.isChecked}
                   contents="예약 상세정보에 문제가 없을을 확인했습니다."
                />
             </R.View>

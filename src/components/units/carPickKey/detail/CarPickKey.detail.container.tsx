@@ -1,11 +1,40 @@
-import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { Modal } from "react-native-paper";
+import Modal3 from "../../../commons/modals/modal3/Modal3";
 import CarPickKeyDetailUI from "./CarPickKey.detail.presenter";
+import { FETCH_LOGIN_USER } from "./CarPickKey.detail.queries";
 
 export default function CarPickKeyDetail({ navigation }) {
+   const { data } = useQuery(FETCH_LOGIN_USER, { fetchPolicy: "network-only" });
+
+   const [isLoad, setIsLoad] = useState(false);
    const [isChecked, setIsChecked] = useState(false);
 
+   const [isTimeBefore, setIsTimeBefore] = useState(false);
+
+   const onChangeTimeBefore = () => {
+      setIsTimeBefore((prev) => !prev);
+   };
+
+   useEffect(() => {
+      navigation.addListener("focus", () => setIsLoad(true));
+      navigation.addListener("blur", () => setIsLoad(false));
+   }, []);
+
+   const calTime = (startTime: string) => {
+      return Math.round(
+         (new Date(startTime).getTime() - new Date().getTime()) / 1000 / 60
+      );
+   };
+
    const onPressNext = () => {
-      navigation.navigate("carPickKeyBefore");
+      if (calTime(data?.fetchLoginUser.reservation[0].startTime) > 10) {
+         onChangeTimeBefore();
+      } else {
+         navigation.navigate("carPickKeyBefore");
+      }
    };
 
    const onChangeCheck = (isChecked: boolean) => {
@@ -13,10 +42,32 @@ export default function CarPickKeyDetail({ navigation }) {
    };
 
    return (
-      <CarPickKeyDetailUI
-         onPressNext={onPressNext}
-         onChangeCheck={onChangeCheck}
-         isChecked={isChecked}
-      />
+      <>
+         {isLoad && (
+            <>
+               {data?.fetchLoginUser.reservation.length !== 0 ? (
+                  <CarPickKeyDetailUI
+                     data={data}
+                     onPressNext={onPressNext}
+                     onChangeCheck={onChangeCheck}
+                     isChecked={isChecked}
+                  />
+               ) : (
+                  <Modal3
+                     contents="예약된 차량이 없습니다."
+                     positiveText="확인"
+                     positive={() => navigation.goBack()}
+                  />
+               )}
+               {isTimeBefore && (
+                  <Modal3
+                     contents="예약시간 10분전부터 이용이 가능합니다."
+                     positiveText="확인"
+                     positive={onChangeTimeBefore}
+                  />
+               )}
+            </>
+         )}
+      </>
    );
 }
