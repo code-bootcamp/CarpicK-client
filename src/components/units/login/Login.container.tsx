@@ -38,7 +38,10 @@ export default function LoginPage({ navigation }) {
    useEffect(() => {
       if (response?.type === "success") {
          setGoogleToken(response.authentication?.accessToken);
-         console.log(response.authentication?.accessToken);
+         console.log(
+            "this is google token",
+            response.authentication?.accessToken
+         );
       }
    }, [response]);
 
