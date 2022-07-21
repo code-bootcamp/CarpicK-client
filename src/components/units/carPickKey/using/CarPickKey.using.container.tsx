@@ -6,17 +6,20 @@ import { FETCH_LOGIN_USER } from "./CarPickKey.using.queries";
 
 export default function CarPickKeyUsing({ navigation }) {
    const { data } = useQuery(FETCH_LOGIN_USER);
-   const [remainTime, setRemainTime] = useState();
+   const [remainTime, setRemainTime] = useState(0);
+   const [isDelay, setIsDelay] = useState(false);
 
    const [openDoor, setOpenDoor] = useState(false);
    const [closeDoor, setCloseDoor] = useState(false);
 
-   // useEffect(() => {
-   //    const timeDiff = moment
-   //       .duration(moment(data?.fetchLoginUser.reservation[0]).diff(new Date()))
-   //       .asMinutes();
-   //    setRemainTime(timeDiff);
-   // }, [data]);
+   useEffect(() => {
+      const timeDiff = moment
+         .duration(moment(data?.fetchLoginUser.reservation[0]).diff(new Date()))
+         .asMinutes();
+      setRemainTime(timeDiff);
+      if (timeDiff < 0) setIsDelay(true);
+      console.log("+++++++++++++++++++++", timeDiff);
+   }, [data]);
 
    const onChangeOpenDoor = () => {
       setOpenDoor((prev) => !prev);
@@ -49,6 +52,7 @@ export default function CarPickKeyUsing({ navigation }) {
    console.log("this is d f r", data?.fetchLoginUser.reservation[0]);
    return (
       <CarPickKeyUsingUI
+         isDelay={isDelay}
          data={data}
          openDoor={openDoor}
          closeDoor={closeDoor}

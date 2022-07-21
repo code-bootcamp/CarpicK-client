@@ -9,6 +9,7 @@ import globalStyle from "../../../../commons/styles/globalStyle";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import colors from "../../../../commons/lib/colors";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import SubTitleText from "../../../commons/text/SubTitleText";
 
 export default function CarPickKeyUsingUI(props: ICarPickKeyUsingUIProps) {
    return (
@@ -44,9 +45,18 @@ export default function CarPickKeyUsingUI(props: ICarPickKeyUsingUIProps) {
                         >
                            남은 대여시간
                         </Contents1Text>
-                        <Contents1Text fontSize="14" color="white">
-                           08:26
-                        </Contents1Text>
+                        {!props.isDelay && (
+                           <Contents1Text fontSize="14" color="white">
+                              08:26
+                           </Contents1Text>
+                        )}
+                        {props.isDelay && (
+                           <S.DelayWrapper>
+                              <SubTitleText fontSize="14" color={colors.red}>
+                                 반납지연
+                              </SubTitleText>
+                           </S.DelayWrapper>
+                        )}
                      </R.View>
                      <S.CarNumberBox>
                         <Contents1Text

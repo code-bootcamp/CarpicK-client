@@ -9,7 +9,7 @@ const colors = {
    purple: "#9966EC",
    light_purple: "#CFB1FF",
    dark_purple: "#5723AB",
-   red: "ff6347",
+   red: "#ff6347",
 };
 
 export default colors;

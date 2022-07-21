@@ -1,18 +1,8 @@
-import { useEffect, useState } from "react";
-import * as S from "./MapMarker.styles";
+import { useState } from "react";
 import * as R from "react-native";
 import { Marker } from "react-native-maps";
-import TitleText from "../../../commons/text/TitleText";
 
-export default function MapMarker({
-   carLocationId,
-   lat,
-   lng,
-   isDrawerOpen,
-   onToggle,
-   func,
-   setCarLocationId,
-}) {
+export default function MapMarker({ lat, lng, func }) {
    const [isSelected, setIsSelected] = useState(false);
 
    const onPress = () => {

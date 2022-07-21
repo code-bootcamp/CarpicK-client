@@ -14,7 +14,6 @@ const FETCH_LOGIN_USER = gql`
       fetchLoginUser {
          reservation {
             car {
-               status
                isAvailable
             }
          }
@@ -29,10 +28,7 @@ export default function CarPickKeyStack({ navigation }) {
       fetchPolicy: "network-only",
    });
    const [isLoad, setIsLoad] = useState(false);
-   console.log(
-      "예약!!!!: ",
-      data?.fetchLoginUser.reservation[0]?.car.isAvailable
-   );
+   console.log("예약!!!!: ", data);
 
    useEffect(() => {
       navigation.addListener("focus", () => setIsLoad(true));

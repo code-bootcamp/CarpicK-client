@@ -53,7 +53,7 @@ export default function Modal5(props: IModal5Props) {
       ) {
          return;
       }
-
+      console.log("this is test", moment(new Date(), "YYYY-MM-DD 00:00:00"));
       if (
          moment // 최소 선택시간 1시간
             .duration(
@@ -69,11 +69,13 @@ export default function Modal5(props: IModal5Props) {
       }
       props.setStartTimeHour(tmpStartTimeHour);
       if (tmpStartTimeHour === "24" && tmpStartTimeMin !== "00")
+         // 24시 00분 초과 예외처리
          props.setStartTimeMin("00");
       else props.setStartTimeMin(tmpStartTimeMin);
 
       props.setEndTimeHour(tmpEndTimeHour);
       if (tmpEndTimeHour === "24" && tmpEndTimeMin !== "00")
+         // 24시 00분 초과 예외처리
          props.setEndTimeMin("00");
       else props.setEndTimeMin(tmpEndTimeMin);
       props.positive();
@@ -94,18 +96,8 @@ export default function Modal5(props: IModal5Props) {
    const endHour = endTime.split(":")[0];
    const endMin = endTime.split(":")[1];
 
-   // console.log(startHour + ":" + startMin, endHour + ":" + endMin);
-   // console.log("this is test", endHour[1]);
-   // console.log("this is startHour", startHour);
-   // console.log("this is endHour", endHour);
-
    return (
-      <Modal
-         //animationType='fade'
-         //animationType='slide'
-         transparent={true}
-         visible={isVisible}
-      >
+      <Modal transparent={true} visible={isVisible}>
          <S.ModalCenteredView>
             <S.ModalView>
                <S.TimeContentsView>
