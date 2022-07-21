@@ -1,6 +1,7 @@
 import * as R from "react-native";
 import globalStyle from "../../../commons/styles/globalStyle";
 import PopularCarItem from "../../commons/popularCarItem/PopularCarItem";
+import { IPopularCarUIProps } from "./PopularCar.types";
 
 const LIST = [
    { name: "여명현", rating: 5, population: 3010 },
@@ -10,12 +11,16 @@ const LIST = [
    { name: "류연찬", rating: 1, population: 781 },
 ];
 
-export default function PopularCarUI() {
+export default function PopularCarUI(props: IPopularCarUIProps) {
+   console.log(props.data);
    return (
       <R.ScrollView style={globalStyle.GlobalStyles}>
-         {LIST.map((data, index) => (
-            <PopularCarItem key={index} data={data} index={index} />
+         {props.data?.fetchPopularCars.map((car: any, index: number) => (
+            <PopularCarItem key={car.id} data={car} index={index} />
          ))}
+         {/* {LIST.map((data, index) => (
+            <PopularCarItem key={index} data={data} index={index} />
+         ))} */}
       </R.ScrollView>
    );
 }
