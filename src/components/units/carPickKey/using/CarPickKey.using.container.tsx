@@ -31,7 +31,10 @@ export default function CarPickKeyUsing({ navigation }) {
    };
 
    const onPressReturn = () => {
-      navigation.navigate("carPickKeyAfter");
+      navigation.navigate("carPickKeyAfter", {
+         carId: data?.fetchLoginUser.reservation[0].car.id,
+         reservationId: data?.fetchLoginUser.reservation[0].id,
+      });
    };
 
    return (

@@ -5,9 +5,11 @@ export const FETCH_LOGIN_USER = gql`
       fetchLoginUser {
          isAuth
          reservation {
+            id
             startTime
             endTime
             car {
+               id
                carNumber
                carModel {
                   name
