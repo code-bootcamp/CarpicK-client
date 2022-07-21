@@ -47,7 +47,7 @@ export default function CarPickKeyAfterUI(props: ICarPickKeyAfterUIProps) {
                </S.RatingBox>
             </S.Container>
             <Button1
-               onPress={props.onChangeModalVisible}
+               onPress={props.onPressReturn}
                isDisabled={
                   !(
                      props.imageUris?.[0] !== "" &&
