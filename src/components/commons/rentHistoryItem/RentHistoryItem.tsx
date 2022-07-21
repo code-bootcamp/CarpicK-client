@@ -29,6 +29,8 @@ export default function RentHistoryItem(props: RentHistoryItemProps) {
             return "예약취소";
          case "RETURN":
             return "반납완료";
+         case "DELAY":
+            return "반납지연";
       }
    };
 
@@ -42,6 +44,8 @@ export default function RentHistoryItem(props: RentHistoryItemProps) {
             return colors.gray;
          case "반납완료":
             return "#1C1F66";
+         case "반납지연":
+            return colors.red;
       }
    };
 
