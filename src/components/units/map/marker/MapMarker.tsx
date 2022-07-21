@@ -13,10 +13,7 @@ export default function MapMarker({
    func,
    setCarLocationId,
 }) {
-   // const { coordinates, title, description, showDetails } = point;
-   // useEffect(() => {
-   //    setCarLocationId(carLocationId);
-   // }, []);
+   const [isSelected, setIsSelected] = useState(false);
 
    return (
       <Marker
@@ -27,11 +24,16 @@ export default function MapMarker({
             longitude: lng,
          }}
          style={{ width: 80, height: 80 }}
-         // image={require(".././../../../../assets/map/marker-150.png")}
          title="카픽존"
+         onSelect={() => setIsSelected(true)}
+         onDeselect={() => setIsSelected(false)}
       >
          <R.Image
-            source={require("../../../../../assets/map/marker-150.png")}
+            source={
+               isSelected
+                  ? require("../../../../../assets/map/marker-new.png")
+                  : require("../../../../../assets/map/marker-150-focus.png")
+            }
             style={{ width: 80, height: 80 }}
             resizeMode="contain"
             resizeMethod="resize"

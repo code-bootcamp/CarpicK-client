@@ -5,6 +5,7 @@ import * as S from "./RentHistory.styles";
 import RentHistoryNoneImg from "../../../../assets/rentHistory/rent-history-none.svg";
 import TitleText from "../../commons/text/TitleText";
 import RentHistoryItem from "../../commons/rentHistoryItem/RentHistoryItem";
+import Contents1Text from "../../commons/text/Contents1Text";
 
 const renderItem = ({ item }) => {
    return <RentHistoryItem data={item} />;
@@ -22,9 +23,9 @@ export default function RentHistoryUI(props) {
             <R.View style={{ backgroundColor: "#fff", height: "100%" }}>
                <R.View style={globalStyle.GlobalStyles}>
                   <S.ContentWrapper>
-                     <TitleText fontSize="18" color={colors.dark_gray}>
+                     <Contents1Text fontSize="18" color={colors.dark_gray}>
                         이용내역이 없습니다.
-                     </TitleText>
+                     </Contents1Text>
                   </S.ContentWrapper>
                   <S.ImageWrapper>
                      <RentHistoryNoneImg />
