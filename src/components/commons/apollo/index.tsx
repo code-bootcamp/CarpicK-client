@@ -40,7 +40,7 @@ export default function ApolloSetting(props) {
    });
 
    const uploadLink = createUploadLink({
-      uri: "http://carpick.shop/graphql",
+      uri: "http://car-pick.shop/graphql",
       headers: { Authorization: `Bearer ${accessToken}` },
       credentials: "include",
    });
