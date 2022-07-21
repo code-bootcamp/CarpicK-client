@@ -9,6 +9,5 @@ export interface ICarPickKeyAfterUIProps {
    rating: number;
    onChangeRating: (rating: number) => void;
    isModalVisible: boolean;
-   onChangeModalVisible: Dispatch<SetStateAction<boolean>>;
    onPressReturn: () => void;
 }

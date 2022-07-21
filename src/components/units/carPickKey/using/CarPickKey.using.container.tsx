@@ -1,13 +1,22 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import moment from "moment";
+import { useEffect, useState } from "react";
 import CarPickKeyUsingUI from "./CarPickKey.using.presenter";
 import { FETCH_LOGIN_USER } from "./CarPickKey.using.queries";
 
 export default function CarPickKeyUsing({ navigation }) {
    const { data } = useQuery(FETCH_LOGIN_USER);
+   const [remainTime, setRemainTime] = useState();
 
    const [openDoor, setOpenDoor] = useState(false);
    const [closeDoor, setCloseDoor] = useState(false);
+
+   // useEffect(() => {
+   //    const timeDiff = moment
+   //       .duration(moment(data?.fetchLoginUser.reservation[0]).diff(new Date()))
+   //       .asMinutes();
+   //    setRemainTime(timeDiff);
+   // }, [data]);
 
    const onChangeOpenDoor = () => {
       setOpenDoor((prev) => !prev);
@@ -37,6 +46,7 @@ export default function CarPickKeyUsing({ navigation }) {
       });
    };
 
+   console.log("this is d f r", data?.fetchLoginUser.reservation[0]);
    return (
       <CarPickKeyUsingUI
          data={data}
