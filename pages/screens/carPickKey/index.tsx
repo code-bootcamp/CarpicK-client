@@ -16,6 +16,7 @@ const FETCH_LOGIN_USER = gql`
             car {
                isAvailable
             }
+            status
          }
       }
    }
@@ -25,7 +26,7 @@ const Stack = createNativeStackNavigator();
 
 export default function CarPickKeyStack({ navigation }) {
    const { data, loading } = useQuery(FETCH_LOGIN_USER, {
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
    });
    const [isLoad, setIsLoad] = useState(false);
    console.log("예약!!!!: ", data);

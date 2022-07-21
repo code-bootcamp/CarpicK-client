@@ -11,6 +11,7 @@ import { ICarPickKeyDetailProps } from "./CarPickKey.detail.types";
 import CheckBox1 from "../../../commons/checkbox/CheckBox1";
 import calTime from "../../../../commons/lib/calTime";
 import dateFormat from "../../../../commons/lib/dateFormat";
+import ArrowRight from "../../../../../assets/mypage/ic_arrow_right.svg";
 
 export default function CarPickKeyDetailUI(props: ICarPickKeyDetailProps) {
    return (
@@ -31,7 +32,15 @@ export default function CarPickKeyDetailUI(props: ICarPickKeyDetailProps) {
                </SubTitleText>
             </R.View>
             <R.View style={{ marginTop: 30 }}>
-               <TitleText fontSize="16">이용시간</TitleText>
+               <S.TitleWrapper>
+                  <TitleText fontSize="16">이용시간</TitleText>
+                  <S.TouchCancel onPress={props.onPressCancelModal}>
+                     <Contents1Text fontSize="11" color={colors.gray}>
+                        예약취소
+                     </Contents1Text>
+                     <ArrowRight />
+                  </S.TouchCancel>
+               </S.TitleWrapper>
                <R.View style={{ marginTop: 5 }}>
                   <Contents1Text fontSize="14">
                      총{" "}

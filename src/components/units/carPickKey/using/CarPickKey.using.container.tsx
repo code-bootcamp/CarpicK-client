@@ -14,12 +14,16 @@ export default function CarPickKeyUsing({ navigation }) {
 
    useEffect(() => {
       const timeDiff = moment
-         .duration(moment(data?.fetchLoginUser.reservation[0]).diff(new Date()))
+         .duration(
+            moment(data?.fetchLoginUser.reservation[0].endTime).diff(new Date())
+         )
          .asMinutes();
       setRemainTime(timeDiff);
       if (timeDiff < 0) setIsDelay(true);
-      console.log("+++++++++++++++++++++", timeDiff);
    }, [data]);
+
+   const finalHour = parseInt(String(remainTime / 60));
+   const finalMin = Math.ceil(remainTime - finalHour * 60);
 
    const onChangeOpenDoor = () => {
       setOpenDoor((prev) => !prev);
@@ -31,7 +35,6 @@ export default function CarPickKeyUsing({ navigation }) {
 
    const onPressToMain = () => {
       navigation.navigate("main");
-      // navigation.goBack();
    };
 
    const onPressUnlock = () => {
@@ -49,7 +52,6 @@ export default function CarPickKeyUsing({ navigation }) {
       });
    };
 
-   console.log("this is d f r", data?.fetchLoginUser.reservation[0]);
    return (
       <CarPickKeyUsingUI
          isDelay={isDelay}
@@ -64,6 +66,8 @@ export default function CarPickKeyUsing({ navigation }) {
          onPressUnlock={onPressUnlock}
          onPressLock={onPressLock}
          onPressReturn={onPressReturn}
+         finalHour={finalHour}
+         finalMin={finalMin}
       />
    );
 }

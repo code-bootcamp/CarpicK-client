@@ -47,7 +47,9 @@ export default function CarPickKeyUsingUI(props: ICarPickKeyUsingUIProps) {
                         </Contents1Text>
                         {!props.isDelay && (
                            <Contents1Text fontSize="14" color="white">
-                              08:26
+                              {props.finalHour}시간{" "}
+                              {props.finalMin !== 0 &&
+                                 String(props.finalMin) + "분"}
                            </Contents1Text>
                         )}
                         {props.isDelay && (

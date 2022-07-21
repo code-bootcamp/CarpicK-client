@@ -26,7 +26,7 @@ export default function CarPickKeyBefore({ navigation, route }) {
             },
          });
 
-         await startCar({
+         const result = await startCar({
             variables: {
                startCarInput: {
                   urls: carUrl.data.uploadFile,
@@ -36,6 +36,7 @@ export default function CarPickKeyBefore({ navigation, route }) {
             },
          });
          setIsReady(false);
+         console.log("###start###", result);
          navigation.navigate("carPickKeyUsing");
       } catch (error: any) {
          console.log(error.message);
