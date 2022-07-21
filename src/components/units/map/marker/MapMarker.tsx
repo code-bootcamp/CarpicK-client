@@ -15,18 +15,20 @@ export default function MapMarker({
 }) {
    const [isSelected, setIsSelected] = useState(false);
 
+   const onPress = () => {
+      setIsSelected(true);
+      func();
+   };
+
    return (
       <Marker
          nativeID={"test"}
-         onPress={func}
+         onPress={onPress}
          coordinate={{
             latitude: lat,
             longitude: lng,
          }}
-         style={{ width: 80, height: 80 }}
-         title="카픽존"
-         onSelect={() => setIsSelected(true)}
-         onDeselect={() => setIsSelected(false)}
+         title="대여하기"
       >
          <R.Image
             source={
@@ -34,18 +36,10 @@ export default function MapMarker({
                   ? require("../../../../../assets/map/marker-on.png")
                   : require("../../../../../assets/map/marker.png")
             }
-            style={{ width: 80, height: 80 }}
+            style={{ width: 70, height: 70 }}
             resizeMode="contain"
             resizeMethod="resize"
          />
       </Marker>
    );
-}
-
-{
-   /* <R.Image
-               style={{ width: 30, height: 30 }}
-               source={require("../../../../assets/map/marker.png")}
-            />
-         </Marker> */
 }
