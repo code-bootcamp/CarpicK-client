@@ -15,7 +15,7 @@ export default function CarPickKeyDetail({ navigation }) {
    const onChangeTimeBefore = () => {
       setIsTimeBefore((prev) => !prev);
    };
-   console.log("this is detail", data?.fetchLoginUser.reservation);
+   // console.log("this is detail", data?.fetchLoginUser.reservation);
 
    const calTime = (startTime: string) => {
       return Math.round(

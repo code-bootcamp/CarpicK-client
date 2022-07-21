@@ -1,7 +1,7 @@
 import * as S from "./Map.styles";
 import * as R from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-import React, { useRef, useState } from "react";
+import React from "react";
 import TitleText from "../../commons/text/TitleText";
 import BottomSheet from "react-native-simple-bottom-sheet";
 import SubTitleText from "../../commons/text/SubTitleText";
@@ -40,13 +40,9 @@ export default function MainPageUI(props) {
                {props.data?.fetchCarLocation.map((el) => (
                   <MapMarker
                      key={el.id}
-                     carLocationId={el.id}
                      lat={el.lat}
                      lng={el.lng}
-                     isDrawerOpen={props.isDrawerOpen}
-                     // onToggle={() => props.handleToggle(el.id)}
                      func={() => props.onPressQuery(el.id)}
-                     setCarLocationId={props.setCarLocationId}
                   />
                ))}
             </MapView>

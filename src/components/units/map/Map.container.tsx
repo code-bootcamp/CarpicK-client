@@ -2,7 +2,6 @@ import MapPageUI from "./Map.presenter";
 import * as Location from "expo-location";
 import * as R from "react-native";
 import { useEffect, useRef, useState } from "react";
-import moment from "moment";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { FETCH_CARS, FETCH_CAR_LOCATION } from "./Map.queries";
 import { useIsFocused } from "@react-navigation/native";

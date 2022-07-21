@@ -55,6 +55,7 @@
       "react-native-dotenv": "^3.3.1",
       "react-native-gesture-handler": "~2.2.1",
       "react-native-image-crop-picker": "^0.38.0",
+      "react-native-map-clustering": "^3.4.2",
       "react-native-maps": "0.30.2",
       "react-native-modal-datetime-picker": "^13.1.2",
       "react-native-paper": "^4.12.2",

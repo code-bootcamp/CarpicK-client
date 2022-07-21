@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface ICarPickKeyUsingUIProps {
+   isDelay: boolean;
    data?: any;
    openDoor: boolean;
    closeDoor: boolean;
