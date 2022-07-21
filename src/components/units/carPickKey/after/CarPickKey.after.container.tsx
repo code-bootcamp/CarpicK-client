@@ -1,6 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
+import Modal3 from "../../../commons/modals/modal3/Modal3";
 import CarPickKeyAfterUI from "./CarPickKey.after.presenter";
 import {
    CREATE_REVIEW,
@@ -12,15 +14,11 @@ export default function CarPickKeyAfter({ navigation, route }) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
    const [endCar] = useMutation(END_CAR);
    const [createReview] = useMutation(CREATE_REVIEW);
-
+   const [isReady, setIsReady] = useState(false);
    const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]);
    const [imageUris, setImageUris] = useState(["", ""]);
    const [rating, setRating] = useState(0);
    const [isModalVisible, setIsModalVisible] = useState(false);
-
-   const onChangeModalVisible = () => {
-      setIsModalVisible((prev) => !prev);
-   };
 
    const onChangeRating = (rating: number) => {
       setRating(rating);
@@ -28,8 +26,8 @@ export default function CarPickKeyAfter({ navigation, route }) {
 
    const onPressReturn = async () => {
       // TODO 사진 전송하고 반납완료
-      console.log(imageFiles);
       try {
+         setIsReady(true);
          const carUrl = await uploadFile({
             variables: {
                files: imageFiles,
@@ -58,27 +56,37 @@ export default function CarPickKeyAfter({ navigation, route }) {
          });
 
          console.log("CREATEREVIEW 결과: ", result2);
-
-         onChangeModalVisible();
-
          console.log("반납완료");
-         navigation.navigate("main");
+         setIsModalVisible(true);
       } catch (error: any) {
          console.log(error.message);
       }
    };
 
+   const onPressToMain = () => {
+      navigation.replace("mainStack");
+   };
+
    return (
-      <CarPickKeyAfterUI
-         imageFiles={imageFiles}
-         setImageFiles={setImageFiles}
-         imageUris={imageUris}
-         setImageUris={setImageUris}
-         rating={rating}
-         onChangeRating={onChangeRating}
-         isModalVisible={isModalVisible}
-         onChangeModalVisible={onChangeModalVisible}
-         onPressReturn={onPressReturn}
-      />
+      <>
+         {isReady && <LoadingCircle />}
+         {isModalVisible && (
+            <Modal3
+               contents="반납을 완료했습니다."
+               positiveText="확인"
+               positive={onPressToMain}
+            />
+         )}
+         <CarPickKeyAfterUI
+            imageFiles={imageFiles}
+            setImageFiles={setImageFiles}
+            imageUris={imageUris}
+            setImageUris={setImageUris}
+            rating={rating}
+            onChangeRating={onChangeRating}
+            isModalVisible={isModalVisible}
+            onPressReturn={onPressReturn}
+         />
+      </>
    );
 }

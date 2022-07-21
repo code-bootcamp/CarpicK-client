@@ -1,6 +1,7 @@
 /* title, contents, positive button */
+/* Time Picker */
 
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Modal } from "react-native";
 import * as S from "../style/Modal.styles";
 import * as R from "react-native";
@@ -8,6 +9,7 @@ import ScrollPicker from "react-native-wheel-scrollview-picker";
 import colors from "../../../../commons/lib/colors";
 import TitleText from "../../text/TitleText";
 import Contents1Text from "../../text/Contents1Text";
+import moment from "moment";
 
 interface IModal5Props {
    initialStartTime: String;
@@ -25,6 +27,8 @@ interface IModal5Props {
    indexEndHour: number;
    positive: () => void;
    negative: () => void;
+   setOpenModal: Dispatch<SetStateAction<boolean>>;
+   setMsg: Dispatch<SetStateAction<string>>;
 }
 
 export default function Modal5(props: IModal5Props) {
@@ -42,6 +46,27 @@ export default function Modal5(props: IModal5Props) {
    }, []);
 
    const onClickPositive = () => {
+      if (
+         // 음수 시간 선택불가
+         `${tmpStartTimeHour}:${tmpStartTimeMin}` >=
+         `${tmpEndTimeHour}:${tmpEndTimeMin}`
+      ) {
+         return;
+      }
+
+      if (
+         moment // 최소 선택시간 1시간
+            .duration(
+               moment(`2000-01-01 ${tmpEndTimeHour}:${tmpEndTimeMin}`).diff(
+                  moment(`2000-01-01 ${tmpStartTimeHour}:${tmpStartTimeMin}`)
+               )
+            )
+            .hours() < 1
+      ) {
+         props.setMsg("최소 이용시간은 1시간 입니다.");
+         props.setOpenModal(true);
+         return;
+      }
       props.setStartTimeHour(tmpStartTimeHour);
       if (tmpStartTimeHour === "24" && tmpStartTimeMin !== "00")
          props.setStartTimeMin("00");
@@ -69,10 +94,10 @@ export default function Modal5(props: IModal5Props) {
    const endHour = endTime.split(":")[0];
    const endMin = endTime.split(":")[1];
 
-   console.log(startHour + ":" + startMin, endHour + ":" + endMin);
-   console.log("this is test", endHour[1]);
-   console.log("this is startHour", startHour);
-   console.log("this is endHour", endHour);
+   // console.log(startHour + ":" + startMin, endHour + ":" + endMin);
+   // console.log("this is test", endHour[1]);
+   // console.log("this is startHour", startHour);
+   // console.log("this is endHour", endHour);
 
    return (
       <Modal

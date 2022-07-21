@@ -7,7 +7,6 @@ import Contents1Text from "../../../commons/text/Contents1Text";
 import Button1 from "../../../commons/button/Button1";
 import { Rating } from "react-native-ratings";
 import UploadCamera from "../../../commons/upload/camera/UploadCamera";
-import Modal3 from "../../../commons/modals/modal3/Modal3";
 
 export default function CarPickKeyAfterUI(props: ICarPickKeyAfterUIProps) {
    return (
@@ -59,13 +58,6 @@ export default function CarPickKeyAfterUI(props: ICarPickKeyAfterUIProps) {
                반납 완료하기
             </Button1>
          </S.Wrapper>
-         {props.isModalVisible && (
-            <Modal3
-               contents="반납을 완료했습니다."
-               positiveText="확인"
-               positive={props.onPressReturn}
-            />
-         )}
       </>
    );
 }

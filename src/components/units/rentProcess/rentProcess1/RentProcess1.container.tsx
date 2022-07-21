@@ -187,6 +187,8 @@ export default function RentProcess1Page({ navigation, route }) {
                indexEndHour={indexEndHour}
                positive={() => setIsVisible(false)}
                negative={() => setIsVisible(false)}
+               setOpenModal={setOpenModal}
+               setMsg={setMsg}
             />
          )}
          <RentProcess1PageUI

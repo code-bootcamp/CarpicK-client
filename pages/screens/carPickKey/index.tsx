@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { gql } from "apollo-boost";
+import { useEffect, useState } from "react";
 import colors from "../../../src/commons/lib/colors";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
 import CarPickKeyAfter from "../../../src/components/units/carPickKey/after/CarPickKey.after.container";
@@ -24,15 +25,23 @@ const FETCH_LOGIN_USER = gql`
 const Stack = createNativeStackNavigator();
 
 export default function CarPickKeyStack({ navigation }) {
-   const { data, loading } = useQuery(FETCH_LOGIN_USER);
+   const { data, loading } = useQuery(FETCH_LOGIN_USER, {
+      fetchPolicy: "network-only",
+   });
+   const [isLoad, setIsLoad] = useState(false);
    console.log(
       "예약!!!!: ",
-      data?.fetchLoginUser.reservation[0].car.isAvailable
+      data?.fetchLoginUser.reservation[0]?.car.isAvailable
    );
+
+   useEffect(() => {
+      navigation.addListener("focus", () => setIsLoad(true));
+      navigation.addListener("blur", () => setIsLoad(false));
+   }, []);
 
    return (
       <>
-         {!loading && (
+         {!loading && isLoad && (
             <Stack.Navigator
                screenOptions={{
                   headerShadowVisible: false,
@@ -46,7 +55,7 @@ export default function CarPickKeyStack({ navigation }) {
                   },
                }}
             >
-               {!data?.fetchLoginUser.reservation[0].car.isAvailable ? (
+               {!data?.fetchLoginUser.reservation[0]?.car.isAvailable ? (
                   <>
                      <Stack.Screen
                         name="carPickKeyDetail"

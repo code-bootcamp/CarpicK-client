@@ -3,11 +3,12 @@ import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { START_CAR, UPLOAD_FILE } from "./CarPickKey.before.queries";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 
 export default function CarPickKeyBefore({ navigation, route }) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
    const [startCar] = useMutation(START_CAR);
-
+   const [isReady, setIsReady] = useState(false);
    const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]);
    const [imageUris, setImageUris] = useState(["", ""]);
 
@@ -18,6 +19,7 @@ export default function CarPickKeyBefore({ navigation, route }) {
       console.log("ReservationId: ", route.params.reservationId);
 
       try {
+         setIsReady(true);
          const carUrl = await uploadFile({
             variables: {
                files: imageFiles,
@@ -33,7 +35,7 @@ export default function CarPickKeyBefore({ navigation, route }) {
                },
             },
          });
-
+         setIsReady(false);
          navigation.navigate("carPickKeyUsing");
       } catch (error: any) {
          console.log(error.message);
@@ -41,12 +43,15 @@ export default function CarPickKeyBefore({ navigation, route }) {
    };
 
    return (
-      <CarPickKeyBeforeUI
-         imageFiles={imageFiles}
-         setImageFiles={setImageFiles}
-         imageUris={imageUris}
-         setImageUris={setImageUris}
-         onPressToCarPickKey={onPressToCarPickKey}
-      />
+      <>
+         {isReady && <LoadingCircle />}
+         <CarPickKeyBeforeUI
+            imageFiles={imageFiles}
+            setImageFiles={setImageFiles}
+            imageUris={imageUris}
+            setImageUris={setImageUris}
+            onPressToCarPickKey={onPressToCarPickKey}
+         />
+      </>
    );
 }
