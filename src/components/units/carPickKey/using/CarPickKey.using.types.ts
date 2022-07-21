@@ -5,6 +5,8 @@ export interface ICarPickKeyUsingUIProps {
    data?: any;
    openDoor: boolean;
    closeDoor: boolean;
+   finalHour: number;
+   finalMin: number;
    setOpenDoor: Dispatch<SetStateAction<boolean>>;
    setCloseDoor: Dispatch<SetStateAction<boolean>>;
    onChangeOpenDoor: () => void;

@@ -8,6 +8,7 @@ export const FETCH_LOGIN_USER = gql`
             id
             startTime
             endTime
+            status
             car {
                id
                carNumber
@@ -21,7 +22,25 @@ export const FETCH_LOGIN_USER = gql`
                   url
                }
             }
+            # payment {
+            #    # id
+            #    impUid
+            #    # amount
+            #    # paymentMethod
+            # }
          }
       }
+   }
+`;
+
+export const CANCEL_RESERVATION = gql`
+   mutation cancelReservation(
+      $reservationId: String!
+      $paymentInput: PaymentInput!
+   ) {
+      cancelReservation(
+         reservationId: $reservationId
+         paymentInput: $paymentInput
+      )
    }
 `;

@@ -31,3 +31,16 @@ export const PlaceLabel = styled.View`
    align-items: center;
    margin-right: 10px;
 `;
+
+export const TitleWrapper = styled.View`
+   width: 100%;
+   flex-direction: row;
+   justify-content: space-between;
+`;
+
+export const TouchCancel = styled.TouchableOpacity`
+   width: 55px;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+`;

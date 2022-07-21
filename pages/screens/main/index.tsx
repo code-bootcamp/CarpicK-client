@@ -66,6 +66,8 @@ export default function MainStack({ navigation }) {
       navigation.navigate("myPageStack");
    };
 
+   console.log("this is is", data);
+
    const CustomDrawerContent = (props) => {
       return (
          <R.View style={{ flex: 1 }}>
