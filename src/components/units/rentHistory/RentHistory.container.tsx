@@ -29,7 +29,6 @@ export default function RentHistoryPage({ navigation }) {
                return {
                   fetchUserReservations: [...prev.fetchUserReservations],
                };
-            console.log("fetchmoreresutl", fetchMoreResult);
             return {
                fetchUserReservations: [
                   ...prev.fetchUserReservations,

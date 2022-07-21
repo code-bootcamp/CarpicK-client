@@ -4,15 +4,13 @@ export const FETCH_POPULAR_CARS = gql`
    query fetchPopularCars {
       fetchPopularCars {
          id
+         ownerName
          carNumber
-         isHipass
          price
          oil
-         contractPeriod
-         ownerEmail
          carModel
-         carLocation
-         reservation
+         addressDetail
+         num
          rating
       }
    }
