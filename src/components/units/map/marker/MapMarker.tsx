@@ -31,8 +31,8 @@ export default function MapMarker({
          <R.Image
             source={
                isSelected
-                  ? require("../../../../../assets/map/marker-new.png")
-                  : require("../../../../../assets/map/marker-150-focus.png")
+                  ? require("../../../../../assets/map/marker-on.png")
+                  : require("../../../../../assets/map/marker.png")
             }
             style={{ width: 80, height: 80 }}
             resizeMode="contain"

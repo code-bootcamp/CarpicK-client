@@ -8,7 +8,8 @@ export const FETCH_CAR = gql`
          isHipass
          price
          oil
-         contractPeriod
+         contractStart
+         contractEnd
          carModel {
             name
          }
