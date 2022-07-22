@@ -29,7 +29,7 @@ export default function PopularCarItem(props: IPopularCarItemProps) {
                <S.CarImage
                   resizeMode="contain"
                   source={{
-                     uri: "https://autoimg.danawa.com/photo/3742/48893/color_12_360.png",
+                     uri: `https://storage.googleapis.com/${props.data.url}`,
                   }}
                />
                <TitleText fontSize="16">{props.data.carNumber}</TitleText>
