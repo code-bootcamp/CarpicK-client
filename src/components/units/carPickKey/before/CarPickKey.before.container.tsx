@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { START_CAR, UPLOAD_FILE } from "./CarPickKey.before.queries";
 import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 
-export default function CarPickKeyBefore({ navigation, route }) {
+export default function CarPickKeyBefore({ navigation, route }: any) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
    const [startCar] = useMutation(START_CAR);
    const [isReady, setIsReady] = useState(false);
@@ -13,11 +14,6 @@ export default function CarPickKeyBefore({ navigation, route }) {
    const [imageUris, setImageUris] = useState(["", ""]);
 
    const onPressToCarPickKey = async () => {
-      // TODO 사진 전송하고 카픽키 사용 페이지 이동
-      console.log("ImageFiles: ", imageFiles);
-      console.log("CarId: ", route.params.carId);
-      console.log("ReservationId: ", route.params.reservationId);
-
       try {
          setIsReady(true);
          const carUrl = await uploadFile({
@@ -26,7 +22,7 @@ export default function CarPickKeyBefore({ navigation, route }) {
             },
          });
 
-         const result = await startCar({
+         await startCar({
             variables: {
                startCarInput: {
                   urls: carUrl.data.uploadFile,
@@ -36,10 +32,16 @@ export default function CarPickKeyBefore({ navigation, route }) {
             },
          });
          setIsReady(false);
-         console.log("###start###", result);
          navigation.navigate("carPickKeyUsing");
       } catch (error: any) {
-         console.log(error.message);
+         return (
+            <Modal4
+               title="차량 사진 전송 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 

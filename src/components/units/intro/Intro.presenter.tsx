@@ -1,5 +1,6 @@
 import * as R from "react-native";
 import * as S from "./Intro.styles";
+import { IIntroPageUIProps } from "./Intro.types";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import Intro1 from "../../../../assets/intro/Intro1-r1.svg";
 import Intro2 from "../../../../assets/intro/Intro2-r1.svg";
@@ -26,7 +27,7 @@ const data = [
    },
 ];
 
-const renderItem = ({ item }) => (
+const renderItem = ({ item }: any) => (
    <R.View
       style={{
          alignItems: "center",
@@ -39,7 +40,7 @@ const renderItem = ({ item }) => (
    </R.View>
 );
 
-export default function IntroPageUI(props) {
+export default function IntroPageUI(props: IIntroPageUIProps) {
    return (
       <S.Wrapper>
          <S.CarouselContainer>

@@ -12,7 +12,5 @@ export interface ICarPickKeyUsingUIProps {
    onChangeOpenDoor: () => void;
    onChangeCloseDoor: () => void;
    onPressToMain: () => void;
-   onPressUnlock: () => void;
-   onPressLock: () => void;
    onPressReturn: () => void;
 }

@@ -1,10 +1,10 @@
-import * as R from "react-native";
 import * as S from "./License1.styles";
+import { ILicense1PageUIProps } from "./License1.types";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import LicenseImage from "../../../../../assets/license/license-image.svg";
 import Contents1Text from "../../../commons/text/Contents1Text";
 
-export default function License1PageUI(props) {
+export default function License1PageUI(props: ILicense1PageUIProps) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
          <S.TitleWrapper>

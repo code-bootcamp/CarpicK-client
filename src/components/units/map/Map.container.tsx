@@ -8,10 +8,11 @@ import { useIsFocused } from "@react-navigation/native";
 import LoadingCircleLight from "../../commons/loadingCircle/LoadingCircleLight";
 import Modal3 from "../../commons/modals/modal3/Modal3";
 import { Linking } from "react-native";
+import Modal4 from "../../commons/modals/modal4/Modal4";
 
 const VIEW_HEIGHT = R.Dimensions.get("window").height;
 
-export default function MapPage({ navigation, route }) {
+export default function MapPage({ navigation, route }: any) {
    const client = useApolloClient();
    const isFocused = useIsFocused();
    const [selectedCar, setSelectedCar] = useState<string[]>([]);
@@ -23,7 +24,7 @@ export default function MapPage({ navigation, route }) {
       latitudeDelta: 0.004,
       longitudeDelta: 0.009,
    });
-   const [carLocationId, setCarLocationId] = useState();
+   const [, setCarLocationId] = useState();
    const [south_west_lng, setSouth_west_lng] = useState(); // 127.341198
    const [north_east_lng, setNorth_east_lng] = useState(); // 127.435044
    const [south_west_lat, setSouth_west_lat] = useState(); // 36.27663
@@ -31,7 +32,7 @@ export default function MapPage({ navigation, route }) {
    const [mapRef, setMapRef] = useState(null);
    const [boundsBox, setBoundsBox] = useState();
 
-   const { data, loading: loadingLocation } = useQuery(FETCH_CAR_LOCATION, {
+   const { data } = useQuery(FETCH_CAR_LOCATION, {
       fetchPolicy: "network-only",
       variables: {
          fetchCarLocationInput: {
@@ -42,8 +43,15 @@ export default function MapPage({ navigation, route }) {
             filter: selectedCar.length === 0 ? null : selectedCar,
          },
       },
-      onError: (error) => {
-         console.log(error.message);
+      onError: (error: any) => {
+         return (
+            <Modal4
+               title="차량 위치 불러오기 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       },
    });
 
@@ -53,7 +61,7 @@ export default function MapPage({ navigation, route }) {
    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
    const panelRef = useRef(null);
 
-   const onPressToRentProcess = (id) => {
+   const onPressToRentProcess = (id: any) => {
       navigation.navigate("rentProcessStack", id);
    };
 
@@ -105,8 +113,7 @@ export default function MapPage({ navigation, route }) {
          setSelectedCar(route.params?.selectedCar);
    }, [isFocused]);
 
-   const onPressQuery = async (id) => {
-      console.log(id);
+   const onPressQuery = async (id: any) => {
       try {
          const resultCars = await client.query({
             query: FETCH_CARS,
@@ -121,13 +128,19 @@ export default function MapPage({ navigation, route }) {
 
          setCarListData(resultCars.data);
          setLoading(resultCars.loading);
-         console.log("resultCars", resultCars);
-      } catch (error) {
-         console.log("ErrorMsg :", error.message);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="차량 불러오기 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
-   const handleToggle = (id) => {
+   const handleToggle = (id: any) => {
       setCarLocationId(id);
    };
 
@@ -135,8 +148,6 @@ export default function MapPage({ navigation, route }) {
       setOpenModal(false);
       Linking.openSettings();
    };
-
-   console.log("carListData", data);
 
    return (
       <>

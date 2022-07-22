@@ -1,4 +1,4 @@
-export const phoneNumHypen = (value) => {
+export const phoneNumHypen = (value: string) => {
    if (!value) {
       return "";
    }

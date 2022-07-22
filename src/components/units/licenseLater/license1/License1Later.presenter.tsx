@@ -1,11 +1,10 @@
-import * as R from "react-native";
 import * as S from "./License1Later.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
-import Contents1Text from "../../../commons/text/Contents1Text";
 import LicenseImage from "../../../../../assets/license/license-image.svg";
 import LicenseDone from "../../../../../assets/license/done.svg";
+import { ILicense1LaterPageUIProps } from "./License1Later.types";
 
-export default function License1LaterPageUI(props) {
+export default function License1LaterPageUI(props: ILicense1LaterPageUIProps) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
          {!props.data?.fetchLoginUser.isAuth && (

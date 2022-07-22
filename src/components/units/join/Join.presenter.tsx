@@ -1,20 +1,21 @@
 import * as R from "react-native";
 import * as S from "./Join.styles";
+import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
+import { Controller } from "react-hook-form";
 import globalStyles from "../../../commons/styles/globalStyle";
 import TitleText from "../../commons/text/TitleText";
 import Contents1Text from "../../commons/text/Contents1Text";
 import Contents2Text from "../../commons/text/Contents2Text";
-import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
-import { Controller } from "react-hook-form";
 import Button1 from "../../commons/button/Button1";
 import Input2 from "../../commons/input/Input2";
 import Timer from "../../commons/timer/timer.container";
 import RedoButton from "../../commons/redoButton/redoButton.container";
+import { IJoinPageUIProps } from "./Join.types";
 const emailRegExp =
    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
 
-export default function JoinPageUI(props) {
+export default function JoinPageUI(props: IJoinPageUIProps) {
    return (
       <>
          <S.Wrapper style={globalStyles.GlobalStyles40}>

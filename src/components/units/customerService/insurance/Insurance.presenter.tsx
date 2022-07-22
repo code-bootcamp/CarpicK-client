@@ -4,8 +4,9 @@ import globalStyles from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import CustomerService from "../../../commons/navigationHeader/customerService/csHeader";
+import { IInsuranceUIProps } from "./Insurance.types";
 
-export default function InsuranceUI(props) {
+export default function InsuranceUI(props: IInsuranceUIProps) {
    return (
       <>
          <CustomerService onPress={props.onPress}>

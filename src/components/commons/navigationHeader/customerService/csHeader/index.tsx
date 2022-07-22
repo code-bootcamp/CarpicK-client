@@ -1,6 +1,25 @@
 import styled from "@emotion/native";
-import React from "react";
+import React, { ReactNode } from "react";
+import * as R from "react-native";
 import BackIcon from "../../../../../../assets/customerService/header-back.svg";
+
+interface ICustomServiceProps {
+   children: ReactNode;
+   onPress: () => void;
+}
+
+export default function CustomerService(props: ICustomServiceProps) {
+   return (
+      <Header>
+         <HeaderTitle>{props.children}</HeaderTitle>
+         <ImageView>
+            <R.TouchableOpacity onPress={props.onPress} activeOpacity={0.7}>
+               <BackIcon />
+            </R.TouchableOpacity>
+         </ImageView>
+      </Header>
+   );
+}
 
 const Header = styled.View`
    width: 100%;
@@ -25,18 +44,3 @@ const ImageView = styled.View`
    flex-direction: row;
    justify-content: flex-end;
 `;
-
-const IconTouch = styled.TouchableOpacity``;
-
-export default function CustomerService(props) {
-   return (
-      <Header>
-         <HeaderTitle>{props.children}</HeaderTitle>
-         <ImageView>
-            <IconTouch onPress={props.onPress} activeOpacity={0.7}>
-               <BackIcon />
-            </IconTouch>
-         </ImageView>
-      </Header>
-   );
-}

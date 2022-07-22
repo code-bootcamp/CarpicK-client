@@ -1,6 +1,6 @@
 import MainPageUI from "./Main.presenter";
 
-export default function MainPage({ navigation }) {
+export default function MainPage({ navigation }: any) {
    const onPressToUserGuide = () => {
       navigation.navigate("userGuide");
    };

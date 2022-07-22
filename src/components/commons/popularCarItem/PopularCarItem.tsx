@@ -15,7 +15,7 @@ interface IPopularCarItemProps {
 }
 
 export default function PopularCarItem(props: IPopularCarItemProps) {
-   const maskingName = (name) => {
+   const maskingName = (name?: undefined | string) => {
       if (name === undefined || name === "") {
          return "";
       }

@@ -1,6 +1,6 @@
 import AccidentUI from "./Accident.presenter";
 
-export default function AccidentPage({ navigation }) {
+export default function AccidentPage({ navigation }: any) {
    const onPressToInsurance = () => {
       navigation.navigate("insurance");
    };

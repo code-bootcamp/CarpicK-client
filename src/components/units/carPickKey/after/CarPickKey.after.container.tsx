@@ -3,6 +3,7 @@ import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
 import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import CarPickKeyAfterUI from "./CarPickKey.after.presenter";
 import {
    CREATE_REVIEW,
@@ -10,7 +11,7 @@ import {
    UPLOAD_FILE,
 } from "./CarPickKey.after.queries";
 
-export default function CarPickKeyAfter({ navigation, route }) {
+export default function CarPickKeyAfter({ navigation, route }: any) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
    const [endCar] = useMutation(END_CAR);
    const [createReview] = useMutation(CREATE_REVIEW);
@@ -25,7 +26,6 @@ export default function CarPickKeyAfter({ navigation, route }) {
    };
 
    const onPressReturn = async () => {
-      // TODO 사진 전송하고 반납완료
       try {
          setIsReady(true);
          const carUrl = await uploadFile({
@@ -34,9 +34,7 @@ export default function CarPickKeyAfter({ navigation, route }) {
             },
          });
 
-         console.log("carUrl: ", carUrl);
-
-         const result = await endCar({
+         await endCar({
             variables: {
                endCarInput: {
                   urls: carUrl.data.uploadFile,
@@ -46,20 +44,23 @@ export default function CarPickKeyAfter({ navigation, route }) {
             },
          });
 
-         console.log("ENDCAR 결과: ", result);
-
-         const result2 = await createReview({
+         await createReview({
             variables: {
                carId: route.params.carId,
                rating,
             },
          });
 
-         console.log("CREATEREVIEW 결과: ", result2);
-         console.log("반납완료");
          setIsModalVisible(true);
       } catch (error: any) {
-         console.log(error.message);
+         return (
+            <Modal4
+               title="반납 처리 에러"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 

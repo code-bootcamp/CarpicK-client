@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import CarPickKeyUsingUI from "./CarPickKey.using.presenter";
 import { FETCH_LOGIN_USER } from "./CarPickKey.using.queries";
 
-export default function CarPickKeyUsing({ navigation }) {
+export default function CarPickKeyUsing({ navigation }: any) {
    const { data } = useQuery(FETCH_LOGIN_USER);
    const [remainTime, setRemainTime] = useState(0);
    const [isDelay, setIsDelay] = useState(false);
@@ -37,14 +37,6 @@ export default function CarPickKeyUsing({ navigation }) {
       navigation.navigate("main");
    };
 
-   const onPressUnlock = () => {
-      console.log("문열림");
-   };
-
-   const onPressLock = () => {
-      console.log("문잠김");
-   };
-
    const onPressReturn = () => {
       navigation.navigate("carPickKeyAfter", {
          carId: data?.fetchLoginUser.reservation[0].car.id,
@@ -63,8 +55,6 @@ export default function CarPickKeyUsing({ navigation }) {
          onChangeOpenDoor={onChangeOpenDoor}
          onChangeCloseDoor={onChangeCloseDoor}
          onPressToMain={onPressToMain}
-         onPressUnlock={onPressUnlock}
-         onPressLock={onPressLock}
          onPressReturn={onPressReturn}
          finalHour={finalHour}
          finalMin={finalMin}

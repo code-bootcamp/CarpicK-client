@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import FilterUI from "./Filter.presenter";
 import { FETCH_CAR_CATEGORY } from "./Filter.queries";
 
-export default function FilterPage({ navigation, route }) {
+export default function FilterPage({ navigation, route }: any) {
    const { data } = useQuery(FETCH_CAR_CATEGORY);
 
    const [selectedCar, setSelectedCar] = useState<string[]>([]);

@@ -1,5 +1,20 @@
 import styled from "@emotion/native";
 
+interface IButton02GrayProps {
+   func?: () => void;
+   title?: string;
+}
+
+export default function Button02Gray(props: IButton02GrayProps) {
+   return (
+      <NextTouch activeOpacity={0.7} onPress={props.func}>
+         <NextText style={{ includeFontPadding: false }}>
+            {props.title}
+         </NextText>
+      </NextTouch>
+   );
+}
+
 export const NextTouch = styled.TouchableOpacity`
    width: 100%;
    height: 40px;
@@ -13,11 +28,3 @@ export const NextText = styled.Text`
    font-family: Regular;
    color: #ffffff;
 `;
-
-export default function Button02Gray({ func, title }) {
-   return (
-      <NextTouch activeOpacity={0.7} onPress={func}>
-         <NextText style={{ includeFontPadding: false }}>{title}</NextText>
-      </NextTouch>
-   );
-}

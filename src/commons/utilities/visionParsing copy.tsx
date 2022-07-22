@@ -1,4 +1,6 @@
-export function VisionParsing(arr) {
+import Modal4 from "../../components/commons/modals/modal4/Modal4";
+
+export function VisionParsing(arr: string[]) {
    const result = {
       BirthDate: "",
       Name: "",
@@ -40,8 +42,15 @@ export function VisionParsing(arr) {
       if (tmp.split("-")[0] !== undefined) {
          result.BirthDate = "19" + tmp;
       }
-   } catch (error) {
-      console.log(error.message);
+   } catch (error: any) {
+      return (
+         <Modal4
+            title="생일 정보 찾기 오류"
+            contents={error.message}
+            positiveText="확인"
+            positive={() => {}}
+         />
+      );
    }
 
    // 4. 이름 (parameter)

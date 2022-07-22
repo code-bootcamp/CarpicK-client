@@ -29,7 +29,6 @@ export default function CarPickKeyStack({ navigation }) {
       fetchPolicy: "network-only",
    });
    const [isLoad, setIsLoad] = useState(false);
-   console.log("예약!!!!: ", data);
 
    useEffect(() => {
       navigation.addListener("focus", () => setIsLoad(true));

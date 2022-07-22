@@ -1,7 +1,7 @@
 import { useState } from "react";
 import IntroPageUI from "./Intro.presenter";
 
-export default function IntroPage({ navigation }) {
+export default function IntroPage({ navigation }: any) {
    const [activeTab, setActiveTab] = useState(0);
 
    const onPressLogin = () => {

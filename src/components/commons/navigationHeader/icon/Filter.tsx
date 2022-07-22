@@ -1,6 +1,5 @@
 import * as R from "react-native";
 import styled from "@emotion/native";
-import { DrawerActions } from "@react-navigation/native";
 import FilterImage from "../../../../../assets/main/Filter.svg";
 
 const FilterTouch = styled.TouchableOpacity`
@@ -18,7 +17,7 @@ const FilterImageWrapper = styled.View`
    justify-content: center;
 `;
 
-export const Filter = (navigation) => {
+export const Filter = (navigation: any) => {
    return (
       <FilterTouch onPress={() => navigation.navigate("filter")}>
          <FilterImageWrapper>

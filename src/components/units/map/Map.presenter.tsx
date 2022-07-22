@@ -11,11 +11,12 @@ import Contents1Text from "../../commons/text/Contents1Text";
 import { statusBar } from "./statusBar/StatusBar";
 import moment from "moment";
 import MapMarker from "./marker/MapMarker";
+import { IMapPageUIProps } from "./Map.types";
 const today = moment().format("M/D");
-const tommorow =
+const tomorrow =
    today.split("/")[0] + "/" + String(Number(today.split("/")[1]) + 1);
 
-export default function MainPageUI(props) {
+export default function MapPageUI(props: IMapPageUIProps) {
    return (
       <>
          <S.Wrapper>
@@ -37,7 +38,7 @@ export default function MainPageUI(props) {
                moveOnMarkerPress={false}
                onRegionChangeComplete={props.handleRegionChange}
             >
-               {props.data?.fetchCarLocation.map((el) => (
+               {props.data?.fetchCarLocation.map((el: any) => (
                   <MapMarker
                      key={el.id}
                      lat={el.lat}
@@ -66,7 +67,7 @@ export default function MainPageUI(props) {
                         {props.carListData?.fetchCars[0].carLocation.address}
                      </Contents2Text>
                      <R.ScrollView style={{ width: "100%" }}>
-                        {props.carListData?.fetchCars.map((el) => (
+                        {props.carListData?.fetchCars.map((el: any) => (
                            <S.CarList
                               key={el.id}
                               testID={el.id}
@@ -98,7 +99,7 @@ export default function MainPageUI(props) {
                                  <S.DateNote>
                                     <S.StartDate>{today}</S.StartDate>
                                     <S.MiddleHour>12:00</S.MiddleHour>
-                                    <S.EndDate>{tommorow}</S.EndDate>
+                                    <S.EndDate>{tomorrow}</S.EndDate>
                                  </S.DateNote>
                               </S.CarListFooter>
                            </S.CarList>

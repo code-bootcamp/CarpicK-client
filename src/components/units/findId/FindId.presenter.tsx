@@ -7,8 +7,9 @@ import Button01Blue from "../../commons/button/button_01_blue";
 import Timer from "../../commons/timer/timer.container";
 import RedoButton from "../../commons/redoButton/redoButton.container";
 import { phoneNumHypen } from "../../../commons/utilities/phonNumHypen";
+import { IFindIdPageUIProps } from "./FindId.types";
 
-export default function FindIdPageUI(props) {
+export default function FindIdPageUI(props: IFindIdPageUIProps) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles40}>
          <S.TitleWrapper>

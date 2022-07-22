@@ -10,12 +10,13 @@ import MainImage4 from "../../../../assets/main/main-4.svg";
 import MainImage5 from "../../../../assets/main/main-5.svg";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { IMainPageUIProps } from "./Main.types";
 
 const VIEW_WIDTH: number = R.Dimensions.get("window").width;
 const CARD_WIDTH: number = (VIEW_WIDTH - 50) / 2;
 const CARD_HEIGTH: number = CARD_WIDTH * 1.53;
 
-export default function MainPageUI(props) {
+export default function MainPageUI(props: IMainPageUIProps) {
    return (
       <>
          <R.ScrollView showsVerticalScrollIndicator={false}>

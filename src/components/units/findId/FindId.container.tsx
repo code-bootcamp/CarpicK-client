@@ -1,10 +1,11 @@
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useState } from "react";
 import Modal3 from "../../commons/modals/modal3/Modal3";
+import Modal4 from "../../commons/modals/modal4/Modal4";
 import FindIdPageUI from "./FindId.presenter";
 import { SEND_SMS, CHECK_TOKEN, FETCH_EMAIL } from "./FindId.queries";
 
-export default function FindIdPage({ navigation }) {
+export default function FindIdPage({ navigation }: any) {
    const client = useApolloClient();
    const [email, setEmail] = useState("");
    const [phone, setPhone] = useState("");
@@ -30,7 +31,7 @@ export default function FindIdPage({ navigation }) {
             },
             fetchPolicy: "network-only",
          });
-         console.log(resultId.data.fetchEmail);
+
          if (resultId.data.fetchEmail === "등록되지 않은 번호입니다") {
             setMsg("등록되어있지 않는 전화번호입니다.");
             setOpenModal(true);
@@ -40,19 +41,33 @@ export default function FindIdPage({ navigation }) {
             setOpenTimer(true);
             setMsg("3분 이내에 인증번호를 입력해주세요.");
             setOpenModal(true);
+
             try {
-               const result = await sendSMS({
+               await sendSMS({
                   variables: {
                      phone: phone.split("-").join(""),
                   },
                });
-               console.log("this is sms", result);
-            } catch (error) {
-               console.log(error.message);
+            } catch (error: any) {
+               return (
+                  <Modal4
+                     title="문자 전송 실패"
+                     contents={error.message}
+                     positiveText="확인"
+                     positive={() => {}}
+                  />
+               );
             }
          }
-      } catch (error) {
-         console.log("ErrorMsg :", error.message);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="휴대폰 인증 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
