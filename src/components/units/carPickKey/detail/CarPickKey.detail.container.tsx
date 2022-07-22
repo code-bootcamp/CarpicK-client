@@ -13,12 +13,13 @@ export default function CarPickKeyDetail({ navigation }) {
    const { data, loading } = useQuery(FETCH_LOGIN_USER, {
       fetchPolicy: "network-only",
    });
-
+   console.log("this c p k data", data);
    const [cancel] = useMutation(CANCEL_RESERVATION);
    const [isChecked, setIsChecked] = useState(false);
    const [isTimeBefore, setIsTimeBefore] = useState(false);
    const [openModal1, setOpenModal1] = useState(false);
    const [openModal2, setOpenModal2] = useState(false);
+   const [openModal3, setOpenModal3] = useState(false);
    const [msg, setMsg] = useState("");
 
    const onChangeTimeBefore = () => {
@@ -59,7 +60,7 @@ export default function CarPickKeyDetail({ navigation }) {
                   moment()
                )
             )
-            .minutes() < 30
+            .asHours() < 0.5
       ) {
          setMsg("시작 시간 30분 이내에는\n예약취소 불가능합니다.");
          setOpenModal2(true);
@@ -70,31 +71,31 @@ export default function CarPickKeyDetail({ navigation }) {
                variables: {
                   reservationId: data.fetchLoginUser.reservation[0].id,
                   paymentInput: {
-                     impUid: "",
-                     amount: "",
-                     paymentMethod: "",
+                     impUid:
+                        data.fetchLoginUser.reservation[0].payment[0].impUid,
+                     amount:
+                        data.fetchLoginUser.reservation[0].payment[0].amount,
+                     paymentMethod:
+                        data.fetchLoginUser.reservation[0].payment[0]
+                           .paymentMethod,
                   },
                },
             });
             console.log(result);
             setOpenModal1(false);
-            navigation.replace("mainStack");
+            setMsg("예약취소가 완료되었습니다.");
+            setOpenModal3(true);
          } catch (error) {
             console.log(error.message);
          }
       }
    };
 
-   console.log(
-      "this is data",
-      moment
-         .duration(
-            moment(data?.fetchLoginUser.reservation[0]?.startTime).diff(
-               moment()
-            )
-         )
-         .minutes()
-   );
+   const onPressToMain = () => {
+      setOpenModal1(false);
+      navigation.replace("mainStack");
+   };
+
    return (
       <>
          {!loading && (
@@ -122,6 +123,13 @@ export default function CarPickKeyDetail({ navigation }) {
                            contents={msg}
                            positiveText="확인"
                            positive={() => setOpenModal2(false)}
+                        />
+                     )}
+                     {openModal3 && (
+                        <Modal3
+                           contents={msg}
+                           positiveText="확인"
+                           positive={onPressToMain}
                         />
                      )}
                   </>

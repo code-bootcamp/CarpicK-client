@@ -9,7 +9,7 @@ export default function calTime(startTime: string, endTime: string) {
       if (minutes % 60 === 0) {
          return `${minutes / 60}시간`;
       } else {
-         return `${minutes / 60}시간 ${minutes % 60}분`;
+         return `${Math.floor(minutes / 60)}시간 ${minutes % 60}분`;
       }
    } else {
       return `${minutes}분`;

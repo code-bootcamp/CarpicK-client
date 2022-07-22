@@ -22,12 +22,12 @@ export const FETCH_LOGIN_USER = gql`
                   url
                }
             }
-            # payment {
-            #    # id
-            #    impUid
-            #    # amount
-            #    # paymentMethod
-            # }
+            payment {
+               id
+               impUid
+               amount
+               paymentMethod
+            }
          }
       }
    }
