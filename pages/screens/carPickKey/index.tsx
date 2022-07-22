@@ -26,7 +26,7 @@ const Stack = createNativeStackNavigator();
 
 export default function CarPickKeyStack({ navigation }) {
    const { data, loading } = useQuery(FETCH_LOGIN_USER, {
-      fetchPolicy: "no-cache",
+      fetchPolicy: "network-only",
    });
    const [isLoad, setIsLoad] = useState(false);
    console.log("예약!!!!: ", data);

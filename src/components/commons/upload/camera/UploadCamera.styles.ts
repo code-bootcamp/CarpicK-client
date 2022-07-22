@@ -25,14 +25,14 @@ export const Box = styled.TouchableOpacity`
 
 export const RowLine = styled.View`
    position: absolute;
-   width: 40px;
-   height: 1px;
+   width: 20px;
+   height: 1.7px;
    background-color: ${colors.gray};
 `;
 
 export const ColumnLine = styled.View`
    position: absolute;
-   width: 1px;
-   height: 40px;
+   width: 1.7px;
+   height: 20px;
    background-color: ${colors.gray};
 `;
