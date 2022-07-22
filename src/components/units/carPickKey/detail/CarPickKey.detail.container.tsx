@@ -89,7 +89,9 @@ export default function CarPickKeyDetail({ navigation }) {
       "this is data",
       moment
          .duration(
-            moment(data?.fetchLoginUser.reservation[0].startTime).diff(moment())
+            moment(data?.fetchLoginUser.reservation[0]?.startTime).diff(
+               moment()
+            )
          )
          .minutes()
    );
