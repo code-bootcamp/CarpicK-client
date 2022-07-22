@@ -15,6 +15,14 @@ interface IPopularCarItemProps {
 }
 
 export default function PopularCarItem(props: IPopularCarItemProps) {
+   const maskingName = (name) => {
+      if (name === undefined || name === "") {
+         return "";
+      }
+      const pattern = /.$/; // 이름 뒤 한자리 마스킹
+      return name.replace(pattern, "*");
+   };
+
    return (
       <S.Wrapper>
          <S.Container>
@@ -42,12 +50,14 @@ export default function PopularCarItem(props: IPopularCarItemProps) {
                </TitleText>
             </S.CarInfoContainer>
             <S.ContentsContainer>
-               <R.View style={{ flexDirection: "row" }}>
+               <R.View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Contents1Text fontFamily="Bold" fontSize="15">
-                     {props.data.ownerName}
+                     {maskingName(props.data.ownerName)}
                   </Contents1Text>
                   <R.View style={{ marginLeft: 3 }}>
-                     <Contents1Text fontSize="15">이웃님</Contents1Text>
+                     <Contents1Text fontSize="12">
+                        이웃님의 마이카
+                     </Contents1Text>
                   </R.View>
                </R.View>
                <Contents1Text>
