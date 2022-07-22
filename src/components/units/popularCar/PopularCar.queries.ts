@@ -12,6 +12,7 @@ export const FETCH_POPULAR_CARS = gql`
          addressDetail
          num
          rating
+         url
       }
    }
 `;
