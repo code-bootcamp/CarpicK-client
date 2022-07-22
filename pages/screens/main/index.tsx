@@ -66,7 +66,7 @@ export default function MainStack({ navigation }) {
       navigation.navigate("myPageStack");
    };
 
-   console.log("this is is", data);
+   console.log("this is MainStack login user data", data);
 
    const CustomDrawerContent = (props) => {
       return (
