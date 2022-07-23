@@ -193,7 +193,7 @@ export default function MyPageUI(props: IMyPageProps) {
                                     </S.CarStatusBoxFail>
                                  )}
                                  {props.data?.fetchLoginOwner.carRegistration
-                                    .status !== "FAIL" && (
+                                    .status === "IN_PROCESS" && (
                                     <S.CarStatusBox showStatus={showStatus}>
                                        <S.CarStatus showStatus={showStatus}>
                                           {statusTranslation(
