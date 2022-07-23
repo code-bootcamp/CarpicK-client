@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import License3LaterPageUI from "./License3Later.presenter";
 import {
    CHECK_LICENSE,
@@ -9,11 +10,11 @@ import {
    UPDATE_LICENSE,
 } from "./License3Later.queries";
 
-export default function License3LaterPage({ navigation, route }) {
+export default function License3LaterPage({ navigation, route }: any) {
    const [uri, setUri] = useState();
    const [specialNumber, setSpecialNumber] = useState({});
    const [msg, setMsg] = useState("");
-   const [isAuth, setIsAuth] = useState(false);
+   const [, setIsAuth] = useState(false);
    const [openModal1, setOpenModal1] = useState(false);
    const [openModal2, setOpenModal2] = useState(false);
    const [openLoading, setOpenLoading] = useState(false);
@@ -28,12 +29,12 @@ export default function License3LaterPage({ navigation, route }) {
       setSpecialNumber(route.params.result.SpecialNumber);
    }, []);
 
-   const onPressGoback = () => {
+   const onPressGoBack = () => {
       navigation.navigate("license2Later");
       route.params.setIsPhoto(false);
    };
 
-   const onPressCheckLisense = async () => {
+   const onPressCheckLicense = async () => {
       if (data.fetchLoginUser.name !== route.params.result.Name) {
          setMsg("이름이 일치하지 않습니다.\n본인 명의의 면허증만 가능합니다.");
          setOpenModal1(true);
@@ -41,7 +42,6 @@ export default function License3LaterPage({ navigation, route }) {
       }
 
       const { Fail, SpecialNumber, ...rest } = route.params.result;
-      console.log({ ...rest, SpecialNumber: specialNumber });
       if (
          route.params.result.BirthDate &&
          route.params.result.LicNumber &&
@@ -53,11 +53,8 @@ export default function License3LaterPage({ navigation, route }) {
             variables: { ...rest, SpecialNumber: specialNumber },
          });
          setOpenLoading(false);
-         console.log(
-            "this is police return",
-            JSON.parse(result.data.checkLicense)
-         );
          const policeReturn = JSON.parse(result.data.checkLicense);
+
          if (
             policeReturn.Status === "OK" &&
             policeReturn.StatusSeq === 0 &&
@@ -79,13 +76,19 @@ export default function License3LaterPage({ navigation, route }) {
 
    const onPressSubmit = async () => {
       try {
-         const result = await updateLicense({ variables: { isAuth: true } });
+         await updateLicense({ variables: { isAuth: true } });
 
          setMsg("면허인증이 완료되었습니다.");
          setOpenModal2(true);
-         console.log("this is result", result);
-      } catch (error) {
-         console.log("this is error", error);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="먄허인증 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -115,8 +118,8 @@ export default function License3LaterPage({ navigation, route }) {
             result={route.params.result}
             base64={route.params.base64}
             openSubmitButton={openSubmitButton}
-            onPressGoback={onPressGoback}
-            onPressCheckLisense={onPressCheckLisense}
+            onPressGoBack={onPressGoBack}
+            onPressCheckLicense={onPressCheckLicense}
             onPressSubmit={onPressSubmit}
             setSpecialNumber={setSpecialNumber}
             uri={uri}

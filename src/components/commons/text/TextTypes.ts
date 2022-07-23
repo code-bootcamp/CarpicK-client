@@ -6,3 +6,9 @@ export interface ITextProps {
    fontFamily?: "Bold" | "Regular";
    children?: ReactNode;
 }
+
+export interface ITextStyleProps {
+   fontSize?: string;
+   fontFamily?: string;
+   color?: string;
+}

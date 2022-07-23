@@ -49,7 +49,7 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
       }
    };
 
-   const createDate = (startTime, endTime) => {
+   const createDate = (startTime?: string, endTime?: string) => {
       const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
 
       const yearMonthDay = moment(startTime).format("YYYY.MM.DD");
@@ -62,7 +62,7 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
       return `${yearMonthDay}(${day}) ${timeDuration}`;
    };
 
-   const maskingName = (name) => {
+   const maskingName = (name: undefined | string) => {
       if (name === undefined || name === "") {
          return "";
       }
@@ -71,7 +71,7 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
    };
 
    return (
-      <S.Wrapper>
+      <R.View>
          <S.Container>
             <S.ContentsContainer>
                <S.CarInfoContainer>
@@ -127,6 +127,6 @@ export default function OperationStatusItem(props: OperationStatusItemProps) {
                </S.ReservationContainer>
             </S.ContentsContainer>
          </S.Container>
-      </S.Wrapper>
+      </R.View>
    );
 }

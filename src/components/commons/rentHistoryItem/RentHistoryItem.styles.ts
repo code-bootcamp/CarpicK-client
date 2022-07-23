@@ -1,8 +1,6 @@
 import styled from "@emotion/native";
 import colors from "../../../commons/lib/colors";
 
-export const Wrapper = styled.View``;
-
 export const Container = styled.View`
    height: 160px;
    flex-direction: row;

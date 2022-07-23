@@ -1,14 +1,14 @@
 import * as R from "react-native";
 import * as S from "./License3Later.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
-import LicenseImage from "../../../../../assets/license/license-image.svg";
 import Button02Blue from "../../../commons/button/button_02_blue";
 import Button02Gray from "../../../commons/button/button_02_gray";
 import SubTitleText from "../../../commons/text/SubTitleText";
 import { MaterialIcons } from "@expo/vector-icons";
 import Button01Blue from "../../../commons/button/button_01_blue";
+import { ILicense3LaterPageUIProps } from "./License3Later.types";
 
-export default function License3LaterPageUI(props) {
+export default function License3LaterPageUI(props: ILicense3LaterPageUIProps) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
          <R.ScrollView showsVerticalScrollIndicator={false}>
@@ -102,7 +102,7 @@ export default function License3LaterPageUI(props) {
                   {!props.openSubmitButton && (
                      <S.ButtonWrapper>
                         <Button02Blue
-                           func={props.onPressCheckLisense}
+                           func={props.onPressCheckLicense}
                            title="등록"
                         />
                      </S.ButtonWrapper>
@@ -119,12 +119,12 @@ export default function License3LaterPageUI(props) {
             )}
             {props.result.Fail !== "" && (
                <S.ButtonWrapperFail>
-                  <Button02Blue func={props.onPressGoback} title="다시찍기" />
+                  <Button02Blue func={props.onPressGoBack} title="다시찍기" />
                </S.ButtonWrapperFail>
             )}
             {props.result.Fail === "" && !props.openSubmitButton && (
                <S.ButtonWrapper>
-                  <Button02Gray func={props.onPressGoback} title="다시찍기" />
+                  <Button02Gray func={props.onPressGoBack} title="다시찍기" />
                </S.ButtonWrapper>
             )}
          </R.ScrollView>

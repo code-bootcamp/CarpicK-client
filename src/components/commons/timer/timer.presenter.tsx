@@ -1,8 +1,8 @@
-import * as R from "react-native";
-import Contents1Text from "../text/Contents1Text";
 import * as S from "./timer.styles";
+import Contents1Text from "../text/Contents1Text";
+import { ITimerUIProps } from "./timer.types";
 
-export default function TimerUI(props) {
+export default function TimerUI(props: ITimerUIProps) {
    return (
       <>
          <S.Timerbox>

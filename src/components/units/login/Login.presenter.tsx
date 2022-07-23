@@ -1,10 +1,10 @@
-import * as R from "react-native";
 import * as S from "./Login.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
 import GoogleLogo from "../../../../assets/login/google-logo.svg";
 import Button01Blue from "../../commons/button/button_01_blue";
+import { ILoginPageUIProps } from "./Login.types";
 
-export default function LoginPageUI(props) {
+export default function LoginPageUI(props: ILoginPageUIProps) {
    return (
       <>
          <S.Wrapper style={globalStyles.GlobalStyles40}>

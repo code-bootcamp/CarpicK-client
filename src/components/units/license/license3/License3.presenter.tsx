@@ -1,14 +1,14 @@
 import * as R from "react-native";
 import * as S from "./License3.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
-import LicenseImage from "../../../../../assets/license/license-image.svg";
 import Button01Blue from "../../../commons/button/button_01_blue";
 import Button02Blue from "../../../commons/button/button_02_blue";
 import Button02Gray from "../../../commons/button/button_02_gray";
 import SubTitleText from "../../../commons/text/SubTitleText";
 import { MaterialIcons } from "@expo/vector-icons";
+import { ILicense3PageUIProps } from "./License3.types";
 
-export default function License3PageUI(props) {
+export default function License3PageUI(props: ILicense3PageUIProps) {
    console.log("this is uri", props.uri);
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
@@ -103,7 +103,7 @@ export default function License3PageUI(props) {
                   {!props.openSubmitButton && (
                      <S.ButtonWrapper>
                         <Button02Blue
-                           func={props.onPressCheckLisense}
+                           func={props.onPressCheckLicense}
                            title="등록"
                         />
                      </S.ButtonWrapper>
@@ -120,12 +120,12 @@ export default function License3PageUI(props) {
             )}
             {props.result.Fail !== "" && (
                <S.ButtonWrapperFail>
-                  <Button02Blue func={props.onPressGoback} title="다시찍기" />
+                  <Button02Blue func={props.onPressGoBack} title="다시찍기" />
                </S.ButtonWrapperFail>
             )}
             {props.result.Fail === "" && !props.openSubmitButton && (
                <S.ButtonWrapper>
-                  <Button02Gray func={props.onPressGoback} title="다시찍기" />
+                  <Button02Gray func={props.onPressGoBack} title="다시찍기" />
                </S.ButtonWrapper>
             )}
          </R.ScrollView>

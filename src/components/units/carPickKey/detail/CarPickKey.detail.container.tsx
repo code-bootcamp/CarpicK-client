@@ -3,17 +3,17 @@ import moment from "moment";
 import { useState } from "react";
 import Modal1 from "../../../commons/modals/modal1/Modal1";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import CarPickKeyDetailUI from "./CarPickKey.detail.presenter";
 import {
    FETCH_LOGIN_USER,
    CANCEL_RESERVATION,
 } from "./CarPickKey.detail.queries";
 
-export default function CarPickKeyDetail({ navigation }) {
+export default function CarPickKeyDetail({ navigation }: any) {
    const { data, loading } = useQuery(FETCH_LOGIN_USER, {
       fetchPolicy: "network-only",
    });
-   console.log("this c p k data", data);
    const [cancel] = useMutation(CANCEL_RESERVATION);
    const [isChecked, setIsChecked] = useState(false);
    const [isTimeBefore, setIsTimeBefore] = useState(false);
@@ -81,12 +81,18 @@ export default function CarPickKeyDetail({ navigation }) {
                   },
                },
             });
-            console.log(result);
             setOpenModal1(false);
             setMsg("예약취소가 완료되었습니다.");
             setOpenModal3(true);
-         } catch (error) {
-            console.log(error.message);
+         } catch (error: any) {
+            return (
+               <Modal4
+                  title="예약 취소 실패"
+                  contents={error.message}
+                  positiveText="확인"
+                  positive={() => {}}
+               />
+            );
          }
       }
    };

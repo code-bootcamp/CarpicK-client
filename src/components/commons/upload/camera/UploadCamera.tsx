@@ -4,7 +4,7 @@ import { IUploadCameraProps } from "./UploadCamera.types";
 import * as ImagePicker from "expo-image-picker";
 import { ReactNativeFile } from "apollo-upload-client";
 
-const generateRNFile = (uri, name) => {
+const generateRNFile = (uri: string, name: string) => {
    return uri
       ? new ReactNativeFile({
            uri,

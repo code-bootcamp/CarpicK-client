@@ -1,10 +1,12 @@
 import * as S from "./Main.styles";
+import { IMainPageUIProps } from "./Main.types";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import MainImage from "../../../../../assets/customerService/main.svg";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import colors from "../../../../commons/lib/colors";
-export default function MainPageUI(props) {
+
+export default function MainPageUI(props: IMainPageUIProps) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles}>
          <S.TitleWrapper>

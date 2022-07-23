@@ -8,8 +8,9 @@ import PictureGuide2 from "../../../../../assets/customerService/accident-pictur
 import PictureGuide3 from "../../../../../assets/customerService/accident-picture-guide3.svg";
 import PictureGuide4 from "../../../../../assets/customerService/accident-picture-guide4.svg";
 import CustomerService from "../../../commons/navigationHeader/customerService/csHeader";
+import { IAccidentUIProps } from "./Accident.types";
 
-export default function AccidentUI(props) {
+export default function AccidentUI(props: IAccidentUIProps) {
    return (
       <>
          <CustomerService onPress={props.onPress}>

@@ -16,7 +16,6 @@ import { useState } from "react";
 import RentHistoryStack from "../rentHistory";
 import TitleText from "../../../src/components/commons/text/TitleText";
 import Contents1Text from "../../../src/components/commons/text/Contents1Text";
-import colors from "../../../src/commons/lib/colors";
 import RegistrationStack from "../carRegistration";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilState } from "recoil";
@@ -51,24 +50,21 @@ const FETCH_LOGIN_USER = gql`
 
 const Drawer = createDrawerNavigator();
 
-export default function MainStack({ navigation }) {
+export default function MainStack({ navigation }: any) {
    const [logout] = useMutation(LOGOUT);
-   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+   const [, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
    const { data } = useQuery(FETCH_LOGIN_USER);
    const modalNegativeLogOut = async () => {
       await AsyncStorage.removeItem("accessToken");
-      const result = await logout();
+      await logout();
       setAccessToken("");
    };
    const onPressToUpdateUserInfo = () => {
-      // navigation.navigate("updateUserInfoStack");
       navigation.navigate("myPageStack");
    };
 
-   console.log("this is MainStack login user data", data);
-
-   const CustomDrawerContent = (props) => {
+   const CustomDrawerContent = (props: any) => {
       return (
          <R.View style={{ flex: 1 }}>
             <S.DrawerHeader>

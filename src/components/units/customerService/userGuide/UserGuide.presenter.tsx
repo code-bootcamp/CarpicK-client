@@ -9,8 +9,9 @@ import UserGuidePaymentCheck from "../../../../../assets/customerService/user-gu
 import Contents1Text from "../../../commons/text/Contents1Text";
 import TitleText from "../../../commons/text/TitleText";
 import CustomerService from "../../../commons/navigationHeader/customerService/csHeader";
+import { IUserGuideUIProps } from "./UserGuide.types";
 
-export default function UserGuidePageUI(props) {
+export default function UserGuidePageUI(props: IUserGuideUIProps) {
    return (
       <>
          <CustomerService onPress={props.onPress}>

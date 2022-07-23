@@ -22,7 +22,7 @@ const MyTheme = {
 };
 
 export default function Navigation() {
-   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+   const [accessToken] = useRecoilState(accessTokenState);
    const [selectedCar, setSelectedCar] = useState<string[]>([]);
 
    return (

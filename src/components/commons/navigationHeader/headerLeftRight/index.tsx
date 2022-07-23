@@ -1,4 +1,3 @@
-import { Ionicons } from "@expo/vector-icons";
 import * as R from "react-native";
 import CustomerServiceHeaderIcon from "../../../../../assets/customerService/main-header-icon.svg";
 

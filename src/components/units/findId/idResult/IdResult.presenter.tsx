@@ -3,8 +3,9 @@ import globalStyles from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Button01Blue from "../../../commons/button/button_01_blue";
 import SubTitleText from "../../../commons/text/SubTitleText";
+import { IIdResultUIProps } from "./IdResult.types";
 
-export default function IdResultPageUI(props) {
+export default function IdResultPageUI(props: IIdResultUIProps) {
    return (
       <S.Wrapper style={globalStyles.GlobalStyles40}>
          <S.TitleWrapper>

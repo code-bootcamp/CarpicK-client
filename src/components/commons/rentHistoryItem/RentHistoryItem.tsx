@@ -49,7 +49,7 @@ export default function RentHistoryItem(props: RentHistoryItemProps) {
       }
    };
 
-   const createDate = (startTime, endTime) => {
+   const createDate = (startTime?: string, endTime?: string) => {
       const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
 
       const yearMonthDay = moment(startTime).format("YYYY.MM.DD");
@@ -63,7 +63,7 @@ export default function RentHistoryItem(props: RentHistoryItemProps) {
    };
 
    return (
-      <S.Wrapper>
+      <R.View>
          <S.Container>
             <S.ContentsContainer>
                <S.CarInfoContainer>
@@ -113,6 +113,6 @@ export default function RentHistoryItem(props: RentHistoryItemProps) {
                </S.ReservationContainer>
             </S.ContentsContainer>
          </S.Container>
-      </S.Wrapper>
+      </R.View>
    );
 }

@@ -18,7 +18,7 @@ const HamburgerImageWrapper = styled.View`
    justify-content: center;
 `;
 
-export const Hamburger = (onPress) => {
+export const Hamburger = (onPress: any) => {
    return (
       <HamburgerTouch onPress={() => onPress(DrawerActions.openDrawer())}>
          <HamburgerImageWrapper>

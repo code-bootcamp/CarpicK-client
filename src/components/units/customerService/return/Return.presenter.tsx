@@ -4,8 +4,9 @@ import globalStyles from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import CustomerService from "../../../commons/navigationHeader/customerService/csHeader";
+import { IReturnUIProps } from "./Return.types";
 
-export default function ReturnUI(props) {
+export default function ReturnUI(props: IReturnUIProps) {
    return (
       <>
          <CustomerService onPress={props.onPress}>반납 가이드</CustomerService>

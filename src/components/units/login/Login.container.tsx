@@ -1,6 +1,5 @@
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
-import * as AuthSession from "expo-auth-session";
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -9,22 +8,22 @@ import LoginPageUI from "./Login.presenter";
 import { LOGIN, LOGOUT } from "./Login.queries";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Modal3 from "../../commons/modals/modal3/Modal3";
+import Modal4 from "../../commons/modals/modal4/Modal4";
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function LoginPage({ navigation }) {
+export default function LoginPage({ navigation }: any) {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [login] = useMutation(LOGIN);
    const [logout] = useMutation(LOGOUT);
-   const [_, setAccessToken] = useRecoilState(accessTokenState);
-   const [googleToken, setGoogleToken] = useState();
-   const [userInfo, setUserInfo] = useState();
+   const [, setAccessToken] = useRecoilState(accessTokenState);
+   const [, setGoogleToken] = useState();
 
    const [openModal, setOpenModal] = useState(false);
    const [errMsg, setErrMsg] = useState("");
 
-   const [request, response, promptAsync] = Google.useAuthRequest({
+   const [, response, promptAsync] = Google.useAuthRequest({
       expoClientId:
          "326184472330-p2206o8g8r2jvuab4790b5pq9de1tnu5.apps.googleusercontent.com",
       iosClientId:
@@ -38,16 +37,8 @@ export default function LoginPage({ navigation }) {
    useEffect(() => {
       if (response?.type === "success") {
          setGoogleToken(response.authentication?.accessToken);
-         console.log(
-            "this is google token",
-            response.authentication?.accessToken
-         );
       }
    }, [response]);
-
-   const getUserDate = async () => {
-      let userInfoResponse = await fetch("");
-   };
 
    const onPressToFindId = () => {
       navigation.navigate("findId");
@@ -64,19 +55,16 @@ export default function LoginPage({ navigation }) {
    const onPressLogin = async () => {
       if (email && password) {
          try {
-            console.log(email, password);
             const result = await login({
                variables: {
                   email,
                   password,
                },
             });
-            // const accessToken = result.data.loginUser.accessToken;
+
             AsyncStorage.setItem("accessToken", result.data.login);
             setAccessToken(result.data.login);
-            // console.log("this is result", result);
-         } catch (error) {
-            console.log("this is error", error);
+         } catch (error: any) {
             setErrMsg(error.message);
             setOpenModal(true);
          }
@@ -85,10 +73,16 @@ export default function LoginPage({ navigation }) {
 
    const onPressLogout = async () => {
       try {
-         const result = await logout();
-         console.log("this is result", result);
-      } catch (error) {
-         console.log("this is error", error);
+         await logout();
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="로그아웃 에러"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 

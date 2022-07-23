@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import IdResultPageUI from "./IdResult.presenter";
 
-export default function IdResultPage({ navigation, route }) {
+export default function IdResultPage({ navigation, route }: any) {
    const [email, setEmail] = useState("");
 
    useEffect(() => {

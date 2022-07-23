@@ -1,8 +1,7 @@
 import MainPageUI from "./Main.presenter";
 import { Linking } from "react-native";
-import { useAuth } from "../../../commons/hooks/useAuth";
 
-export default function MainPage({ navigation }) {
+export default function MainPage({ navigation }: any) {
    const onPressToMap = () => {
       navigation.navigate("map");
    };

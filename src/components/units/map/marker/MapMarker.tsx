@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as R from "react-native";
 import { Marker } from "react-native-maps";
 
-export default function MapMarker({ lat, lng, func }) {
+export default function MapMarker({ lat, lng, func }: any) {
    const [isSelected, setIsSelected] = useState(false);
 
    const onPress = () => {

@@ -1,6 +1,26 @@
 import styled from "@emotion/native";
 import colors from "../../../commons/lib/colors";
 
+interface IButtonBlueProps {
+   func?: () => void;
+   title?: string;
+   disabled?: boolean;
+}
+
+export default function Button01Blue(props: IButtonBlueProps) {
+   return (
+      <NextTouch
+         activeOpacity={0.7}
+         onPress={props.func}
+         disabled={props.disabled || false}
+      >
+         <NextText style={{ includeFontPadding: false }}>
+            {props.title}
+         </NextText>
+      </NextTouch>
+   );
+}
+
 export const NextTouch = styled.TouchableOpacity`
    width: 100%;
    height: 60px;
@@ -14,15 +34,3 @@ export const NextText = styled.Text`
    font-family: Regular;
    color: #ffffff;
 `;
-
-export default function Button01Blue({ func, title, disabled }) {
-   return (
-      <NextTouch
-         activeOpacity={0.7}
-         onPress={func}
-         disabled={disabled || false}
-      >
-         <NextText style={{ includeFontPadding: false }}>{title}</NextText>
-      </NextTouch>
-   );
-}

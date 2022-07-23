@@ -2,7 +2,7 @@ import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as R from "react-native";
 
-export const BackArrow = (navigation) => {
+export const BackArrow = (navigation: any) => {
    return (
       <R.View style={{ paddingLeft: 15 }}>
          <Ionicons

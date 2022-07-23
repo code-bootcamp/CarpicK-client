@@ -1,6 +1,6 @@
 import ReserveUI from "./Reserve.presenter";
 
-export default function ReservePage({ navigation }) {
+export default function ReservePage({ navigation }: any) {
    const onPressToCsMain = () => {
       navigation.navigate("csMain");
    };
