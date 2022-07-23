@@ -122,6 +122,7 @@ export default function MapPage({ navigation, route }: any) {
             },
             fetchPolicy: "network-only",
          });
+
          if (!isDrawerOpen && !resultCars.loading) {
             panelRef.current?.togglePanel();
          }
