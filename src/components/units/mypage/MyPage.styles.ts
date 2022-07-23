@@ -142,3 +142,12 @@ export const StatusBox = styled.View`
    align-items: center;
    margin-left: 14px;
 `;
+
+export const StatusBoxExpired = styled.View`
+   width: 48px;
+   height: 18px;
+   background-color: ${colors.gray};
+   justify-content: center;
+   align-items: center;
+   margin-left: 14px;
+`;

@@ -24,6 +24,7 @@ export default function MyPageUI(props: IMyPageProps) {
       }, 1500);
       return () => clearInterval(interval);
    }, []);
+
    return (
       <S.Wrapper>
          <R.ScrollView>
@@ -94,11 +95,26 @@ export default function MyPageUI(props: IMyPageProps) {
                <S.TitleBox>
                   <TitleText fontSize="18">내 차량</TitleText>
                   {props.data?.fetchLoginOwner.carRegistration?.status ===
-                     "PASS" && (
-                     <S.StatusBox>
-                        <Contents2Text color="#fff">운행중</Contents2Text>
-                     </S.StatusBox>
-                  )}
+                     "PASS" &&
+                     props.data?.fetchLoginOwner.car?.isValid && (
+                        <S.StatusBox>
+                           <Contents2Text color="#fff">운행중</Contents2Text>
+                        </S.StatusBox>
+                     )}
+                  {props.data?.fetchLoginOwner.carRegistration?.status ===
+                     "PASS" &&
+                     !props.data?.fetchLoginOwner.car?.isValid && (
+                        <>
+                           <S.StatusBoxExpired>
+                              <Contents2Text color="#fff">
+                                 운행중지
+                              </Contents2Text>
+                           </S.StatusBoxExpired>
+                           <R.View style={{ marginLeft: 14 }}>
+                              <Contents1Text fontSize="8">{`계약 기간 혹은 기타 이유로 운행이 중지되었습니다.\n자세한 사항은 카픽으로 문의주시기 바랍니다.`}</Contents1Text>
+                           </R.View>
+                        </>
+                     )}
                </S.TitleBox>
                <R.View style={{ marginTop: 10 }}>
                   {props.data?.fetchLoginOwner.car !== null ? (

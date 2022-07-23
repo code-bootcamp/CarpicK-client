@@ -6,7 +6,7 @@ export default function MyPage({ navigation }) {
    const { data } = useQuery(FETCH_LOGIN_OWNER, {
       fetchPolicy: "network-only",
    });
-   console.log(data);
+   console.log("this is owner data", data);
 
    const onPressUpdateInfo = () => {
       navigation.navigate("updateUserInfoStack");

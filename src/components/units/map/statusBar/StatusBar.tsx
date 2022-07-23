@@ -19,6 +19,10 @@ export function statusBar(reservation: []) {
    if (reservation.length !== 0) {
       reservation
          .filter((el: any) => {
+            // 필터 0 : CANCEL된 예약 제거
+            return el.status !== "CANCEL";
+         })
+         .filter((el: any) => {
             // 필터 1 : 현재시각 기준 endTime 끝난 예약 고려할 필요 X
             const timeEndPoint = moment(el.endTime);
             const timeDiffEndHours = moment
@@ -92,14 +96,6 @@ export function statusBar(reservation: []) {
             }
          });
    }
-
-   // console.log("this start", nowTimeStartPoint);
-   // console.log("this end", nowTimeEndPoint);
-   // console.log("this how much", timeDiffNowTime);
-   // console.log("this is result", result);
-   // console.log("this is reserve", reservation);
-   // console.log("this is result", result);
-   // console.log("this is nowTime", nowTimeHourFormat);
 
    return (
       <S.Wrapper>

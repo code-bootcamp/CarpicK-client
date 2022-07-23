@@ -21,6 +21,7 @@ export const FETCH_LOGIN_OWNER = gql`
             imageCar {
                url
             }
+            isValid
          }
          carRegistration {
             carNumber
