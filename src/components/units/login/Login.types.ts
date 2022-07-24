@@ -9,7 +9,8 @@ export interface ILoginPageUIProps {
    onPressToJoin: () => void;
    setEmail: Dispatch<SetStateAction<string>>;
    setPassword: Dispatch<SetStateAction<string>>;
-   promptAsync: (
-      options?: AuthRequestPromptOptions | undefined
-   ) => Promise<AuthSessionResult>;
+   // promptAsync: (
+   //    options?: AuthRequestPromptOptions | undefined
+   // ) => Promise<AuthSessionResult>;
+   googleSignIn: () => void;
 }

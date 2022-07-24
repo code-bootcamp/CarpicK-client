@@ -28,7 +28,7 @@ export default function LoginPageUI(props: ILoginPageUIProps) {
                <S.GoogleLoginTouch
                   activeOpacity={0.3}
                   onPress={() => {
-                     props.promptAsync();
+                     props.googleSignIn();
                   }}
                >
                   <S.LogoWrapper>
