@@ -50,9 +50,9 @@ export default function LoginPage({ navigation }: any) {
       const result = googleLogin;
 
       result().then((rsp) => {
+         setOpenLoading(false);
          AsyncStorage.setItem("accessToken", rsp.data.googleLogin);
          setAccessToken(rsp.data.googleLogin);
-         setOpenLoading(false);
       });
    };
 
