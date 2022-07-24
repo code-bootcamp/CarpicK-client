@@ -1,10 +1,10 @@
 /* title, contents, positive button */
 /* Time Picker */
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Modal } from "react-native";
 import * as S from "../style/Modal.styles";
 import * as R from "react-native";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Modal } from "react-native";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
 import colors from "../../../../commons/lib/colors";
 import TitleText from "../../text/TitleText";
@@ -16,7 +16,7 @@ interface IModal5Props {
    initialEndTime: String;
    startTime: string;
    endTime: string;
-   arrHour: [];
+   arrHour: string[];
    positiveText: string;
    negativeText: string;
    setStartTimeHour: (time: string) => void;
@@ -53,7 +53,7 @@ export default function Modal5(props: IModal5Props) {
       ) {
          return;
       }
-      console.log("this is test", moment(new Date(), "YYYY-MM-DD 00:00:00"));
+
       if (
          moment // 최소 선택시간 1시간
             .duration(
@@ -90,10 +90,10 @@ export default function Modal5(props: IModal5Props) {
    const startTime = props.startTime;
    const endTime = props.endTime;
 
-   const startHour = startTime.split(":")[0];
+   // const startHour = startTime.split(":")[0];
    const startMin = startTime.split(":")[1];
 
-   const endHour = endTime.split(":")[0];
+   // const endHour = endTime.split(":")[0];
    const endMin = endTime.split(":")[1];
 
    return (
@@ -122,7 +122,7 @@ export default function Modal5(props: IModal5Props) {
                            </R.View>
                         );
                      }}
-                     onValueChange={(data, selectedIndex) => {
+                     onValueChange={(data: any) => {
                         setTmpStartTimeHour(data);
                      }}
                      wrapperHeight={180}
@@ -146,7 +146,7 @@ export default function Modal5(props: IModal5Props) {
                            </R.View>
                         );
                      }}
-                     onValueChange={(data, selectedIndex) => {
+                     onValueChange={(data: any) => {
                         setTmpStartTimeMin(data);
                      }}
                      wrapperHeight={180}
@@ -168,7 +168,7 @@ export default function Modal5(props: IModal5Props) {
                            </R.View>
                         );
                      }}
-                     onValueChange={(data) => {
+                     onValueChange={(data: any) => {
                         setTmpEndTimeHour(data);
                      }}
                      wrapperHeight={180}
@@ -192,7 +192,7 @@ export default function Modal5(props: IModal5Props) {
                            </R.View>
                         );
                      }}
-                     onValueChange={(data) => {
+                     onValueChange={(data: any) => {
                         setTmpEndTimeMin(data);
                      }}
                      wrapperHeight={180}

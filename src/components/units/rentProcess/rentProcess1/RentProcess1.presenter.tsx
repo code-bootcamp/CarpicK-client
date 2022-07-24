@@ -3,12 +3,12 @@ import * as S from "./RentProcess1.styles";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import SubTitleText from "../../../commons/text/SubTitleText";
 import Contents2Text from "../../../commons/text/Contents2Text";
-import TitleText from "../../../commons/text/TitleText";
 import colors from "../../../../commons/lib/colors";
 import Radio2 from "../../../commons/radio/Radio2";
 import { numberWithCommas } from "../../../../commons/utilities/numberWithCommas";
+import { IRentProcess1PageUIProps } from "./RentProcess1.types";
 
-export default function RentProcess1PageUI(props) {
+export default function RentProcess1PageUI(props: IRentProcess1PageUIProps) {
    return (
       <>
          <S.Wrapper>

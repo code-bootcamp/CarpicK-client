@@ -9,7 +9,7 @@ import Modal3 from "../../../commons/modals/modal3/Modal3";
 
 const baseTime = moment().format("YYYY-MM-DD");
 
-export default function RentProcess1Page({ navigation, route }) {
+export default function RentProcess1Page({ navigation, route }: any) {
    const result = GetRentTime();
    const [msg, setMsg] = useState("");
    const [openModal, setOpenModal] = useState(false);
@@ -26,7 +26,7 @@ export default function RentProcess1Page({ navigation, route }) {
    const [indexStartHour, setIndexStartHour] = useState(0);
    const [indexEndHour, setIndexEndHour] = useState(0);
 
-   const [arrHour, setArrHour] = useState([]);
+   const [arrHour, setArrHour] = useState<string[]>([]);
    const { data: userData } = useQuery(FETCH_LOGIN_USER, {
       fetchPolicy: "network-only",
    });
@@ -133,7 +133,7 @@ export default function RentProcess1Page({ navigation, route }) {
       });
    };
 
-   const genValidTime = (initialStartHour) => {
+   const genValidTime = (initialStartHour: string) => {
       if (result.startTime.split(":")[0][0] === "0") {
          const tmp = Number(initialStartHour[1]);
          const tmpArr = [];
@@ -153,7 +153,11 @@ export default function RentProcess1Page({ navigation, route }) {
       }
    };
 
-   const searchIndex = (arr, startTimeHour, endTimeHour) => {
+   const searchIndex = (
+      arr: string[],
+      startTimeHour: string,
+      endTimeHour: string
+   ) => {
       setIndexStartHour(arr.indexOf(startTimeHour));
       setIndexEndHour(arr.indexOf(endTimeHour));
    };
@@ -166,7 +170,7 @@ export default function RentProcess1Page({ navigation, route }) {
       let baseEndTime = moment(baseTime + " " + `${endTimeHour}:${endTimeMin}`);
 
       if (data?.fetchCar.reservation.length !== 0) {
-         data?.fetchCar.reservation.forEach((el) => {
+         data?.fetchCar.reservation.forEach((el: any) => {
             // 예약시간에 겹치는 zone 있으면 double booking
             if (el.status === "RESERVATION") {
                if (moment(el.startTime).isBetween(baseStartTime, baseEndTime))

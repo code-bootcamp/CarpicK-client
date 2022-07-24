@@ -4,15 +4,13 @@ import Modal3 from "../../../commons/modals/modal3/Modal3";
 import PasswordInputUI from "./PasswordInput.presenter";
 import { FETCH_LOGIN_USER, LOGIN } from "./PasswordInput.queries";
 
-export default function PasswordInputPage({ navigation }) {
+export default function PasswordInputPage({ navigation }: any) {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [openModal, setOpenModal] = useState(false);
    const [errMsg, setErrMsg] = useState("");
    const [login] = useMutation(LOGIN);
    const { data } = useQuery(FETCH_LOGIN_USER);
-
-   // console.log(data.fetchLoginUser);
 
    useEffect(() => {
       setEmail(data?.fetchLoginUser.email);
@@ -25,16 +23,14 @@ export default function PasswordInputPage({ navigation }) {
    const onPressLoginCheck = async () => {
       if (email && password) {
          try {
-            console.log(email, password);
-            const result = await login({
+            await login({
                variables: {
                   email,
                   password,
                },
             });
             onPressToUpdateMyInfo();
-         } catch (error) {
-            console.log("this is error", error);
+         } catch (error: any) {
             setErrMsg(error.message);
             setOpenModal(true);
          }

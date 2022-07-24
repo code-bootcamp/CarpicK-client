@@ -8,8 +8,9 @@ import Button01Blue from "../../../commons/button/button_01_blue";
 import Timer from "../../../commons/timer/timer.container";
 import RedoButton from "../../../commons/redoButton/redoButton.container";
 import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
+import { IPasswordResult2UIProps } from "./PasswordReset2.types";
 
-export default function PasswordReset2UI(props) {
+export default function PasswordReset2UI(props: IPasswordResult2UIProps) {
    return (
       <S.Wrapper style={globalStyle.GlobalStyles40}>
          <R.ScrollView showsVerticalScrollIndicator={false}>

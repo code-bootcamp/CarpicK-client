@@ -6,7 +6,7 @@ import { CREATE_CAR_REGISTRATION, UPLOAD_FILE } from "../Registration.queries";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 
-export default function CarRegistrationPage({ navigation, route }) {
+export default function CarRegistrationPage({ navigation, route }: any) {
    const [uploadFile] = useMutation(UPLOAD_FILE);
    const [createCarRegistration] = useMutation(CREATE_CAR_REGISTRATION);
    const [msg, setMsg] = useState("");
@@ -48,11 +48,9 @@ export default function CarRegistrationPage({ navigation, route }) {
             },
          });
          setOpenLoading(false);
-         console.log(`======== 등록성공 ========\n${result}`);
          setMsg(`차량 등록 신청이 완료되었습니다.\n검토 후 연락드리겠습니다.`);
          setOpenModal2(true);
       } catch (error: any) {
-         console.error(`======== 등록 에러발생 ========\n${error.message}`);
          setMsg(`이미 등록 하셨습니다.\n마이페이지에서 현황을 확인해주세요.`);
          setOpenModal1(true);
       }

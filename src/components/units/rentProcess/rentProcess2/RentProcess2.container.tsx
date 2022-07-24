@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const baseTime = moment().format("YYYY-MM-DD");
 
-export default function RentProcess2Page({ navigation, route }) {
+export default function RentProcess2Page({ navigation, route }: any) {
    const [isAllChecked, setIsAllChecked] = useState(true);
    const [isChecked1, setIsChecked1] = useState(true);
    const [isChecked2, setIsChecked2] = useState(true);

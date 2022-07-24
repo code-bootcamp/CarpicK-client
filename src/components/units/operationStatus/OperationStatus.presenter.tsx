@@ -6,9 +6,7 @@ import TitleText from "../../commons/text/TitleText";
 import colors from "../../../commons/lib/colors";
 import { numberWithCommas } from "../../../commons/utilities/numberWithCommas";
 
-const LIST = ["이용중", "예약완료", "예약취소", "반납완료"];
-
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: any) => {
    return <OperationStatusItem data={item} />;
 };
 
@@ -27,7 +25,7 @@ export default function OperationStatusUI(props: IOperationStatusProps) {
             <S.TitleWrapper>
                <TitleText color={colors.theme}>마이카 총 수익</TitleText>
                <TitleText color={colors.dark_gray}>
-                  {numberWithCommas(props.onwerData?.fetchLoginOwner.revenue)}{" "}
+                  {numberWithCommas(props.ownerData?.fetchLoginOwner.revenue)}{" "}
                   원
                </TitleText>
             </S.TitleWrapper>

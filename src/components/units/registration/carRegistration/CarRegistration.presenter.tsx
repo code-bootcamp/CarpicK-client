@@ -5,7 +5,6 @@ import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import { ICarRegistrationUIProps } from "./CarRegistration.types";
 import Button1 from "../../../commons/button/Button1";
-import Modal4 from "../../../commons/modals/modal4/Modal4";
 import UploadImageNoRatio from "../../../commons/upload/image/UploadImageNoRatio";
 
 export default function CarRegistrationUI(props: ICarRegistrationUIProps) {

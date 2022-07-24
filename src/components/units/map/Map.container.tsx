@@ -1,13 +1,13 @@
-import MapPageUI from "./Map.presenter";
 import * as Location from "expo-location";
 import * as R from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { FETCH_CARS, FETCH_CAR_LOCATION } from "./Map.queries";
 import { useIsFocused } from "@react-navigation/native";
+import { Linking } from "react-native";
+import MapPageUI from "./Map.presenter";
 import LoadingCircleLight from "../../commons/loadingCircle/LoadingCircleLight";
 import Modal3 from "../../commons/modals/modal3/Modal3";
-import { Linking } from "react-native";
 import Modal4 from "../../commons/modals/modal4/Modal4";
 
 const VIEW_HEIGHT = R.Dimensions.get("window").height;

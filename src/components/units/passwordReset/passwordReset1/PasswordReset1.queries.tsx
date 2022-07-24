@@ -6,7 +6,7 @@ export const SEND_SMS = gql`
    }
 `;
 
-export const ISVALID_EMAIL = gql`
+export const IS_VALID_EMAIL = gql`
    mutation isValidEmail($email: String!) {
       isValidEmail(email: $email) {
          isValid

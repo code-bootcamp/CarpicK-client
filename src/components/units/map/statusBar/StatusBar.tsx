@@ -15,7 +15,7 @@ export function statusBar(reservation: []) {
       .duration(nowTime.diff(nowTimeStartPoint))
       .asHours();
 
-   const result = [];
+   const result: any[] = [];
    if (reservation.length !== 0) {
       reservation
          .filter((el: any) => {

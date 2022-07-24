@@ -2,7 +2,7 @@ import { ReactNativeFile } from "apollo-upload-client";
 import { useState } from "react";
 import CarPhotosUI from "./CarPhotos.presenter";
 
-export default function CarPhotosPage({ navigation, route }) {
+export default function CarPhotosPage({ navigation, route }: any) {
    const [imageFiles, setImageFiles] = useState<ReactNativeFile[]>([]);
    const [imageUris, setImageUris] = useState(["", "", ""]);
 

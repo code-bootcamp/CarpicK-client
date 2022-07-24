@@ -4,36 +4,21 @@ import colors from "../../../../commons/lib/colors";
 import globalStyle from "../../../../commons/styles/globalStyle";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import TitleText from "../../../commons/text/TitleText";
-import ProfileImg from "../../../../../assets/updateUserInfo/profile.svg";
 import Contents2Text from "../../../commons/text/Contents2Text";
 import UpdateUserInfo from "../../../commons/navigationHeader/updateUserInfo/csHeader";
 import Button1 from "../../../commons/button/Button1";
-import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
 import Timer from "../../../commons/timer/timer.container";
 import RedoButton from "../../../commons/redoButton/redoButton.container";
+import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
+import { IUpdateMyInfoUIProps } from "./UpdateMyInfo.types";
 
-export default function UpdateMyInfoUI(props) {
+export default function UpdateMyInfoUI(props: IUpdateMyInfoUIProps) {
    return (
       <>
          <UpdateUserInfo onPress={props.onPress}>
             회원정보 수정하기
          </UpdateUserInfo>
          <R.ScrollView>
-            {/* <S.Profile>
-               <ProfileImg />
-               <S.UserInfo>
-                  <S.UserName>
-                     <TitleText fontSize="15" color={colors.black}>
-                        {props.name}
-                     </TitleText>
-                  </S.UserName>
-                  <S.UserId>
-                     <Contents1Text fontSize="10" color={colors.gray}>
-                        {props.email}
-                     </Contents1Text>
-                  </S.UserId>
-               </S.UserInfo>
-            </S.Profile> */}
             <S.TopMenu>
                <S.TitleWrapper
                   isSelected={props.isSelected}

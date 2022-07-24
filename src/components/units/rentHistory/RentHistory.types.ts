@@ -1,9 +1,9 @@
 import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import { NetworkStatus } from "apollo-boost";
 
-export interface IOperationStatusProps {
+export interface IRentHistoryUIProps {
+   isNone: boolean;
    data?: any;
-   ownerData?: any;
    refetch: (
       variables?: Partial<OperationVariables> | undefined
    ) => Promise<ApolloQueryResult<any>>;
