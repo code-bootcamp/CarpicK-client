@@ -17,3 +17,9 @@ export const LOGOUT = gql`
       logout
    }
 `;
+
+export const GOOGLE_LOGIN = gql`
+   mutation googleLogin {
+      googleLogin
+   }
+`;
