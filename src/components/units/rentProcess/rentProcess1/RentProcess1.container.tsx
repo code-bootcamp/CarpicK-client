@@ -7,14 +7,16 @@ import Modal5 from "../../../commons/modals/modal5/Modal5";
 import moment from "moment";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 
+const baseTime = moment().format("YYYY-MM-DD");
+
 export default function RentProcess1Page({ navigation, route }) {
-   // console.log("this is rp1", route.params.id);
    const result = GetRentTime();
    const [msg, setMsg] = useState("");
    const [openModal, setOpenModal] = useState(false);
    const [checked, setChecked] = useState("first");
    const [insuPrice, setInsuPrice] = useState(0);
    const [isVisible, setIsVisible] = useState(false);
+   const [isDoubleBooking, setIsDoubleBooking] = useState(false);
 
    const [startTimeHour, setStartTimeHour] = useState("");
    const [startTimeMin, setStartTimeMin] = useState("");
@@ -28,7 +30,7 @@ export default function RentProcess1Page({ navigation, route }) {
    const { data: userData } = useQuery(FETCH_LOGIN_USER, {
       fetchPolicy: "network-only",
    });
-   const { data } = useQuery(FETCH_CAR, {
+   const { data, loading } = useQuery(FETCH_CAR, {
       variables: {
          carId: route.params.id,
       },
@@ -56,6 +58,11 @@ export default function RentProcess1Page({ navigation, route }) {
    useEffect(() => {
       searchIndex(arrHour, startTimeHour, endTimeHour);
    }, [startTimeHour, endTimeHour]);
+
+   useEffect(() => {
+      // 중복예약 확인
+      if (!loading) checkDoubleBooking();
+   }, [startTimeHour, startTimeMin, endTimeHour, endTimeMin, loading]);
 
    const TotalMin = moment
       .duration(
@@ -98,14 +105,16 @@ export default function RentProcess1Page({ navigation, route }) {
    const totalPrice =
       Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100 + insuPrice;
 
-   console.log("this is startTime", `${startTimeHour}:${startTimeMin}`);
-   console.log("this is endTime", `${endTimeHour}:${endTimeMin}`);
-   console.log("this is data", data);
-
-   // console.log("this is result", result);
    const onPressNext = () => {
       if (!userData.fetchLoginUser.isAuth) {
          setMsg(`운전면허를 등록해야\n 서비스 이용이 가능합니다.`);
+         setOpenModal(true);
+         return;
+      }
+      if (isDoubleBooking === true) {
+         setMsg(
+            `예약가능한 시간이 아닙니다.\n 해당 차량의 예약상황을 확인해주세요.`
+         );
          setOpenModal(true);
          return;
       }
@@ -149,10 +158,26 @@ export default function RentProcess1Page({ navigation, route }) {
       setIndexEndHour(arr.indexOf(endTimeHour));
    };
 
-   // console.log("this is index", indexStartHour, indexEndHour);
-   // console.log("this is typeof", typeof indexStartHour);
-   // console.log("this is typeof", typeof indexEndHour);
-   console.log("total price", totalPrice);
+   const checkDoubleBooking = () => {
+      setIsDoubleBooking(false);
+      let baseStartTime = moment(
+         baseTime + " " + `${startTimeHour}:${startTimeMin}`
+      );
+      let baseEndTime = moment(baseTime + " " + `${endTimeHour}:${endTimeMin}`);
+
+      if (data?.fetchCar.reservation.length !== 0) {
+         data?.fetchCar.reservation.forEach((el) => {
+            // 예약시간에 겹치는 zone 있으면 double booking
+            if (el.status === "RESERVATION") {
+               if (moment(el.startTime).isBetween(baseStartTime, baseEndTime))
+                  setIsDoubleBooking(true);
+               if (moment(el.endTime).isBetween(baseStartTime, baseEndTime))
+                  setIsDoubleBooking(true);
+            }
+         });
+      }
+   };
+
    return (
       <>
          {openModal && (
