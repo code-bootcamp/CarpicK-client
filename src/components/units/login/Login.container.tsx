@@ -11,6 +11,7 @@ import Modal4 from "../../commons/modals/modal4/Modal4";
 import LoadingCircle from "../../commons/loadingCircle/LoadingCircle";
 import * as GoogleSignIn from "expo-google-sign-in";
 import { Platform } from "react-native";
+import { ANDROID_CLIENT_ID, IOS_CLIENT_ID } from "@env";
 // import * as Google from "expo-auth-session/providers/google"; // Only Dev
 
 WebBrowser.maybeCompleteAuthSession();
@@ -30,13 +31,13 @@ export default function LoginPage({ navigation }: any) {
 
    // const [, response, promptAsync] = Google.useAuthRequest({ // Only Dev
    //    expoClientId:
-   //       "599686686405-02oj30siseoh7a559pc9mvlrj3f1f58o.apps.googleusercontent.com",
+   //       "",
    //    iosClientId:
-   //       "599686686405-tk0q9u21ecdajc65lrq2sge3sik20blh.apps.googleusercontent.com",
+   //       "",
    //    androidClientId:
-   //       "599686686405-bdp7u68bm7c6q9kul41o8ujmcitf285p.apps.googleusercontent.com",
+   //       "",
    //    webClientId:
-   //       "599686686405-ob38dmk26hnqhuc2i2dfcmj9pq7bvnjl.apps.googleusercontent.com",
+   //       "",
    // });
 
    //구글 로그인 설정 apk alone
@@ -46,9 +47,7 @@ export default function LoginPage({ navigation }: any) {
       await GoogleSignIn.initAsync({
          signInType: GoogleSignIn.TYPES.DEFAULT,
          clientId:
-            Platform.OS === "android"
-               ? "599686686405-bdp7u68bm7c6q9kul41o8ujmcitf285p.apps.googleusercontent.com"
-               : "599686686405-tk0q9u21ecdajc65lrq2sge3sik20blh.apps.googleusercontent.com",
+            Platform.OS === "android" ? ANDROID_CLIENT_ID : IOS_CLIENT_ID,
          scopes: [
             GoogleSignIn.SCOPES.OPEN_ID,
             GoogleSignIn.SCOPES.EMAIL,
