@@ -86,7 +86,7 @@ export default function LoginPage({ navigation }: any) {
       });
    };
 
-   // useEffect(() => {
+   // useEffect(() => { // Only Dev
    //    if (response?.type === "success") {
    //       setGoogleToken(response.authentication?.accessToken);
    //       setOpenLoading(true);
