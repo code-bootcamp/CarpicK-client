@@ -1,11 +1,11 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 import PasswordResetPage3UI from "./PasswordReset3.presenter";
 import { RESET_PWD } from "./PasswordReset3.queries";
 const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
 
-export default function PasswordResetPage3({ navigation, route }) {
+export default function PasswordResetPage3({ navigation, route }: any) {
    const [email, setEmail] = useState("");
    const [openModal1, setOpenModal1] = useState(false);
    const [openModal2, setOpenModal2] = useState(false);
@@ -19,7 +19,7 @@ export default function PasswordResetPage3({ navigation, route }) {
       setEmail(route.params.email);
    }, []);
 
-   const onChangePassword = (text) => {
+   const onChangePassword = (text: string) => {
       setPassword(text);
       setIsValidPassword(passwordRegExp.test(text));
    };
@@ -40,9 +40,7 @@ export default function PasswordResetPage3({ navigation, route }) {
          });
          setMsg("비밀번호가 변경되었습니다.");
          setOpenModal2(true);
-         console.log(result);
-      } catch (error) {
-         console.log("Error:", error);
+      } catch (error: any) {
          setMsg(error.message);
          setOpenModal1(true);
       }

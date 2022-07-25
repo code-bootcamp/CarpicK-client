@@ -4,8 +4,9 @@ import globalStyle from "../../../../commons/styles/globalStyle";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import TitleText from "../../../commons/text/TitleText";
 import UpdateUserInfoPasswordInput from "../../../../../assets/updateUserInfo/password-input.svg";
+import { IPasswordInputUIProps } from "./PasswordInput.types";
 
-export default function PasswordInputUI(props) {
+export default function PasswordInputUI(props: IPasswordInputUIProps) {
    return (
       <S.Wrapper style={globalStyle.GlobalStyles}>
          <S.TitleWrapper>

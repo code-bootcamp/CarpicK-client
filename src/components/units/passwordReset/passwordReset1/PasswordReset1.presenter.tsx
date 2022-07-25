@@ -3,12 +3,11 @@ import * as R from "react-native";
 import globalStyle from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
-import Contents2Text from "../../../commons/text/Contents2Text";
 import Input2 from "../../../commons/input/Input2";
-import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
 import Button01Blue from "../../../commons/button/button_01_blue";
+import { IPasswordResultUIProps } from "./PasswordReset1.types";
 
-export default function PasswordReset1UI(props) {
+export default function PasswordReset1UI(props: IPasswordResultUIProps) {
    return (
       <S.Wrapper style={globalStyle.GlobalStyles40}>
          <R.ScrollView showsVerticalScrollIndicator={false}>

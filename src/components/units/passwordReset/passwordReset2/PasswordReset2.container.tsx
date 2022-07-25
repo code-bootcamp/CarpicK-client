@@ -1,10 +1,11 @@
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useEffect, useState } from "react";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import PasswordResetPage2UI from "./PasswordReset2.presenter";
 import { SEND_SMS, CHECK_TOKEN, FETCH_EMAIL } from "./PasswordReset2.queries";
 
-export default function PasswordResetPage2({ navigation, route }) {
+export default function PasswordResetPage2({ navigation, route }: any) {
    const client = useApolloClient();
    const [email, setEmail] = useState("");
    const [phone, setPhone] = useState("");
@@ -48,18 +49,29 @@ export default function PasswordResetPage2({ navigation, route }) {
             setMsg("3분 이내에 인증번호를 입력해주세요.");
             setOpenModal(true);
             try {
-               const result = await sendSMS({
+               await sendSMS({
                   variables: {
                      phone: phone.split("-").join(""),
                   },
                });
-               console.log("this is sms", result);
-            } catch (error) {
-               console.log(error.message);
+            } catch (error: any) {
+               return (
+                  <Modal4
+                     title="인증번호 전송 실패"
+                     contents={error.message}
+                     positiveText="확인"
+                     positive={() => {}}
+                  />
+               );
             }
          }
-      } catch (error) {
-         console.log(error.message);
+      } catch (error: any) {
+         <Modal4
+            title="SMS 인증 에러"
+            contents={error.message}
+            positiveText="확인"
+            positive={() => {}}
+         />;
       }
    };
 

@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import UpdateMyInfoUI from "./UpdateMyInfo.presenter";
 import {
    CHECK_TOKEN,
@@ -10,8 +11,7 @@ import {
 } from "./UpdateMyInfo.queries";
 const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
 
-export default function UpdateMyInfoPage({ navigation, route }) {
-   console.log(route.params.data.email);
+export default function UpdateMyInfoPage({ navigation, route }: any) {
    const [isSelected, setIsSelected] = useState(true);
    const [phone, setPhone] = useState("");
    const [token, setToken] = useState("");
@@ -32,7 +32,7 @@ export default function UpdateMyInfoPage({ navigation, route }) {
    const [updateUserPhone] = useMutation(UPDATE_USER_PHONE);
    const [resetPwd] = useMutation(RESET_PWD);
 
-   const onChangePassword = (text) => {
+   const onChangePassword = (text: string) => {
       setPassword(text);
       setIsValidPassword(passwordRegExp.test(text));
    };
@@ -56,9 +56,15 @@ export default function UpdateMyInfoPage({ navigation, route }) {
                phone: phone.split("-").join(""),
             },
          });
-         console.log("this is sms", result);
-      } catch (error) {
-         console.log("ErrorMsg :", error.message);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="인증번호 전송 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -87,15 +93,22 @@ export default function UpdateMyInfoPage({ navigation, route }) {
       if (!token && !phone) return;
 
       try {
-         const result = await updateUserPhone({
+         await updateUserPhone({
             variables: {
                phone: phone.split("-").join(""),
             },
          });
          setMsg("전화번호 변경이 완료되었습니다.");
          setOpenModal2(true);
-      } catch (error) {
-         console.log("this is error", error);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="전화번호 변경 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -107,7 +120,7 @@ export default function UpdateMyInfoPage({ navigation, route }) {
       }
 
       try {
-         const result = await resetPwd({
+         await resetPwd({
             variables: {
                email: route.params.data.email,
                password,
@@ -115,9 +128,15 @@ export default function UpdateMyInfoPage({ navigation, route }) {
          });
          setMsg("비밀번호가 변경되었습니다.");
          setOpenModal2(true);
-         console.log(result);
-      } catch (error) {
-         console.log("this is error", error);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="비밀번호 변경 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -150,6 +169,8 @@ export default function UpdateMyInfoPage({ navigation, route }) {
             setPhone={setPhone}
             setToken={setToken}
             setPasswordAgain={setPasswordAgain}
+            setOpenTimer={setOpenTimer}
+            setOpenRedo={setOpenRedo}
             onPress={onPressToMain}
             onPressSMS={onPressSMS}
             onPressCheckPhoneTruthNum={onPressCheckPhoneTruthNum}

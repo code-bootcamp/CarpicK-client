@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import RentHistoryUI from "./RentHistory.presenter";
 import { FETCH_USER_RESERVATIONS } from "./RentHistory.queries";
 
-export default function RentHistoryPage({ navigation }) {
+export default function RentHistoryPage({ navigation }: any) {
    const { data, refetch, networkStatus, fetchMore } = useQuery(
       FETCH_USER_RESERVATIONS,
       {
@@ -16,7 +16,7 @@ export default function RentHistoryPage({ navigation }) {
       navigation.addListener("focus", () => setIsLoad(true));
       navigation.addListener("blur", () => setIsLoad(false));
    }, []);
-   console.log("this is data", data?.fetchUserReservations.length);
+
    const loadFunc = () => {
       if (!data) return;
 
@@ -39,7 +39,6 @@ export default function RentHistoryPage({ navigation }) {
       });
    };
 
-   console.log(data);
    return (
       <>
          {isLoad && (

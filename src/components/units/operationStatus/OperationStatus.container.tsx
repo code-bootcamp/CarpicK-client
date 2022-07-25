@@ -7,17 +7,15 @@ import {
    FETCH_LOGIN_OWNER,
 } from "./OperationStatus.queries";
 
-export default function OperationStatusPage({ navigation }) {
+export default function OperationStatusPage({ navigation }: any) {
    const { data, refetch, networkStatus, fetchMore } = useQuery(
       FETCH_OWNER_RESERVATIONS,
       { fetchPolicy: "network-only" }
    );
-   const { data: onwerData } = useQuery(FETCH_LOGIN_OWNER);
+   const { data: ownerData } = useQuery(FETCH_LOGIN_OWNER);
    const [isLoad, setIsLoad] = useState(false);
    const [msg, setMsg] = useState("");
    const [openModal, setOpenModal] = useState(false);
-   console.log("this is owner_resrv", data);
-   console.log("this is ownerDATA", onwerData);
 
    useEffect(() => {
       navigation.addListener("focus", () => setIsLoad(true));
@@ -25,11 +23,11 @@ export default function OperationStatusPage({ navigation }) {
    }, []);
 
    useEffect(() => {
-      if (onwerData?.fetchLoginOwner.car === null) {
+      if (ownerData?.fetchLoginOwner.car === null) {
          setMsg(`등록된 마이카가 없습니다.`);
          setOpenModal(true);
       }
-   }, [onwerData]);
+   }, [ownerData]);
 
    const loadFunc = () => {
       if (!data) return;
@@ -70,7 +68,7 @@ export default function OperationStatusPage({ navigation }) {
                )}
                <OperationStatusUI
                   data={data}
-                  onwerData={onwerData}
+                  ownerData={ownerData}
                   refetch={refetch}
                   loadFunc={loadFunc}
                   networkStatus={networkStatus}

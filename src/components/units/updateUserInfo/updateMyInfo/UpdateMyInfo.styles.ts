@@ -141,5 +141,6 @@ export const TitleWrapper = styled.TouchableOpacity`
    height: 70px;
    justify-content: center;
    align-items: center;
-   background-color: ${(props) => (props.isSelected ? colors.theme : "#fff")};
+   background-color: ${(props: { isSelected: boolean }) =>
+      props.isSelected ? colors.theme : "#fff"};
 `;

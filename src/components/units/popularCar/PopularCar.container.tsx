@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PopularCarUI from "./PopularCar.presenter";
 import { FETCH_POPULAR_CARS } from "./PopularCar.queries";
 
-export default function PopularCarPage({ navigation }) {
+export default function PopularCarPage({ navigation }: any) {
    const { data } = useQuery(FETCH_POPULAR_CARS, {
       fetchPolicy: "network-only",
    });

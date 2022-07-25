@@ -6,9 +6,11 @@ import Contents1Text from "../../../commons/text/Contents1Text";
 import Input2 from "../../../commons/input/Input2";
 import Contents2Text from "../../../commons/text/Contents2Text";
 import Button01Blue from "../../../commons/button/button_01_blue";
-import { phoneNumHypen } from "../../../../commons/utilities/phonNumHypen";
+import { IPasswordResetPage3UIProps } from "./PasswordReset3.types";
 
-export default function PasswordResetPage3UI(props) {
+export default function PasswordResetPage3UI(
+   props: IPasswordResetPage3UIProps
+) {
    return (
       <S.Wrapper style={globalStyle.GlobalStyles40}>
          <R.ScrollView showsVerticalScrollIndicator={false}>

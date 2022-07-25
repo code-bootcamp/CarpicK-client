@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { FETCH_LOGIN_OWNER } from "../Registration.queries";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
 
-export default function CarInfoPage({ navigation }) {
+export default function CarInfoPage({ navigation }: any) {
    const { data: userData } = useQuery(FETCH_LOGIN_OWNER, {
       fetchPolicy: "network-only",
    });
@@ -31,7 +31,6 @@ export default function CarInfoPage({ navigation }) {
       navigation.addListener("blur", () => setIsLoad(false));
    }, []);
 
-   console.log("userData", userData);
    const onPressNext = (data: any) => {
       if (!userData.fetchLoginOwner.isAuth) {
          setMsg(`운전면허를 등록해야\n 서비스 이용이 가능합니다.`);

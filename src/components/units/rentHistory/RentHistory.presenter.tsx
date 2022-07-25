@@ -1,17 +1,18 @@
-import colors from "../../../commons/lib/colors";
-import globalStyle from "../../../commons/styles/globalStyle";
 import * as R from "react-native";
 import * as S from "./RentHistory.styles";
+import colors from "../../../commons/lib/colors";
+import globalStyle from "../../../commons/styles/globalStyle";
 import RentHistoryNoneImg from "../../../../assets/rentHistory/rent-history-none.svg";
 import TitleText from "../../commons/text/TitleText";
 import RentHistoryItem from "../../commons/rentHistoryItem/RentHistoryItem";
 import Contents1Text from "../../commons/text/Contents1Text";
+import { IRentHistoryUIProps } from "./RentHistory.types";
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: any) => {
    return <RentHistoryItem data={item} />;
 };
 
-export default function RentHistoryUI(props) {
+export default function RentHistoryUI(props: IRentHistoryUIProps) {
    return (
       <S.Wrapper>
          <S.TitleWrapper style={globalStyle.GlobalStyles}>
