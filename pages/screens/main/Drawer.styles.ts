@@ -1,4 +1,5 @@
 import styled from "@emotion/native";
+import colors from "../../../src/commons/lib/colors";
 
 export const HamburgerTouch = styled.TouchableOpacity`
    width: 80px;
@@ -19,8 +20,8 @@ export const DrawerHeader = styled.View`
    width: 100%;
    height: 75px;
    padding: 5px;
-   border-bottom-width: 1px;
-   border-color: #a5a5a5;
+   border-bottom-width: 0.7px;
+   border-color: ${colors.light_gray};
 `;
 
 export const DrawerContentWrapper = styled.View`

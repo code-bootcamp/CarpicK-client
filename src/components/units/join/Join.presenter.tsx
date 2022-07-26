@@ -11,6 +11,8 @@ import Input2 from "../../commons/input/Input2";
 import Timer from "../../commons/timer/timer.container";
 import RedoButton from "../../commons/redoButton/redoButton.container";
 import { IJoinPageUIProps } from "./Join.types";
+import colors from "../../../commons/lib/colors";
+
 const emailRegExp =
    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
@@ -20,10 +22,12 @@ export default function JoinPageUI(props: IJoinPageUIProps) {
       <>
          <S.Wrapper style={globalStyles.GlobalStyles40}>
             <R.ScrollView showsVerticalScrollIndicator={false}>
-               <S.TitleWrapper>
-                  <TitleText color="#5D8BFF">카픽 </TitleText>
-                  <TitleText>회원가입 </TitleText>
-               </S.TitleWrapper>
+               <TitleText color={colors.theme} fontSize="24">
+                  기본 정보
+               </TitleText>
+               <R.View style={{ marginTop: 20 }}>
+                  <Contents1Text fontSize="15">{`가입하실 정보들을\n정확히 입력해주세요!`}</Contents1Text>
+               </R.View>
                <S.Body>
                   <S.InputWrapper>
                      <Contents1Text fontSize="12">이메일</Contents1Text>
