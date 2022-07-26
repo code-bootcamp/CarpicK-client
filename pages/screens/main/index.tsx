@@ -198,14 +198,6 @@ export default function MainStack({ navigation }: any) {
                }}
             />
             <Drawer.Screen
-               name="customerService"
-               component={CustomerServiceStack}
-               options={{
-                  title: "고객센터",
-                  headerShown: false,
-               }}
-            />
-            <Drawer.Screen
                name="operationStatus"
                component={OperationStatusPage}
                options={{
@@ -228,6 +220,14 @@ export default function MainStack({ navigation }: any) {
                component={LicenseLaterStack}
                options={{
                   title: "면허등록",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="customerService"
+               component={CustomerServiceStack}
+               options={{
+                  title: "고객센터",
                   headerShown: false,
                }}
             />
