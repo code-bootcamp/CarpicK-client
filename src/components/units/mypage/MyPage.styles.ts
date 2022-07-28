@@ -8,9 +8,9 @@ export const Wrapper = styled.View`
 
 export const Profile = styled.View`
    width: 100%;
-   height: 88px;
+   padding: 0 0 20px;
    flex-direction: row;
-   background-color: #ffffff;
+   background-color: white;
    align-items: center;
 `;
 

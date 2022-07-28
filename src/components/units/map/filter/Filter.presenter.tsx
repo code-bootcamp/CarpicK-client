@@ -16,7 +16,9 @@ export default function FilterUI(props: IFilterUIProps) {
             <S.ArrowBox activeOpacity={0.7} onPress={props.onPressBack}>
                <BackArrow />
             </S.ArrowBox>
-            <TitleText fontSize="15">차종 필터</TitleText>
+            <TitleText fontFamily="Regular" fontSize="15">
+               차종 필터
+            </TitleText>
             <S.ResetBox
                disabled={props.selectedCar.length === 0}
                activeOpacity={0.7}

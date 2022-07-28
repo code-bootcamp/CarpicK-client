@@ -3,7 +3,7 @@ import colors from "../../../../commons/lib/colors";
 
 export const Wrapper = styled.View`
    flex: 1;
-   padding: 20px 0;
+   padding: 0 0 20px;
 `;
 
 export const InputBox = styled.View`

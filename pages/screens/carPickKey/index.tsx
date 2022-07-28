@@ -45,9 +45,7 @@ export default function CarPickKeyStack({ navigation }) {
                   headerTitleAlign: "center",
                   animation: "slide_from_right",
                   headerTitleStyle: {
-                     color: colors.black,
                      fontSize: 15,
-                     fontWeight: "500",
                   },
                }}
             >
@@ -64,7 +62,7 @@ export default function CarPickKeyStack({ navigation }) {
                                  { navigation },
                                  "",
                                  "",
-                                 "#000"
+                                 colors.gray
                               ),
                         })}
                      />
@@ -79,7 +77,7 @@ export default function CarPickKeyStack({ navigation }) {
                                  { navigation },
                                  "carPickKeyDetail",
                                  "",
-                                 "#000"
+                                 colors.gray
                               ),
                         })}
                      />
@@ -101,7 +99,7 @@ export default function CarPickKeyStack({ navigation }) {
                                  { navigation },
                                  "",
                                  "",
-                                 "#000"
+                                 colors.gray
                               ),
                         })}
                      />
@@ -126,7 +124,7 @@ export default function CarPickKeyStack({ navigation }) {
                                  { navigation },
                                  "",
                                  "",
-                                 "#000"
+                                 colors.gray
                               ),
                         })}
                      />

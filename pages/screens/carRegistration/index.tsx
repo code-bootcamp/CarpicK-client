@@ -15,13 +15,7 @@ export default function RegistrationStack({ navigation }) {
                headerShadowVisible: false,
                headerTintColor: colors.theme,
                headerStyle: { backgroundColor: "#fff" },
-               headerTitle: "마이카 등록하기",
-               headerTitleAlign: "center",
-               headerTitleStyle: {
-                  color: colors.black,
-                  fontSize: 15,
-                  fontWeight: "500",
-               },
+               headerTitle: "",
                animation: "slide_from_right",
             }}
          >
@@ -31,7 +25,7 @@ export default function RegistrationStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft({ navigation }, "", "", "#000"),
+                     NavigationHeaderLeft({ navigation }, "", "", colors.gray),
                })}
             />
             <Stack.Screen

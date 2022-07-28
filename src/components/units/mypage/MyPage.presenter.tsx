@@ -1,6 +1,7 @@
 import * as R from "react-native";
 import * as S from "./MyPage.styles";
 import { IMyPageProps } from "./MyPage.types";
+import { useEffect, useState } from "react";
 import globalStyle from "../../../commons/styles/globalStyle";
 import colors from "../../../commons/lib/colors";
 import ProfileImg from "../../../../assets/mypage/ic_profile.svg";
@@ -13,7 +14,6 @@ import Contents1Text from "../../commons/text/Contents1Text";
 import Contents2Text from "../../commons/text/Contents2Text";
 import oilTranslation from "../../../commons/lib/oilTranslation";
 import statusTranslation from "../../../commons/lib/statusTranslation";
-import { useEffect, useState } from "react";
 
 export default function MyPageUI(props: IMyPageProps) {
    const [showStatus, setShowStatus] = useState(true);

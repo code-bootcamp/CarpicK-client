@@ -2,11 +2,7 @@ import styled from "@emotion/native";
 
 export const Wrapper = styled.View`
    flex: 1;
-`;
-
-export const TitleWrapper = styled.View`
-   display: flex;
-   flex-direction: row;
+   background-color: white;
 `;
 
 export const TitleBlue = styled.Text`
@@ -16,13 +12,9 @@ export const TitleBlue = styled.Text`
    padding: 40px 0px; ;
 `;
 
-export const Title = styled.Text`
-   font-size: 20px;
-   font-family: Bold;
-   padding: 40px 0px;
+export const Body = styled.View`
+   margin-top: 30px;
 `;
-
-export const Body = styled.View``;
 
 export const MainText = styled.Text`
    font-size: 14px;
@@ -40,6 +32,7 @@ export const SubText = styled.Text`
 export const ImageWrapper = styled.View`
    width: 100%;
    align-items: center;
+   margin-top: 20px;
 `;
 
 export const ImageWrapperDone = styled.View`
@@ -55,7 +48,7 @@ export const NextTouch = styled.TouchableOpacity`
    border-radius: 5px;
    align-items: center;
    justify-content: center;
-   margin-top: 25px;
+   margin-top: 50px;
    margin-bottom: 35px;
 `;
 
@@ -68,5 +61,4 @@ export const Contents1TextTouch = styled.TouchableOpacity`
    width: 100%;
    height: 40px;
    align-items: center;
-   /* background-color: red; */
 `;
