@@ -13,7 +13,11 @@ export default function MyPageStack({ navigation }) {
             screenOptions={{
                headerTintColor: colors.black,
                headerTitle: "마이페이지",
-               headerStyle: { backgroundColor: "#ffffff" },
+               headerTitleAlign: "center",
+               headerTitleStyle: { fontSize: 15 },
+               headerStyle: {
+                  backgroundColor: "#ffffff",
+               },
             }}
          >
             <Stack.Screen
@@ -27,7 +31,7 @@ export default function MyPageStack({ navigation }) {
                         { navigation },
                         "main",
                         "",
-                        "#000000"
+                        colors.gray
                      ),
                })}
             />

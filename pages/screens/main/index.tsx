@@ -184,7 +184,7 @@ export default function MainStack({ navigation }: any) {
                name="popularCar"
                component={PopularCarPage}
                options={{
-                  title: "인기차 보러가기",
+                  title: "인기차",
                   headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),
                }}
