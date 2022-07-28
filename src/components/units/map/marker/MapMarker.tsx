@@ -2,11 +2,11 @@ import { useState } from "react";
 import * as R from "react-native";
 import { Marker } from "react-native-maps";
 
-export default function MapMarker({ lat, lng, func }: any) {
-   const [isSelected, setIsSelected] = useState(false);
+export default function MapMarker({ lat, lng, func, isMarkerSelected }: any) {
+   const [isSelected, setIsSelected] = useState(isMarkerSelected);
 
    const onPress = () => {
-      setIsSelected(true);
+      // setIsSelected(true);
       func();
    };
 
@@ -22,7 +22,7 @@ export default function MapMarker({ lat, lng, func }: any) {
       >
          <R.Image
             source={
-               isSelected
+               isMarkerSelected
                   ? require("../../../../../assets/map/marker-on.png")
                   : require("../../../../../assets/map/marker.png")
             }

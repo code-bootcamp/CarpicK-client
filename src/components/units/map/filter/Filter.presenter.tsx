@@ -35,7 +35,7 @@ export default function FilterUI(props: IFilterUIProps) {
             </S.ResetBox>
          </S.Header>
          <S.Container style={globalStyle.GlobalStyles}>
-            <R.View style={{ marginTop: 30 }}>
+            <R.View style={{ marginTop: 20 }}>
                <TitleText fontSize="17" fontFamily="Regular">
                   {`선택하신 차종이 포함된\n카픽존을 보실 수 있습니다!`}
                </TitleText>
