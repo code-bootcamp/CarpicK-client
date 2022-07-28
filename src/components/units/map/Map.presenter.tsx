@@ -31,12 +31,21 @@ export default function MapPageUI(props: IMapPageUIProps) {
                   latitudeDelta: 0.004,
                   longitudeDelta: 0.009,
                }}
-               // region={props.location}
+               region={
+                  props.isMarkerSelected
+                     ? props.selectedLocation
+                     : props.location
+               }
                provider={PROVIDER_GOOGLE}
                showsUserLocation={true}
                showsMyLocationButton={true}
                moveOnMarkerPress={false}
-               onRegionChangeComplete={props.handleRegionChange}
+               onTouchMove={() => {
+                  props.isMarkerSelected && props.setIsMarkerSelected(false);
+               }}
+               onRegionChangeComplete={(region) => {
+                  props.handleRegionChange(region);
+               }}
             >
                {props.data?.fetchCarLocation.map((el: any) => (
                   <MapMarker
@@ -44,6 +53,7 @@ export default function MapPageUI(props: IMapPageUIProps) {
                      lat={el.lat}
                      lng={el.lng}
                      func={() => props.onPressQuery(el.id)}
+                     isMarkerSelected={props.isMarkerSelected}
                   />
                ))}
             </MapView>

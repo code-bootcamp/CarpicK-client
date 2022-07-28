@@ -25,6 +25,8 @@ export const FETCH_CARS = gql`
          carLocation {
             address
             addressDetail
+            lat
+            lng
          }
          reservation {
             startTime
