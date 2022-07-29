@@ -35,7 +35,7 @@ export const CarImage = styled.Image`
 export const ContentsContainer = styled.View`
    flex-grow: 1;
    justify-content: center;
-   margin-left: 10px;
+   /* margin-left: 10px; */
 `;
 
 export const LocationBox = styled.View`
