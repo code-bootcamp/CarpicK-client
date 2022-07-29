@@ -11,6 +11,7 @@ export const Container = styled.View`
    border-bottom-width: 0.7px;
    border-bottom-color: ${colors.light_gray};
    margin: 7.5px 0px;
+   padding-right: 10px;
 `;
 
 export const StatusText = styled.Text`
@@ -57,4 +58,13 @@ export const StatusContainer = styled.View`
    background-color: ${(props: { backgroundColor: any }) =>
       props.backgroundColor};
    margin-bottom: 10px;
+`;
+
+export const HeaderWrapper = styled.View`
+   flex-direction: row;
+   justify-content: space-between;
+`;
+
+export const PenaltyPay = styled.TouchableOpacity`
+   flex-direction: row;
 `;

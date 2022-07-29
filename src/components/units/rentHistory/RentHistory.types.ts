@@ -9,4 +9,5 @@ export interface IRentHistoryUIProps {
    ) => Promise<ApolloQueryResult<any>>;
    loadFunc: () => void;
    networkStatus: NetworkStatus;
+   navigation: any;
 }

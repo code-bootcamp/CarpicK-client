@@ -8,11 +8,11 @@ import RentHistoryItem from "../../commons/rentHistoryItem/RentHistoryItem";
 import Contents1Text from "../../commons/text/Contents1Text";
 import { IRentHistoryUIProps } from "./RentHistory.types";
 
-const renderItem = ({ item }: any) => {
-   return <RentHistoryItem data={item} />;
-};
-
 export default function RentHistoryUI(props: IRentHistoryUIProps) {
+   const renderItem = ({ item }: any) => {
+      return <RentHistoryItem data={item} navigation={props.navigation} />;
+   };
+
    return (
       <S.Wrapper>
          <S.TitleWrapper style={globalStyle.GlobalStyles}>

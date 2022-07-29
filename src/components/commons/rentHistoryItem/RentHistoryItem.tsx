@@ -6,6 +6,7 @@ import Contents1Text from "../text/Contents1Text";
 import TitleText from "../text/TitleText";
 import moment from "moment";
 import { numberWithCommas } from "../../../commons/utilities/numberWithCommas";
+import { Entypo } from "@expo/vector-icons";
 
 /*************************
  *   'RESERVATION' : 예약
@@ -16,9 +17,14 @@ import { numberWithCommas } from "../../../commons/utilities/numberWithCommas";
 
 interface RentHistoryItemProps {
    data?: any;
+   navigation: any;
 }
 
 export default function RentHistoryItem(props: RentHistoryItemProps) {
+   const onPressPenaltyPay = (id: string, amount: number) => {
+      props.navigation.navigate("penaltyPayment", { id, amount });
+   };
+
    const statusTranslation = (status?: string) => {
       switch (status) {
          case "USING":
@@ -87,15 +93,36 @@ export default function RentHistoryItem(props: RentHistoryItemProps) {
                   </R.View>
                </S.CarInfoContainer>
                <S.ReservationContainer>
-                  <S.StatusContainer
-                     backgroundColor={statusBackgroundColor(
-                        statusTranslation(props.data?.status)
+                  <S.HeaderWrapper>
+                     <S.StatusContainer
+                        backgroundColor={statusBackgroundColor(
+                           statusTranslation(props.data?.status)
+                        )}
+                     >
+                        <Contents1Text fontSize="10" color="#fff">
+                           {statusTranslation(props.data?.status)}
+                        </Contents1Text>
+                     </S.StatusContainer>
+                     {props.data?.status === "DELAY" && (
+                        <S.PenaltyPay
+                           onPress={() =>
+                              onPressPenaltyPay(
+                                 props.data.id,
+                                 Math.ceil(props.data.amount * 0.3)
+                              )
+                           }
+                        >
+                           <Contents1Text fontSize="12" color={colors.red}>
+                              반납지연금 결제
+                           </Contents1Text>
+                           <Entypo
+                              name="chevron-small-right"
+                              color={colors.red}
+                              size={18}
+                           />
+                        </S.PenaltyPay>
                      )}
-                  >
-                     <Contents1Text fontSize="10" color="#fff">
-                        {statusTranslation(props.data?.status)}
-                     </Contents1Text>
-                  </S.StatusContainer>
+                  </S.HeaderWrapper>
                   <R.View style={{ marginTop: 5 }}>
                      <Contents1Text>
                         {createDate(props.data?.startTime, props.data?.endTime)}

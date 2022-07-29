@@ -48,6 +48,7 @@ export default function RentHistoryPage({ navigation }: any) {
                refetch={refetch}
                loadFunc={loadFunc}
                networkStatus={networkStatus}
+               navigation={navigation}
             />
          )}
       </>
