@@ -25,10 +25,13 @@ export default function MapPage({ navigation, route }: any) {
       longitudeDelta: 0.009,
    });
    const [, setCarLocationId] = useState();
-   const [south_west_lng, setSouth_west_lng] = useState(); // 127.341198
-   const [north_east_lng, setNorth_east_lng] = useState(); // 127.435044
-   const [south_west_lat, setSouth_west_lat] = useState(); // 36.27663
-   const [north_east_lat, setNorth_east_lat] = useState(); // 36.420513
+   const [boundsLocation, setBoundsLocation] = useState({
+      south_west_lng: 0,
+      north_east_lng: 0,
+      south_west_lat: 0,
+      north_east_lat: 0,
+   });
+
    const [mapRef, setMapRef] = useState(null);
    const [boundsBox, setBoundsBox] = useState();
 
@@ -36,10 +39,10 @@ export default function MapPage({ navigation, route }: any) {
       fetchPolicy: "network-only",
       variables: {
          fetchCarLocationInput: {
-            southWestLng: south_west_lng,
-            northEastLng: north_east_lng,
-            southWestLat: south_west_lat,
-            northEastLat: north_east_lat,
+            southWestLng: boundsLocation.south_west_lng,
+            northEastLng: boundsLocation.north_east_lng,
+            southWestLat: boundsLocation.south_west_lat,
+            northEastLat: boundsLocation.north_east_lat,
             filter: selectedCar.length === 0 ? null : selectedCar,
          },
       },
@@ -67,10 +70,12 @@ export default function MapPage({ navigation, route }: any) {
 
    const handleRegionChange = async () => {
       setBoundsBox(await mapRef?.getMapBoundaries());
-      setSouth_west_lng(boundsBox.southWest.longitude);
-      setNorth_east_lng(boundsBox.northEast.longitude);
-      setSouth_west_lat(boundsBox.southWest.latitude);
-      setNorth_east_lat(boundsBox.northEast.latitude);
+      setBoundsLocation({
+         south_west_lng: boundsBox.southWest.longitude,
+         north_east_lng: boundsBox.northEast.longitude,
+         south_west_lat: boundsBox.southWest.latitude,
+         north_east_lat: boundsBox.northEast.latitude,
+      });
       if (isDrawerOpen) {
          panelRef.current?.togglePanel();
          setIsDrawerOpen((prev) => !prev);
@@ -101,10 +106,12 @@ export default function MapPage({ navigation, route }: any) {
 
    useEffect(() => {
       (async () => {
-         setSouth_west_lng(location.longitude - 0.004);
-         setNorth_east_lng(location.longitude + 0.004);
-         setSouth_west_lat(location.latitude - 0.006);
-         setNorth_east_lat(location.latitude + 0.006);
+         setBoundsLocation({
+            south_west_lng: location.longitude - 0.004,
+            north_east_lng: location.longitude + 0.004,
+            south_west_lat: location.latitude - 0.006,
+            north_east_lat: location.latitude + 0.006,
+         });
       })();
    }, [location.latitude]);
 

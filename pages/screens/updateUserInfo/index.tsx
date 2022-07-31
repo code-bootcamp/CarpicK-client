@@ -5,7 +5,7 @@ import UpdateMyInfoPage from "../../../src/components/units/updateUserInfo/updat
 
 const Stack = createNativeStackNavigator();
 
-export default function UpdateUserInfoStack({ navigation }) {
+export default function UpdateUserInfoStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator

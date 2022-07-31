@@ -9,7 +9,7 @@ import JoinStack from "./joinStack";
 
 const Stack = createNativeStackNavigator();
 
-export default function IntroStack({ navigation }) {
+export default function IntroStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
