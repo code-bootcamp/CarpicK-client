@@ -37,13 +37,13 @@ export default function TermsPage({ navigation }: any) {
 
    const onPressService = () => {
       navigation.navigate("termsWebView", {
-         uri: "http://carpick.shop/terms/service",
+         uri: "https://carpick.shop/terms/service",
       });
    };
 
    const onPressPrivacy = () => {
       navigation.navigate("termsWebView", {
-         uri: "http://carpick.shop/terms/privacy",
+         uri: "https://carpick.shop/terms/privacy",
       });
    };
 
