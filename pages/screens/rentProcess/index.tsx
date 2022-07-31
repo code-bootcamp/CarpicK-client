@@ -8,7 +8,7 @@ import RentProcess2Page from "../../../src/components/units/rentProcess/rentProc
 
 const Stack = createNativeStackNavigator();
 
-export default function RentProcessStack({ navigation, route }) {
+export default function RentProcessStack({ navigation, route }: any) {
    return (
       <>
          <Stack.Navigator

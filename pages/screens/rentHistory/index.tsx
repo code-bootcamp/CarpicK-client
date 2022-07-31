@@ -5,7 +5,7 @@ import RentHistoryPage from "../../../src/components/units/rentHistory/RentHisto
 
 const Stack = createNativeStackNavigator();
 
-export default function RentHistoryStack({ navigation }) {
+export default function RentHistoryStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator

@@ -6,7 +6,7 @@ import LicenseLaterStack from "../licenseLaterStack";
 
 const Stack = createNativeStackNavigator();
 
-export default function MyPageStack({ navigation }) {
+export default function MyPageStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator

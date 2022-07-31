@@ -7,7 +7,7 @@ import CarRegistrationPage from "../../../src/components/units/registration/carR
 
 const Stack = createNativeStackNavigator();
 
-export default function RegistrationStack({ navigation }) {
+export default function RegistrationStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator

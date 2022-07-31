@@ -7,7 +7,7 @@ import License3LaterPage from "../../../src/components/units/licenseLater/licens
 
 const Stack = createNativeStackNavigator();
 
-export default function LicenseLaterStack({ navigation }) {
+export default function LicenseLaterStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator

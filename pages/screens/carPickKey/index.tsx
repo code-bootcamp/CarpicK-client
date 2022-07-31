@@ -24,7 +24,7 @@ const FETCH_LOGIN_USER = gql`
 
 const Stack = createNativeStackNavigator();
 
-export default function CarPickKeyStack({ navigation }) {
+export default function CarPickKeyStack({ navigation }: any) {
    const { data, loading } = useQuery(FETCH_LOGIN_USER, {
       fetchPolicy: "network-only",
    });

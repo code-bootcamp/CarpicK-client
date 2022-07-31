@@ -6,7 +6,7 @@ import PasswordResetPage3 from "../../../src/components/units/passwordReset/pass
 
 const Stack = createNativeStackNavigator();
 
-export default function PasswordResetStack({ navigation }) {
+export default function PasswordResetStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
