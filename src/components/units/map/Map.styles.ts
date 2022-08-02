@@ -1,27 +1,33 @@
 import styled from "@emotion/native";
+import colors from "../../../commons/lib/colors";
 
 export const Wrapper = styled.View`
    flex: 1;
    align-items: center;
 `;
 
+export const AddressBox = styled.View`
+   background-color: ${colors.theme};
+   padding: 2px 7px;
+   margin-right: 5px;
+`;
+
 export const CarList = styled.TouchableOpacity`
    width: 100%;
    margin-bottom: 10px;
-   /* background-color: red; */
 `;
 
 export const CarListBody = styled.View`
    flex-direction: row;
    width: 100%;
+   margin-bottom: 5px;
 `;
 
 export const CarListFooter = styled.View`
    width: 100%;
-   height: 20px;
+   height: 25px;
    border-bottom-width: 1px;
-   border-bottom-color: #d8d8d8;
-   /* background-color: rebeccapurple; */
+   border-bottom-color: #e0e0e0;
 `;
 
 export const CarListTextWrapper = styled.View`
