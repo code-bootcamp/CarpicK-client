@@ -12,6 +12,7 @@ import { statusBar } from "./statusBar/StatusBar";
 import moment from "moment";
 import MapMarker from "./marker/MapMarker";
 import { IMapPageUIProps } from "./Map.types";
+import colors from "../../../commons/lib/colors";
 const today = moment().format("M/D");
 const tomorrow =
    today.split("/")[0] + "/" + String(Number(today.split("/")[1]) + 1);
@@ -57,16 +58,31 @@ export default function MapPageUI(props: IMapPageUIProps) {
             >
                {!props.loading && (
                   <>
-                     <TitleText fontSize="12">
-                        {
-                           props?.carListData?.fetchCars[0].carLocation
-                              .addressDetail
-                        }
-                     </TitleText>
-                     <Contents2Text>
-                        {props.carListData?.fetchCars[0].carLocation.address}
-                     </Contents2Text>
-                     <R.ScrollView style={{ width: "100%" }}>
+                     <R.View
+                        style={{ flexDirection: "row", alignItems: "center" }}
+                     >
+                        <S.AddressBox>
+                           <TitleText
+                              color="white"
+                              fontFamily="Regular"
+                              fontSize="11"
+                           >
+                              지번
+                           </TitleText>
+                        </S.AddressBox>
+                        <TitleText fontSize="12">
+                           {
+                              props?.carListData?.fetchCars[0].carLocation
+                                 .addressDetail
+                           }
+                        </TitleText>
+                     </R.View>
+                     <R.View style={{ marginTop: 3 }}>
+                        <Contents1Text fontSize="11">
+                           {props.carListData?.fetchCars[0].carLocation.address}
+                        </Contents1Text>
+                     </R.View>
+                     <R.ScrollView style={{ width: "100%", marginTop: 10 }}>
                         {props.carListData?.fetchCars.map((el: any) => (
                            <S.CarList
                               key={el.id}
