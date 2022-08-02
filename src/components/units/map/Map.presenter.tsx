@@ -67,7 +67,7 @@ export default function MapPageUI(props: IMapPageUIProps) {
                               fontFamily="Regular"
                               fontSize="11"
                            >
-                              지번
+                              주소
                            </TitleText>
                         </S.AddressBox>
                         <TitleText fontSize="12">
