@@ -79,7 +79,7 @@ export default function MainPageUI(props: IMainPageUIProps) {
                      <TitleText color="#353535">인기 차 보러가기</TitleText>
                      <S.SubTitleWrapper>
                         <Contents1Text fontSize="14" color="#777777">
-                           실시간 Top 5
+                           실시간 Top 10
                         </Contents1Text>
                      </S.SubTitleWrapper>
                   </S.TitleWrapper>
