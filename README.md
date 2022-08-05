@@ -10,5 +10,5 @@
 <a href="https://www.figma.com/file/ISJzAquvSCmdPW3V4Jm8So/CarpicK---%EC%B0%A8%EB%B9%8C%EB%A0%A4%EC%A1%B0?node-id=16%3A99"><img src="https://img.shields.io/badge/Figma-5D8BFF?style=for-the-badge&logo=figma&logoColor=white"/>
 
 <p align="center">
-<img width="250" src="https://user-images.githubusercontent.com/104885097/182985113-3b427a01-fa42-405f-949e-f14b62ca038d.gif">
+<img width="80%" src="https://user-images.githubusercontent.com/104885097/182985113-3b427a01-fa42-405f-949e-f14b62ca038d.gif">
 </p>
