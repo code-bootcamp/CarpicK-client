@@ -1,49 +1,35 @@
-import { useEffect, useState } from "react";
-import * as S from "./MapMarker.styles";
+import { useState } from "react";
 import * as R from "react-native";
 import { Marker } from "react-native-maps";
-import TitleText from "../../../commons/text/TitleText";
 
-export default function MapMarker({
-   carLocationId,
-   lat,
-   lng,
-   isDrawerOpen,
-   onToggle,
-   func,
-   setCarLocationId,
-}) {
-   // const { coordinates, title, description, showDetails } = point;
-   // useEffect(() => {
-   //    setCarLocationId(carLocationId);
-   // }, []);
+export default function MapMarker({ lat, lng, func }: any) {
+   const [isSelected, setIsSelected] = useState(false);
+
+   const onPress = () => {
+      setIsSelected(true);
+      func();
+   };
 
    return (
       <Marker
          nativeID={"test"}
-         onPress={func}
+         onPress={onPress}
          coordinate={{
             latitude: lat,
             longitude: lng,
          }}
-         style={{ width: 100, height: 100 }}
-         image={require(".././../../../../assets/map/marker-150.png")}
-         title="카픽존"
+         title="대여하기"
       >
-         {/* <R.Image
-            source={require("../../../../../assets/map/marker-150.png")}
-            style={{ width: 26, height: 28 }}
+         <R.Image
+            source={
+               isSelected
+                  ? require("../../../../../assets/map/marker-on.png")
+                  : require("../../../../../assets/map/marker.png")
+            }
+            style={{ width: 70, height: 70 }}
             resizeMode="contain"
             resizeMethod="resize"
-         /> */}
+         />
       </Marker>
    );
-}
-
-{
-   /* <R.Image
-               style={{ width: 30, height: 30 }}
-               source={require("../../../../assets/map/marker.png")}
-            />
-         </Marker> */
 }

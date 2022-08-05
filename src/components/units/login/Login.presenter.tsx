@@ -1,31 +1,39 @@
-import * as R from "react-native";
 import * as S from "./Login.styles";
 import globalStyles from "../../../commons/styles/globalStyle";
 import GoogleLogo from "../../../../assets/login/google-logo.svg";
 import Button01Blue from "../../commons/button/button_01_blue";
+import { ILoginPageUIProps } from "./Login.types";
 
-export default function LoginPageUI(props) {
+export default function LoginPageUI(props: ILoginPageUIProps) {
    return (
       <>
-         <S.Wrapper style={globalStyles.GlobalStyles}>
+         <S.Wrapper style={globalStyles.GlobalStyles40}>
             <S.Title style={{ includeFontPadding: false }}>CarpicK</S.Title>
             <S.Body>
                <S.Input
                   textContentType="emailAddress"
-                  onChange={props.onChangeEmail}
+                  onChangeText={(text) => props.setEmail(text)}
                   placeholder="이메일을 입력해주세요"
                />
                <S.Input
-                  onChange={props.onChangePassword}
+                  onChangeText={(text) => props.setPassword(String(text))}
                   secureTextEntry={true}
                   placeholder="비밀번호를 입력해주세요"
                />
-               <Button01Blue func={props.onPressLogin} title="로그인" />
+               <Button01Blue
+                  func={props.onPressLogin}
+                  title="로그인"
+                  disabled={false}
+               />
                <S.GoogleLoginTouch
                   activeOpacity={0.3}
-                  onPress={props.onPressLogout}
+                  onPress={() => {
+                     props.googleSignIn();
+                  }}
                >
-                  <GoogleLogo />
+                  <S.LogoWrapper>
+                     <GoogleLogo />
+                  </S.LogoWrapper>
                   <S.TextBox>
                      <S.GoogleText>Google 계정으로 로그인</S.GoogleText>
                   </S.TextBox>

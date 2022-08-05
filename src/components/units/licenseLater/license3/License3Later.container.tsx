@@ -1,52 +1,60 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import License3LaterPageUI from "./License3Later.presenter";
-import { CHECK_LICENSE } from "./License3Later.queries";
+import {
+   CHECK_LICENSE,
+   FETCH_LOGIN_USER,
+   UPDATE_LICENSE,
+} from "./License3Later.queries";
 
-export default function License3LaterPage({ navigation, route }) {
+export default function License3LaterPage({ navigation, route }: any) {
    const [uri, setUri] = useState();
    const [specialNumber, setSpecialNumber] = useState({});
    const [msg, setMsg] = useState("");
-   const [isAuth, setIsAuth] = useState(false);
+   const [, setIsAuth] = useState(false);
    const [openModal1, setOpenModal1] = useState(false);
    const [openModal2, setOpenModal2] = useState(false);
+   const [openLoading, setOpenLoading] = useState(false);
    const [openSubmitButton, setOpenSubmitButton] = useState(false);
    const [checkLicense] = useMutation(CHECK_LICENSE);
+   const [updateLicense] = useMutation(UPDATE_LICENSE);
+
+   const { data } = useQuery(FETCH_LOGIN_USER, { fetchPolicy: "no-cache" });
 
    useEffect(() => {
       setUri(route.params.uri);
       setSpecialNumber(route.params.result.SpecialNumber);
    }, []);
 
-   const onPressGoback = () => {
+   const onPressGoBack = () => {
       navigation.navigate("license2Later");
       route.params.setIsPhoto(false);
    };
 
-   const onPressCheckLisense = async () => {
-      if (route.params.data2.name !== route.params.result.Name) {
+   const onPressCheckLicense = async () => {
+      if (data.fetchLoginUser.name !== route.params.result.Name) {
          setMsg("이름이 일치하지 않습니다.\n본인 명의의 면허증만 가능합니다.");
          setOpenModal1(true);
          return;
       }
 
       const { Fail, SpecialNumber, ...rest } = route.params.result;
-      console.log({ ...rest, SpecialNumber: specialNumber });
       if (
          route.params.result.BirthDate &&
          route.params.result.LicNumber &&
          route.params.result.Name &&
          specialNumber
       ) {
+         setOpenLoading(true);
          const result = await checkLicense({
             variables: { ...rest, SpecialNumber: specialNumber },
          });
-         console.log(
-            "this is police return",
-            JSON.parse(result.data.checkLicense)
-         );
+         setOpenLoading(false);
          const policeReturn = JSON.parse(result.data.checkLicense);
+
          if (
             policeReturn.Status === "OK" &&
             policeReturn.StatusSeq === 0 &&
@@ -66,9 +74,28 @@ export default function License3LaterPage({ navigation, route }) {
       }
    };
 
-   const onPressSubmit = () => {};
+   const onPressSubmit = async () => {
+      try {
+         await updateLicense({ variables: { isAuth: true } });
 
-   console.log("this is result", route.params.result);
+         setMsg("면허인증이 완료되었습니다.");
+         setOpenModal2(true);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="먄허인증 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
+      }
+   };
+
+   const onPressToMain = () => {
+      setOpenModal2(false);
+      navigation.replace("mainStack");
+   };
 
    return (
       <>
@@ -83,15 +110,16 @@ export default function License3LaterPage({ navigation, route }) {
             <Modal3
                contents={msg}
                positiveText="확인"
-               positive={onPressToLogin}
+               positive={onPressToMain}
             />
          )}
+         {openLoading && <LoadingCircle />}
          <License3LaterPageUI
             result={route.params.result}
             base64={route.params.base64}
             openSubmitButton={openSubmitButton}
-            onPressGoback={onPressGoback}
-            onPressCheckLisense={onPressCheckLisense}
+            onPressGoBack={onPressGoBack}
+            onPressCheckLicense={onPressCheckLicense}
             onPressSubmit={onPressSubmit}
             setSpecialNumber={setSpecialNumber}
             uri={uri}

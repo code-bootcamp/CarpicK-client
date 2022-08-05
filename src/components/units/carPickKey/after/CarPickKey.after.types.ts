@@ -8,5 +8,6 @@ export interface ICarPickKeyAfterUIProps {
    setImageUris: Dispatch<SetStateAction<string[]>>;
    rating: number;
    onChangeRating: (rating: number) => void;
+   isModalVisible: boolean;
    onPressReturn: () => void;
 }

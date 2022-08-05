@@ -18,9 +18,11 @@
       "updates": {
          "fallbackToCacheTimeout": 0
       },
+      "plugins": ["@react-native-google-signin/google-signin"],
       "assetBundlePatterns": ["**/*"],
       "ios": {
          "bundleIdentifier": "com.expo.carpick",
+         "buildNumber": "1.0.0",
          "config": {
             "googleMapsApiKey": "AIzaSyBgavHAKokKBeXt4zJ5y0cNYPMoc1zYFdY"
          },

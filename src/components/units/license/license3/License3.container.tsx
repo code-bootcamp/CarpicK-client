@@ -1,11 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
+import LoadingCircle from "../../../commons/loadingCircle/LoadingCircle";
 import Modal3 from "../../../commons/modals/modal3/Modal3";
+import Modal4 from "../../../commons/modals/modal4/Modal4";
 import License3PageUI from "./License3.presenter";
-import { CHECK_LICENSE, CREATE_USER } from "./Lisense3.quries";
+import { CHECK_LICENSE, CREATE_USER } from "./License3.quries";
 
-export default function License3Page({ navigation, route }) {
+export default function License3Page({ navigation, route }: any) {
    const [data3, setData3] = useState({});
+   const [isLoading, setIsLoading] = useState(false);
    const [uri, setUri] = useState();
    const [specialNumber, setSpecialNumber] = useState({});
    const [msg, setMsg] = useState("");
@@ -15,7 +18,6 @@ export default function License3Page({ navigation, route }) {
    const [openSubmitButton, setOpenSubmitButton] = useState(false);
    const [checkLicense] = useMutation(CHECK_LICENSE);
    const [createUser] = useMutation(CREATE_USER);
-   console.log("this is params 3", route.params);
 
    useEffect(() => {
       setData3({
@@ -25,12 +27,12 @@ export default function License3Page({ navigation, route }) {
       setUri(route.params.uri);
    }, []);
 
-   const onPressGoback = () => {
+   const onPressGoBack = () => {
       navigation.navigate("license2");
       route.params.setIsPhoto(false);
    };
 
-   const onPressCheckLisense = async () => {
+   const onPressCheckLicense = async () => {
       if (route.params.data2.name !== route.params.result.Name) {
          setMsg("이름이 일치하지 않습니다.\n본인 명의의 면허증만 가능합니다.");
          setOpenModal1(true);
@@ -38,20 +40,19 @@ export default function License3Page({ navigation, route }) {
       }
 
       const { Fail, SpecialNumber, ...rest } = route.params.result;
-      console.log({ ...rest, SpecialNumber: specialNumber });
+
       if (
          route.params.result.BirthDate &&
          route.params.result.LicNumber &&
          route.params.result.Name &&
          specialNumber
       ) {
+         setIsLoading(true);
          const result = await checkLicense({
             variables: { ...rest, SpecialNumber: specialNumber },
          });
-         console.log(
-            "this is police return",
-            JSON.parse(result.data.checkLicense)
-         );
+         setIsLoading(false);
+
          const policeReturn = JSON.parse(result.data.checkLicense);
          if (
             policeReturn.Status === "OK" &&
@@ -74,7 +75,7 @@ export default function License3Page({ navigation, route }) {
 
    const onPressSubmit = async () => {
       try {
-         const result = await createUser({
+         await createUser({
             variables: {
                createUserInput: {
                   email: data3.email,
@@ -87,9 +88,15 @@ export default function License3Page({ navigation, route }) {
          });
          setMsg("회원가입이 완료되었습니다.");
          setOpenModal2(true);
-         console.log("this is result", result);
-      } catch (error) {
-         console.log("this is error", error);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="회원가입 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -114,12 +121,13 @@ export default function License3Page({ navigation, route }) {
                positive={onPressToLogin}
             />
          )}
+         {isLoading && <LoadingCircle />}
          <License3PageUI
             result={route.params.result}
             base64={route.params.base64}
             openSubmitButton={openSubmitButton}
-            onPressGoback={onPressGoback}
-            onPressCheckLisense={onPressCheckLisense}
+            onPressGoBack={onPressGoBack}
+            onPressCheckLicense={onPressCheckLicense}
             onPressSubmit={onPressSubmit}
             setSpecialNumber={setSpecialNumber}
             uri={uri}
@@ -127,23 +135,3 @@ export default function License3Page({ navigation, route }) {
       </>
    );
 }
-
-const locationNum = {
-   11: "서울",
-   12: "부산",
-   13: "경기",
-   14: "강원",
-   15: "충북",
-   16: "충남",
-   17: "전북",
-   18: "전남",
-   19: "경북",
-   20: "경남",
-   21: "제주",
-   22: "대구",
-   23: "인천",
-   24: "광주",
-   25: "대전",
-   26: "울산",
-   28: "없음",
-};

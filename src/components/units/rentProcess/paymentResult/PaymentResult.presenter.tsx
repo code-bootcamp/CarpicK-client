@@ -2,7 +2,9 @@ import * as S from "./PaymentResult.styles";
 import globalStyles from "../../../../commons/styles/globalStyle";
 import Button1 from "../../../commons/button/Button1";
 
-export default function PaymentResultPageUI(props) {
+export default function PaymentResultPageUI(props: {
+   onPressHome: () => void;
+}) {
    return (
       <>
          <S.Wrapper style={globalStyles.GlobalStyles}></S.Wrapper>

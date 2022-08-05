@@ -4,12 +4,12 @@ import FindIdPage from "../../../src/components/units/findId/FindId.container";
 import IdResultPage from "../../../src/components/units/findId/idResult/IdResult.container";
 import IntroPage from "../../../src/components/units/intro/Intro.container";
 import LoginPage from "../../../src/components/units/login/Login.container";
-import PasswordResetPage from "../../../src/components/units/passwordReset/PasswordReset.container";
+import PasswordResetStack from "../passwordReset";
 import JoinStack from "./joinStack";
 
 const Stack = createNativeStackNavigator();
 
-export default function IntroStack({ navigation }) {
+export default function IntroStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
@@ -39,12 +39,7 @@ export default function IntroStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "아이디 찾기",
-                        "#ffffff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#ffffff"),
                })}
             />
             <Stack.Screen
@@ -56,23 +51,19 @@ export default function IntroStack({ navigation }) {
                      NavigationHeaderLeft(
                         { navigation },
                         "login",
-                        "아이디 찾기",
+                        "",
                         "#ffffff"
                      ),
+                  animation: "slide_from_right",
                })}
             />
             <Stack.Screen
                name="passwordReset"
-               component={PasswordResetPage}
+               component={PasswordResetStack}
                options={() => ({
-                  headerShown: true,
+                  headerShown: false,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "비밀번호 재설정",
-                        "#ffffff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#ffffff"),
                })}
             />
             <Stack.Screen

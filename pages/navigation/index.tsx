@@ -1,13 +1,13 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import colors from "../../src/commons/lib/colors";
 import { accessTokenState } from "../../src/commons/store";
-import NavigationHeaderLeft from "../../src/components/commons/navigationHeader/headerLeft";
-import FilterPage from "../../src/components/units/map/filter/Filter.cotnainer";
-import CustomerServiceStack from "../screens/customerService";
+import FilterPage from "../../src/components/units/map/filter/Filter.container";
 import IntroStack from "../screens/intro";
 import MainStack from "../screens/main";
+import MyPageStack from "../screens/mypage";
 import RentProcessStack from "../screens/rentProcess";
 import UpdateUserInfoStack from "../screens/updateUserInfo";
 
@@ -22,13 +22,14 @@ const MyTheme = {
 };
 
 export default function Navigation() {
-   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+   const [accessToken] = useRecoilState(accessTokenState);
+   const [selectedCar, setSelectedCar] = useState<string[]>([]);
 
    return (
       <NavigationContainer theme={MyTheme}>
          <Stack.Navigator
             screenOptions={{
-               headerShadowVisible: false,
+               headerShadowVisible: true,
                headerStyle: { backgroundColor: "#fff" },
                headerTitleAlign: "center",
                headerTitleStyle: {
@@ -57,11 +58,22 @@ export default function Navigation() {
                      })}
                   />
                   <Stack.Screen
+                     name="myPageStack"
+                     component={MyPageStack}
+                     options={() => ({
+                        headerShown: false,
+                     })}
+                  />
+                  <Stack.Screen
                      name="filter"
                      component={FilterPage}
+                     initialParams={{
+                        selectedCar,
+                        setSelectedCar,
+                     }}
                      options={() => ({
-                        headerShown: true,
-                        headerShadowVisible: false,
+                        headerShown: false,
+                        headerShadowVisible: true,
                         headerTitle: "차종필터",
                      })}
                   />

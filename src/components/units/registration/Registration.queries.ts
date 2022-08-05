@@ -9,6 +9,47 @@ export const FETCH_LOGIN_USER = gql`
          phone
          isAuth
          revenue
+         carRegistration {
+            id
+         }
+      }
+   }
+`;
+
+export const FETCH_LOGIN_OWNER = gql`
+   query fetchLoginOwner {
+      fetchLoginOwner {
+         name
+         email
+         isAuth
+         revenue
+         phone
+         car {
+            carNumber
+            isHipass
+            oil
+            carModel {
+               name
+            }
+            carLocation {
+               address
+               addressDetail
+            }
+            imageCar {
+               url
+            }
+         }
+         carRegistration {
+            carNumber
+            isHipass
+            model
+            oil
+            address
+            status
+            imageCar {
+               url
+            }
+         }
       }
    }
 `;

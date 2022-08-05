@@ -1,16 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import colors from "../../../src/commons/lib/colors";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
-import Payment from "../../../src/components/units/iamport/iamport";
+import Payment from "../../../src/components/units/payment/Payment";
 import PaymentResultPage from "../../../src/components/units/rentProcess/paymentResult/PaymentResult.container";
 import RentProcess1Page from "../../../src/components/units/rentProcess/rentProcess1/RentProcess1.container";
 import RentProcess2Page from "../../../src/components/units/rentProcess/rentProcess2/RentProcess2.container";
 
 const Stack = createNativeStackNavigator();
 
-export default function RentProcessStack({ navigation, route }) {
-   console.log("this is params", route.params);
-
+export default function RentProcessStack({ navigation, route }: any) {
    return (
       <>
          <Stack.Navigator

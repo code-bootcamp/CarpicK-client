@@ -1,18 +1,12 @@
 import styled from "@emotion/native";
-import colors from "../../../commons/lib/colors";
 
 export const Wrapper = styled.View`
    flex: 1;
-`;
-
-export const TitleWrapper = styled.View`
-   display: flex;
-   flex-direction: row;
-   padding: 40px 0px;
+   background-color: white;
 `;
 
 export const Body = styled.View`
-   padding-bottom: 35px;
+   padding: 50px 0 30px;
 `;
 
 export const InputBottomLine = styled.View`
@@ -28,13 +22,14 @@ export const InputWrapperMarginBtm = styled.View`
 `;
 
 export const InputLeft = styled.View`
-   width: 70%;
+   width: 65%;
 `;
 
 export const InputRow = styled.View`
    width: 100%;
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 `;
 
 export const Input = styled.TextInput`

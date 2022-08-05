@@ -8,6 +8,5 @@ export const CarList = styled.View`
    background-color: red;
    align-items: center;
    position: absolute;
-   /* bottom: 0; */
    top: 0;
 `;

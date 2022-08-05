@@ -4,6 +4,7 @@ export const Wrapper = styled.View`
    flex-direction: row;
    align-items: center;
    position: relative;
+   margin-top: 5px;
 `;
 
 export const FullStatusBar = styled.View`
@@ -15,7 +16,7 @@ export const FullStatusBar = styled.View`
 `;
 
 export const PrefixBar = styled.View`
-   width: ${(props) => props.barLength + "%"};
+   width: ${(props: { barLength: string }) => props.barLength + "%"};
    height: 3px;
    background-color: #d8d8d8;
    position: absolute;
@@ -23,12 +24,10 @@ export const PrefixBar = styled.View`
 `;
 
 export const Bar = styled.View`
-   width: ${(props) => props.barLength + "%"};
-   left: ${(props) => props.barStart + "%"};
+   width: ${(props: any) => props.barLength + "%"};
+   left: ${(props: any) => props.barStart + "%"};
    height: 3px;
    background-color: #d8d8d8;
    position: absolute;
    z-index: 999;
 `;
-
-/* width: ${(props) => props.barLength + "%"}; */

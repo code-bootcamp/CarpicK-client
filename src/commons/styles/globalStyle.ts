@@ -10,4 +10,8 @@ export default StyleSheet.create({
       paddingLeft: 20,
       paddingRight: 20,
    },
+   GlobalStyles40: {
+      paddingLeft: 40,
+      paddingRight: 40,
+   },
 });

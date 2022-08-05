@@ -16,7 +16,6 @@ import { useState } from "react";
 import RentHistoryStack from "../rentHistory";
 import TitleText from "../../../src/components/commons/text/TitleText";
 import Contents1Text from "../../../src/components/commons/text/Contents1Text";
-import colors from "../../../src/commons/lib/colors";
 import RegistrationStack from "../carRegistration";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilState } from "recoil";
@@ -29,7 +28,7 @@ import { BackArrow } from "../../../src/components/commons/navigationHeader/icon
 import { Hamburger } from "../../../src/components/commons/navigationHeader/icon/Hamburger";
 import CarPickKeyStack from "../carPickKey";
 import { Filter } from "../../../src/components/commons/navigationHeader/icon/Filter";
-import FilterPage from "../../../src/components/units/map/filter/Filter.cotnainer";
+import ProfileImg from "../../../assets/mypage/ic_profile.svg";
 
 const LOGOUT = gql`
    mutation logout {
@@ -51,47 +50,37 @@ const FETCH_LOGIN_USER = gql`
 
 const Drawer = createDrawerNavigator();
 
-export default function MainStack({ navigation }) {
+export default function MainStack({ navigation }: any) {
    const [logout] = useMutation(LOGOUT);
-   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+   const [, setAccessToken] = useRecoilState(accessTokenState);
    const [openModal, setOpenModal] = useState(false);
    const { data } = useQuery(FETCH_LOGIN_USER);
-
    const modalNegativeLogOut = async () => {
       await AsyncStorage.removeItem("accessToken");
-      const result = await logout();
+      await logout();
       setAccessToken("");
    };
-
    const onPressToUpdateUserInfo = () => {
-      navigation.navigate("updateUserInfoStack");
+      navigation.navigate("myPageStack");
    };
 
-   const CustomDrawerContent = (props) => {
+   const CustomDrawerContent = (props: any) => {
       return (
          <R.View style={{ flex: 1 }}>
             <S.DrawerHeader>
                <S.DrawerHeader>
                   <S.DrawerContents>
-                     <S.UserImage>
-                        <FontAwesome5
-                           name="user-circle"
-                           size={50}
-                           color={colors.theme}
-                        />
-                     </S.UserImage>
-                     <S.UserInfoWrapper>
-                        <TitleText>{data?.fetchLoginUser.name}</TitleText>
-                        <S.UpdateUserInfoTouch
-                           activeOpacity={0.7}
-                           onPress={onPressToUpdateUserInfo}
-                        >
-                           <S.UpdateUserInfoTextHitBox>
-                              <Contents1Text color="#a5a5a5">
-                                 내 정보 수정하기
-                              </Contents1Text>
-                           </S.UpdateUserInfoTextHitBox>
-                        </S.UpdateUserInfoTouch>
+                     <ProfileImg />
+                     <S.UserInfoWrapper
+                        activeOpacity={0.7}
+                        onPress={onPressToUpdateUserInfo}
+                     >
+                        <TitleText fontSize="16">
+                           {data?.fetchLoginUser.name}
+                        </TitleText>
+                        <Contents1Text fontSize="12" color="#a5a5a5">
+                           마이페이지
+                        </Contents1Text>
                      </S.UserInfoWrapper>
                   </S.DrawerContents>
                </S.DrawerHeader>
@@ -131,6 +120,7 @@ export default function MainStack({ navigation }) {
                drawerType: "front",
                headerShown: true,
                swipeEnabled: true,
+               headerShadowVisible: true,
                drawerStyle: {
                   backgroundColor: "#ffffff",
                   width: 250,
@@ -194,7 +184,7 @@ export default function MainStack({ navigation }) {
                name="popularCar"
                component={PopularCarPage}
                options={{
-                  title: "인기차 보러가기",
+                  title: "인기차",
                   headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),
                }}
@@ -203,15 +193,7 @@ export default function MainStack({ navigation }) {
                name="userGuide"
                component={UserGuidePage}
                options={{
-                  title: "Carpick 시작하기",
-                  headerShown: false,
-               }}
-            />
-            <Drawer.Screen
-               name="customerService"
-               component={CustomerServiceStack}
-               options={{
-                  title: "고객센터",
+                  title: "CarpicK 시작하기",
                   headerShown: false,
                }}
             />
@@ -219,7 +201,7 @@ export default function MainStack({ navigation }) {
                name="operationStatus"
                component={OperationStatusPage}
                options={{
-                  title: "운행현황",
+                  title: "마이카 운행현황",
                   headerShown: true,
                   headerTitleStyle: { fontSize: 20, fontWeight: "500" },
                   headerLeft: () => BackArrow(navigation),
@@ -238,6 +220,14 @@ export default function MainStack({ navigation }) {
                component={LicenseLaterStack}
                options={{
                   title: "면허등록",
+                  headerShown: false,
+               }}
+            />
+            <Drawer.Screen
+               name="customerService"
+               component={CustomerServiceStack}
+               options={{
+                  title: "고객센터",
                   headerShown: false,
                }}
             />

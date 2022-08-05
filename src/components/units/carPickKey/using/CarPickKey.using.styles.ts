@@ -61,3 +61,9 @@ export const ReturnButton = styled.TouchableOpacity`
    background-color: white;
    border-radius: 5px;
 `;
+
+export const DelayWrapper = styled.View`
+   border-radius: 5px;
+   background-color: #fff;
+   align-items: center;
+`;

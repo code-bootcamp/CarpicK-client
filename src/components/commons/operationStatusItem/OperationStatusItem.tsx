@@ -4,6 +4,8 @@ import LocationIcon from "../../../../assets/operationStatus/ic_location.svg";
 import colors from "../../../commons/lib/colors";
 import Contents1Text from "../text/Contents1Text";
 import TitleText from "../text/TitleText";
+import moment from "moment";
+import { numberWithCommas } from "../../../commons/utilities/numberWithCommas";
 
 /*************************
  *   'RESERVATION' : 예약
@@ -13,70 +15,118 @@ import TitleText from "../text/TitleText";
  *************************/
 
 interface OperationStatusItemProps {
-   status: string;
+   data?: any;
 }
 
 export default function OperationStatusItem(props: OperationStatusItemProps) {
-   const textDirectionVertical = (status: string) => {
-      return status.split("").join("\n");
+   const statusTranslation = (status?: string) => {
+      switch (status) {
+         case "USING":
+            return "이용중";
+         case "RESERVATION":
+            return "예약완료";
+         case "CANCEL":
+            return "예약취소";
+         case "RETURN":
+            return "반납완료";
+         case "DELAY":
+            return "반납지연";
+      }
    };
 
-   const statusBackgroundColor = (status: string) => {
+   const statusBackgroundColor = (status?: string) => {
       switch (status) {
          case "이용중":
             return colors.theme;
          case "예약완료":
-            return colors.purple;
+            return "#7DA2FF";
          case "예약취소":
             return colors.gray;
          case "반납완료":
-            return colors.dark_gray;
+            return "#1C1F66";
+         case "반납지연":
+            return colors.red;
       }
    };
 
+   const createDate = (startTime?: string, endTime?: string) => {
+      const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
+
+      const yearMonthDay = moment(startTime).format("YYYY.MM.DD");
+      const day = dayArr[moment(startTime).day()];
+      const timeDuration =
+         moment(startTime).format("HH:mm") +
+         "~" +
+         moment(endTime).format("HH:mm");
+
+      return `${yearMonthDay}(${day}) ${timeDuration}`;
+   };
+
+   const maskingName = (name: undefined | string) => {
+      if (name === undefined || name === "") {
+         return "";
+      }
+      const pattern = /.$/; // 이름 뒤 한자리 마스킹
+      return name.replace(pattern, "*");
+   };
+
    return (
-      <S.Wrapper>
+      <R.View>
          <S.Container>
-            <S.StatusContainer
-               backgroundColor={statusBackgroundColor(props.status)}
-            >
-               <S.StatusText>
-                  {textDirectionVertical(props.status)}
-               </S.StatusText>
-            </S.StatusContainer>
             <S.ContentsContainer>
                <S.CarInfoContainer>
                   <S.CarImage
                      resizeMode="contain"
                      source={{
-                        uri: "https://autoimg.danawa.com/photo/3742/48893/color_12_360.png",
+                        uri: `https://storage.googleapis.com/${props.data?.car.imageCar[0].url}`,
                      }}
                   />
-                  <TitleText fontSize="16">44호 0541</TitleText>
-                  <TitleText
-                     fontSize="14"
-                     fontFamily="Regular"
-                     color={colors.gray}
-                  >
-                     K5
-                  </TitleText>
+                  <R.View style={{ marginTop: 6, alignItems: "center" }}>
+                     <TitleText fontSize="16">
+                        {props.data?.car.carNumber}
+                     </TitleText>
+                     <TitleText
+                        fontSize="14"
+                        fontFamily="Regular"
+                        color={colors.gray}
+                     >
+                        {props.data?.car.carModel.name}
+                     </TitleText>
+                  </R.View>
                </S.CarInfoContainer>
                <S.ReservationContainer>
+                  <S.StatusContainer
+                     backgroundColor={statusBackgroundColor(
+                        statusTranslation(props.data?.status)
+                     )}
+                  >
+                     <Contents1Text fontSize="10" color="#fff">
+                        {statusTranslation(props.data?.status)}
+                     </Contents1Text>
+                  </S.StatusContainer>
                   <R.View style={{ flexDirection: "row" }}>
-                     <Contents1Text fontFamily="Bold">[예약자]</Contents1Text>
-                     <Contents1Text>홍길동</Contents1Text>
+                     <Contents1Text fontFamily="Bold">[예약자] </Contents1Text>
+                     <Contents1Text>
+                        {maskingName(props.data?.user.name)} 이웃님
+                     </Contents1Text>
                   </R.View>
                   <R.View style={{ marginTop: 5 }}>
-                     <Contents1Text fontFamily="Bold">[기간]</Contents1Text>
-                     <Contents1Text>21.07.06(수) 15:30~17:00</Contents1Text>
+                     <Contents1Text>
+                        {createDate(props.data?.startTime, props.data?.endTime)}
+                     </Contents1Text>
                   </R.View>
                   <S.LocationBox>
                      <LocationIcon />
-                     <Contents1Text>G밸리플라자 지하2층 주차장</Contents1Text>
+                     <Contents1Text>
+                        {props.data?.car.carLocation.addressDetail}
+                     </Contents1Text>
                   </S.LocationBox>
+                  <Contents1Text>
+                     총 결제금액 : {numberWithCommas(props.data?.amount)}원
+                  </Contents1Text>
                </S.ReservationContainer>
             </S.ContentsContainer>
          </S.Container>
-      </S.Wrapper>
+      </R.View>
    );
 }

@@ -1,4 +1,5 @@
 import styled from "@emotion/native";
+import colors from "../../../src/commons/lib/colors";
 
 export const HamburgerTouch = styled.TouchableOpacity`
    width: 80px;
@@ -19,8 +20,8 @@ export const DrawerHeader = styled.View`
    width: 100%;
    height: 75px;
    padding: 5px;
-   border-bottom-width: 1px;
-   border-color: #a5a5a5;
+   border-bottom-width: 0.7px;
+   border-color: ${colors.light_gray};
 `;
 
 export const DrawerContentWrapper = styled.View`
@@ -32,14 +33,9 @@ export const DrawerContentWrapper = styled.View`
 export const DrawerContents = styled.View`
    flex-direction: row;
 `;
-export const UserImage = styled.View``;
-export const UserInfoWrapper = styled.View`
-   padding-left: 10px;
-`;
-export const UpdateUserInfoTouch = styled.TouchableOpacity``;
-export const UpdateUserInfoTextHitBox = styled.View`
-   width: 150px;
-   height: 30px;
+export const UserInfoWrapper = styled.TouchableOpacity`
+   margin-left: 10px;
+   justify-content: center;
 `;
 
 export const LogoutTouch = styled.TouchableOpacity`

@@ -1,16 +1,22 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_CAR } from "./RentProcess1.queries";
+import { FETCH_CAR, FETCH_LOGIN_USER } from "./RentProcess1.queries";
 import RentProcess1PageUI from "./RentProcess1.presenter";
 import GetRentTime from "../../../../commons/utilities/getRentTime";
 import { useEffect, useState } from "react";
 import Modal5 from "../../../commons/modals/modal5/Modal5";
 import moment from "moment";
+import Modal3 from "../../../commons/modals/modal3/Modal3";
 
-export default function RentProcess1Page({ navigation, route }) {
-   // console.log("this is rp1", route.params.id);
+const baseTime = moment().format("YYYY-MM-DD");
+
+export default function RentProcess1Page({ navigation, route }: any) {
    const result = GetRentTime();
+   const [msg, setMsg] = useState("");
+   const [openModal, setOpenModal] = useState(false);
    const [checked, setChecked] = useState("first");
+   const [insuPrice, setInsuPrice] = useState(0);
    const [isVisible, setIsVisible] = useState(false);
+   const [isDoubleBooking, setIsDoubleBooking] = useState(false);
 
    const [startTimeHour, setStartTimeHour] = useState("");
    const [startTimeMin, setStartTimeMin] = useState("");
@@ -20,27 +26,25 @@ export default function RentProcess1Page({ navigation, route }) {
    const [indexStartHour, setIndexStartHour] = useState(0);
    const [indexEndHour, setIndexEndHour] = useState(0);
 
-   const [arrHour, setArrHour] = useState([]);
-
-   const { data } = useQuery(FETCH_CAR, {
+   const [arrHour, setArrHour] = useState<string[]>([]);
+   const { data: userData } = useQuery(FETCH_LOGIN_USER, {
+      fetchPolicy: "network-only",
+   });
+   const { data, loading } = useQuery(FETCH_CAR, {
       variables: {
          carId: route.params.id,
       },
    });
 
-   const TimeTotal = moment
-      .duration(
-         moment(
-            moment().format("YYYY-MM-DD") + " " + `${endTimeHour}:${endTimeMin}`
-         ).diff(
-            moment(
-               moment().format("YYYY-MM-DD") +
-                  " " +
-                  `${startTimeHour}:${startTimeMin}`
-            )
-         )
-      )
-      .asHours();
+   useEffect(() => {
+      if (checked === "first")
+         setInsuPrice(Math.ceil(data?.fetchCar.price * 2));
+      else if (checked === "second")
+         setInsuPrice(Math.ceil(data?.fetchCar.price));
+      else if (checked === "third")
+         setInsuPrice(Math.ceil(data?.fetchCar.price / 2));
+      else setInsuPrice(Math.ceil(data?.fetchCar.price * 2));
+   }, [data?.fetchCar, checked]);
 
    useEffect(() => {
       genValidTime(result.startTime.split(":")[0]);
@@ -53,16 +57,67 @@ export default function RentProcess1Page({ navigation, route }) {
 
    useEffect(() => {
       searchIndex(arrHour, startTimeHour, endTimeHour);
-   }, [startTimeHour]);
+   }, [startTimeHour, endTimeHour]);
 
-   console.log("this is startTime", `${startTimeHour}:${startTimeMin}`);
-   console.log("this is endTime", `${endTimeHour}:${endTimeMin}`);
+   useEffect(() => {
+      // 중복예약 확인
+      if (!loading) checkDoubleBooking();
+   }, [startTimeHour, startTimeMin, endTimeHour, endTimeMin, loading]);
 
-   console.log("this is data", data);
-   console.log("this is result", result);
-   console.log("time TOTAl", TimeTotal);
+   const TotalMin = moment
+      .duration(
+         moment(
+            moment().format("YYYY-MM-DD") +
+               " " +
+               `${endTimeHour}:${endTimeMin}`,
+            "YYYY-MM-DD HH:mm:ss"
+         ).diff(
+            moment(
+               moment().format("YYYY-MM-DD") +
+                  " " +
+                  `${startTimeHour}:${startTimeMin}`,
+               "YYYY-MM-DD HH:mm:ss"
+            )
+         )
+      )
+      .asMinutes();
+
+   const TotalHour = moment
+      .duration(
+         moment(
+            moment().format("YYYY-MM-DD") +
+               " " +
+               `${endTimeHour}:${endTimeMin}`,
+            "YYYY-MM-DD HH:mm:ss"
+         ).diff(
+            moment(
+               moment().format("YYYY-MM-DD") +
+                  " " +
+                  `${startTimeHour}:${startTimeMin}`,
+               "YYYY-MM-DD HH:mm:ss"
+            )
+         )
+      )
+      .asHours();
+
+   const finalHour = parseInt(String(TotalMin / 60));
+   const finalMin = TotalMin - finalHour * 60;
+   const totalPrice =
+      Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100 + insuPrice;
 
    const onPressNext = () => {
+      if (!userData.fetchLoginUser.isAuth) {
+         setMsg(`운전면허를 등록해야\n 서비스 이용이 가능합니다.`);
+         setOpenModal(true);
+         return;
+      }
+      if (isDoubleBooking === true) {
+         setMsg(
+            `예약가능한 시간이 아닙니다.\n 해당 차량의 예약상황을 확인해주세요.`
+         );
+         setOpenModal(true);
+         return;
+      }
       navigation.navigate("rentProcess2", {
          data,
          result,
@@ -70,11 +125,15 @@ export default function RentProcess1Page({ navigation, route }) {
          startTimeMin: startTimeMin,
          endTimeHour: endTimeHour,
          endTimeMin: endTimeMin,
-         TimeTotal: TimeTotal,
+         TotalMin: TotalMin,
+         TotalHour: TotalHour,
+         rentPrice: Math.ceil((TotalHour * data?.fetchCar.price) / 100) * 100,
+         insuPrice: insuPrice,
+         totalPrice: totalPrice,
       });
    };
 
-   const genValidTime = (initialStartHour) => {
+   const genValidTime = (initialStartHour: string) => {
       if (result.startTime.split(":")[0][0] === "0") {
          const tmp = Number(initialStartHour[1]);
          const tmpArr = [];
@@ -94,17 +153,44 @@ export default function RentProcess1Page({ navigation, route }) {
       }
    };
 
-   const searchIndex = (arr, startTimeHour, endTimeHour) => {
+   const searchIndex = (
+      arr: string[],
+      startTimeHour: string,
+      endTimeHour: string
+   ) => {
       setIndexStartHour(arr.indexOf(startTimeHour));
       setIndexEndHour(arr.indexOf(endTimeHour));
    };
-   console.log("this is index", indexStartHour, indexEndHour);
 
-   console.log("this is typeof", typeof indexStartHour);
-   console.log("this is typeof", typeof indexEndHour);
+   const checkDoubleBooking = () => {
+      setIsDoubleBooking(false);
+      let baseStartTime = moment(
+         baseTime + " " + `${startTimeHour}:${startTimeMin}`
+      );
+      let baseEndTime = moment(baseTime + " " + `${endTimeHour}:${endTimeMin}`);
+
+      if (data?.fetchCar.reservation.length !== 0) {
+         data?.fetchCar.reservation.forEach((el: any) => {
+            // 예약시간에 겹치는 zone 있으면 double booking
+            if (el.status === "RESERVATION") {
+               if (moment(el.startTime).isBetween(baseStartTime, baseEndTime))
+                  setIsDoubleBooking(true);
+               if (moment(el.endTime).isBetween(baseStartTime, baseEndTime))
+                  setIsDoubleBooking(true);
+            }
+         });
+      }
+   };
 
    return (
       <>
+         {openModal && (
+            <Modal3
+               contents={msg}
+               positiveText="확인"
+               positive={() => setOpenModal(false)}
+            />
+         )}
          {isVisible && (
             <Modal5
                initialStartTime={
@@ -130,6 +216,8 @@ export default function RentProcess1Page({ navigation, route }) {
                indexEndHour={indexEndHour}
                positive={() => setIsVisible(false)}
                negative={() => setIsVisible(false)}
+               setOpenModal={setOpenModal}
+               setMsg={setMsg}
             />
          )}
          <RentProcess1PageUI
@@ -137,8 +225,11 @@ export default function RentProcess1Page({ navigation, route }) {
             data={data}
             startTime={`${startTimeHour}:${startTimeMin}`}
             endTime={`${endTimeHour}:${endTimeMin}`}
-            finalHour={result.finalHour}
-            finalMin={result.finalMin}
+            finalHour={finalHour}
+            finalMin={finalMin}
+            TotalHour={TotalHour}
+            price={data?.fetchCar.price}
+            totalPrice={totalPrice}
             setIsVisible={setIsVisible}
             checked={checked}
             setChecked={setChecked}

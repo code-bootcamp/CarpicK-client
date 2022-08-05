@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import colors from "../../../src/commons/lib/colors";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
 import License1LaterPage from "../../../src/components/units/licenseLater/license1/License1Later.container";
 import License2LaterPage from "../../../src/components/units/licenseLater/license2/License2Later.container";
@@ -6,14 +7,14 @@ import License3LaterPage from "../../../src/components/units/licenseLater/licens
 
 const Stack = createNativeStackNavigator();
 
-export default function LicenseLaterStack({ navigation }) {
+export default function LicenseLaterStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
             screenOptions={{
-               headerTintColor: "#ffffff",
+               headerTintColor: "black",
                headerTitle: "",
-               headerStyle: { backgroundColor: "#5D8BFF" },
+               headerStyle: { backgroundColor: "white" },
             }}
          >
             <Stack.Screen
@@ -23,12 +24,7 @@ export default function LicenseLaterStack({ navigation }) {
                   headerShown: true,
                   headerShadowVisible: false,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "",
-                        "면허 등록",
-                        "#fff"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", colors.gray),
                })}
             />
             <Stack.Screen

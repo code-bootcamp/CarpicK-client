@@ -7,22 +7,13 @@ import * as R from "react-native";
 import { VisionParsing } from "../../../../commons/utilities/visionParsing copy";
 import { REACT_APP_GOOGLEVISION_API_KEY } from "@env";
 import TitleText from "../../../commons/text/TitleText";
-import { color } from "react-native-reanimated";
 
-export default function License2LaterPage({ navigation }) {
+export default function License2LaterPage({ navigation }: any) {
    let cameraRef = useRef();
    const [isLoad, setIsLoad] = useState(false);
    const [hasPermission, setHasPermission] = useState(null);
-   const [photo, setPhoto] = useState(null);
+   const [, setPhoto] = useState(null);
    const [isPhoto, setIsPhoto] = useState(false);
-
-   const [licData, setLicData] = useState({
-      BirthDate: "",
-      Name: "",
-      LicNumber: "",
-      SpecialNumber: "",
-      Fail: "",
-   });
 
    useEffect(() => {
       (async () => {
@@ -72,7 +63,6 @@ export default function License2LaterPage({ navigation }) {
                uri: newPhotoUri,
             });
             setIsPhoto((prev) => !prev);
-            console.log(data.responses[0].fullTextAnnotation.text.split("\n"));
          })
          .catch((err) => console.log("error : ", err));
    };

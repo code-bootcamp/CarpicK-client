@@ -1,13 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as R from "react-native";
 import { Platform } from "react-native";
-import TitleText from "../../text/TitleText";
 
 export default function NavigationHeaderLeft(
-   { navigation },
-   target,
-   title,
-   color
+   { navigation }: any,
+   target: string,
+   title: string,
+   color: string
 ) {
    return (
       <>
@@ -33,7 +32,6 @@ export default function NavigationHeaderLeft(
             style={{
                fontSize: 20,
                color: color,
-               // fontFamily: "Regular",
                marginLeft: 20,
                fontWeight: "500",
             }}

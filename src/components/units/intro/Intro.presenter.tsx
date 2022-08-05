@@ -1,12 +1,30 @@
 import * as R from "react-native";
 import * as S from "./Intro.styles";
+import { IIntroPageUIProps } from "./Intro.types";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import Intro1 from "../../../../assets/intro/Intro1-r1.svg";
 import Intro2 from "../../../../assets/intro/Intro2-r1.svg";
 import Intro3 from "../../../../assets/intro/Intro3-r1.svg";
 import colors from "../../../commons/lib/colors";
+import TitleText from "../../commons/text/TitleText";
 
 export const SLIDER_WIDTH = R.Dimensions.get("window").width;
+
+const Intro3JSX = () => {
+   return (
+      <>
+         <R.View style={{ alignItems: "center" }}>
+            <TitleText fontSize="21" color={colors.theme}>
+               원하는 시간과 장소에서
+            </TitleText>
+            <TitleText fontSize="21">예약과 반납을 스마트폰 하나로!</TitleText>
+            <R.View style={{ marginTop: 45 }}>
+               <Intro3 />
+            </R.View>
+         </R.View>
+      </>
+   );
+};
 
 const data = [
    {
@@ -22,11 +40,11 @@ const data = [
    {
       id: 3,
       name: "Intro3",
-      image: Intro3,
+      image: Intro3JSX,
    },
 ];
 
-const renderItem = ({ item }) => (
+const renderItem = ({ item }: any) => (
    <R.View
       style={{
          alignItems: "center",
@@ -39,7 +57,7 @@ const renderItem = ({ item }) => (
    </R.View>
 );
 
-export default function IntroPageUI(props) {
+export default function IntroPageUI(props: IIntroPageUIProps) {
    return (
       <S.Wrapper>
          <S.CarouselContainer>

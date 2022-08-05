@@ -24,6 +24,11 @@ export const VerticalCard = styled.TouchableOpacity`
    height: ${(props) => props.height + "px"};
    border-radius: 20px;
    background-color: #ffffff;
+   shadow-opacity: 0.2;
+   shadow-radius: 1.41px;
+   shadow-color: #000;
+   shadow-offset: 0px 1px;
+   elevation: 2;
 `;
 
 export const HorizontalCard = styled.TouchableOpacity`
@@ -34,6 +39,11 @@ export const HorizontalCard = styled.TouchableOpacity`
    border-radius: 20px;
    background-color: #ffffff;
    margin-bottom: 20px;
+   shadow-opacity: 0.2;
+   shadow-radius: 1.41px;
+   shadow-color: #000;
+   shadow-offset: 0px 1px;
+   elevation: 2;
 `;
 
 export const SubTitleWrapper = styled.View`
@@ -67,8 +77,23 @@ export const HorizontalCardView = styled.View`
    border-radius: 20px;
    background-color: #ffffff;
    margin-bottom: 20px;
+   shadow-opacity: 0.2;
+   shadow-radius: 1.41px;
+   shadow-color: #000;
+   shadow-offset: 0px 1px;
+   elevation: 2;
 `;
 
 export const IconTouch = styled.TouchableOpacity`
    align-items: center;
 `;
+
+/* shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.23,
+shadowRadius: 2.62,
+
+elevation: 4, */

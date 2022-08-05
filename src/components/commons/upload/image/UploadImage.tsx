@@ -4,7 +4,7 @@ import { IUploadImageProps } from "./UploadImage.types";
 import * as ImagePicker from "expo-image-picker";
 import { ReactNativeFile } from "apollo-upload-client";
 
-const generateRNFile = (uri, name) => {
+const generateRNFile = (uri: string, name: string) => {
    return uri
       ? new ReactNativeFile({
            uri,
@@ -15,7 +15,6 @@ const generateRNFile = (uri, name) => {
 };
 
 export default function UploadImage(props: IUploadImageProps) {
-   // 권한 요청을 위한 hooks
    const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 
    const uploadImage = async () => {

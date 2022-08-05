@@ -1,6 +1,6 @@
 import UserGuidePageUI from "./UserGuide.presenter";
 
-export default function UserGuidePage({ navigation }) {
+export default function UserGuidePage({ navigation }: any) {
    const onPressToCsMain = () => {
       navigation.goBack();
    };

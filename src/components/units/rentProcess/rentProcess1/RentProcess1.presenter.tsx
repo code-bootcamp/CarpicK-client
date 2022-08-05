@@ -3,11 +3,12 @@ import * as S from "./RentProcess1.styles";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import SubTitleText from "../../../commons/text/SubTitleText";
 import Contents2Text from "../../../commons/text/Contents2Text";
-import TitleText from "../../../commons/text/TitleText";
 import colors from "../../../../commons/lib/colors";
 import Radio2 from "../../../commons/radio/Radio2";
+import { numberWithCommas } from "../../../../commons/utilities/numberWithCommas";
+import { IRentProcess1PageUIProps } from "./RentProcess1.types";
 
-export default function RentProcess1PageUI(props) {
+export default function RentProcess1PageUI(props: IRentProcess1PageUIProps) {
    return (
       <>
          <S.Wrapper>
@@ -15,11 +16,11 @@ export default function RentProcess1PageUI(props) {
                <S.HeaderWrapper>
                   <S.CarImage
                      source={{
-                        uri: "https://storage.googleapis.com/carpick_bucket/dog.png",
+                        uri: `https://storage.googleapis.com/${props.data?.fetchCar.imageCar[0].url}`,
                      }}
-                     resizeMode="center"
+                     resizeMode="contain"
                   />
-                  <SubTitleText fontSize="14">
+                  <SubTitleText>
                      {props.data?.fetchCar.carModel.name}
                   </SubTitleText>
                   <S.TextWrapper>
@@ -31,9 +32,7 @@ export default function RentProcess1PageUI(props) {
                </S.HeaderWrapper>
                <S.PlaceWrapper>
                   <S.TitleWrapper>
-                     <SubTitleText fontSize="14">
-                        차량 대여/반납 장소
-                     </SubTitleText>
+                     <SubTitleText>차량 대여/반납 장소</SubTitleText>
                   </S.TitleWrapper>
                   <S.BodyRentPlace>
                      <S.RentLabel>
@@ -54,7 +53,7 @@ export default function RentProcess1PageUI(props) {
                </S.PlaceWrapper>
                <S.TimeWrapper>
                   <S.TitleWrapper>
-                     <SubTitleText fontSize="14">이용시간</SubTitleText>
+                     <SubTitleText>이용시간</SubTitleText>
                      <S.TouchTimeChange
                         activeOpacity={0.5}
                         onPress={() => props.setIsVisible(true)}
@@ -104,10 +103,14 @@ export default function RentProcess1PageUI(props) {
                            checked={props.checked}
                            setChecked={props.setChecked}
                         />
-                        <Contents1Text>자기부담금 최대 5만원</Contents1Text>
+                        <R.TouchableOpacity
+                           onPress={() => props.setChecked("first")}
+                        >
+                           <Contents1Text>자기부담금 최대 5만원</Contents1Text>
+                        </R.TouchableOpacity>
                      </S.RadioLeft>
                      <Contents1Text>
-                        +{Math.ceil(props.data?.fetchCar.price / 4)}원
+                        +{numberWithCommas(Math.ceil(props.price * 2))}원
                      </Contents1Text>
                   </S.RadioWrapper>
                   <S.RadioWrapper>
@@ -117,10 +120,14 @@ export default function RentProcess1PageUI(props) {
                            checked={props.checked}
                            setChecked={props.setChecked}
                         />
-                        <Contents1Text>자기부담금 최대 30만원</Contents1Text>
+                        <R.TouchableOpacity
+                           onPress={() => props.setChecked("second")}
+                        >
+                           <Contents1Text>자기부담금 최대 30만원</Contents1Text>
+                        </R.TouchableOpacity>
                      </S.RadioLeft>
                      <Contents1Text>
-                        +{Math.ceil(props.data?.fetchCar.price / 2)}원
+                        +{numberWithCommas(Math.ceil(props.price))}원
                      </Contents1Text>
                   </S.RadioWrapper>
                   <S.RadioWrapper>
@@ -130,10 +137,14 @@ export default function RentProcess1PageUI(props) {
                            checked={props.checked}
                            setChecked={props.setChecked}
                         />
-                        <Contents1Text>자기부담금 최대 70만원</Contents1Text>
+                        <R.TouchableOpacity
+                           onPress={() => props.setChecked("third")}
+                        >
+                           <Contents1Text>자기부담금 최대 70만원</Contents1Text>
+                        </R.TouchableOpacity>
                      </S.RadioLeft>
                      <Contents1Text>
-                        +{Math.ceil(props.data?.fetchCar.price)}원
+                        +{numberWithCommas(Math.ceil(props.price / 2))}원
                      </Contents1Text>
                   </S.RadioWrapper>
                </S.InsuranceWrapper>
@@ -141,7 +152,9 @@ export default function RentProcess1PageUI(props) {
          </S.Wrapper>
          <S.ButtonWrapper>
             <S.ButtonTextLeftWrapper>
-               <SubTitleText>총 {"0"}원</SubTitleText>
+               <SubTitleText>
+                  총 {numberWithCommas(props.totalPrice)}원
+               </SubTitleText>
                <Contents2Text>대여요금 + 면책상품 요금</Contents2Text>
             </S.ButtonTextLeftWrapper>
             <S.ButtonNext onPress={props.onPressNext}>

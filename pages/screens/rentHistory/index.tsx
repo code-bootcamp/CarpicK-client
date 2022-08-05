@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NavigationHeaderLeft from "../../../src/components/commons/navigationHeader/headerLeft";
-import RentHistoryNonePage from "../../../src/components/units/rentHistory/RentHistoryNone.container";
+import PenaltyPayment from "../../../src/components/units/penaltyPayment/PenaltyPayment";
+import RentHistoryPage from "../../../src/components/units/rentHistory/RentHistory.container";
 
 const Stack = createNativeStackNavigator();
 
-export default function RentHistoryStack({ navigation }) {
+export default function RentHistoryStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
@@ -15,8 +16,8 @@ export default function RentHistoryStack({ navigation }) {
             }}
          >
             <Stack.Screen
-               name="rentHistoryNone"
-               component={RentHistoryNonePage}
+               name="rentHistory"
+               component={RentHistoryPage}
                options={() => ({
                   headerShown: true,
                   headerShadowVisible: false,
@@ -27,6 +28,14 @@ export default function RentHistoryStack({ navigation }) {
                         "",
                         "#000000"
                      ),
+               })}
+            />
+            <Stack.Screen
+               name="penaltyPayment"
+               component={PenaltyPayment}
+               options={() => ({
+                  headerShown: false,
+                  headerShadowVisible: false,
                })}
             />
          </Stack.Navigator>

@@ -10,6 +10,13 @@ export const FETCH_OWNER_RESERVATIONS = gql`
          status
          car {
             id
+            carNumber
+            carModel {
+               name
+            }
+            carLocation {
+               addressDetail
+            }
             imageCar {
                url
             }
@@ -19,6 +26,20 @@ export const FETCH_OWNER_RESERVATIONS = gql`
             name
             email
          }
+      }
+   }
+`;
+
+export const FETCH_LOGIN_OWNER = gql`
+   query fetchLoginOwner {
+      fetchLoginOwner {
+         id
+         car {
+            carModel {
+               name
+            }
+         }
+         revenue
       }
    }
 `;

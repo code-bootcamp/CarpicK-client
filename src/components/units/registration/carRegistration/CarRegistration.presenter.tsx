@@ -3,10 +3,9 @@ import * as S from "./CarRegistration.styles";
 import globalStyle from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
-import UploadImage from "../../../commons/upload/image/UploadImage";
 import { ICarRegistrationUIProps } from "./CarRegistration.types";
 import Button1 from "../../../commons/button/Button1";
-import Modal4 from "../../../commons/modals/modal4/Modal4";
+import UploadImageNoRatio from "../../../commons/upload/image/UploadImageNoRatio";
 
 export default function CarRegistrationUI(props: ICarRegistrationUIProps) {
    return (
@@ -17,11 +16,11 @@ export default function CarRegistrationUI(props: ICarRegistrationUIProps) {
                   차량 등록증
                </TitleText>
                <R.View style={{ marginTop: 7 }}>
-                  <Contents1Text>{`본인 차량등록증을 사진으로 찍어서 보내주세요!\n확인 후 결과를 알림으로 보내드릴께요!`}</Contents1Text>
+                  <Contents1Text>{`본인 차량등록증의 이미지를 보내주세요!\n확인 후 결과를 알림으로 보내드릴께요!`}</Contents1Text>
                </R.View>
             </R.View>
             <S.ImageContainer>
-               <UploadImage
+               <UploadImageNoRatio
                   imageFiles={props.imageFiles}
                   setImageFiles={props.setImageFiles}
                   imageUris={props.imageUris}
@@ -36,14 +35,6 @@ export default function CarRegistrationUI(props: ICarRegistrationUIProps) {
          >
             마이카 신청
          </Button1>
-         {props.isModalVisible && (
-            <Modal4
-               title="차량 등록 신청 완료"
-               contents={`차량 등록 신청이 완료되었습니다.\n관리자가 확인 후 알려드리겠습니다.`}
-               positiveText="확인"
-               positive={props.onPressSuccess}
-            />
-         )}
       </S.Wrapper>
    );
 }

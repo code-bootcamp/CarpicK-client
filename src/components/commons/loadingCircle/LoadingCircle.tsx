@@ -20,6 +20,6 @@ const Wrapper = styled.View`
    bottom: 0;
    justify-content: center;
    align-items: center;
-   background-color: rgba(0, 0, 0, 0.2);
+   background-color: rgba(0, 0, 0, 0.65);
    z-index: 1;
 `;

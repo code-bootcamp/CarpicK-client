@@ -1,7 +1,7 @@
 import moment from "moment";
 import * as S from "./StatusBar.styles";
 
-export function statusBar(reservation) {
+export function statusBar(reservation: []) {
    const nowTime = moment();
    const nowTimeHourFormat =
       Number(nowTime.format("HH:mm").split(":")[0]) +
@@ -15,28 +15,30 @@ export function statusBar(reservation) {
       .duration(nowTime.diff(nowTimeStartPoint))
       .asHours();
 
-   const result = [];
+   const result: any[] = [];
    if (reservation.length !== 0) {
       reservation
-         .filter((el) => {
+         .filter((el: any) => {
+            // 필터 0 : CANCEL된 예약 제거
+            return el.status !== "CANCEL";
+         })
+         .filter((el: any) => {
             // 필터 1 : 현재시각 기준 endTime 끝난 예약 고려할 필요 X
             const timeEndPoint = moment(el.endTime);
             const timeDiffEndHours = moment
                .duration(nowTime.diff(timeEndPoint))
                .asHours();
-            // console.log("this is timeDiff", timeDiffEndHours);
             return timeDiffEndHours < 0;
          })
-         .filter((el) => {
+         .filter((el: any) => {
             // 필터 2 : 오늘 24:00 보다 startTime 이후라면 고려할 필요 X
             const timeStartPoint = moment(el.startTime);
             const timeDiffEndHours = moment
                .duration(nowTimeEndPoint.diff(timeStartPoint))
                .asHours();
-            // console.log("this is timeDiff", timeDiffEndHours);
             return timeDiffEndHours > 0;
          })
-         .forEach((el, i) => {
+         .forEach((el: any) => {
             const timeStartPoint = moment(el.startTime);
             const timeEndPoint = moment(el.endTime);
             const timeDiffStart = moment
@@ -95,15 +97,6 @@ export function statusBar(reservation) {
          });
    }
 
-   // console.log("this start", nowTimeStartPoint);
-   // console.log("this end", nowTimeEndPoint);
-   // console.log("this how much", timeDiffNowTime);
-   // console.log("this is result", result);
-   // console.log("this is reserve", reservation);
-   // console.log("this is result", result);
-   // console.log("this is nowTime", nowTimeHourFormat);
-
-   const PREFIXBAR_WIDTH = timeDiffNowTime / 0.24;
    return (
       <S.Wrapper>
          <S.FullStatusBar />

@@ -6,19 +6,17 @@ import {
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function ApolloSetting(props) {
+export default function ApolloSetting(props: { children: ReactNode }) {
    const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
    useEffect(() => {
       async function accessTokenSet() {
          const result = await AsyncStorage.getItem("accessToken");
-         console.log("this is accessToken from storage", result);
-         console.log("this is accessToken from recoill", accessToken);
          setAccessToken(result || "");
       }
       accessTokenSet();
@@ -40,7 +38,7 @@ export default function ApolloSetting(props) {
    });
 
    const uploadLink = createUploadLink({
-      uri: "http://carpick.shop/graphql",
+      uri: "http://car-pick.shop/graphql",
       headers: { Authorization: `Bearer ${accessToken}` },
       credentials: "include",
    });

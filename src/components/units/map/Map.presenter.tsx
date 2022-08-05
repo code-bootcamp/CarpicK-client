@@ -1,7 +1,7 @@
 import * as S from "./Map.styles";
 import * as R from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-import React, { useRef, useState } from "react";
+import React from "react";
 import TitleText from "../../commons/text/TitleText";
 import BottomSheet from "react-native-simple-bottom-sheet";
 import SubTitleText from "../../commons/text/SubTitleText";
@@ -11,11 +11,13 @@ import Contents1Text from "../../commons/text/Contents1Text";
 import { statusBar } from "./statusBar/StatusBar";
 import moment from "moment";
 import MapMarker from "./marker/MapMarker";
+import { IMapPageUIProps } from "./Map.types";
+import colors from "../../../commons/lib/colors";
 const today = moment().format("M/D");
-const tommorow =
+const tomorrow =
    today.split("/")[0] + "/" + String(Number(today.split("/")[1]) + 1);
 
-export default function MainPageUI(props) {
+export default function MapPageUI(props: IMapPageUIProps) {
    return (
       <>
          <S.Wrapper>
@@ -25,8 +27,8 @@ export default function MainPageUI(props) {
                }}
                style={{ flex: 1, width: "100%" }}
                initialRegion={{
-                  latitude: 37.4848527,
-                  longitude: 126.8966316,
+                  latitude: props.location.latitude, // 37.4848527
+                  longitude: props.location.longitude, // 126.8966316
                   latitudeDelta: 0.004,
                   longitudeDelta: 0.009,
                }}
@@ -37,16 +39,12 @@ export default function MainPageUI(props) {
                moveOnMarkerPress={false}
                onRegionChangeComplete={props.handleRegionChange}
             >
-               {props.data?.fetchCarLocation.map((el) => (
+               {props.data?.fetchCarLocation.map((el: any) => (
                   <MapMarker
                      key={el.id}
-                     carLocationId={el.id}
                      lat={el.lat}
                      lng={el.lng}
-                     isDrawerOpen={props.isDrawerOpen}
-                     // onToggle={() => props.handleToggle(el.id)}
                      func={() => props.onPressQuery(el.id)}
-                     setCarLocationId={props.setCarLocationId}
                   />
                ))}
             </MapView>
@@ -60,27 +58,44 @@ export default function MainPageUI(props) {
             >
                {!props.loading && (
                   <>
-                     <TitleText fontSize="12">
-                        {
-                           props?.carListData?.fetchCars[0].carLocation
-                              .addressDetail
-                        }
-                     </TitleText>
-                     <Contents2Text>
-                        {props.carListData?.fetchCars[0].carLocation.address}
-                     </Contents2Text>
-                     <R.ScrollView style={{ width: "100%" }}>
-                        {props.carListData?.fetchCars.map((el) => (
+                     <R.View
+                        style={{ flexDirection: "row", alignItems: "center" }}
+                     >
+                        <S.AddressBox>
+                           <TitleText
+                              color="white"
+                              fontFamily="Regular"
+                              fontSize="11"
+                           >
+                              주소
+                           </TitleText>
+                        </S.AddressBox>
+                        <TitleText fontSize="12">
+                           {
+                              props?.carListData?.fetchCars[0].carLocation
+                                 .addressDetail
+                           }
+                        </TitleText>
+                     </R.View>
+                     <R.View style={{ marginTop: 3 }}>
+                        <Contents1Text fontSize="11">
+                           {props.carListData?.fetchCars[0].carLocation.address}
+                        </Contents1Text>
+                     </R.View>
+                     <R.ScrollView style={{ width: "100%", marginTop: 10 }}>
+                        {props.carListData?.fetchCars.map((el: any) => (
                            <S.CarList
                               key={el.id}
                               testID={el.id}
                               onPress={() => props.onPressToRentProcess(el.id)}
                            >
                               <S.CarListBody>
-                                 {/* <S.CarImage
-                              source={el.imageRequire}
-                              resizeMode="contain"
-                           /> */}
+                                 <S.CarImage
+                                    source={{
+                                       uri: `https://storage.googleapis.com/${el.imageCar[0].url}`,
+                                    }}
+                                    resizeMode="contain"
+                                 />
                                  <S.CarListTextWrapper>
                                     <SubTitleText>
                                        {el.carModel.name}
@@ -100,7 +115,7 @@ export default function MainPageUI(props) {
                                  <S.DateNote>
                                     <S.StartDate>{today}</S.StartDate>
                                     <S.MiddleHour>12:00</S.MiddleHour>
-                                    <S.EndDate>{tommorow}</S.EndDate>
+                                    <S.EndDate>{tomorrow}</S.EndDate>
                                  </S.DateNote>
                               </S.CarListFooter>
                            </S.CarList>

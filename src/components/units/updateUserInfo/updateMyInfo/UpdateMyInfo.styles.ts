@@ -1,8 +1,8 @@
 import styled from "@emotion/native";
+import colors from "../../../../commons/lib/colors";
 
 export const Wrapper = styled.View`
    flex: 1;
-   padding-top: 30px;
    padding-bottom: 70px;
 `;
 
@@ -38,7 +38,8 @@ export const PhoneNumberInputWrapper = styled.View`
 `;
 
 export const PhoneNumberInput = styled.TextInput`
-   width: 80%;
+   width: 70%;
+   height: 55px;
    font-family: Regular;
    font-size: 13px;
    padding: 17px 14px;
@@ -54,7 +55,7 @@ export const Error = styled.View`
 export const CheckTouchWrapper = styled.View``;
 
 export const CheckTouch = styled.TouchableOpacity`
-   width: 70px;
+   width: 30%;
    align-items: center;
    justify-content: center;
    border-top-right-radius: 5px;
@@ -62,14 +63,15 @@ export const CheckTouch = styled.TouchableOpacity`
    background-color: #5d8bff;
 `;
 
-export const CodeInputWrapper = styled.View`
+export const TokenInputWrapper = styled.View`
    flex-direction: row;
    width: 100%;
-   margin-top: 12.12px;
+   margin-top: 20px;
 `;
 
-export const CodeInput = styled.TextInput`
-   width: 80%;
+export const TokenInput = styled.TextInput`
+   width: 70%;
+   height: 55px;
    font-family: Regular;
    font-size: 13px;
    padding: 17px 14px;
@@ -89,6 +91,7 @@ export const PasswordInputWrapper = styled.View`
 
 export const PasswordInput = styled.TextInput`
    width: 100%;
+   height: 55px;
    font-family: Regular;
    font-size: 13px;
    padding: 17px 14px;
@@ -104,6 +107,7 @@ export const PassWordCheckInputWrapper = styled.View`
 
 export const PasswordCheckInput = styled.TextInput`
    width: 100%;
+   height: 55px;
    font-family: Regular;
    font-size: 13px;
    padding: 17px 14px;
@@ -124,4 +128,19 @@ export const SaveTouch = styled.TouchableOpacity`
    background-color: #5d8bff;
    align-items: center;
    justify-content: center;
+`;
+
+export const TopMenu = styled.View`
+   width: 100%;
+   flex-direction: row;
+   justify-content: space-between;
+`;
+
+export const TitleWrapper = styled.TouchableOpacity`
+   width: 50%;
+   height: 70px;
+   justify-content: center;
+   align-items: center;
+   background-color: ${(props: { isSelected: boolean }) =>
+      props.isSelected ? colors.theme : "#fff"};
 `;

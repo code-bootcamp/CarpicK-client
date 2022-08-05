@@ -1,26 +1,22 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-   ISVALID_EMAIL,
-   CREATE_USER,
-   SEND_SMS,
-   CHECK_TOKEN,
-} from "./Join.queries";
+import { ISVALID_EMAIL, SEND_SMS, CHECK_TOKEN } from "./Join.queries";
 import JoinPageUI from "./Join.presenter";
 import Modal3 from "../../commons/modals/modal3/Modal3";
+import Modal4 from "../../commons/modals/modal4/Modal4";
 
-export default function JoinPage({ navigation }) {
+export default function JoinPage({ navigation }: any) {
    const [msg, setMsg] = useState("");
    const [openModal, setOpenModal] = useState(false);
    const [openTimer, setOpenTimer] = useState(false);
    const [openRedo, setOpenRedo] = useState(false);
 
+   const [passwordAgain, setPasswordAgain] = useState("");
    const [token, setToken] = useState("");
    const [isValidEmail, setIsValidEmail] = useState(false);
    const [isValidPhone, setIsValidPhone] = useState(false);
 
-   const [createUser] = useMutation(CREATE_USER);
    const [checkEmail] = useMutation(ISVALID_EMAIL);
    const [sendSMS] = useMutation(SEND_SMS);
    const [checkToken] = useMutation(CHECK_TOKEN);
@@ -45,6 +41,10 @@ export default function JoinPage({ navigation }) {
       if (isValidPhone && watch("phone")) setIsValidPhone(false);
    }, [watch("phone")]);
 
+   useEffect(() => {
+      setPasswordAgain(getValues("passwordAgain"));
+   }, [watch("passwordAgain")]);
+
    const onPressCheckEmail = async () => {
       if (formState.errors.email || !getValues("email")) return;
 
@@ -54,18 +54,26 @@ export default function JoinPage({ navigation }) {
                email: getValues("email"),
             },
          });
-         console.log(result);
+
          if (result.data.isValidEmail.isValid) {
             setMsg("사용가능한 이메일 입니다.");
             setOpenModal(true);
             setIsValidEmail(true);
          }
+
          if (!result.data.isValidEmail.isValid) {
             setMsg("이미 사용중인 아이디입니다.");
             setOpenModal(true);
          }
-      } catch (error) {
-         console.log(error.message);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="이메일 검사 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -80,9 +88,16 @@ export default function JoinPage({ navigation }) {
                phone: getValues("phone").split("-").join(""),
             },
          });
-         console.log("this is sms", result);
-      } catch (error) {
-         console.log(error.message);
+         console.log("인증번호 : ", result);
+      } catch (error: any) {
+         return (
+            <Modal4
+               title="인증번호 전송 실패"
+               contents={error.message}
+               positiveText="확인"
+               positive={() => {}}
+            />
+         );
       }
    };
 
@@ -120,24 +135,6 @@ export default function JoinPage({ navigation }) {
       }
    };
 
-   const onPressSubmit = async () => {
-      try {
-         const result = await createUser({
-            variables: {
-               createUserInput: {
-                  email,
-                  name,
-                  password,
-                  phone: phone.split("-").join(""),
-               },
-            },
-         });
-         console.log("this is result", result);
-      } catch (error) {
-         console.log("this is error", error);
-      }
-   };
-
    return (
       <>
          {openModal && (
@@ -154,7 +151,6 @@ export default function JoinPage({ navigation }) {
             setOpenTimer={setOpenTimer}
             isValidEmail={isValidEmail}
             isValidPhone={isValidPhone}
-            onPressSubmit={onPressSubmit}
             onPressNext={onPressNext}
             onPressCheckEmail={onPressCheckEmail}
             onPressSMS={onPressSMS}
@@ -163,6 +159,7 @@ export default function JoinPage({ navigation }) {
             handleSubmit={handleSubmit}
             formState={formState}
             setToken={setToken}
+            passwordAgain={passwordAgain}
          />
       </>
    );

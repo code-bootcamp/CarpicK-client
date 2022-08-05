@@ -15,6 +15,14 @@ interface IPopularCarItemProps {
 }
 
 export default function PopularCarItem(props: IPopularCarItemProps) {
+   const maskingName = (name?: undefined | string) => {
+      if (name === undefined || name === "") {
+         return "";
+      }
+      const pattern = /.$/; // 이름 뒤 한자리 마스킹
+      return name.replace(pattern, "*");
+   };
+
    return (
       <S.Wrapper>
          <S.Container>
@@ -29,34 +37,36 @@ export default function PopularCarItem(props: IPopularCarItemProps) {
                <S.CarImage
                   resizeMode="contain"
                   source={{
-                     uri: "https://autoimg.danawa.com/photo/3742/48893/color_12_360.png",
+                     uri: `https://storage.googleapis.com/${props.data.url}`,
                   }}
                />
-               <TitleText fontSize="16">44호 0541</TitleText>
+               <TitleText fontSize="16">{props.data.carNumber}</TitleText>
                <TitleText
                   fontSize="14"
                   fontFamily="Regular"
                   color={colors.gray}
                >
-                  K5
+                  {props.data.carModel}
                </TitleText>
             </S.CarInfoContainer>
             <S.ContentsContainer>
-               <R.View style={{ flexDirection: "row" }}>
+               <R.View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Contents1Text fontFamily="Bold" fontSize="15">
-                     {props.data.name}
+                     {maskingName(props.data.ownerName)}
                   </Contents1Text>
                   <R.View style={{ marginLeft: 3 }}>
-                     <Contents1Text fontSize="15">이웃님</Contents1Text>
+                     <Contents1Text fontSize="12">
+                        이웃님의 마이카
+                     </Contents1Text>
                   </R.View>
                </R.View>
                <Contents1Text>
-                  이웃분들이 {props.data.population}번 이용하셨습니다!
+                  이웃분들이 {props.data.num}번 이용하셨습니다!
                </Contents1Text>
                <S.LocationBox>
                   <LocationIcon />
                   <R.View style={{ marginLeft: 3 }}>
-                     <Contents1Text>G밸리플라자 지하2층 주차장</Contents1Text>
+                     <Contents1Text>{props.data.addressDetail}</Contents1Text>
                   </R.View>
                </S.LocationBox>
                <S.RatingBox>

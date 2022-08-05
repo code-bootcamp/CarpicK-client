@@ -5,57 +5,59 @@ import globalStyle from "../../../../commons/styles/globalStyle";
 import TitleText from "../../../commons/text/TitleText";
 import Contents1Text from "../../../commons/text/Contents1Text";
 import Button1 from "../../../commons/button/Button1";
-import UploadImage from "../../../commons/upload/image/UploadImage";
 import { Rating } from "react-native-ratings";
+import UploadCamera from "../../../commons/upload/camera/UploadCamera";
 
 export default function CarPickKeyAfterUI(props: ICarPickKeyAfterUIProps) {
    return (
-      <S.Wrapper>
-         <S.Container style={globalStyle.GlobalStyles}>
-            <R.View>
-               <TitleText fontSize="17" fontFamily="Bold">
-                  차량 사진
-               </TitleText>
-               <R.View style={{ marginTop: 7 }}>
-                  <Contents1Text>{`차량 반납을 위해서는 사진이 필요합니다.\n이용하신 차량의 외관이 잘 보이게 찍어주세요!`}</Contents1Text>
+      <>
+         <S.Wrapper>
+            <S.Container style={globalStyle.GlobalStyles}>
+               <R.View>
+                  <TitleText fontSize="17" fontFamily="Bold">
+                     차량 사진
+                  </TitleText>
+                  <R.View style={{ marginTop: 7 }}>
+                     <Contents1Text>{`차량 반납을 위해서는 사진이 필요합니다.\n이용하신 차량의 외관이 잘 보이게 찍어주세요!`}</Contents1Text>
+                  </R.View>
                </R.View>
-            </R.View>
-            <S.ImageContainer>
-               {props.imageUris?.map((_, index) => (
-                  <UploadImage
-                     key={index}
-                     imageFiles={props.imageFiles}
-                     setImageFiles={props.setImageFiles}
-                     imageUris={props.imageUris}
-                     setImageUris={props.setImageUris}
-                     index={index}
+               <S.ImageContainer>
+                  {props.imageUris?.map((_, index) => (
+                     <UploadCamera
+                        key={index}
+                        imageFiles={props.imageFiles}
+                        setImageFiles={props.setImageFiles}
+                        imageUris={props.imageUris}
+                        setImageUris={props.setImageUris}
+                        index={index}
+                     />
+                  ))}
+               </S.ImageContainer>
+               <S.RatingBox style={{ marginTop: 50 }}>
+                  <Contents1Text fontFamily="Regular" fontSize="14">
+                     차량 이용은 어떠셨나요?
+                  </Contents1Text>
+                  <Rating
+                     style={{ paddingVertical: 15 }}
+                     imageSize={30}
+                     startingValue={0}
+                     onFinishRating={props.onChangeRating}
                   />
-               ))}
-            </S.ImageContainer>
-            <S.RatingBox style={{ marginTop: 50 }}>
-               <Contents1Text fontFamily="Regular" fontSize="14">
-                  차량 이용은 어떠셨나요?
-               </Contents1Text>
-               <Rating
-                  style={{ paddingVertical: 15 }}
-                  imageSize={30}
-                  startingValue={0}
-                  onFinishRating={props.onChangeRating}
-               />
-            </S.RatingBox>
-         </S.Container>
-         <Button1
-            onPress={props.onPressReturn}
-            isDisabled={
-               !(
-                  props.imageUris?.[0] !== "" &&
-                  props.imageUris?.[1] !== "" &&
-                  props.rating > 0
-               )
-            }
-         >
-            반납 완료하기
-         </Button1>
-      </S.Wrapper>
+               </S.RatingBox>
+            </S.Container>
+            <Button1
+               onPress={props.onPressReturn}
+               isDisabled={
+                  !(
+                     props.imageUris?.[0] !== "" &&
+                     props.imageUris?.[1] !== "" &&
+                     props.rating > 0
+                  )
+               }
+            >
+               반납 완료하기
+            </Button1>
+         </S.Wrapper>
+      </>
    );
 }

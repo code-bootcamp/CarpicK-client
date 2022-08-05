@@ -4,11 +4,12 @@ import { CameraType } from "expo-camera";
 import { Platform } from "react-native";
 import Tip1Image from "../../../../../assets/license/tip-1.svg";
 import Tip2Image from "../../../../../assets/license/tip-2.svg";
+import { ILicense2PageUiProps } from "./License2.types";
 
 const VIEW_HEIGTH: number = R.Dimensions.get("window").height - 260;
 const MIDDEL_HEIGTH: number = VIEW_HEIGTH - 290;
 
-export default function License2PageUI(props) {
+export default function License2PageUI(props: ILicense2PageUiProps) {
    return (
       <S.Wrapper>
          <S.Header />

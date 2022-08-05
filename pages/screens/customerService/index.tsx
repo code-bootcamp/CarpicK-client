@@ -10,7 +10,7 @@ import UserGuidePage from "../../../src/components/units/customerService/userGui
 
 const Stack = createNativeStackNavigator();
 
-export default function CustomerServiceStack({ navigation }) {
+export default function CustomerServiceStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
@@ -55,6 +55,7 @@ export default function CustomerServiceStack({ navigation }) {
                component={InsurancePage}
                options={() => ({
                   headerShown: false,
+                  animation: "slide_from_right",
                })}
             />
             <Stack.Screen

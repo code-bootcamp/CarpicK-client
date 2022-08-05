@@ -5,13 +5,13 @@ import UpdateMyInfoPage from "../../../src/components/units/updateUserInfo/updat
 
 const Stack = createNativeStackNavigator();
 
-export default function UpdateUserInfoStack({ navigation }) {
+export default function UpdateUserInfoStack({ navigation }: any) {
    return (
       <>
          <Stack.Navigator
             screenOptions={{
-               headerTintColor: "#5D8BFF",
                headerTitle: "",
+               headerShadowVisible: false,
                headerStyle: { backgroundColor: "#f7f8f9" },
             }}
          >
@@ -21,12 +21,7 @@ export default function UpdateUserInfoStack({ navigation }) {
                options={() => ({
                   headerShown: true,
                   headerLeft: () =>
-                     NavigationHeaderLeft(
-                        { navigation },
-                        "main",
-                        "",
-                        "#000000"
-                     ),
+                     NavigationHeaderLeft({ navigation }, "", "", "#000000"),
                })}
             />
             <Stack.Screen
