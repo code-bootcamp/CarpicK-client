@@ -30,7 +30,7 @@
 
 ## 어플리케이션 시연
     
-### **Splash-Image** / **Landing-Page** / **Social-Login**
+#### **Splash-Image** / **Landing-Page** / **Social-Login**
     
 <p>
     <img width="25%" src="./assets/readme/gif/1_SplashScreen.gif">
@@ -42,7 +42,7 @@
 - 캐러셀을 이용한 소개페이지   
 - 구글 소셜로그인 구현   
 
-### **회원가입** / **운전면허증 식별** / **운전면허증 진위여부 확인**
+#### **회원가입** / **운전면허증 식별** / **운전면허증 진위여부 확인**
     
 <p>
     <img width="25%" src="./assets/readme/gif/4_CreateUser.gif">
@@ -52,4 +52,4 @@
 
 - 회원가입-graphQL-backend
 - GoogleVision 이미지 OCR 운전면허증 텍스트 추출  
-- 운전면허증 진위여부 확인 (*경찰청교통민원24조회-https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)   
+- 운전면허증 진위여부 확인 [*경찰청교통민원24조회](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)   
