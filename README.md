@@ -54,4 +54,12 @@
 - GoogleVision 이미지 OCR 운전면허증 텍스트 추출
 - 운전면허증 진위여부 확인 *[경찰청교통민원24조회](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)
 
-    
+#### **운전면허증 잘못된 면허증정보** / **운전면허증이 아닌사물**
+
+<p>
+    <img width="25%" src="./assets/readme/gif/7_License_WrongNum.gif">
+    <img width="25%" src="./assets/readme/gif/8_LicenseDenied.gif">
+</p>
+
+- 잘못된 운전면허 정보를 통해 인증시
+- 운전면허증이 아닌사물 예외처리
