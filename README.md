@@ -24,8 +24,8 @@
 ## 관리자 페이지
 
 <p align="center">
-    <img width="500" src="./assets/readme/ppt/carpick_admin_1.png">
-    <img width="500" src="./assets/readme/ppt/carpick_admin_2.png">
+    <img width="50%" src="./assets/readme/ppt/carpick_admin_1.png">
+    <img width="50%" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
 
 ## 어플리케이션 시연
@@ -50,6 +50,6 @@
     <img width="25%" src="./assets/readme/gif/6_License_Istruth.gif">
 </p>
 
-- 회원가입-graphQL-backend
+- 회원가입graphQLbackend
 - GoogleVision 이미지 OCR 운전면허증 텍스트 추출  
 - 운전면허증 진위여부 확인 [경찰청교통민원24조회](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)   
