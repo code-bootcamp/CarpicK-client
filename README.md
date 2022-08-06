@@ -7,7 +7,7 @@
 
 불필요한 재화의 재생산을 막아주는 공유경제 개념이 자동차에 접목 되었습니다.
 
-**React native(expo)** 를 이용한 하이브리드 어플리케이션 입니다.
+**React native(expo)** 를 이용하여 빌드된 하이브리드 어플리케이션 입니다.
 
 <a href="https://www.figma.com/file/ISJzAquvSCmdPW3V4Jm8So/CarpicK---%EC%B0%A8%EB%B9%8C%EB%A0%A4%EC%A1%B0?node-id=16%3A99"><img src="https://img.shields.io/badge/Figma-5D8BFF?style=for-the-badge&logo=figma&logoColor=white"/>
 
