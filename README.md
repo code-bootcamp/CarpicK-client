@@ -33,7 +33,7 @@
 #### **Splash-Image** / **Landing-Page** / **Social-Login**
     
 <p>
-    <img width="25%" marginLeft="10" src="./assets/readme/gif/1_SplashScreen.gif">
+    <img width="25%" src="./assets/readme/gif/1_SplashScreen.gif">
     <img width="25%" src="./assets/readme/gif/2_Intro.gif">
     <img width="25%" src="./assets/readme/gif/3_GoogleSignIn.gif">
 </p>
@@ -52,6 +52,6 @@
 
 - 회원가입-graphQL-backend
 - GoogleVision 이미지 OCR 운전면허증 텍스트 추출
-- 운전면허증 진위여부 확인 *[경찰청교통민원24조회](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)  
+- 운전면허증 진위여부 확인 *(경찰청교통민원24조회)https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth
 
     
