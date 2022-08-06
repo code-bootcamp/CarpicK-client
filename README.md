@@ -22,6 +22,6 @@
 ## 관리자 페이지
 
 <p align="center">
-    <img width="500" src="./public/images/readme/splashScreen.gif">
-    <img width="500" src="./public/images/readme/graphQLLogin.gif">
+    <img width="500" src="./assets/readme/ppt/carpick_admin_1.png">
+    <img width="500" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
