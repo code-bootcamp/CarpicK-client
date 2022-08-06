@@ -23,7 +23,7 @@
 
 ## 관리자 페이지
 
-<p >
+<p align="center">
     <img width="49%" src="./assets/readme/ppt/carpick_admin_1.png">
     <img width="49%" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
