@@ -73,7 +73,7 @@
 
 - 휴대전화 인증을 통한 아이디찾기/비밀번호 재설정
 
-#### **Main-Screen** / **My-Page**
+#### **Main-Screen** / **My-Page**
 
 <p>
     <img width="25%" src="./assets/readme/gif/10_Main.gif">
