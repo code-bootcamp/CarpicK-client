@@ -28,14 +28,14 @@
     <img width="500" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
 
-## 카픽 어플리케이션 시연
+## 어플리케이션 시연
     
 ### **Splash-Image** / **Landing-Page** / **Social-Login**
     
-<p align="center">
-    <img width="33%" src="./assets/readme/gif/1_SplashScreen.gif">
-    <img width="33%" src="./assets/readme/gif/2_Intro.gif">
-    <img width="33%" src="./assets/readme/gif/3_GoogleSignIn.gif">
+<p>
+    <img width="25%" src="./assets/readme/gif/1_SplashScreen.gif">
+    <img width="25%" src="./assets/readme/gif/2_Intro.gif">
+    <img width="25%" src="./assets/readme/gif/3_GoogleSignIn.gif">
 </p>
     
 - SplashScreen 구현  
@@ -44,10 +44,10 @@
 
 ### **회원가입** / **운전면허증 식별** / **운전면허증 진위여부 확인**
     
-<p align="center">
-    <img width="33%" src="./assets/readme/gif/4_CreateUser.gif">
-    <img width="33%" src="./assets/readme/gif/5_License_R1.gif">
-    <img width="33%" src="./assets/readme/gif/6_License_Istruth.gif">
+<p>
+    <img width="25%" src="./assets/readme/gif/4_CreateUser.gif">
+    <img width="25%" src="./assets/readme/gif/5_License_R1.gif">
+    <img width="25%" src="./assets/readme/gif/6_License_Istruth.gif">
 </p>
 
 - 회원가입-graphQL-backend
