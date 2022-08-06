@@ -76,8 +76,8 @@
 #### **Main-Screen** / **My-Page**
 
 <p>
-    <img width="25%" src="./assets/readme/gif/10_Main.gif">
-    <img width="25%" src="./assets/readme/gif/11_MyPage.gif">
+    <img width="25%" src="./assets/readme/gif/11_Main.gif">
+    <img width="25%" src="./assets/readme/gif/12_MyPage.gif">
 </p>
 
 - 사이드바 메뉴  @react-navigation/drawer
