@@ -7,6 +7,8 @@
 
 불필요한 재화의 재생산을 막아주는 공유경제 개념이 자동차에 접목 되었습니다.
 
+**React native(expo)** 를 이용한 하이브리드 어플리케이션 입니다.
+
 <a href="https://www.figma.com/file/ISJzAquvSCmdPW3V4Jm8So/CarpicK---%EC%B0%A8%EB%B9%8C%EB%A0%A4%EC%A1%B0?node-id=16%3A99"><img src="https://img.shields.io/badge/Figma-5D8BFF?style=for-the-badge&logo=figma&logoColor=white"/>
 
 <p align="center">
@@ -25,3 +27,14 @@
     <img width="500" src="./assets/readme/ppt/carpick_admin_1.png">
     <img width="500" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
+
+## 카픽 어플리케이션 시연
+    
+**Splash-Image** / **Landing-Page** / **Social-Login**
+    
+<p align="center">
+    <img width="250" src="./assets/readme/gif/1_SplashScreen.gif">
+    <img width="250" src="./assets/readme/gif/2_Intro.gif">
+    <img width="250" src="./assets/readme/gif/3_GoogleSignIn.gif">
+</p>
+    
