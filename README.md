@@ -23,7 +23,7 @@
 
 ## 관리자 페이지
 
-<p>
+<p align="center">
     <img width="50%" src="./assets/readme/ppt/carpick_admin_1.png">
     <img width="50%" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
@@ -51,5 +51,9 @@
 </p>
 
 - 회원가입-graphQL-backend
-- GoogleVision 이미지 OCR 운전면허증 텍스트 추출  
-- 운전면허증 진위여부 확인 [경찰청교통민원24조회]([https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth))   
+    
+- GoogleVision 이미지 OCR 운전면허증 텍스트 추출
+  
+- 운전면허증 진위여부 확인 [경찰청교통민원24조회](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)  
+
+    
