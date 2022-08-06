@@ -89,7 +89,7 @@
     <img width="25%" src="./assets/readme/gif/14_Filter.gif">
 </p>
 
-- 구글맵 마커(카픽존), 아임포트 결제 구현
+- 구글맵 마커(카픽존), 아임포트 결제
 - 원하는차량 필터기능 구현
 
 #### **CarpicKey-이용시작** / **차량 반납하기**
@@ -100,4 +100,13 @@
 </p>
 
 - 예약취소기능 구현
-- 이미지 피커 (expo-image-picker) 구현
+- 이미지 피커 (expo-image-picker)
+
+#### **MyCar-등록** / **심사-거절** / **심사-통과** / 운행중지
+
+<p>
+    <img width="24%" src="./assets/readme/gif/17_MyCar.gif">
+    <img width="24%" src="./assets/readme/gif/18_MyCarRejected.gif">
+    <img width="24%" src="./assets/readme/gif/19_MyCarPass.gif">
+    <img width="24%" src="./assets/readme/gif/20_MyCarUnavailabled.jpeg">
+</p>
