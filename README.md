@@ -38,3 +38,18 @@
     <img width="33%" src="./assets/readme/gif/3_GoogleSignIn.gif">
 </p>
     
+- SplashScreen 구현  
+- 캐러셀을 이용한 소개페이지   
+- 구글 소셜로그인 구현   
+
+**회원가입** / **운전면허증 식별** / **운전면허증 진위여부 확인**
+    
+<p align="center">
+    <img width="33%" src="./assets/readme/gif/4_CreateUser.gif">
+    <img width="33%" src="./assets/readme/gif/5_License_R1.gif">
+    <img width="33%" src="./assets/readme/gif/6_License_Istruth.gif">
+</p>
+
+- 회원가입-graphQL-backend
+- GoogleVision 이미지 OCR 운전면허증 텍스트 추출  
+- 구글 소셜로그인 구현   
