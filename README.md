@@ -52,6 +52,6 @@
 
 - 회원가입-graphQL-backend
 - GoogleVision 이미지 OCR 운전면허증 텍스트 추출
-- 운전면허증 진위여부 확인 *(경찰청교통민원24조회)
+- 운전면허증 진위여부 확인 *[경찰청교통민원24조회](https://tilko.net/Help/Api/POST-api-apiVersion-Efine-LicenTruth)
 
     
