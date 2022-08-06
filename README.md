@@ -12,3 +12,9 @@
 <p align="center">
 <img width="1000" src="./assets/readme/ppt/carpick_service.png">
 </p>
+
+## 팀원소개
+
+<p align="center">
+<img width="1000" src="./assets/readme/ppt/carpick_teammember.png">
+</p>
