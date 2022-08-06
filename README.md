@@ -102,7 +102,7 @@
 - 예약취소기능 구현
 - 이미지 피커 (expo-image-picker)
 
-#### **MyCar-등록** / **심사-거절** / **심사-통과** / 운행중지
+#### **MyCar-등록** / **심사-거절** / **심사-통과** / **운행중지**
 
 <p>
     <img width="24%" src="./assets/readme/gif/17_MyCar.gif">
@@ -110,3 +110,19 @@
     <img width="24%" src="./assets/readme/gif/19_MyCarPass.gif">
     <img width="24%" src="./assets/readme/gif/20_MyCarUnavailabled.jpeg">
 </p>
+
+- 마이카 등록 심사 상태구분
+- 운행중 , 운행중지 상태구분
+
+#### **이용내역** / **반납지연 결제** / **마이카-운행현황** / **인기차**
+
+<p>
+    <img width="24%" src="./assets/readme/gif/21_RentHistory.gif">
+    <img width="24%" src="./assets/readme/gif/22_PenaltyPay.gif">
+    <img width="24%" src="./assets/readme/gif/23_OperationStatus.gif">
+    <img width="24%" src="./assets/readme/gif/24_PopularCar.gif">
+</p>
+
+- 내역 , 운행현황 히스토리
+- 반납지연금 추가결제
+
