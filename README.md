@@ -63,3 +63,13 @@
 
 - 잘못된 운전면허 정보를 통해 인증시
 - 운전면허증이 아닌사물 예외처리
+
+#### **아이디 찾기** / **비밀번호 재설정**
+
+<p>
+    <img width="25%" src="./assets/readme/gif/9_FindId.gif">
+    <img width="25%" src="./assets/readme/gif/10_ResetPassword.gif">
+</p>
+
+- 휴대전화 인증을 통한 아이디찾기/비밀번호 재설정
+
