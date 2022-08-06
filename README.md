@@ -24,8 +24,8 @@
 ## 관리자 페이지
 
 <p align="center">
-    <img width="50%" src="./assets/readme/ppt/carpick_admin_1.png">
-    <img width="50%" src="./assets/readme/ppt/carpick_admin_2.png">
+    <img align=top width="50%" src="./assets/readme/ppt/carpick_admin_1.png">
+    <img align=top width="50%" src="./assets/readme/ppt/carpick_admin_2.png">
 </p>
 
 ## 어플리케이션 시연
