@@ -33,8 +33,8 @@
 **Splash-Image** / **Landing-Page** / **Social-Login**
     
 <p align="center">
-    <img width="250" src="./assets/readme/gif/1_SplashScreen.gif">
-    <img width="250" src="./assets/readme/gif/2_Intro.gif">
-    <img width="250" src="./assets/readme/gif/3_GoogleSignIn.gif">
+    <img width="33%" src="./assets/readme/gif/1_SplashScreen.gif">
+    <img width="33%" src="./assets/readme/gif/2_Intro.gif">
+    <img width="33%" src="./assets/readme/gif/3_GoogleSignIn.gif">
 </p>
     
